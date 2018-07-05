@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              style="@style/listview_bg_item"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/xtbf_quicklydialog_tv_proname"
+        style="@style/listview_tv_item_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!--现有量-->
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/width_height_size08"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/xtbf_quicklydialog_tv_finalnum"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:text="现有量:"
+                android:textSize="18sp"/>
+
+            <EditText
+                android:id="@+id/xtbf_quicklydialog_et_finalnum"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_margin="3dp"
+                android:ems="8"
+                android:inputType="number"
+                android:maxLength="8"
+                android:layout_toRightOf="@id/xtbf_quicklydialog_tv_finalnum"
+                android:background="@drawable/bg_visit_record"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/gray"/>
+
+        <!--变化-->
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/width_height_size08"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/xtbf_quicklydialog_tv_changenum"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:text="变化量:"
+                android:textSize="15sp"/>
+
+            <EditText
+                android:id="@+id/xtbf_quicklydialog_et_changenum"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_margin="3dp"
+                android:ems="8"
+                android:inputType="number"
+                android:maxLength="8"
+                android:layout_toRightOf="@id/xtbf_quicklydialog_tv_changenum"
+                android:background="@drawable/bg_visit_record"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

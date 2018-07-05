@@ -1,0 +1,94 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/login_container"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg_login"
+    android:gravity="center" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:background="@drawable/bg_login_wd"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/login_tv_uid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:text="@string/login_uid"
+                android:textColor="@android:color/white"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/login_et_uid"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/login_tv_uid"
+                android:background="@drawable/bg_login_pwd"
+                android:hint="@string/login_uid_hint"
+                android:maxLength="128"
+                android:singleLine="true"
+                android:textColor="#092102"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp" >
+
+            <TextView
+                android:id="@+id/login_tv_pwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:text="密    码："
+                android:textColor="@android:color/white"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/login_et_pwd"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/login_tv_pwd"
+                android:background="@drawable/bg_login_pwd"
+                android:hint="@string/login_pwd_hint"
+                android:inputType="textPassword"
+                android:maxLength="128"
+                android:singleLine="true"
+                android:textColor="#092102"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_gravity="bottom" >
+
+            <Button
+                android:id="@+id/login_bt_submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:background="@drawable/bt_login_submit_invalid"
+                android:enabled="false" />
+
+            <Button
+                android:id="@+id/login_bt_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:layout_toRightOf="@id/login_bt_submit"
+                android:background="@drawable/bt_login_exit" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

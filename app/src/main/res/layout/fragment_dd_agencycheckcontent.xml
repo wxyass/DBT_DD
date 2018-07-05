@@ -1,0 +1,167 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+
+              android:background="@color/bg_app"
+              android:orientation="vertical">
+
+    <include layout="@layout/top_navigation"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <!--经销商基本信息-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/ico_point"/>
+
+                <TextView
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="经销商基本信息"/>
+            </LinearLayout>
+
+            <!-- 经销商编码： -->
+            <RelativeLayout
+                android:id="@+id/agency_check_rl_agencycode"
+                style="@style/agency_check_content_rl_all">
+
+                <!--标题-->
+                <TextView
+                    style="@style/zdzs_sayhi_title"
+                    android:text="经销商编码"/>
+
+                <!---->
+                <TextView
+                    android:id="@+id/agency_check_tv_agencycode"
+                    style="@style/zdzs_sayhi_statue"
+                    android:textColor="@color/gray"
+                    android:text="S123424353243225"/>
+            </RelativeLayout>
+            <!-- 经销商负责人： -->
+            <RelativeLayout
+                android:id="@+id/agency_check_rl_contact"
+                style="@style/agency_check_content_rl_all">
+
+                <!--标题-->
+                <TextView
+                    style="@style/zdzs_sayhi_title"
+                    android:text="经销商负责人"/>
+
+                <!---->
+                <TextView
+                    android:id="@+id/agency_check_tv_contact"
+                    style="@style/zdzs_sayhi_statue"
+                    android:textColor="@color/gray"
+                    android:text="张三,李四"/>
+
+            </RelativeLayout>
+            <!-- 联系电话： -->
+            <RelativeLayout
+                android:id="@+id/agency_check_rl_phone"
+                style="@style/agency_check_content_rl_all">
+
+                <!--标题-->
+                <TextView
+                    style="@style/zdzs_sayhi_title"
+                    android:text="联系电话"/>
+
+                <!---->
+                <TextView
+                    android:id="@+id/agency_check_tv_phone"
+                    style="@style/zdzs_sayhi_statue"
+                    android:textColor="@color/gray"
+                    android:text="13100005678"/>
+            </RelativeLayout>
+
+            <!--经销商库存稽查-->
+            <LinearLayout
+                android:id="@+id/agency_check_ll_check"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/ico_point"/>
+
+                <TextView
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="经销商库存稽查"/>
+            </LinearLayout>
+
+            <!--产品列表-->
+            <LinearLayout
+                android:id="@+id/agency_check_ll_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/listview_line"
+                android:orientation="vertical"
+                android:visibility="visible"
+                android:padding="1dp">
+
+                <dd.tsingtaopad.view.NoScrollListView
+                    android:id="@+id/agency_check_lv_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cacheColorHint="@color/bg_lv_item"
+                    android:divider="@color/list_line"
+                    android:dividerHeight="5dp">
+                </dd.tsingtaopad.view.NoScrollListView>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <Button
+                    android:id="@+id/dd_agencychenck_bt_next"
+                    style="@style/xtbf_btn_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/width_height_size08"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/bg_select_green"
+                    android:text="保存"
+                    />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="80dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

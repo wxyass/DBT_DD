@@ -1,0 +1,59 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
+    <dimen name="fab_margin">24dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="bottombar_height">48dp</dimen>
+    <dimen name="bottombar_wechat_height">52dp</dimen>
+    <dimen name="bottombar_dbtshop_height">2dp</dimen>
+
+    <!--下面是摘自Dbtplus旧版本 2017年12月25日10:11:39-->
+
+    <!-- App字体列表 -->
+    <dimen name="font_size0">26dp</dimen>
+    <dimen name="font_size1">24dp</dimen>
+    <dimen name="font_size2">20dp</dimen>
+    <dimen name="font_size3">18dp</dimen>
+    <dimen name="font_size4">16dp</dimen>
+    <dimen name="font_size5">14dp</dimen>
+    <dimen name="font_size6">12dp</dimen>
+    <dimen name="font_size7">10dp</dimen>
+    <dimen name="font_size8">8dp</dimen>
+    <dimen name="font_size9">6dp</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="home_weather_textsize">18dp</dimen>
+    <dimen name="show_product_textsize">16dp</dimen>
+    <dimen name="home_content_textsize">18dp</dimen>
+    <dimen name="home_content_textsize1">16dp</dimen>
+
+    <!-- 拍照大小 -->
+    <dimen name="thumbnail_imageview_size">41.0dip</dimen>
+    <dimen name="bottom_bar_height">75.0dip</dimen>
+    <dimen name="top_menu_bar_height">45.0dip</dimen>
+    <dimen name="shutter_bottom_size">62.0dip</dimen>
+    <dimen name="album_header_bar_height">50.0dip</dimen>
+    <dimen name="title_view_left_back_padding_left">12.0dip</dimen>
+    <dimen name="title_view_left_back_padding_right">12.0dip</dimen>
+    <dimen name="album_header_btn_width">48.0dip</dimen>
+    <dimen name="album_rooter_bar_height">48.0dip</dimen>
+    <dimen name="album_rooter_bar_text_size">16.0dp</dimen>
+    <dimen name="videodetails_textsize_time">13.0dip</dimen>
+    <dimen name="video_bottom_bar_height">40.0dip</dimen>
+
+    <dimen name="banner_button_h">35dp</dimen>
+
+    <!--定义 宽高-->
+    <dimen name="width_height_size01">6dp</dimen>
+    <dimen name="width_height_size02">10dp</dimen>
+    <dimen name="width_height_size03">16dp</dimen>
+    <dimen name="width_height_size04">20dp</dimen>
+    <dimen name="width_height_size05">26dp</dimen>
+    <dimen name="width_height_size06">30dp</dimen>
+    <dimen name="width_height_size07">36dp</dimen>
+    <dimen name="width_height_size08">40dp</dimen>
+    <dimen name="width_height_size09">46dp</dimen>
+    <dimen name="width_height_size10">50dp</dimen>
+
+</resources>

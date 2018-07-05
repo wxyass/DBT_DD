@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<!-- 产品展示详情设置了onclicklistener(null) 会造成子view textview 有触发效果 所以使用此样式去屏蔽 -->
+    <item android:state_pressed="true" android:color="@color/darkgray"/>
+    <item android:state_focused="true" android:color="@color/darkgray"/>
+    <item android:color="@color/darkgray"/>
+
+</selector>

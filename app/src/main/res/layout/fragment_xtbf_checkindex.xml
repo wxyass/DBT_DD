@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:cuisw="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/bg_page_color"
+              android:orientation="vertical" >
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <!-- 点击快速采集 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical" >
+
+                <ImageView
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ico_point" />
+
+                <TextView
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/checkindex_checkcollect" />
+
+
+                <!-- 点击快速采集 -->
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    >
+
+                    <Button
+                        style="@style/xtbf_btn_tv"
+                        android:id="@+id/xtbf_checkindex_bt_quickcollect"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/width_height_size08"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:background="@drawable/bg_select_green"
+                        android:text="点击快速采集"
+                        />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <!--指标采集列表-->
+            <ListView
+                android:id="@+id/xtbf_checkindex_lv_calculate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@color/listview_line"
+                android:dividerHeight="1dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/listview_line" />
+
+            <!-- 促销活动 -->
+            <LinearLayout
+                android:id="@+id/xtbf_checkindex_ll_promotion_title"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                 >
+
+                <ImageView
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ico_point" />
+
+                <TextView
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/checkindex_promotion" />
+
+            </LinearLayout>
+
+            <!-- 促销活动列表 -->
+            <dd.tsingtaopad.view.NoScrollListView
+                android:id="@+id/xtbf_checkindex_lv_promotion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@color/bg_app"
+                android:dividerHeight="10dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/listview_line" />
+
+            <!-- 其他信息 -->
+            <LinearLayout
+                android:id="@+id/xtbf_checkindex_ll_other"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                >
+
+                <ImageView
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ico_point" />
+
+                <TextView
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="其他信息" />
+
+            </LinearLayout>
+
+            <!--四个指标 产品组合,占店率... -->
+            <LinearLayout
+                android:id="@+id/xtbf_checkindex_ll_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:visibility="visible" >
+
+                <!-- 产品组合是否达标 -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    >
+
+                    <TextView
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="产品组合是否达标"/>
+
+                    <dd.tsingtaopad.view.DdSlideSwitch
+                        android:id="@+id/xtbf_noproindex_sw_prostatus"
+                        style="@style/page_label_small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"
+                        cuisw:defStatus="on"
+                        cuisw:offText=""
+                        cuisw:onText=""
+                        cuisw:textColor="#595757"
+                        cuisw:textSize="17sp"/>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/listview_line" />
+
+                <!-- 合作是否执行到位 -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    >
+
+                    <TextView
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="@string/checkindex_tv_hz"/>
+
+                    <dd.tsingtaopad.view.DdSlideSwitch
+                        android:id="@+id/xtbf_noproindex_sw_hezuo"
+                        style="@style/page_label_small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"
+                        cuisw:defStatus="on"
+                        cuisw:offText=""
+                        cuisw:onText=""
+                        cuisw:textColor="#595757"
+                        cuisw:textSize="17sp"/>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/listview_line" />
+
+                <!-- 是否高质量配送 -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    >
+
+                    <TextView
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="@string/checkindex_tv_ps"/>
+
+                    <dd.tsingtaopad.view.DdSlideSwitch
+                        android:id="@+id/xtbf_noproindex_sw_peisong"
+                        style="@style/page_label_small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"
+                        cuisw:defStatus="on"
+                        cuisw:offText=""
+                        cuisw:onText=""
+                        cuisw:textColor="#595757"
+                        cuisw:textSize="17sp"/>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/listview_line" />
+
+                <!-- 我品单店占有率 -->
+                <RelativeLayout
+                    android:id="@+id/xtbf_sayhi_rl_termminorchannel"
+                    style="@style/xtbf_sayhi_rl">
+
+                    <TextView
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_centerVertical="true"
+                        android:text="@string/checkindex_tv_zyl"/>
+
+                    <TextView
+                        android:id="@+id/xtbf_noproindex_sp_zhanyoulv"
+                        style="@style/xtbf_sayhi_two_tv"
+                        android:text="@string/termadd_termname"/>
+
+                    <ImageView
+                        style="@style/xtbf_sayhi_third_tv"
+                        android:visibility="visible"/>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+
+            <!--下一步-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/xtbf_chenckindex_bt_next"
+                    style="@style/xtbf_btn_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/width_height_size08"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_select_green"
+                    android:text="下一步"
+                    />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="80dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

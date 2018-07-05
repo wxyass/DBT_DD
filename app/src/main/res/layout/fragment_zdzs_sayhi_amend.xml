@@ -1,0 +1,270 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/bg_app"
+              android:clickable="true"
+              android:orientation="vertical">
+
+    <include layout="@layout/top_navigation"/>
+
+
+    <LinearLayout
+        style="@style/content_margin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:orientation="vertical">
+
+        <!--业代数据-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                style="@style/point"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/ico_point"/>
+
+            <TextView
+                style="@style/page_label_big"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="业代数据"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+        <!-- 业代数据： -->
+        <RelativeLayout
+            android:id="@+id/zdzs_sayhi_amend_rl"
+            style="@style/xtbf_sayhi_rl">
+
+            <!--标题-->
+            <TextView
+                android:id="@+id/zdzs_sayhi_amend_rl_yd_title"
+                style="@style/zdzs_sayhi_title"
+                android:text="@string/termadd_termname"/>
+
+            <!--内容1-->
+            <TextView
+                android:id="@+id/zdzs_sayhi_amend_rl_con1"
+                style="@style/zdzs_sayhi_checkterm"
+                android:layout_marginRight="20dp"
+                android:text=""/>
+
+            <!--内容2  单位-->
+            <TextView
+                android:id="@+id/zdzs_sayhi_amend_rl_con2"
+                style="@style/zdzs_sayhi_content2"
+                android:text=""/>
+
+            <!--未稽查-->
+            <TextView
+                android:id="@+id/zdzs_sayhi_amend_rl_statue"
+                style="@style/zdzs_sayhi_statue"
+                android:text="未稽查"
+                android:visibility="gone"/>
+
+            <ImageView
+                style="@style/xtbf_sayhi_third_tv"
+                android:visibility="invisible"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+        <!--督导数据-->
+        <LinearLayout
+            android:id="@+id/zdzs_sayhi_amend_rl_ll_head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/ico_point"/>
+
+                <TextView
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="督导数据"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+            <!-- 督导数据： -->
+            <RelativeLayout
+                android:id="@+id/zdzs_sayhi_amend_rl_dd_head"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/bg_select_white_gray">
+
+                <!--第一种类型,输入框-->
+                <RelativeLayout
+                    android:id="@+id/zdzs_sayhi_amend_rl_dd_et"
+                    style="@style/xtbf_sayhi_rl"
+                    android:visibility="gone">
+
+                    <!--标题-->
+                    <TextView
+                        android:id="@+id/zdzs_sayhi_amend_rl_dd_title_et"
+                        style="@style/zdzs_sayhi_title"
+                        android:text="@string/termadd_termname"/>
+
+                    <!--内容1-->
+                    <EditText
+                        android:id="@+id/zdzs_sayhi_amend_rl_dd_con1_et"
+                        style="@style/zdzs_sayhi_checkterm"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/bg_visit_record"
+                        android:text=""/>
+                    <!--内容2 单位-->
+                    <TextView
+                        android:id="@+id/zdzs_sayhi_amend_rl_con2_et"
+                        style="@style/zdzs_sayhi_content2"
+                        android:text=""/>
+
+
+                </RelativeLayout>
+
+                <!--第2种类型,下拉选择-->
+                <RelativeLayout
+                    android:id="@+id/zdzs_sayhi_amend_rl_dd_sp"
+                    style="@style/xtbf_sayhi_rl"
+                    android:visibility="gone">
+
+                    <!--标题-->
+                    <TextView
+                        android:id="@+id/zdzs_sayhi_amend_rl_dd_title_sp"
+                        style="@style/zdzs_sayhi_title"
+                        android:text="@string/termadd_termname"/>
+
+                    <!--内容1-->
+                    <TextView
+                        android:id="@+id/zdzs_sayhi_amend_rl_dd_con1_sp"
+                        style="@style/zdzs_sayhi_checkterm"
+                        android:text=""/>
+
+                    <!--内容1-->
+                    <EditText
+                        android:id="@+id/zdzs_sayhi_amend_rl_dd_con1_et_sp"
+                        style="@style/zdzs_sayhi_checkterm"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/bg_visit_record"
+                        android:text=""
+                        android:visibility="gone"/>
+
+                    <!--内容2  单位-->
+                    <TextView
+                        android:id="@+id/zdzs_sayhi_amend_rl_dd_con2_sp"
+                        style="@style/zdzs_sayhi_content2"
+                        android:text=""/>
+
+                    <ImageView
+                        style="@style/xtbf_sayhi_third_tv"
+                        android:visibility="visible"/>
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+
+        <!--督导备注-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                style="@style/point"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/ico_point"/>
+
+            <TextView
+                style="@style/page_label_big"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="督导备注"/>
+        </LinearLayout>
+
+
+        <!--拜访记录输入框-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/white"
+            android:gravity="center_vertical">
+
+            <EditText
+                android:id="@+id/zdzs_sayhi_amend_dd_et_report"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/bg_visit_record"
+                android:hint="请输入备注内容"
+                android:inputType="textMultiLine"
+                android:maxLength="100"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+
+        <!--下一步-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/zdzs_sayhi_amend_dd_bt_save"
+                style="@style/xtbf_btn_tv"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/width_height_size08"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_select_green"
+                android:text="保存"
+                />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+
+</LinearLayout>

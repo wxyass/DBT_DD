@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    >
+
+    <!-- 2级条目 -->
+    <LinearLayout
+        style="@style/item_xtbf_checkindex_rl"
+        >
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/width_height_size10"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="8">
+
+            <TextView
+                android:id="@+id/item_xt_checkindex_proname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:text="产品名称"
+                android:textColor="@color/gray_color_333333"
+                android:textSize="@dimen/font_size5"/>
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/width_height_size08"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_weight="2">
+
+            <TextView
+                android:id="@+id/item_xt_checkindex_indexvalue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:hint="@string/default_input"
+                android:textSize="@dimen/font_size3"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/width_height_size08"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1">
+
+            <ImageView
+                style="@style/xtbf_sayhi_third_tv"
+                android:visibility="visible"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

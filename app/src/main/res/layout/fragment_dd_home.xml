@@ -1,0 +1,418 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bg_app"
+    >
+
+    <ScrollView
+        android:id="@+id/first_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:background="@color/first_title"
+                android:orientation="horizontal">
+
+                <!--胡歌-->
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    >
+
+                    <ImageView
+                        android:id="@+id/first_img_icon"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/icon_home_top_pho"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@id/first_img_icon"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        >
+
+                        <TextView
+                            android:id="@+id/first_tv_username"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="胡歌"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/font_size2"/>
+
+                        <TextView
+                            android:id="@+id/first_tv_zhuisu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="追溯家数: 0"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/font_size6"/>
+
+                        <TextView
+                            android:id="@+id/first_tv_xietong"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="协同家数: 0"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/font_size6"/>
+                    </LinearLayout>
+                </RelativeLayout>
+                <!--签到-->
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    >
+
+                    <ImageView
+                        android:id="@+id/first_img_sign"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/bg_sign_button"
+                        />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+            <!--通知-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:visibility="gone"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white">
+
+                    <ImageView
+                        android:id="@+id/icon_laba"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/icon_home_laba"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/icon_laba"
+                        android:layout_marginLeft="8dp"
+                        android:text="通知:这是一条紧急通知"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@color/white">
+
+                <!--快捷入口-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:orientation="horizontal">
+
+                    <!--协同拜访-->
+                    <RelativeLayout
+                        android:id="@+id/first_rl_xtbf"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="6dp"
+                        android:layout_weight="2"
+                        android:background="@drawable/bg_select_white_gray">
+
+                        <TextView
+                            style="@style/first_statue"
+                            android:text="协同拜访"/>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="36dp"
+                            android:background="@drawable/icon_home_ent_xietong"/>
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginTop="12dp"
+                        android:background="@color/gray_color_cccccc"/>
+
+                    <!--终端追溯-->
+                    <RelativeLayout
+                        android:id="@+id/first_rl_zdzs"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="6dp"
+                        android:layout_weight="2"
+                        android:background="@drawable/bg_select_white_gray">
+
+                        <TextView
+                            style="@style/first_statue"
+                            android:text="终端追溯"/>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="36dp"
+                            android:background="@drawable/icon_home_ent_back"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:orientation="horizontal">
+
+                    <!--库存盘点-->
+                    <RelativeLayout
+                        android:id="@+id/first_rl_kcpd"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="6dp"
+                        android:layout_weight="2"
+                        android:background="@drawable/bg_select_white_gray">
+
+                        <TextView
+                            style="@style/first_statue"
+                            android:text="库存盘点"/>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="36dp"
+                            android:background="@drawable/icon_home_ent_sto"/>
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginTop="12dp"
+                        android:background="@color/gray_color_cccccc"/>
+
+                    <!--整改计划-->
+                    <RelativeLayout
+                        android:id="@+id/first_rl_zgjh"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="6dp"
+                        android:layout_weight="2"
+                        android:background="@drawable/bg_select_white_gray">
+
+                        <TextView
+                            style="@style/first_statue"
+                            android:text="整改计划"/>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="36dp"
+                            android:background="@drawable/icon_home_ent_coo"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:orientation="horizontal">
+
+                    <!--计划制定-->
+                    <RelativeLayout
+                        android:id="@+id/first_rl_jhzd"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="6dp"
+                        android:layout_weight="2"
+                        android:background="@drawable/bg_select_white_gray">
+
+                        <TextView
+                            style="@style/first_statue"
+                            android:text="计划制定"/>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="36dp"
+                            android:background="@drawable/icon_home_ent_rec"/>
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginTop="12dp"
+                        android:background="@color/gray_color_cccccc"/>
+
+                    <!--工作总结-->
+                    <RelativeLayout
+                        android:id="@+id/first_rl_gzzj"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="6dp"
+                        android:layout_weight="2"
+                        android:background="@drawable/bg_select_white_gray">
+
+                        <TextView
+                            style="@style/first_statue"
+                            android:text="工作总结"/>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="36dp"
+                            android:background="@drawable/icon_home_ent_sum"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--大区追溯冠军榜-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ico_point"/>
+
+                <TextView
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="大区追溯冠军榜"/>
+            </LinearLayout>
+            <!--冠军榜-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <dd.tsingtaopad.view.MyGridView
+                    android:id="@+id/first_gv_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:numColumns="3"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:scrollbars="none"
+                    android:verticalSpacing="2dp">
+                </dd.tsingtaopad.view.MyGridView>
+
+
+            </LinearLayout>
+
+            <!--七日追溯指标排行榜-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ico_point"/>
+
+                <TextView
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="七日追溯指标排行榜"/>
+            </LinearLayout>
+
+            <!--排行列表-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <dd.tsingtaopad.view.NoScrollListView
+                    android:id="@+id/first_sclv_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:divider="@color/bg_page_color"
+                    android:dividerHeight="0dp"
+                    android:paddingBottom="10dp"/>
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

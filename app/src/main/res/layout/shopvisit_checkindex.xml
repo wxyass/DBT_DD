@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:cuisw="http://schemas.android.com/apk/res-auto"
+              style="@style/content_margin"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/bg_page_color"
+              android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/bg_search_bottom"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ico_point"/>
+
+                <TextView
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/checkindex_checkcollect"/>
+
+                <Button
+                    android:id="@+id/checkindex_bt_quickcollect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/bt_checkindex_quickly"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ico_point"/>
+
+                <TextView
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/checkindex_collect"/>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/listview_bg_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/listview_line"/>
+
+                <TextView
+                    style="@style/listview_tv_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="@string/checkindex_index"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/listview_line"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/listview_tv_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/checkindex_proname"/>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/listview_line"/>
+
+                    <TextView
+                        style="@style/listview_tv_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="@string/checkindex_result"/>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/listview_line"/>
+
+                    <TextView
+                        style="@style/listview_tv_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="@string/checkindex_calculate"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/listview_line"/>
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/checkindex_lv_calculate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@color/listview_line"
+                android:dividerHeight="1dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/listview_line"/>
+
+            <!-- 促销活动 -->
+
+            <LinearLayout
+                android:id="@+id/checkindex_ll_promotion_title"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ico_point"/>
+
+                <TextView
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/checkindex_promotion"/>
+
+                <Button
+                    android:id="@+id/checkindex_bt_activitypic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/bt_checkindex_activity"
+                    android:visibility="gone"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/checkindex_ll_promotion_head"
+                style="@style/listview_bg_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:visibility="gone">
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/listview_line"/>
+
+                <TextView
+                    style="@style/listview_tv_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="@string/checkindex_promotion_name"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/listview_line"/>
+
+                <TextView
+                    style="@style/listview_tv_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:text="@string/checkindex_promotion_pro"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/listview_line"/>
+
+                <TextView
+                    style="@style/listview_tv_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="@string/checkindex_promotion_status1"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/listview_line"/>
+
+                <TextView
+                    style="@style/listview_tv_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="@string/checkindex_promotion_reachnum"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/listview_line"/>
+
+                <TextView
+                    style="@style/listview_tv_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="@string/checkindex_promotion_camera"
+                    android:visibility="gone"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/listview_line"
+                    android:visibility="gone"/>
+            </LinearLayout>
+
+            <!-- 促销活动列表 -->
+
+            <dd.tsingtaopad.view.NoScrollListView
+                android:id="@+id/checkindex_lv_promotion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@color/listview_line"
+                android:dividerHeight="1dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/listview_line"/>
+
+            <LinearLayout
+                android:id="@+id/checkindex_ll_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- 产品组合是否达标 -->
+
+                <LinearLayout
+                    android:id="@+id/checkindex_ll_pro"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        style="@style/point"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ico_point"/>
+
+                    <TextView
+                        android:id="@+id/noproindex_tv_name"
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/checkindex_tv_pro"/>
+
+                    <dd.tsingtaopad.view.SlideSwitch
+                        android:id="@+id/noproindex_sw_prostatus"
+                        style="@style/page_label_small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        cuisw:defStatus="on"
+                        cuisw:offText=""
+                        cuisw:onText=""
+                        cuisw:textColor="#595757"
+                        cuisw:textSize="17sp"/>
+                </LinearLayout>
+
+                <!-- 是否高质量配送三大指标 -->
+
+                <dd.tsingtaopad.view.NoScrollListView
+                    android:id="@+id/checkindex_lv_noproindex"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@android:color/transparent"
+                    android:dividerHeight="0dp"
+                    android:visibility="gone"/>
+
+                <!-- 三大指标 -->
+
+                <LinearLayout
+                    android:id="@+id/checkindex_lo_noproindex"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+                </LinearLayout>
+
+                <!-- 合作是否执行到位 -->
+
+                <LinearLayout
+                    android:id="@+id/checkindex_ll_hezuo"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        style="@style/point"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ico_point"/>
+
+                    <TextView
+                        android:id="@+id/noproindex_tv_hezuo"
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/checkindex_tv_hz"/>
+
+                    <dd.tsingtaopad.view.SlideSwitch
+                        android:id="@+id/noproindex_sw_hezuo"
+                        style="@style/page_label_small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        cuisw:defStatus="on"
+                        cuisw:offText=""
+                        cuisw:onText=""
+                        cuisw:textColor="#595757"
+                        cuisw:textSize="17sp"/>
+                </LinearLayout>
+
+                <!-- 我品单店占有率 -->
+
+                <LinearLayout
+                    android:id="@+id/checkindex_ll_zhanyoulv"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        style="@style/point"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ico_point"/>
+
+                    <TextView
+                        android:id="@+id/noproindex_tv_zhanyoulv"
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/checkindex_tv_zyl"/>
+
+                    <Spinner
+                        android:id="@+id/noproindex_sp_zhanyoulv"
+                        style="@style/page_label_small"
+                        android:layout_width="120dp"
+                        android:layout_height="43dp"
+                        android:background="@drawable/bg_spinner"/>
+                </LinearLayout>
+
+                <!-- 是否高质量配送 -->
+
+                <LinearLayout
+                    android:id="@+id/checkindex_ll_peisong"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        style="@style/point"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ico_point"/>
+
+                    <TextView
+                        android:id="@+id/noproindex_tv_peisong"
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/checkindex_tv_ps"/>
+
+                    <dd.tsingtaopad.view.SlideSwitch
+                        android:id="@+id/noproindex_sw_peisong"
+                        style="@style/page_label_small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        cuisw:defStatus="on"
+                        cuisw:offText=""
+                        cuisw:onText=""
+                        cuisw:textColor="#595757"
+                        cuisw:textSize="17sp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">DBT.DD</string>
+
+    <string name="platform_home">首页</string>
+    <string name="platform_visit">拜访管理</string>
+    <string name="platform_operation">运营管理</string>
+    <string name="platform_system">系统管理</string>
+    <string name="test">测试界面</string>
+    <string name="ceshi">测试界面2</string>
+    <string name="sureabc">确定(0)</string>
+    <string name="dxtbf">协同拜访</string>
+    <string name="ddzdzs">终端追溯</string>
+    <string name="dxtbfselectterm">终端选择界面</string>
+    <string name="dxtbfselectcart">购物车界面</string>
+    <string name="ksbf">开始拜访-去北京大饭店</string>
+    <string name="tocart">进入购物车</string>
+    <string name="shopname">北京大饭店</string>
+
+    <string name="ceshi_back">回退</string>
+    <string name="ceshi_camera">拍照</string>
+
+    <string name="operation_weekjihua">周工作计划</string>
+    <string name="operation_weeksummer">日工作记录</string>
+    <string name="operation_zhenggai">整改计划</string>
+
+
+
+</resources>

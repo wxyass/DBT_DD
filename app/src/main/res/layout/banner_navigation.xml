@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/bg_navigation"
+              android:orientation="horizontal">
+
+    <!-- 取消 -->
+
+    <RelativeLayout
+        android:id="@+id/banner_navigation_rl_back"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/bt_back"/>
+    </RelativeLayout>
+
+    <!-- 标题 -->
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="6">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/banner_navigation_tv_title"
+            style="@style/banner_child"
+            android:layout_width="wrap_content"
+            android:layout_height="65dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:maxLength="15"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"/>
+    </RelativeLayout>
+
+    <!-- 确定 -->
+
+    <RelativeLayout
+        android:id="@+id/banner_navigation_rl_confirm"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:visibility="invisible">
+
+        <!-- 删除Button按钮,因为这个按钮会有点击事件  使用TextView没有点击事件 -->
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/banner_navigation_bt_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/bt_confirm"
+            />
+    </RelativeLayout>
+
+</LinearLayout>

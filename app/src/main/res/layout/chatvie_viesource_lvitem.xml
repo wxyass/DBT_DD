@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/listview_bg_item"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal" >
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/listview_line" />
+
+    <TextView
+        android:id="@+id/viesource_tv_viename"
+        style="@style/listview_tv_item_text"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:layout_marginLeft="1dp"
+        android:layout_weight="8"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/listview_line" />
+
+    <EditText
+        android:id="@+id/viesource_et_channelprice"
+        style="@style/listview_tv_item_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_weight="3"
+        android:ems="6"
+        android:hint="@string/hit_input"
+        android:inputType="numberDecimal"
+        android:maxLength="6"
+        android:singleLine="true" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/listview_line" />
+
+    <EditText
+        android:id="@+id/viesource_et_sellprice"
+        style="@style/listview_tv_item_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_weight="3"
+        android:maxLength="6"
+        android:hint="@string/hit_input"
+        android:inputType="numberDecimal"
+        android:singleLine="true"
+        android:ems="6"
+         />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/listview_line" />
+    
+    <EditText
+        android:id="@+id/viesource_et_agency"
+        style="@style/listview_tv_item_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_weight="6"
+        android:hint="@string/hit_input"
+        android:maxLength="50"
+         />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/listview_line" />
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/viesource_bt_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bt_delete_list" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/listview_line" />
+
+</LinearLayout>

@@ -1,0 +1,990 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cuisw="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_page_color"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/bg_search_bottom" />
+
+    <ScrollView
+        android:id="@+id/sayhi_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical" >
+
+                <ImageView
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ico_point" />
+
+                <TextView
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sayhi_termstatus" />
+
+                <dd.tsingtaopad.view.SlideSwitch
+                    android:id="@+id/sayhi_sw_termstatus"
+                    style="@style/page_label_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    cuisw:defStatus="on"
+                    cuisw:offText=""
+                    cuisw:onText=""
+                    cuisw:textColor="#595757"
+                    cuisw:textSize="17sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical" >
+
+                <ImageView
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ico_point" />
+
+                <TextView
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sayhi_visitstatus" />
+
+                <dd.tsingtaopad.view.SlideSwitch
+                    android:id="@+id/sayhi_sw_visitstatus"
+                    style="@style/page_label_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    cuisw:defStatus="off"
+                    cuisw:offText=""
+                    cuisw:onText=""
+                    cuisw:textColor="#595757"
+                    cuisw:textSize="17sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical" >
+
+                <ImageView
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ico_point" />
+
+                <TextView
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sayhi_wopindianzhao" />
+
+                <dd.tsingtaopad.view.SlideSwitch
+                    android:id="@+id/sayhi_sw_wopindianzhao"
+                    style="@style/page_label_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    cuisw:defStatus="off"
+                    cuisw:offText=""
+                    cuisw:onText=""
+                    cuisw:textColor="#595757"
+                    cuisw:textSize="17sp" />
+
+                <Button
+                    android:id="@+id/sayhi_btn_text"
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="43dp"
+                    android:layout_marginLeft="30dp"
+                    android:background="@drawable/transparent"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/default_text" />
+
+                <Button
+                    android:id="@+id/sayhi_btn_time"
+                    style="@style/button_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="43dp"
+                    android:layout_marginLeft="2dp"
+                    android:background="@drawable/bg_search_button"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/default_date" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="12dp"
+                android:gravity="center_vertical" >
+
+                <ImageView
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ico_point" />
+
+                <TextView
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sayhi_prostatus" />
+
+                <CheckBox
+                    android:id="@+id/sayhi_cb_mine"
+                    style="@style/page_label_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/bt_checkbox"
+                    android:text="@string/sayhi_prostatus_mine" />
+
+                <CheckBox
+                    android:id="@+id/sayhi_cb_vie"
+                    style="@style/page_label_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="35dp"
+                    android:button="@drawable/bt_checkbox"
+                    android:text="@string/sayhi_prostatus_vie" />
+            </LinearLayout>
+
+            <!-- 终端合作状态 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical" >
+
+                <ImageView
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ico_point" />
+
+                <TextView
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sayhi_protocol" />
+
+                <CheckBox
+                    android:id="@+id/sayhi_cb_mineprotocol"
+                    style="@style/page_label_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/bt_checkbox"
+                    android:text="@string/sayhi_prostatus_mine" />
+
+                <CheckBox
+                    android:id="@+id/sayhi_cb_vieprotocol"
+                    style="@style/page_label_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="35dp"
+                    android:button="@drawable/bt_checkbox"
+                    android:text="@string/sayhi_prostatus_vie" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical" >
+
+                <ImageView
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ico_point" />
+
+                <TextView
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sayhi_terminfo" />
+            </LinearLayout>
+
+            <!-- 终端编码 所属路线 -->
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="#f8f9fa"
+                android:gravity="center"
+                android:shrinkColumns="*" >
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical" >
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/termadd_termcode" />
+
+                    <EditText
+                        android:id="@+id/sayhi_tv_termCode"
+                        style="@style/formLabel_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="7"
+                        android:enabled="false"
+                        android:singleLine="true" />
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/termadd_star"
+                        android:textColor="#fd022b"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/termadd_belongline" />
+
+                    <Spinner
+                        android:id="@+id/sayhi_sp_belongLine"
+                        style="@style/formLabel_value"
+                        android:layout_width="0dp"
+                        android:layout_height="43dp"
+                        android:layout_weight="7"
+                        android:background="@drawable/bg_spinner" />
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/termadd_star"
+                        android:textColor="#fd022b" />
+                </TableRow>
+
+                <!-- 终端名称 终端等级 -->
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical" >
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/termadd_termname" />
+
+                    <EditText
+                        android:id="@+id/sayhi_et_termName"
+                        style="@style/formLabel_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="7"
+                        android:maxLength="20"
+                        android:singleLine="true" />
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/termadd_star"
+                        android:textColor="#fd022b" />
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/termadd_level" />
+
+                    <Spinner
+                        android:id="@+id/sayhi_sp_termLevel"
+                        style="@style/formLabel_value"
+                        android:layout_width="0dp"
+                        android:layout_height="43dp"
+                        android:layout_weight="7"
+                        android:background="@drawable/bg_spinner" />
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/termadd_star"
+                        android:textColor="#fd022b" />
+                </TableRow>
+
+                <!-- 省 市 -->
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center_vertical" >
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/termadd_prov" />
+
+                    <Spinner
+                        android:id="@+id/sayhi_sp_prov"
+                        style="@style/formLabel_value"
+                        android:layout_width="0dp"
+                        android:layout_height="43dp"
+                        android:layout_weight="3"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/sayhi_tv_prov"
+                        style="@style/formLabel_value"
+                        android:layout_width="0dp"
+                        android:layout_height="43dp"
+                        android:layout_weight="7" />
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/termadd_star"
+                        android:textColor="#fd022b" />
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/termadd_city" />
+
+                    <Spinner
+                        android:id="@+id/sayhi_sp_city"
+                        style="@style/formLabel_value"
+                        android:layout_width="0dp"
+                        android:layout_height="43dp"
+                        android:layout_weight="3"
+                        android:background="@drawable/bg_spinner"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/sayhi_tv_city"
+                        style="@style/formLabel_value"
+                        android:layout_width="0dp"
+                        android:layout_height="43dp"
+                        android:layout_weight="7" />
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/termadd_star"
+                        android:textColor="#fd022b" />
+                </TableRow>
+
+                <!-- 县 地址 -->
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/termadd_country" />
+
+                    <Spinner
+                        android:id="@+id/sayhi_sp_country"
+                        style="@style/formLabel_value"
+                        android:layout_width="0dp"
+                        android:layout_height="43dp"
+                        android:layout_weight="7"
+                        android:background="@drawable/bg_spinner"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/sayhi_tv_country"
+                        style="@style/formLabel_value"
+                        android:layout_width="0dp"
+                        android:layout_height="43dp"
+                        android:layout_weight="7" />
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/termadd_star"
+                        android:textColor="#fd022b" />
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/termadd_address" />
+
+                    <EditText
+                        android:id="@+id/sayhi_et_address"
+                        style="@style/formLabel_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="7"
+                        android:maxLength="200"
+                        android:singleLine="true" />
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/termadd_star"
+                        android:textColor="#fd022b" />
+                </TableRow>
+
+                <!-- 联系人 电话 -->
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/termadd_person" />
+
+                    <EditText
+                        android:id="@+id/sayhi_et_person"
+                        style="@style/formLabel_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="7"
+                        android:maxLength="20"
+                        android:singleLine="true" />
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/termadd_star"
+                        android:textColor="#fd022b" />
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/termadd_tel" />
+
+                    <EditText
+                        android:id="@+id/sayhi_et_contactTel"
+                        style="@style/formLabel_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="7"
+                        android:digits="0123456789-()、,，/\"
+                        android:inputType="phone"
+                        android:maxLength="30"
+                        android:singleLine="true" />
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="#fd022b" />
+                </TableRow>
+
+                <!-- 摆放顺序 拜访周期 -->
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/termadd_cycle" />
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="7" >
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:enabled="false"
+                            android:gravity="right"
+                            android:hint="@string/termadd_unit_cycle" />
+
+                        <EditText
+                            android:id="@+id/sayhi_et_cycle"
+                            style="@style/formLabel_value"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:background="@android:color/transparent"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:paddingBottom="8dp"
+                            android:singleLine="true" />
+                    </RelativeLayout>
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="#fd022b" />
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/termadd_sequence" />
+
+                    <EditText
+                        android:id="@+id/sayhi_et_sequence"
+                        style="@style/formLabel_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="7"
+                        android:layout_marginTop="2dp"
+                        android:enabled="false"
+                        android:inputType="number"
+                        android:maxLength="8"
+                        android:singleLine="true" />
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/termadd_star"
+                        android:textColor="#fd022b"
+                        android:visibility="invisible" />
+                </TableRow>
+
+                <!-- 高档容量 区域类型 -->
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/termadd_hvolume" />
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="7" >
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="2dp"
+                            android:enabled="false"
+                            android:gravity="right"
+                            android:hint="@string/termadd_unit_volume" />
+
+                        <EditText
+                            android:id="@+id/sayhi_et_hvolume"
+                            style="@style/formLabel_value"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:background="@android:color/transparent"
+                            android:inputType="number"
+                            android:maxLength="8"
+                            android:paddingBottom="8dp"
+                            android:singleLine="true" />
+                    </RelativeLayout>
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/termadd_star"
+                        android:textColor="#fd022b"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/termadd_areatype" />
+
+                    <Spinner
+                        android:id="@+id/sayhi_sp_termArea"
+                        style="@style/formLabel_value"
+                        android:layout_width="0dp"
+                        android:layout_height="43dp"
+                        android:layout_weight="7"
+                        android:background="@drawable/bg_spinner" />
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/termadd_star"
+                        android:textColor="#fd022b"
+                        android:visibility="invisible" />
+                </TableRow>
+
+                <!-- 中档 销售渠道 -->
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/termadd_mvolume" />
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="7" >
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="2dp"
+                            android:enabled="false"
+                            android:gravity="right"
+                            android:hint="@string/termadd_unit_volume" />
+
+                        <EditText
+                            android:id="@+id/sayhi_et_mvolume"
+                            style="@style/formLabel_value"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:background="@android:color/transparent"
+                            android:inputType="number"
+                            android:maxLength="8"
+                            android:paddingBottom="8dp"
+                            android:singleLine="true" />
+                    </RelativeLayout>
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/termadd_star"
+                        android:textColor="#fd022b"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/termadd_sellchannel" />
+
+                    <Spinner
+                        android:id="@+id/sayhi_sp_sellChannel"
+                        style="@style/formLabel_value"
+                        android:layout_width="0dp"
+                        android:layout_height="43dp"
+                        android:layout_weight="7"
+                        android:background="@drawable/bg_spinner" />
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/termadd_star"
+                        android:textColor="#fd022b" />
+                </TableRow>
+
+                <!-- 普档 主渠道 -->
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/termadd_pvolume" />
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="7" >
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="2dp"
+                            android:enabled="false"
+                            android:gravity="right"
+                            android:hint="@string/termadd_unit_volume" />
+
+                        <EditText
+                            android:id="@+id/sayhi_et_pvolume"
+                            style="@style/formLabel_value"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:background="@android:color/transparent"
+                            android:inputType="number"
+                            android:maxLength="8"
+                            android:paddingBottom="8dp"
+                            android:singleLine="true" />
+                    </RelativeLayout>
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/termadd_star"
+                        android:textColor="#fd022b"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/termadd_mainchannel" />
+
+                    <Spinner
+                        android:id="@+id/sayhi_sp_mainChannel"
+                        style="@style/formLabel_value"
+                        android:layout_width="0dp"
+                        android:layout_height="43dp"
+                        android:layout_weight="7"
+                        android:background="@drawable/bg_spinner" />
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/termadd_star"
+                        android:textColor="#fd022b" />
+                </TableRow>
+
+                <!-- 抵挡 此渠道 -->
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/termadd_lvolume" />
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="7" >
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="2dp"
+                            android:enabled="false"
+                            android:gravity="right"
+                            android:hint="@string/termadd_unit_volume" />
+
+                        <EditText
+                            android:id="@+id/sayhi_et_lvolume"
+                            style="@style/formLabel_value"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:background="@android:color/transparent"
+                            android:inputType="number"
+                            android:maxLength="8"
+                            android:paddingBottom="8dp"
+                            android:singleLine="true" />
+                    </RelativeLayout>
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/termadd_star"
+                        android:textColor="#fd022b"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/termadd_minorchannel" />
+
+                    <Spinner
+                        android:id="@+id/sayhi_sp_minorChannel"
+                        style="@style/formLabel_value"
+                        android:layout_width="0dp"
+                        android:layout_height="43dp"
+                        android:layout_weight="7"
+                        android:background="@drawable/bg_spinner" />
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/termadd_star"
+                        android:textColor="#fd022b" />
+                </TableRow>
+
+                <!-- 最下面一行 -->
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="0dp"
+                        android:layout_height="43dp"
+                        android:layout_weight="5"
+                        android:text="@string/termadd_totalvolume" />
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="7" >
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="2dp"
+                            android:enabled="false"
+                            android:gravity="right"
+                            android:hint="@string/termadd_unit_volume" />
+
+                        <EditText
+                            android:id="@+id/sayhi_et_tvolume"
+                            style="@style/formLabel_value"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginBottom="2dp"
+                            android:background="@android:color/transparent"
+                            android:enabled="false"
+                            android:inputType="number"
+                            android:maxLength="8"
+                            android:paddingBottom="8dp"
+                            android:singleLine="true" />
+                    </RelativeLayout>
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/termadd_star"
+                        android:textColor="#fd022b"
+                        android:visibility="invisible" />
+
+                    <!-- 拜访对象 -->
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="0dp"
+                        android:layout_height="43dp"
+                        android:layout_weight="5"
+                        android:text="@string/termadd_visitperson" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="7"
+                        android:orientation="horizontal" >
+
+                        <!-- 拜访对象请选择 -->
+
+                        <Spinner
+                            android:id="@+id/sayhi_sp_laoban1"
+                            style="@style/formLabel_value"
+                            android:layout_width="0dp"
+                            android:layout_height="45dp"
+                            android:layout_weight="4"
+                            android:background="@drawable/bg_spinner" />
+
+                        <!-- 拜访对象请输入 -->
+
+                        <EditText
+                            android:id="@+id/sayhi_et_visitPerson"
+                            style="@style/formLabel_value"
+                            android:layout_width="0dp"
+                            android:layout_height="46dp"
+                            android:layout_weight="3"
+                            android:maxLength="100"
+                            android:singleLine="true"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/formLabel_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/termadd_star"
+                        android:textColor="#fd022b"
+                        android:visibility="invisible" />
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

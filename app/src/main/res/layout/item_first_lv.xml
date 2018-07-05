@@ -1,0 +1,109 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="60dp"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal"
+        >
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="2">
+
+            <TextView
+                android:id="@+id/item_first_tv_ranking"
+                style="@style/banner_main2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="1"
+                android:textColor="@color/holo_orange_dark"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="16"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                >
+
+                <TextView
+                    android:id="@+id/item_first_tv_rankingname"
+                    style="@style/banner_main2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="稽查终端数量"
+                    android:textColor="@color/listview_item_font_color"/>
+
+                <!--单位:家-->
+                <TextView
+                    android:id="@+id/item_first_tv_unit"
+                    style="@style/banner_main2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/gray"/>
+
+                <!--总数:22-->
+                <TextView
+                    android:id="@+id/item_first_tv_rankingall"
+                    style="@style/banner_main2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/item_first_tv_unit"
+                    android:textColor="@color/holo_blue_dark"/>
+
+                <!--斜杠-->
+                <TextView
+                    android:id="@+id/item_first_tv01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" / "
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/item_first_tv_rankingall"
+                    android:textColor="@color/listview_item_font_color"/>
+
+                <!--实际数量:12-->
+                <TextView
+                    android:id="@+id/item_first_tv_rankingnum"
+                    style="@style/banner_main2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/item_first_tv01"
+                    android:textColor="@color/holo_orange_dark"/>
+            </RelativeLayout>
+
+            <ProgressBar
+                android:id="@+id/item_first_probar_rankingbar"
+                style="@style/MyProgressBarH"
+                android:layout_width="match_parent"
+                android:layout_height="7dp"
+                android:progress="89"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>

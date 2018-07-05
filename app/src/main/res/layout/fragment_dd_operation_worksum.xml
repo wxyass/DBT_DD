@@ -1,0 +1,175 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/bg_app"
+              android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/operation_worksum_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"/>
+
+            <!--追溯终端数量-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                >
+
+                <ImageView
+                    android:id="@+id/operation_worksum_termnum_point1"
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ico_point"/>
+
+                <TextView
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/operation_worksum_termnum_point1"
+                    android:text="追溯终端数量"/>
+
+                <!-- 2018-06-06 -->
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    >
+
+
+                    <TextView
+                        android:id="@+id/operation_worksum_tv_time"
+                        style="@style/xtbf_btn_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:textColor="@color/textColor_actionsheet_msg"
+                        android:text="2018-06-06"
+                        />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <!-- 追溯终端数量 -->
+            <dd.tsingtaopad.view.NoScrollListView
+                android:id="@+id/operation_worksum_termnum_lv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:divider="@color/bg_page_color"
+                android:dividerHeight="1dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"/>
+
+
+
+            <!--追溯协议店数量-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                >
+
+                <ImageView
+                    android:id="@+id/operation_worksum_agree_point1"
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ico_point"/>
+
+                <TextView
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/operation_worksum_agree_point1"
+                    android:text="追溯协议店数量"/>
+
+            </RelativeLayout>
+
+            <!-- 追溯协议店数量Lv -->
+            <dd.tsingtaopad.view.NoScrollListView
+                android:id="@+id/operation_worksum_agree_lv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:divider="@color/bg_page_color"
+                android:dividerHeight="1dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"/>
+
+            <!--锁定率-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                >
+
+                <ImageView
+                    android:id="@+id/operation_worksum_sdlv_point1"
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ico_point"/>
+
+                <TextView
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/operation_worksum_sdlv_point1"
+                    android:text="锁定率"/>
+
+
+            </RelativeLayout>
+
+            <!-- 锁定率Lv -->
+            <dd.tsingtaopad.view.NoScrollListView
+                android:id="@+id/operation_worksum_sdlv_lv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:divider="@color/bg_page_color"
+                android:dividerHeight="1dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="40dp"/>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

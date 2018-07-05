@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_page_color"
+    android:orientation="vertical" >
+
+    <include layout="@layout/banner_navigation" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <HorizontalScrollView
+            android:id="@+id/business_queryfeedback_sv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="3dp"
+            android:scrollbars="none" >
+
+            <RadioGroup
+                android:id="@+id/business_queryfeedback_radiogroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/querfeedback_cb1_qs"
+                    style="@style/banner_main"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:checked="true"
+                    android:text="@string/business_quesion"
+                    android:textColor="#000000"
+                    android:visibility="gone" />
+
+                <RadioButton
+                    android:id="@+id/querfeedback_cb2_qs"
+                    style="@style/banner_main"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:text="@string/business_app"
+                    android:textColor="#000000"
+                    android:visibility="gone" />
+
+                <RadioButton
+                    android:id="@+id/querfeedback_cb3_qs"
+                    style="@style/banner_main"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:text="@string/business_pad"
+                    android:textColor="#000000"
+                    android:visibility="gone" />
+            </RadioGroup>
+        </HorizontalScrollView>
+
+        <RelativeLayout
+            android:id="@+id/querfeedback_rl_form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/business_queryfeedback_sv" >
+
+            <EditText
+                android:id="@+id/querfeedback_et_question"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="5dp"
+                android:ems="10"
+                android:hint="@string/business_default"
+                android:inputType="textMultiLine"
+                android:lines="6"
+                android:singleLine="true" />
+
+            <LinearLayout
+                android:id="@+id/querfeedback_lo_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/querfeedback_et_question"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/page_label_small"
+                    android:text="@string/business_feedback_mobile" />
+
+                <EditText
+                    android:id="@+id/querfeedback_et_mobile"
+                    android:hint="@string/hit_input"
+                    android:layout_width="200dip"
+                    android:layout_height="wrap_content" 
+                    android:digits="0123456789-()、,，"
+                    android:inputType="phone"
+                    android:maxLength="50"
+                    android:singleLine="true"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/querfeedback_bt_submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/querfeedback_lo_mobile"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bt_syssetting_submit" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/ll1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/querfeedback_rl_form" >
+
+            <Button
+                android:id="@+id/bg_up_arrow"
+                android:layout_width="40dp"
+                android:layout_height="20dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/bg_down_arrow" />
+
+            <Button
+                android:id="@+id/bg_up_arrow_top_line"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_below="@+id/bg_up_arrow"
+                android:background="@drawable/bg_uparrowtop_line" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/querfeedback_ll_lv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/ll1"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical" >
+
+            <ListView
+                android:id="@+id/querfeedback_listview"
+                style="@style/listview_bg_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@drawable/bg_uparrow_bottom"
+                android:cacheColorHint="@color/bg_lv_item"
+                android:dividerHeight="3dp" >
+            </ListView>
+
+            <include layout="@layout/visit_agencyvisit_footview" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

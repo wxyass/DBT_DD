@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_plantform_color"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <include layout="@layout/banner_navigation" />
+    <!--  -->
+
+    <LinearLayout
+        android:id="@+id/orders_ll_top"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <!-- 定格/线路 -->
+
+            <CheckBox
+                android:id="@+id/orders_checkBox1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@string/check_grid"
+                android:textColor="@color/darkgreen" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <!-- 终端详情 -->
+
+            <CheckBox
+                android:id="@+id/orders_checkBox2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="@string/check_term"
+                android:textColor="@color/darkgreen" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <!-- 占位 -->
+
+            <Button
+                android:id="@+id/orders_search2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bt_indexstatus_search"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="@color/darkgreen"
+                android:visibility="gone" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/orders_ll_top2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <!-- 拜访信息 -->
+            <CheckBox
+                android:id="@+id/orders_checkBox3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@string/check_visit"
+                android:textColor="@color/darkgreen" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <!-- 供货商 -->
+
+            <CheckBox
+                android:id="@+id/orders_checkBox4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="@string/check_agency"
+                android:textColor="@color/darkgreen" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <!-- 查询 -->
+
+            <Button
+                android:id="@+id/orders_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bt_indexstatus_search"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="@color/darkgreen" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <!-- 默认列表展示 -->
+
+    <LinearLayout
+        android:id="@+id/orders_ll_initlv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingBottom="2dp"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp"
+        android:visibility="gone" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <!-- 终端名称 -->
+
+            <TextView
+                android:id="@+id/orders_tv_termname"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:background="@drawable/bg_shape_gray"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="@string/orders_termname"
+                android:textColor="@color/darktitle"
+                android:textSize="19dp" />
+
+            <!-- 产品 -->
+
+            <TextView
+                android:id="@+id/orders_tv_proname"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:background="@drawable/bg_shape_gray"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="@string/orders_productname"
+                android:textColor="@color/darktitle"
+                android:textSize="19dp" />
+
+            <!-- 订单量 -->
+
+            <TextView
+                android:id="@+id/orders_tv_ordernum"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:background="@drawable/bg_shape_gray"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="@string/orders_prevnum"
+                android:textColor="@color/darktitle"
+                android:textSize="19dp" />
+        </LinearLayout>
+
+        <!-- 列表 -->
+
+        <ListView
+            android:id="@+id/orders_lv_table"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/transparent"
+            android:dividerHeight="0px"
+            android:orientation="vertical"
+            android:scrollbars="none" >
+        </ListView>
+    </LinearLayout>
+
+    <!-- 双表头列表 -->
+
+    <dd.tsingtaopad.main.operation.orders.vhtable.VHTableView
+        android:id="@+id/vht_table"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="2dp"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp"
+        android:visibility="visible" >
+    </dd.tsingtaopad.main.operation.orders.vhtable.VHTableView>
+
+</LinearLayout>

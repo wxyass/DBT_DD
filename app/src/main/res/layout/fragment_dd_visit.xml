@@ -1,0 +1,522 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/bg_app"
+              android:orientation="vertical">
+
+    <include layout="@layout/top_navigation"/>
+
+    <ScrollView
+        android:id="@+id/sayhi_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical">
+
+            <!--协同-->
+            <LinearLayout
+                android:id="@+id/dd_btn_xtbf"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    >
+
+                    <ImageView
+                        android:id="@+id/dd_visit_img01"
+                        style="@style/app_icon_style"
+                        android:background="@drawable/icon_visit_synergeticvisit"/>
+
+                    <TextView
+                        style="@style/app_text_style"
+                        android:text="@string/dxtbf"
+                        />
+
+                </RelativeLayout>
+
+                <!--协同 第二列-->
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    >
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        >
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        >
+
+                        <TextView
+                            android:id="@+id/visit_xt_currentvisit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="最近拜访: "
+                            android:textColor="@color/gray"
+                            android:textSize="@dimen/font_size6"/>
+
+                        <TextView
+                            android:id="@+id/visit_xt_termname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="6dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_toRightOf="@id/visit_xt_currentvisit"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="--"
+                            android:textColor="@color/gray_color_333333"
+                            android:textSize="@dimen/font_size6"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="16dp"
+                        >
+
+                        <TextView
+                            android:id="@+id/visit_xt_nextvisit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="预计拜访: "
+                            android:textColor="@color/gray"
+                            android:textSize="@dimen/font_size6"/>
+
+                        <TextView
+                            android:id="@+id/visit_xt_nexttermname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="6dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_toRightOf="@id/visit_xt_nextvisit"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="--"
+                            android:textColor="@color/gray_color_333333"
+                            android:textSize="@dimen/font_size6"/>
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <!--协同第三列-->
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    >
+
+                    <RelativeLayout
+                        android:id="@+id/dd_btn_xt_term"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_select_white_gray"
+                        android:paddingBottom="15dp"
+                        android:paddingLeft="0dp"
+                        android:paddingRight="15dp"
+                        android:paddingTop="15dp">
+
+                        <ImageView
+                            android:id="@+id/dd_visit_img06"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="4dp"
+                            android:background="@drawable/icon_visit_folder"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="6dp"
+                            android:layout_toRightOf="@id/dd_visit_img06"
+                            android:text="协同终端夹"
+                            android:textSize="18dp"/>
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:id="@+id/visit_xt_ydname"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="4dp"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="--"
+                            android:textColor="@color/holo_orange_dark"
+                            android:textSize="@dimen/font_size6"/>
+
+                        <TextView
+                            android:id="@+id/visit_xt_upload"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="6dp"
+                            android:layout_toRightOf="@id/visit_xt_ydname"
+                            android:layout_weight="2"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="--"
+                            android:textColor="@color/holo_blue_dark"
+                            android:textSize="@dimen/font_size6"/>
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="16dp"
+                        >
+
+                        <TextView
+                            android:id="@+id/visit_xt_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="4dp"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="--"
+                            android:textColor="@color/gray_color_333333"
+                            android:textSize="@dimen/font_size6"/>
+                    </RelativeLayout>
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <!--追溯-->
+            <LinearLayout
+                android:id="@+id/dd_btn_zdzs"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <!--追溯第一列-->
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    >
+
+                    <ImageView
+                        android:id="@+id/dd_visit_img02"
+                        style="@style/app_icon_style"
+                        android:background="@drawable/icon_visit_terminaltraceability"/>
+
+                    <TextView
+                        style="@style/app_text_style"
+                        android:text="@string/ddzdzs"/>
+
+                </RelativeLayout>
+                <!--追溯第二列-->
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    >
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        >
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        >
+
+                        <TextView
+                            android:id="@+id/visit_zs_currentvisit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="最近追溯: "
+                            android:textColor="@color/gray"
+                            android:textSize="@dimen/font_size6"/>
+
+                        <TextView
+                            android:id="@+id/visit_zs_termname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="6dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_toRightOf="@id/visit_zs_currentvisit"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="--"
+                            android:textColor="@color/gray_color_333333"
+                            android:textSize="@dimen/font_size6"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="16dp"
+                        >
+
+                        <TextView
+                            android:id="@+id/visit_zs_nextvisit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="预计追溯: "
+                            android:textColor="@color/gray"
+                            android:textSize="@dimen/font_size6"/>
+
+                        <TextView
+                            android:id="@+id/visit_zs_nexttermname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="6dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_toRightOf="@id/visit_zs_nextvisit"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="--"
+                            android:textColor="@color/gray_color_333333"
+                            android:textSize="@dimen/font_size6"/>
+                    </RelativeLayout>
+                </RelativeLayout>
+                <!--追溯第三列-->
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    >
+
+
+                    <RelativeLayout
+                        android:id="@+id/dd_btn_zs_term"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_select_white_gray"
+                        android:paddingBottom="15dp"
+                        android:paddingLeft="0dp"
+                        android:paddingRight="15dp"
+                        android:paddingTop="15dp">
+
+                        <ImageView
+                            android:id="@+id/dd_visit_img07"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="4dp"
+                            android:background="@drawable/icon_visit_folder"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="6dp"
+                            android:layout_toRightOf="@id/dd_visit_img07"
+                            android:text="追溯终端夹"
+                            android:textSize="18dp"/>
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:id="@+id/visit_zs_ydname"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="4dp"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="--"
+                            android:textColor="@color/holo_orange_dark"
+                            android:textSize="@dimen/font_size6"/>
+
+                        <TextView
+                            android:id="@+id/visit_zs_upload"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="6dp"
+                            android:layout_toRightOf="@id/visit_zs_ydname"
+                            android:layout_weight="2"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="--"
+                            android:textColor="@color/holo_blue_dark"
+                            android:textSize="@dimen/font_size6"/>
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="16dp"
+                        >
+
+                        <TextView
+                            android:id="@+id/visit_zs_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="4dp"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="--"
+                            android:textColor="@color/gray_color_333333"
+                            android:textSize="@dimen/font_size6"/>
+                    </RelativeLayout>
+                </RelativeLayout>
+            </LinearLayout>
+            <!--经销商-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <!--经销商资料库-->
+                <RelativeLayout
+                    android:id="@+id/dd_btn_zs_agencyres"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/bg_select_white_gray"
+                    >
+
+                    <ImageView
+                        android:id="@+id/dd_visit_img03"
+                        style="@style/app_icon_style"
+                        android:background="@drawable/icon_visit_dealerdatabase"/>
+
+                    <TextView
+                        style="@style/app_text_style"
+                        android:text="经销商资料库"
+                        />
+                </RelativeLayout>
+                <!--经销商库存盘点-->
+                <RelativeLayout
+                    android:id="@+id/dd_btn_zs_agencycheck"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/bg_select_white_gray"
+                    >
+
+                    <ImageView
+                        android:id="@+id/dd_visit_img04"
+                        style="@style/app_icon_style"
+                        android:background="@drawable/icon_visit_stock"/>
+
+                    <TextView
+                        style="@style/app_text_style"
+                        android:text="经销商库存盘点"
+                        />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+            <!--新增终端-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/dd_btn_zs_addterm"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/bg_select_white_gray"
+                    >
+
+                    <ImageView
+                        android:id="@+id/dd_visit_img05"
+                        style="@style/app_icon_style"
+                        android:background="@drawable/icon_visit_drainmakeupshop"/>
+
+                    <TextView
+                        style="@style/app_text_style"
+                        android:text="漏店补录"
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/bg_select_white_gray"
+                    android:visibility="invisible"
+                    >
+
+                </RelativeLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

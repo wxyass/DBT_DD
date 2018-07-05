@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="dd.tsingtaopad">
+
+    <application
+        android:name="dd.tsingtaopad.home.app.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyAppTheme"
+        >
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="dd.tsingtaopad.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
+
+        <!--<activity android:name=".dd.ddxt.shopvisit.XtVisitShopActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>-->
+        <activity android:name="dd.tsingtaopad.home.login.LoginActivity"
+                  android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <!--协同终端 主Activity-->
+        <activity android:name="dd.tsingtaopad.home.app.MainActivity"
+                  android:windowSoftInputMode="adjustPan"
+                  android:screenOrientation="portrait"/>
+
+        <!--协同终端 主Activity-->
+        <activity android:name="dd.tsingtaopad.dd.ddxt.shopvisit.XtVisitShopActivity"
+                  android:screenOrientation="portrait"/>
+        <!--追溯终端 主Activity-->
+        <activity android:name="dd.tsingtaopad.dd.ddzs.zsshopvisit.ZsVisitShopActivity"
+                  android:screenOrientation="portrait"/>
+        <!--拍照图片预览-->
+        <activity android:name="dd.tsingtaopad.dd.ddxt.camera.XtShowPicActivity"
+                  android:screenOrientation="portrait"/>
+        <!--签到-->
+        <activity android:name="dd.tsingtaopad.sign.DdSignActivity"
+                  android:screenOrientation="portrait"/>
+
+        <!-- 启动应用的时候开启servic 主要负责监听网络变化 执行上传功能 -->
+        <service android:name="dd.tsingtaopad.home.app.AutoUpService" />
+
+        <meta-data
+            android:name="designwidth"
+            android:value="750" />
+        <meta-data
+            android:name="designdpi"
+            android:value="320" />
+        <meta-data
+            android:name="fontsize"
+            android:value="1.0" />
+        <meta-data
+            android:name="content"
+            android:value="dp" />
+    </application>
+
+</manifest>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#F44336</color>
+    <color name="colorPrimaryDark">#D32F2F</color>
+    <color name="colorAccent">#536DFE</color>
+    <color name="bg_app_core">#F1F1F1</color>
+
+    <!--白色-->
+    <color name="white">#FFFFFF</color>
+
+    <!--灰色-->
+    <color name="gray">#999999</color>
+    <!--浅灰色-->
+    <color name="gray_color_cccccc">#cccccc</color>
+    <color name="color_e5e5e5">#e5e5e5</color>
+    <!--橘黄色-->
+    <color name="orange">#F9C829</color>
+    <!--浅蓝色-->
+    <color name="wathet_blue">#BBFFEE</color>
+
+    <!--下面是摘自Dbtplus旧版本 2017年12月25日10:11:39-->
+
+    <!--整体背景色-->
+    <!--<color name="bg_app">#f8f9fa</color>-->
+    <color name="bg_app">#F2F2F2</color>
+
+
+    <!--list间隔线-->
+    <color name="list_line">#F2F2F2</color>
+
+
+    <!-- 背景色 -->
+    <color name="bg_lv_item">#f8f8f9</color>
+
+    <color name="black_overlay">#66000000</color>
+    <!-- 今日进度完成数 -->
+    <color name="holo_orange_dark">#ffff8800</color>
+    <!-- 今日进度总计划数 -->
+    <color name="holo_blue_dark">#ff0099cc</color>
+    <!-- 列表中横竖线的颜色值 -->
+    <color name="listview_line">#dedcda</color>
+
+    <!-- 列表中字体颜色 -->
+    <color name="listview_item_font_color">#666464</color>
+
+    <!-- 平台背景颜色 原#dcdcdc-->
+    <color name="bg_plantform_color">#eef4f7</color>
+
+    <!-- 每页的背景色 -->
+    <!--<color name="bg_page_color">#f7f7f7</color>-->
+    <color name="bg_page_color">#F0F0F0</color>
+
+    <!-- 页面中内容的背景色(浅绿色) -->
+    <color name="bg_content_color">#e3efe3</color>
+
+    <!-- 页面中内容的背景色(浅灰色) -->
+    <color name="bg_content_color_gray">#e4e6e9</color>
+
+    <!-- 页面中内容的背景色(灰色) -->
+    <color name="bg_content_color_deepgray">#EFEEEC</color>
+
+    <!-- 橘色 -->
+    <color name="bg_content_color_orange">#FFAF00</color>
+
+    <!-- 绿色 -->
+    <color name="font_color_green">#598f35</color>
+
+    <!-- 进销存台账和调货台账ViewPager的title字体颜色 -->
+    <color name="agency_viewpager_title">#2a7406</color>
+    <!--首页标题栏-->
+    <color name="first_title">#4AC777</color>
+
+    <!-- 巡店拜访-终端列表-已上传过状态 -->
+    <color name="termlst_sync_font_color">#fe0000</color>
+
+    <!-- 巡店拜访-终端列表-已拜访未上传过状态 -->
+    <color name="termlst_insync_font_color">#ed6c00</color>
+    <!-- 万能的铺货率 字体按下去变化的颜色 灰色 -->
+    <color name="darkgray">#a9a9a9</color>
+    <!-- 万能的铺货率 字体正常色值 -->
+    <color name="distirbution_tv_color">#595757</color>
+    <!-- 透明 -->
+    <color name="transparent">#00000000</color>
+    <!-- 客情备忘录输入内容背景 -->
+    <color name="bg_memo_tv">#efefef</color>
+    <!-- 首页饼状图颜色 -->
+
+
+    <!-- mt绿色 -->
+    <color name="home_mt">#23ac38</color>
+    <!-- et橘黄黄色 -->
+    <color name="home_et">#f08300</color>
+    <!-- sp红色 #e95377 -->
+    <color name="home_sp">#e95377</color>
+    <!-- ot蓝色 -->
+    <color name="home_ot">#00ada9</color>
+    <!-- tt紫蓝色-->
+    <color name="home_tt">#5977b3</color>
+    <!-- op黑色-->
+    <color name="home_op">#727171</color>
+
+    <color name="home_channel_cb00c52">#b00c52</color>
+    <color name="home_channel_c9f8dfa">#9f8dfa</color>
+    <color name="home_channel_c10b594">#10b594</color>
+
+    <color name="first_gv_unit">#ff8400</color>
+
+
+    <!--网络信号差对话框  -->
+    <!-- wt 纯白色 -->
+    <color name="prompt_wt">#FFFFFF</color>
+    <!-- bk 纯黑色 -->
+    <color name="prompt_bk">#000000</color>
+
+
+    <!-- 查询类界面的条件部分的背景色 -->
+    <color name="bg_search_title">#f4f4f4</color>
+    <!-- 查询类界面的结果部分的背景色 -->
+    <color name="bg_search_content">#e6e6e6</color>
+    <!-- 首页底部按钮的背景色 -->
+    <color name="bg_main_bottom">#e0f1eb</color>
+
+    <!-- 拍照颜色 -->
+    <color name="main_menu_bg">#aa111213</color>
+    <color name="common_title_bg">#aa111213</color>
+    <color name="primary_title_text_color">#ff888888</color>
+    <color name="common_title_text">#ff565555</color>
+    <color name="common_text_yellow">#ffffe049</color>
+    <color name="album_item_bg">#fffcfcfd</color>
+    <color name="video_playter_bg">#333333</color>
+
+    <!-- 订单明细颜色 -->
+    <color name="blue">#EFEEEC</color><!-- 表格描边颜色 -->
+    <color name="darktitle">#000000</color><!-- 标题字体颜色#008F7D 深黑-->
+    <color name="darkgreen">#727171</color><!-- 表格字体颜色#008F7D 浅灰-->
+
+    <!-- 扫描二维码 -->
+    <color name="result_view">#b0000000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="possible_result_points">#c0ffff00</color>
+
+    <!-- 顶部标题 -->
+    <color name="gray_color_333333">#333333</color>
+    <color name="gray_color_666666">#666666</color>
+
+
+    <color name="tab_unselect">#c9c9c9</color>
+    <color name="tab_select">#598f35</color>
+    <color name="bg_btn">#dadada</color>
+    <!--绿色-->
+    <color name="green">#45C01A</color>
+
+
+    <color name="black">#000000</color>
+    <color name="lightblack">#6e655c</color>
+
+    <!--alertview-->
+    <!--覆盖颜色-->
+    <color name="bgColor_overlay">#60000000</color>
+    <!--窗口背景颜色-->
+    <color name="bgColor_alertview_alert">#f8f8f8</color>
+    <color name="bgColor_alertview_alert_start">#f0f0f0</color>
+    <!--标题颜色-->
+    <color name="textColor_alert_title">#000000</color>
+    <color name="textColor_actionsheet_title">#8f8f8f</color>
+    <!--消息颜色-->
+    <color name="textColor_alert_msg">#000000</color>
+    <color name="textColor_actionsheet_msg">#8f8f8f</color>
+    <!--线条颜色-->
+    <color name="bgColor_divier">#d7d7db</color>
+    <!--取消按钮颜色-->
+    <color name="textColor_alert_button_cancel">#007aff</color>
+    <!--高亮按钮颜色-->
+    <color name="textColor_alert_button_destructive">#ff3b30</color>
+    <!--普通按钮文字颜色-->
+    <color name="textColor_alert_button_others">#007aff</color>
+    <!--点击颜色-->
+    <color name="bgColor_alert_button_press">#EAEAEA</color>
+    <!--actionsheet模式的取消按钮背景颜色-->
+    <color name="bgColor_actionsheet_cancel_nor">#ffffff</color>
+    <!--alertview-->
+
+    <!--业代录错 -> 错误 -->
+    <color name="zdzs_dd_error">#ff0000</color>
+    <!--业代正确-->
+    <color name="zdzs_dd_yes">#00ff00</color>
+    <!--未稽查-->
+    <color name="zdzs_dd_notcheck">#000000</color>
+
+</resources>

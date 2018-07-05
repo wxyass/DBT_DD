@@ -1,0 +1,54 @@
+<resources>
+
+    <!--
+         Declare custom theme attributes that allow changing which styles are
+         used for button bars depending on the API level.
+         ?android:attr/buttonBarStyle is new as of API 11 so this is
+         necessary to support previous API levels.
+    -->
+    <declare-styleable name="ButtonBarContainerTheme">
+        <attr name="buttonBarStyle" format="reference" />
+        <attr name="buttonBarButtonStyle" format="reference" />
+    </declare-styleable>
+    
+    <declare-styleable name="SlideSwitch">
+        <attr name="onText" format="string"/>
+        <attr name="offText" format="string"/>
+        <attr name="defStatus" format="string"/>
+        <attr name="textColor" format="color"/>
+        <attr name="textSize" format="dimension"/>
+    </declare-styleable>
+    
+    <!-- 拍照 ywm -->
+    <declare-styleable name="TempImageView">
+        <attr name="animat_id" format="integer" />
+    </declare-styleable>
+    <declare-styleable name="FocusImageView">
+        <attr name="focus_focusing_id" format="integer" />
+        <attr name="focus_success_id" format="integer" />
+        <attr name="focus_fail_id" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="PagerSlidingTab">
+        <attr name="pstSelectedTextSize" format="dimension" />
+        <attr name="pstIndicatorColor" format="color" />
+        <attr name="pstIndicatorHeight" format="dimension" />
+        <attr name="pstUnderlineColor" format="color" />
+        <attr name="pstUnderlineHeight" format="dimension" />
+        <attr name="pstTabPadding" format="dimension" />
+        <attr name="pstBackground" format="reference" />
+        <attr name="pstExpandMode" format="enum">
+            <enum name="wrap" value="0" />
+            <enum name="fixed" value="1" />
+            <enum name="expanded" value="2" />
+            <enum name="react" value="3" />
+        </attr>
+        <attr name="pstFixedWidth" format="dimension" />
+        <attr name="pstScrollOffset" format="dimension" />
+        <attr name="pstIndicatorMode" format="enum">
+            <enum name="match" value="0" />
+            <enum name="wrap" value="1" />
+        </attr>
+    </declare-styleable>
+
+</resources>

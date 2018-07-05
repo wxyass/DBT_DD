@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              style="@style/listview_bg_item"
+              android:layout_width="match_parent"
+              android:layout_height="150dp"
+              android:orientation="vertical">
+
+    <!--采集项-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            style="@style/point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ico_point"/>
+
+        <TextView
+            android:id="@+id/item_zs_calculatedialog_tv_itemname"
+            style="@style/page_label_big"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="库存"/>
+    </LinearLayout>
+
+
+
+    <!--现有量-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/item_zs_calculatedialog_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
+            android:paddingRight="10dp"
+            android:text="业代结果量:"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/item_zs_calculatedialog_tv_xy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/item_zs_calculatedialog_tv_title"
+            android:paddingRight="10dp"
+            android:text="100"
+            android:textSize="15sp"/>
+
+        <EditText
+            android:id="@+id/item_zs_calculatedialog_et_finalnum"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:hint="请督导输入结果量"
+            android:layout_toRightOf="@id/item_zs_calculatedialog_tv_xy"
+            android:background="@drawable/bg_visit_record"
+            android:ems="10"
+            android:inputType="numberSigned"
+            android:maxLength="8"
+            android:singleLine="true"/>
+    </RelativeLayout>
+
+
+
+</LinearLayout>

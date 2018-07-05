@@ -1,0 +1,41 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_chat"
+            style="@style/style_main_RadioButton"
+            android:checked="true"
+            android:drawableBottom="@drawable/bt_platform_home"
+            />
+
+        <RadioButton
+            android:id="@+id/rb_contacts"
+            style="@style/style_main_RadioButton"
+            android:drawableBottom="@drawable/bt_platform_visit"/>
+
+        <RadioButton
+            android:id="@+id/rb_discovery"
+            style="@style/style_main_RadioButton"
+            android:drawableBottom="@drawable/bt_platform_operation"/>
+
+        <RadioButton
+            android:id="@+id/rb_me"
+            style="@style/style_main_RadioButton"
+            android:drawableBottom="@drawable/bt_platform_syseting"/>
+    </RadioGroup>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/radioGroup"/>
+</RelativeLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_search_content"
+    android:orientation="vertical" >
+
+    <include layout="@layout/banner_navigation" />
+
+    <LinearLayout
+        android:id="@+id/rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_search_title"
+        android:gravity="center_horizontal"
+        android:paddingTop="15dp"
+        android:paddingBottom="5dp"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/notice_bt_noticeicon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/bg_notice_icon" />
+
+        <ImageButton
+            android:id="@+id/notice_bt_todaythingicon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_marginLeft="30dp"
+            android:focusable="true"
+            android:background="@drawable/bg_todaything_hit" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/notice_tablelayout_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <include layout="@layout/top_navigation"/>
+
+    <RadioGroup
+        android:id="@+id/result_right_rg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/result_right_rb"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textSize="@dimen/font_size3"
+            android:text="正确"/>
+
+    </RadioGroup>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/bgColor_overlay"
+        />
+
+
+    <CheckBox
+        android:id="@+id/result_cb1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:textSize="@dimen/font_size3"
+        android:text="品项有误"
+        android:visibility="gone"/>
+
+    <CheckBox
+        android:id="@+id/result_cb2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:textSize="@dimen/font_size3"
+        android:text="经销商有误"
+        android:visibility="gone"/>
+
+    <CheckBox
+        android:id="@+id/result_cb3"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:textSize="@dimen/font_size3"
+        android:text="数据有误"
+        android:visibility="gone"/>
+
+    <CheckBox
+        android:id="@+id/result_cb4"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:textSize="@dimen/font_size3"
+        android:text="窜货"
+        android:visibility="gone"/>
+
+
+</LinearLayout>

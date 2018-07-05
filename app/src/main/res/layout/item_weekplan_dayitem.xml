@@ -1,0 +1,177 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="180dp"
+              android:background="@null"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/item_weekplan_ll_all"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@drawable/bg_operation_plan"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/width_height_size08"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!--周几-->
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/width_height_size08"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="3"
+                >
+
+                <TextView
+                    android:id="@+id/item_weekplan_tv_weekday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
+                    android:text="周日"
+                    android:textColor="@color/gray_color_333333"
+                    android:textSize="@dimen/font_size3"/>
+
+            </RelativeLayout>
+
+            <!--时间-->
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/width_height_size08"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="6"
+                >
+
+                <TextView
+                    android:id="@+id/item_weekplan_tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="2018-03-13"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/font_size4"/>
+
+            </RelativeLayout>
+
+            <!--未制定-->
+            <RelativeLayout
+                android:id="@+id/item_weekplan_rl_statue"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/width_height_size08"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="6"
+                >
+
+                <TextView
+                    android:id="@+id/item_weekplan_tv_statue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="30dp"
+                    android:textSize="@dimen/font_size4"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:orientation="horizontal">
+
+                <!--追溯区域:-->
+                <TextView
+                    android:id="@+id/item_weekplan_tv_area01"
+                    style="@style/weekplan_first_left"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="追溯区域:"
+                    />
+
+                <TextView
+                    android:id="@+id/item_weekplan_tv_area"
+                    style="@style/weekplan_first_right"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:orientation="horizontal">
+
+                <!--追溯路线 -->
+                <TextView
+                    android:id="@+id/item_weekplan_tv_route01"
+                    style="@style/weekplan_first_left"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="追溯路线:"/>
+
+                <TextView
+                    android:id="@+id/item_weekplan_tv_route"
+                    style="@style/weekplan_first_right"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    />
+
+            </LinearLayout>
+
+            <!--追溯项-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:orientation="horizontal">
+
+                <!--追溯项 -->
+                <TextView
+                    android:id="@+id/item_weekplan_tv_check01"
+                    style="@style/weekplan_first_left"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="追溯项:"/>
+
+                <TextView
+                    android:id="@+id/item_weekplan_tv_check"
+                    style="@style/weekplan_first_right"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

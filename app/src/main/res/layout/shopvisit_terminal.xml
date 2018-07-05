@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:id="@+id/shopvisit_term_container"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_page_color"
+        android:orientation="vertical">
+
+        <include layout="@layout/banner_navigation"/>
+
+        <LinearLayout
+            style="@style/content_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <!-- 上次拜访距今多少天 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ico_clock"/>
+
+                <TextView
+                    android:id="@+id/term_tv_visitline"
+                    style="@style/font_size4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="#595757"/>
+
+                <TextView
+                    style="@style/font_size4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/termlist_visitdatelabel1"
+                    android:textColor="#595757"/>
+
+                <TextView
+                    android:id="@+id/term_tv_visitline_date"
+                    style="@style/font_size4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#595757"/>
+
+                <TextView
+                    style="@style/font_size4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/termlist_visitdatelabel2"
+                    android:textColor="#595757"/>
+
+                <TextView
+                    android:id="@+id/term_tv_visitline_day"
+                    style="@style/font_size4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#595757"/>
+
+                <TextView
+                    style="@style/font_size4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:text="@string/termlist_visitdatelabel3"
+                    android:textColor="#595757"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ico_line"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <!-- 搜索终端 -->
+
+                <EditText
+                    android:id="@+id/term_et_search"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:background="@drawable/bg_term_search_input"
+                    android:ems="14"
+                    android:hint="@string/termlist_search_hit"
+                    android:paddingLeft="5dp"
+                    android:singleLine="true">
+
+                    <requestFocus/>
+                </EditText>
+
+                <!-- 搜索按钮 -->
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:id="@+id/term_bt_search"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:background="@drawable/bt_term_search"/>
+                </RelativeLayout>
+
+                <!-- 排序按钮 -->
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2">
+
+                    <Button
+                        android:id="@+id/term_bt_update"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:background="@drawable/bt_sequence_edit"
+                        android:text="修改"
+                        android:textColor="@color/transparent"/>
+                </RelativeLayout>
+
+                <!-- 新增按钮 -->
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2">
+
+                    <Button
+                        android:id="@+id/term_bt_add"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:background="@drawable/bt_terminal_add"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/listview_line"
+                android:orientation="vertical"
+                android:padding="1dp">
+
+                <ListView
+                    android:id="@+id/term_lv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cacheColorHint="@color/bg_lv_item"
+                    android:divider="@color/listview_line"
+                    android:dividerHeight="1dp">
+                </ListView>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

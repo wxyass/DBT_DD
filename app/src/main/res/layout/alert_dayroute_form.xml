@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <include layout="@layout/top_navigation"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bgColor_overlay"
+        android:visibility="gone"
+        />
+
+
+    <ListView
+        android:id="@+id/alert_dayroute_lv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:cacheColorHint="@color/bg_lv_item"
+        android:divider="@color/listview_line"
+        android:dividerHeight="1dp" >
+    </ListView>
+
+
+</LinearLayout>

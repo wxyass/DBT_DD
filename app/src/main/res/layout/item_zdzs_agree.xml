@@ -1,0 +1,228 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="246dp"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/item_zs_agree_ll_all"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/width_height_size08"
+            android:orientation="horizontal">
+
+            <!--产品名称-->
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/width_height_size08"
+                android:layout_weight="8">
+
+                <TextView
+                    android:id="@+id/item_zs_agree_tv_proname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/width_height_size03"
+                    android:text="崂山啤酒8度500*12罐啤"
+                    android:textSize="@dimen/font_size3"/>
+
+            </RelativeLayout>
+
+
+            <!--未稽查-->
+            <RelativeLayout
+                android:id="@+id/item_zs_agree_rl_statue"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/width_height_size08"
+                android:layout_weight="2">
+
+                <TextView
+                    android:id="@+id/item_zs_agree_tv_statue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/width_height_size02"
+                    android:text="未稽查"
+                    android:textSize="@dimen/font_size4"/>
+
+                <ImageView
+                    style="@style/xtbf_sayhi_third_tv"
+                    android:visibility="visible"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"/>
+
+
+        <!--兑付形式:-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/width_height_size08"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/width_height_size03"
+                android:text="兑付形式"
+                android:textSize="@dimen/font_size3"/>
+
+            <TextView
+                android:id="@+id/item_zs_agree_tv_cashtype"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/width_height_size04"
+                android:text="赠酒"
+                android:textSize="@dimen/font_size3"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"/>
+
+        <!--实际公司承担金额:-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/width_height_size08"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/width_height_size03"
+                android:text="实际公司承担金额"
+                android:textSize="@dimen/font_size3"/>
+
+
+            <TextView
+                android:id="@+id/item_zs_agree_tv_commoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/width_height_size04"
+                android:text="¥5888.00"
+                android:textSize="@dimen/font_size3"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"/>
+
+        <!--实际数量-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/width_height_size08"
+            >
+
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/width_height_size03"
+                android:text="实际数量"
+                android:textSize="@dimen/font_size3"/>
+
+
+            <TextView
+                android:id="@+id/item_zs_agree_tv_trunnum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/width_height_size04"
+                android:text="80"
+                android:textSize="@dimen/font_size3"/>
+
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"/>
+
+
+        <!--单价-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/width_height_size08"
+            >
+
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/width_height_size03"
+                android:text="单价"
+                android:textSize="@dimen/font_size3"/>
+
+            <TextView
+                android:id="@+id/item_zs_agree_tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/width_height_size04"
+                android:text="¥8.00"
+                android:textSize="@dimen/font_size3"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"/>
+
+        <!--兑付日期-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/width_height_size08"
+            >
+
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/width_height_size03"
+                android:text="兑付日期"
+                android:textSize="@dimen/font_size3"/>
+
+            <TextView
+                android:id="@+id/item_zs_agree_tv_cashdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/width_height_size04"
+                android:text="2018-05-31"
+                android:textSize="@dimen/font_size3"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

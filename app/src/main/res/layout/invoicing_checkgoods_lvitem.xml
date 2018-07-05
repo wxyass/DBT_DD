@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/listview_bg_item"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/listview_line" />
+
+    <!-- 产品 -->
+
+    <TextView
+        android:id="@+id/checkgoods_tv_proname"
+        style="@style/listview_tv_item_text"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:layout_weight="5" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/listview_line" />
+
+    <!-- 上次库存 -->
+
+    <TextView
+        android:id="@+id/checkgoods_tv_prevstore"
+        style="@style/listview_tv_item_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/listview_line" />
+
+    <!-- 最早生产日期 -->
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_weight="4" >
+
+        <Button
+            android:id="@+id/checkgoods_et_firstdate"
+            style="@style/button_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/default_date" />
+    </RelativeLayout>
+
+    <View
+        android:visibility="gone"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/listview_line" />
+    <!-- 日销量 -->
+
+    <EditText
+        android:id="@+id/checkgoods_et_daysell"
+        style="@style/listview_tv_item_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_weight="2"
+        android:ems="6"
+        android:hint="@string/hit_input"
+        android:inputType="number"
+        android:maxLength="8" >
+    </EditText>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/listview_line" />
+
+    <!-- 订单量 -->
+
+    <EditText
+        android:id="@+id/checkgoods_et_prevnum"
+        style="@style/listview_tv_item_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_weight="2"
+        android:ems="6"
+        android:hint="@string/hit_input"
+        android:inputType="number"
+        android:maxLength="8" >
+    </EditText>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/listview_line" />
+
+    <!-- 本月合计 -->
+
+    <TextView
+        android:id="@+id/checkgoods_et_prevnumsum"
+        style="@style/listview_tv_item_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:visibility="gone" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/listview_line"
+        android:visibility="gone" />
+    
+    <!-- 累计卡 -->
+
+    <EditText
+        android:id="@+id/checkgoods_et_addcard"
+        style="@style/listview_tv_item_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_weight="2"
+        android:ems="6"
+        android:hint="@string/hit_input"
+        android:inputType="number"
+        android:maxLength="6" >
+    </EditText>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/listview_line" />
+
+</LinearLayout>

@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_search_content"
+    android:orientation="vertical" >
+
+    <include layout="@layout/banner_cui" />
+
+    <include layout="@layout/banner_navigation" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_search_title"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingRight="10dp" >
+
+            <TextView
+                style="@style/page_label_big"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center_vertical|right"
+                android:text="@string/promotion_promotion" />
+
+            <Spinner
+                android:id="@+id/promotion_sp_promotion"
+                android:layout_width="0dp"
+                android:layout_height="43dp"
+                android:layout_weight="3"
+                android:background="@drawable/bg_spinner" />
+
+            <TextView
+                style="@style/page_label_big"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center_vertical|right"
+                android:text="@string/promotion_line" />
+
+            <Button
+                android:id="@+id/promotion_btn_line"
+                style="@style/button_text"
+                android:layout_width="0dp"
+                android:layout_height="43dp"
+                android:layout_weight="3"
+                android:background="@drawable/bg_spinner"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="5dp"
+                android:singleLine="true"
+                android:text="@string/promotion_line1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingRight="10dp" >
+
+            <TextView
+                style="@style/page_label_big"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center_vertical|right"
+                android:text="@string/promotion_type" />
+
+            <Button
+                android:id="@+id/promotion_btn_type"
+                style="@style/button_text"
+                android:layout_width="0dp"
+                android:layout_height="43dp"
+                android:layout_weight="3"
+                android:background="@drawable/bg_spinner"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="5dp"
+                android:singleLine="true"
+                android:text="@string/promotion_type1" />
+
+            <TextView
+                style="@style/page_label_big"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center_vertical|right"
+                android:text="@string/promotion_date" />
+
+            <Button
+                android:id="@+id/promotion_btn_date"
+                style="@style/button_text"
+                android:layout_width="0dp"
+                android:layout_height="43dp"
+                android:layout_weight="3"
+                android:background="@drawable/bg_search_button"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="5dp"
+                android:text="@string/default_date" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ico_line" />
+
+        <!-- 查询 -->
+
+        <Button
+            android:id="@+id/promotion_btn_search"
+            style="@style/button_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bt_indexstatus_search" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_search_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/bg_search_bottom" />
+
+        <!-- 绿底 截止至... -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_title"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <TextView
+                style="@style/unit_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/promotion_abort" />
+
+            <TextView
+                android:id="@+id/promotion_tv_date"
+                style="@style/unit_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/default_date" />
+
+            <TextView
+                style="@style/unit_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/promotion_condition" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/listview_line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        style="@style/page_label_small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/promotion_timebegin" />
+
+                    <TextView
+                        android:id="@+id/promotion_tv_begin"
+                        style="@style/page_label_small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/default_date"
+                        android:textColor="@color/bg_content_color_orange" />
+
+                    <TextView
+                        style="@style/page_label_small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/promotion_to" />
+
+                    <TextView
+                        android:id="@+id/promotion_tv_to"
+                        style="@style/page_label_small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/default_date"
+                        android:textColor="@color/bg_content_color_orange" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <!-- 已完成 -->
+
+                    <TextView
+                        style="@style/page_act_lv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/promotion_finish" />
+
+                    <TextView
+                        android:id="@+id/promotion_tv_finish"
+                        style="@style/page_act_lv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:text="@string/default_digital"
+                        android:textColor="@color/bg_content_color_orange" />
+
+                    <!-- 未完成 -->
+
+                    <TextView
+                        style="@style/page_act_lv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="@string/promotion_unfinished" />
+
+                    <TextView
+                        android:id="@+id/promotion_tv_unfinished"
+                        style="@style/page_act_lv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:text="@string/default_digital"
+                        android:textColor="@color/bg_content_color_orange" />
+
+                    <!-- 终端总计 -->
+
+                    <TextView
+                        style="@style/page_act_lv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="@string/promotion_total" />
+
+                    <TextView
+                        android:id="@+id/promotion_tv_total"
+                        style="@style/page_act_lv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:text="@string/default_digital"
+                        android:textColor="@color/bg_content_color_orange" />
+
+                    <!-- 完成率 -->
+
+                    <TextView
+                        style="@style/page_act_lv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="@string/promotion_rate" />
+
+                    <TextView
+                        android:id="@+id/promotion_tv_rate"
+                        style="@style/page_act_lv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:text="@string/default_digital"
+                        android:textColor="@color/bg_content_color_orange" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:background="@color/listview_line" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/listview_bg_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/listview_line" />
+
+            <TextView
+                style="@style/listview_tv_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/promotion_lv_no" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/listview_line" />
+
+            <TextView
+                style="@style/listview_tv_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:text="@string/promotion_lv_term" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/listview_line" />
+
+            <TextView
+                style="@style/listview_tv_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/promotion_lv_status" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/listview_line" />
+
+            <TextView
+                style="@style/listview_tv_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/promotion_lv_no" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/listview_line" />
+
+            <TextView
+                style="@style/listview_tv_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:text="@string/promotion_lv_term" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/listview_line" />
+
+            <TextView
+                style="@style/listview_tv_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/promotion_lv_status" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:background="@color/listview_line" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="true"
+            android:gravity="top"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/listview_line" />
+
+                    <ListView
+                        android:id="@+id/promotion_lv_finish"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:cacheColorHint="@color/bg_lv_item"
+                        android:divider="@color/listview_line"
+                        android:dividerHeight="1dp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/listview_line" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/listview_line" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <ListView
+                        android:id="@+id/promotion_lv_unfinished"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:cacheColorHint="@color/bg_lv_item"
+                        android:divider="@color/listview_line"
+                        android:dividerHeight="1dp" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/listview_line" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/listview_line" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

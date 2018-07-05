@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/bg_page_color"
+              android:orientation="vertical">
+
+
+    <ScrollView
+        android:id="@+id/zdzs_agree_scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/zs_agree_ll_all"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <!--协议基本信息-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/zdzs_agree_point1"
+                        style="@style/point"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ico_point"/>
+
+                    <TextView
+                        android:id="@+id/zdzs_agree_textview01"
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/zdzs_agree_point1"
+                        android:text="协议基本信息"/>
+
+                </RelativeLayout>
+
+                <!-- 协议编号： -->
+                <RelativeLayout
+                    android:id="@+id/zdzs_agree_rl_agreecode"
+                    style="@style/xtbf_sayhi_rl_all"
+                    android:layout_marginTop="14dp"
+                    android:visibility="visible">
+
+                    <!--标题-->
+                    <TextView
+                        style="@style/zdzs_sayhi_title"
+                        android:text="协议编号"/>
+
+                    <!--内容1-->
+                    <TextView
+                        android:id="@+id/zdzs_agree_tv_agreecode_con1"
+                        style="@style/zdzs_sayhi_content1"
+                        android:text=""/>
+
+                    <!--内容2-->
+                    <TextView
+                        style="@style/zdzs_sayhi_content2"
+                        android:text=""/>
+
+                    <!--未稽查-->
+                    <TextView
+                        android:id="@+id/zdzs_agree_tv_agreecode_statue"
+                        style="@style/zdzs_sayhi_statue"
+                        android:text="未稽查"
+                        android:visibility="invisible"/>
+
+                    <ImageView
+                        style="@style/xtbf_sayhi_third_tv"
+                        />
+                </RelativeLayout>
+                <!-- 供货商：  -->
+                <RelativeLayout
+                    android:id="@+id/zdzs_agree_rl_agencyname"
+                    style="@style/xtbf_sayhi_rl_all"
+                    android:visibility="visible">
+
+                    <!--标题-->
+                    <TextView
+                        style="@style/zdzs_sayhi_title"
+                        android:text="供货商"/>
+
+                    <!--内容1-->
+                    <TextView
+                        android:id="@+id/zdzs_agree_tv_agencyname_con1"
+                        style="@style/zdzs_sayhi_content1"
+                        android:text=""/>
+
+                    <!--内容2-->
+                    <TextView
+                        style="@style/zdzs_sayhi_content2"
+                        android:text=""/>
+
+                    <!--未稽查-->
+                    <TextView
+                        android:id="@+id/zdzs_agree_tv_agencyname_statue"
+                        style="@style/zdzs_sayhi_statue"
+                        android:text="未稽查"
+                        android:visibility="invisible"/>
+
+                    <ImageView
+                        style="@style/xtbf_sayhi_third_tv"
+                        />
+                </RelativeLayout>
+                <!-- 垫付(DF)费用经销商：  -->
+                <RelativeLayout
+                    android:id="@+id/zdzs_agree_rl_moneyagency"
+                    style="@style/xtbf_sayhi_rl_all"
+                    android:visibility="visible">
+
+                    <!--标题-->
+                    <TextView
+                        style="@style/zdzs_sayhi_title"
+                        android:text="垫付(DF)费用经销商"/>
+
+                    <!--内容1-->
+                    <TextView
+                        android:id="@+id/zdzs_agree_rl_moneyagency_con1"
+                        style="@style/zdzs_sayhi_content1"
+                        android:text=""/>
+
+                    <!--内容2-->
+                    <TextView
+                        style="@style/zdzs_sayhi_content2"
+                        android:text=""/>
+
+                    <!--未稽查-->
+                    <TextView
+                        android:id="@+id/zdzs_agree_rl_moneyagency_statue"
+                        style="@style/zdzs_sayhi_statue"
+                        android:text="未稽查"
+                        android:visibility="invisible"/>
+
+                    <ImageView
+                        style="@style/xtbf_sayhi_third_tv"
+                        />
+                </RelativeLayout>
+                <!-- 开始日期：  -->
+                <RelativeLayout
+                    android:id="@+id/zdzs_agree_rl_startdate"
+                    style="@style/xtbf_sayhi_rl_all"
+                    android:visibility="visible">
+
+                    <!--标题-->
+                    <TextView
+                        style="@style/zdzs_sayhi_title"
+                        android:text="开始日期"/>
+
+                    <!--内容1-->
+                    <TextView
+                        android:id="@+id/zdzs_agree_rl_startdate_con1"
+                        style="@style/zdzs_sayhi_content1"
+                        android:text=""/>
+
+                    <!--内容2-->
+                    <TextView
+                        style="@style/zdzs_sayhi_content2"
+                        android:text=""/>
+
+                    <!--未稽查-->
+                    <TextView
+                        android:id="@+id/zdzs_agree_rl_startdate_statue"
+                        style="@style/zdzs_sayhi_statue"
+                        android:text="未稽查"/>
+
+                    <ImageView
+                        style="@style/xtbf_sayhi_third_tv"
+                        android:visibility="visible"/>
+                </RelativeLayout>
+                <!-- 结束日期：  -->
+                <RelativeLayout
+                    android:id="@+id/zdzs_agree_rl_enddate"
+                    style="@style/xtbf_sayhi_rl_all"
+                    android:visibility="visible">
+
+                    <!--标题-->
+                    <TextView
+                        style="@style/zdzs_sayhi_title"
+                        android:text="结束日期"/>
+
+                    <!--内容1-->
+                    <TextView
+                        android:id="@+id/zdzs_agree_rl_enddate_con1"
+                        style="@style/zdzs_sayhi_content1"
+                        android:text=""/>
+
+                    <!--内容2-->
+                    <TextView
+                        style="@style/zdzs_sayhi_content2"
+                        android:text=""/>
+
+                    <!--未稽查-->
+                    <TextView
+                        android:id="@+id/zdzs_agree_rl_enddate_statue"
+                        style="@style/zdzs_sayhi_statue"
+                        android:text="未稽查"/>
+
+                    <ImageView
+                        style="@style/xtbf_sayhi_third_tv"
+                        android:visibility="visible"/>
+                </RelativeLayout>
+                <!-- 支付周期类型 -->
+                <RelativeLayout
+                    android:id="@+id/zdzs_agree_rl_paytype"
+                    style="@style/xtbf_sayhi_rl_all"
+                    android:visibility="visible">
+
+                    <!--标题-->
+                    <TextView
+                        style="@style/zdzs_sayhi_title"
+                        android:text="支付周期类型"/>
+
+                    <!--内容1-->
+                    <TextView
+                        android:id="@+id/zdzs_agree_rl_paytype_con1"
+                        style="@style/zdzs_sayhi_content1"
+                        android:text=""/>
+
+                    <!--内容2-->
+                    <TextView
+                        style="@style/zdzs_sayhi_content2"
+                        android:text=""/>
+
+                    <!--未稽查-->
+                    <TextView
+                        android:id="@+id/zdzs_agree_rl_paytype_statue"
+                        style="@style/zdzs_sayhi_statue"
+                        android:text="未稽查"
+                        android:visibility="invisible"/>
+
+                    <ImageView
+                        style="@style/xtbf_sayhi_third_tv"
+                        />
+                </RelativeLayout>
+                <!-- 联系人 -->
+                <RelativeLayout
+                    android:id="@+id/zdzs_agree_rl_contact"
+                    style="@style/xtbf_sayhi_rl_all"
+                    android:visibility="visible">
+
+                    <!--标题-->
+                    <TextView
+                        style="@style/zdzs_sayhi_title"
+                        android:text="联系人"/>
+
+                    <!--内容1-->
+                    <TextView
+                        android:id="@+id/zdzs_agree_rl_contact_con1"
+                        style="@style/zdzs_sayhi_content1"
+                        android:text=""/>
+
+                    <!--内容2-->
+                    <TextView
+                        style="@style/zdzs_sayhi_content2"
+                        android:text=""/>
+
+                    <!--未稽查-->
+                    <TextView
+                        android:id="@+id/zdzs_agree_rl_contact_statue"
+                        style="@style/zdzs_sayhi_statue"
+                        android:text="未稽查"
+                        android:visibility="invisible"/>
+
+                    <ImageView
+                        style="@style/xtbf_sayhi_third_tv"
+                        />
+                </RelativeLayout>
+
+                <!-- 联系电话 -->
+                <RelativeLayout
+                    android:id="@+id/zdzs_agree_rl_mobile"
+                    style="@style/xtbf_sayhi_rl_all"
+                    android:visibility="visible">
+
+                    <!--标题-->
+                    <TextView
+                        style="@style/zdzs_sayhi_title"
+                        android:text="联系电话"/>
+
+                    <!--内容1-->
+                    <TextView
+                        android:id="@+id/zdzs_agree_rl_mobile_con1"
+                        style="@style/zdzs_sayhi_content1"
+                        android:text=""/>
+
+                    <!--内容2-->
+                    <TextView
+                        style="@style/zdzs_sayhi_content2"
+                        android:text=""/>
+
+                    <!--未稽查-->
+                    <TextView
+                        android:id="@+id/zdzs_agree_rl_mobile_statue"
+                        style="@style/zdzs_sayhi_statue"
+                        android:text="未稽查"
+                        android:visibility="invisible"/>
+
+                    <ImageView
+                        style="@style/xtbf_sayhi_third_tv"
+                        />
+                </RelativeLayout>
+
+                <!-- 主要条款 -->
+                <RelativeLayout
+                    android:id="@+id/zdzs_agree_rl_notes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/bg_select_white_gray"
+                    android:clickable="true"
+                    android:gravity="center_vertical"
+                    android:visibility="visible">
+
+                    <!--标题-->
+                    <TextView
+                        style="@style/zdzs_sayhi_title"
+                        android:text="主要条款"/>
+
+                    <!--内容1-->
+                    <TextView
+                        android:id="@+id/zdzs_agree_rl_notes_con1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="180dp"
+                        android:layout_marginRight="80dp"
+                        android:gravity="center_vertical|left"
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/font_size5"
+                        android:text=""/>
+
+                    <!--内容2-->
+                    <TextView
+                        style="@style/zdzs_sayhi_content2"
+                        android:text=""/>
+
+                    <!--未稽查-->
+                    <TextView
+                        android:id="@+id/zdzs_agree_rl_notes_statue"
+                        style="@style/zdzs_sayhi_statue"
+                        android:text="未稽查"/>
+
+                    <ImageView
+                        style="@style/xtbf_sayhi_third_tv"
+                        android:visibility="visible"/>
+                </RelativeLayout>
+
+                <!--兑付信息-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        style="@style/point"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ico_point"/>
+
+                    <TextView
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="兑付信息"/>
+                </LinearLayout>
+
+                <!--兑付信息-->
+                <ListView
+                    android:id="@+id/zdzs_agree_lv_cash"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@null"
+                    android:dividerHeight="10dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/zs_agree_ll_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="该终端不是协议店"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

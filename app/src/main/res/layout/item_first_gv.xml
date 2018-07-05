@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:gravity="center"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/item_first_tv_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/font_size6"
+            android:textColor="@color/first_gv_unit"
+            android:text="588(个)"/>
+
+        <TextView
+            android:id="@+id/item_first_tv_ydname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="@dimen/font_size9"
+            android:textColor="@color/gray_color_333333"
+            android:textSize="@dimen/font_size1"
+            android:text="李雷"/>
+
+        <TextView
+            android:id="@+id/item_first_tv_topname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/font_size9"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/font_size6"
+            android:textColor="@color/gray"
+            android:text="走访冠军"/>
+
+    </LinearLayout>
+
+</LinearLayout>

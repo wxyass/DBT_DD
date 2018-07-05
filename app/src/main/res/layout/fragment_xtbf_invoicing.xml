@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/bg_page_color"
+              android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/xtbf_invoicing_scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--问货源标题-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <ImageView
+                    android:id="@+id/xtbf_invoicing_point1"
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ico_point"/>
+
+                <TextView
+                    android:id="@+id/xtbf_invocing_textview01"
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/xtbf_invoicing_point1"
+                    android:text="@string/invoicing_askgoods"/>
+
+
+                <!-- 新增供货关系 -->
+
+                <RelativeLayout
+                    android:id="@+id/xtbf_invoicing_rl_addrelation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/xtbf_invocing_textview01">
+
+                    <Button
+                        android:id="@+id/xtbf_invoicing_bt_addrelation"
+                        style="@style/xtbf_btn_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/width_height_size08"
+                        android:background="@drawable/bg_select_green"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="新增供货关系"
+                        />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <!--问货源列表-->
+            <ListView
+                android:id="@+id/xtbf_invoicing_lv_askgoods"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:divider="@null"
+                android:dividerHeight="10dp"/>
+
+            <!--订单推荐标题-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
+
+                <ImageView
+                    android:id="@+id/xtbf_invocing_point2"
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ico_point"/>
+
+                <TextView
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/xtbf_invocing_point2"
+                    android:text="@string/invoicing_checkgoods"/>
+            </RelativeLayout>
+
+            <!--订单推荐列表-->
+            <ListView
+                android:id="@+id/xtbf_invoicing_lv_checkgoods"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:divider="@null"
+                android:dividerHeight="10dp"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+
+            <!--下一步-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <Button
+                    android:id="@+id/xtbf_invocing_bt_next"
+                    style="@style/xtbf_btn_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/width_height_size08"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_select_green"
+                    android:text="下一步"
+                    />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="80dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

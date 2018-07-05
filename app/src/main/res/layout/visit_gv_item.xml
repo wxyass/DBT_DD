@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <!-- 巡店管理 每个子控件布局 -->
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/iv_visit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <!-- 最下边横线 -->
+
+        <View
+            android:id="@+id/iv_visit_below"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/bg_content_color_gray" />
+    </LinearLayout>
+
+    <!-- 最右边横线 -->
+
+    <View
+        android:id="@+id/iv_visit_right"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/bg_content_color_gray" />
+
+</LinearLayout>

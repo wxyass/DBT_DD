@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@android:color/transparent"
+              android:gravity="center_vertical"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#A9A9A9"
+        android:paddingTop="5dip">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dip"
+            android:text="提示"
+            android:textColor="@color/prompt_wt"
+            android:textSize="20sp"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/dialog_prompt_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dip"
+        android:layout_marginLeft="25dip"
+        android:background="#A9A9A9"
+        android:layout_marginTop="15dip"
+        android:text="This is a custom dialog"
+        android:textColor="@color/prompt_wt"
+        android:textSize="18sp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#A9A9A9"
+        android:gravity="center_horizontal"
+        android:paddingBottom="15dip"
+        android:paddingTop="15dip">
+
+        <Button
+            android:id="@+id/dialog_button_ok"
+            android:layout_width="130dip"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:gravity="center"
+            android:text="重新同步"
+            android:textColor="@color/prompt_bk"
+            android:textSize="16sp"/>
+
+        <Button
+            android:id="@+id/dialog_button_cancel"
+            android:layout_width="130dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dip"
+            android:layout_toRightOf="@id/dialog_button_ok"
+            android:gravity="center"
+            android:text="取消同步"
+            android:textColor="@color/prompt_bk"
+            android:textSize="16sp"/>
+    </RelativeLayout>
+
+</LinearLayout>

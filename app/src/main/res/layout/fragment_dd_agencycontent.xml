@@ -1,0 +1,548 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/bg_app"
+              android:orientation="vertical">
+
+    <include layout="@layout/top_navigation"/>
+
+    <ScrollView
+        android:id="@+id/agency_content_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical">
+
+            <!-- 经销商名称： -->
+            <RelativeLayout
+                android:id="@+id/agency_content_rl_agencyname"
+                android:layout_marginTop="15dp"
+                style="@style/agency_content_rl_all">
+
+                <!--标题-->
+                <TextView
+                    style="@style/zdzs_sayhi_title"
+                    android:text="@string/agencykf_agencyname"/>
+
+                <!--内容1-->
+                <TextView
+                    android:id="@+id/agency_content_rl_agencyname_con1"
+                    style="@style/zdzs_sayhi_content1"
+                    android:text=""/>
+
+                <!--内容2-->
+                <TextView
+                    style="@style/zdzs_sayhi_content2"
+                    android:text=""/>
+
+                <!--未稽查-->
+                <TextView
+                    android:id="@+id/agency_content_rl_agencyname_statue"
+                    style="@style/zdzs_sayhi_statue"
+                    android:text="未稽查"/>
+
+                <ImageView
+                    style="@style/xtbf_sayhi_third_tv"
+                    android:visibility="visible"/>
+            </RelativeLayout>
+            <!-- 法定代表人：  -->
+            <RelativeLayout
+                android:id="@+id/agency_content_rl_contact"
+                style="@style/agency_content_rl_all">
+
+                <!--标题-->
+                <TextView
+                    style="@style/zdzs_sayhi_title"
+                    android:text="@string/agencykf_contact"/>
+
+                <!--内容1-->
+                <TextView
+                    android:id="@+id/agency_content_rl_contact_con1"
+                    style="@style/zdzs_sayhi_content1"
+                    android:text=""/>
+
+                <!--内容2-->
+                <TextView
+                    style="@style/zdzs_sayhi_content2"
+                    android:text=""/>
+
+                <!--未稽查-->
+                <TextView
+                    android:id="@+id/agency_content_rl_contact_statue"
+                    style="@style/zdzs_sayhi_statue"
+                    android:text="未稽查"/>
+
+                <ImageView
+                    style="@style/xtbf_sayhi_third_tv"
+                    android:visibility="visible"/>
+            </RelativeLayout>
+            <!-- 联系电话：  -->
+            <RelativeLayout
+                android:id="@+id/agency_content_rl_mobile"
+                style="@style/agency_content_rl_all">
+
+                <!--标题-->
+                <TextView
+                    style="@style/zdzs_sayhi_title"
+                    android:text="@string/agencykf_mobile"/>
+
+                <!--内容1-->
+                <TextView
+                    android:id="@+id/agency_content_rl_mobile_con1"
+                    style="@style/zdzs_sayhi_content1"
+                    android:text=""/>
+
+                <!--内容2-->
+                <TextView
+                    style="@style/zdzs_sayhi_content2"
+                    android:text=""/>
+
+                <!--未稽查-->
+                <TextView
+                    android:id="@+id/agency_content_rl_mobile_statue"
+                    style="@style/zdzs_sayhi_statue"
+                    android:text="未稽查"/>
+
+                <ImageView
+                    style="@style/xtbf_sayhi_third_tv"
+                    android:visibility="visible"/>
+            </RelativeLayout>
+            <!-- 仓库地址：  -->
+            <RelativeLayout
+                android:id="@+id/agency_content_rl_address"
+                style="@style/agency_content_rl_all">
+
+                <!--标题-->
+                <TextView
+                    style="@style/zdzs_sayhi_title"
+                    android:text="@string/agencykf_address"/>
+
+                <!--内容1-->
+                <TextView
+                    android:id="@+id/agency_content_rl_address_con1"
+                    style="@style/zdzs_sayhi_content1"
+                    android:text=""/>
+
+                <!--内容2-->
+                <TextView
+                    style="@style/zdzs_sayhi_content2"
+                    android:text=""/>
+
+                <!--未稽查-->
+                <TextView
+                    android:id="@+id/agency_content_rl_address_statue"
+                    style="@style/zdzs_sayhi_statue"
+                    android:text="未稽查"/>
+
+                <ImageView
+                    style="@style/xtbf_sayhi_third_tv"
+                    android:visibility="visible"/>
+            </RelativeLayout>
+            <!-- 仓库面积：  -->
+            <RelativeLayout
+                android:id="@+id/agency_content_rl_area"
+                style="@style/agency_content_rl_all">
+
+                <!--标题-->
+                <TextView
+                    style="@style/zdzs_sayhi_title"
+                    android:text="@string/agencykf_area"/>
+
+                <!--内容1-->
+                <TextView
+                    android:id="@+id/agency_content_rl_area_con1"
+                    style="@style/zdzs_sayhi_content1"
+                    android:text=""/>
+
+                <!--内容2-->
+                <TextView
+                    style="@style/zdzs_sayhi_content2"
+                    android:text=""/>
+
+                <!--未稽查-->
+                <TextView
+                    android:id="@+id/agency_content_rl_area_statue"
+                    style="@style/zdzs_sayhi_statue"
+                    android:text="未稽查"/>
+
+                <ImageView
+                    style="@style/xtbf_sayhi_third_tv"
+                    android:visibility="visible"/>
+            </RelativeLayout>
+            <!-- 资金 -->
+            <RelativeLayout
+                android:id="@+id/agency_content_rl_money"
+                style="@style/agency_content_rl_all">
+
+                <!--标题-->
+                <TextView
+                    style="@style/zdzs_sayhi_title"
+                    android:text="@string/agencykf_money"/>
+
+                <!--内容1-->
+                <TextView
+                    android:id="@+id/agency_content_rl_money_con1"
+                    style="@style/zdzs_sayhi_content1"
+                    android:text=""/>
+
+                <!--内容2-->
+                <TextView
+                    style="@style/zdzs_sayhi_content2"
+                    android:text=""/>
+
+                <!--未稽查-->
+                <TextView
+                    android:id="@+id/agency_content_rl_money_statue"
+                    style="@style/zdzs_sayhi_statue"
+                    android:text="未稽查"/>
+
+                <ImageView
+                    style="@style/xtbf_sayhi_third_tv"
+                    android:visibility="visible"/>
+            </RelativeLayout>
+            <!-- 人员 -->
+            <RelativeLayout
+                android:id="@+id/agency_content_rl_persion"
+                style="@style/agency_content_rl_all">
+
+                <!--标题-->
+                <TextView
+                    style="@style/zdzs_sayhi_title"
+                    android:text="@string/agencykf_persion"/>
+
+                <!--内容1-->
+                <TextView
+                    android:id="@+id/agency_content_rl_persion_con1"
+                    style="@style/zdzs_sayhi_content1"
+                    android:text=""/>
+
+                <!--内容2-->
+                <TextView
+                    style="@style/zdzs_sayhi_content2"
+                    android:text=""/>
+
+                <!--未稽查-->
+                <TextView
+                    android:id="@+id/agency_content_rl_persion_statue"
+                    style="@style/zdzs_sayhi_statue"
+                    android:text="未稽查"/>
+
+                <ImageView
+                    style="@style/xtbf_sayhi_third_tv"
+                    android:visibility="visible"/>
+            </RelativeLayout>
+            <!-- 配送车辆： -->
+            <RelativeLayout
+                android:id="@+id/agency_content_rl_carnum"
+                style="@style/agency_content_rl_all">
+
+                <!--标题-->
+                <TextView
+                    style="@style/zdzs_sayhi_title"
+                    android:text="@string/agencykf_carnum"/>
+
+                <!--内容1-->
+                <TextView
+                    android:id="@+id/agency_content_rl_carnum_con1"
+                    style="@style/zdzs_sayhi_content1"
+                    android:text=""/>
+
+                <!--内容2-->
+                <TextView
+                    style="@style/zdzs_sayhi_content2"
+                    android:text=""/>
+
+                <!--未稽查-->
+                <TextView
+                    android:id="@+id/agency_content_rl_carnum_statue"
+                    style="@style/zdzs_sayhi_statue"
+                    android:text="未稽查"/>
+
+                <ImageView
+                    style="@style/xtbf_sayhi_third_tv"
+                    android:visibility="visible"/>
+            </RelativeLayout>
+            <!-- 数一数二经销商： -->
+            <RelativeLayout
+                android:id="@+id/agency_content_rl_isone"
+                style="@style/agency_content_rl_all">
+
+                <!--标题-->
+                <TextView
+                    style="@style/zdzs_sayhi_title"
+                    android:text="@string/agencykf_isone"/>
+
+                <!--内容1-->
+                <TextView
+                    android:id="@+id/agency_content_rl_isone_con1"
+                    style="@style/zdzs_sayhi_content1"
+                    android:text="是"/>
+
+                <!--内容2-->
+                <TextView
+                    style="@style/zdzs_sayhi_content2"
+                    android:text=""/>
+
+                <!--未稽查-->
+                <TextView
+                    android:id="@+id/agency_content_rl_isone_statue"
+                    style="@style/zdzs_sayhi_statue"
+                    android:text="未稽查"/>
+
+                <ImageView
+                    style="@style/xtbf_sayhi_third_tv"
+                    android:visibility="visible"/>
+            </RelativeLayout>
+            <!--  开发时间： -->
+            <RelativeLayout
+                android:id="@+id/agency_content_rl_kfdata"
+                style="@style/agency_content_rl_all">
+
+                <!--标题-->
+                <TextView
+                    style="@style/zdzs_sayhi_title"
+                    android:text="@string/agencykf_kfdata"/>
+
+                <!--内容1-->
+                <TextView
+                    android:id="@+id/agency_content_rl_kfdata_con1"
+                    style="@style/zdzs_sayhi_content1"
+                    android:text=""/>
+
+                <!--内容2-->
+                <TextView
+                    style="@style/zdzs_sayhi_content2"
+                    android:text=""/>
+
+                <!--未稽查-->
+                <TextView
+                    android:id="@+id/agency_content_rl_kfdata_statue"
+                    style="@style/zdzs_sayhi_statue"
+                    android:text="未稽查"/>
+
+                <ImageView
+                    style="@style/xtbf_sayhi_third_tv"
+                    android:visibility="visible"/>
+            </RelativeLayout>
+            <!-- 达成时间： -->
+            <RelativeLayout
+                android:id="@+id/agency_content_rl_passdata"
+                style="@style/agency_content_rl_all">
+
+                <!--标题-->
+                <TextView
+                    style="@style/zdzs_sayhi_title"
+                    android:text="@string/agencykf_passdate"/>
+
+                <!--内容1-->
+                <TextView
+                    android:id="@+id/agency_content_rl_passdata_con1"
+                    style="@style/zdzs_sayhi_content1"
+                    android:text=""/>
+
+                <!--内容2-->
+                <TextView
+                    style="@style/zdzs_sayhi_content2"
+                    android:text=""/>
+
+                <!--未稽查-->
+                <TextView
+                    android:id="@+id/agency_content_rl_passdata_statue"
+                    style="@style/zdzs_sayhi_statue"
+                    android:text="未稽查"/>
+
+                <ImageView
+                    style="@style/xtbf_sayhi_third_tv"
+                    android:visibility="visible"/>
+            </RelativeLayout>
+            <!-- 销售产品： -->
+            <RelativeLayout
+                android:id="@+id/agency_content_rl_productname"
+                style="@style/agency_content_rl_all">
+
+                <!--标题-->
+                <TextView
+                    style="@style/zdzs_sayhi_title"
+                    android:text="@string/agencykf_productname"/>
+
+                <!--内容1-->
+                <TextView
+                    android:id="@+id/agency_content_rl_productname_con1"
+                    style="@style/zdzs_sayhi_content1"
+                    android:text=""/>
+
+                <!--内容2-->
+                <TextView
+                    style="@style/zdzs_sayhi_content2"
+                    android:text=""/>
+
+                <!--未稽查-->
+                <TextView
+                    android:id="@+id/agency_content_rl_productname_statue"
+                    style="@style/zdzs_sayhi_statue"
+                    android:text="未稽查"/>
+
+                <ImageView
+                    style="@style/xtbf_sayhi_third_tv"
+                    android:visibility="visible"/>
+            </RelativeLayout>
+            <!-- 经营状况：-->
+            <RelativeLayout
+                android:id="@+id/agency_content_rl_business"
+                style="@style/agency_content_rl_all">
+
+                <!--标题-->
+                <TextView
+                    style="@style/zdzs_sayhi_title"
+                    android:text="@string/agencykf_business"/>
+
+                <!--内容1-->
+                <TextView
+                    android:id="@+id/agency_content_rl_business_con1"
+                    style="@style/zdzs_sayhi_content1"
+                    android:text=""/>
+
+                <!--内容2-->
+                <TextView
+                    style="@style/zdzs_sayhi_content2"
+                    android:text=""/>
+
+                <!--未稽查-->
+                <TextView
+                    android:id="@+id/agency_content_rl_business_statue"
+                    style="@style/zdzs_sayhi_statue"
+                    android:text="未稽查"/>
+
+                <ImageView
+                    style="@style/xtbf_sayhi_third_tv"
+                    android:visibility="visible"/>
+            </RelativeLayout>
+            <!-- 覆盖终端： -->
+            <RelativeLayout
+                android:id="@+id/agency_content_rl_coverterms"
+                style="@style/agency_content_rl_all">
+
+                <!--标题-->
+                <TextView
+                    style="@style/zdzs_sayhi_title"
+                    android:text="@string/agencykf_coverterms"/>
+
+                <!--内容1-->
+                <TextView
+                    android:id="@+id/agency_content_rl_coverterms_con1"
+                    style="@style/zdzs_sayhi_content1"
+                    android:text=""/>
+
+                <!--内容2-->
+                <TextView
+                    style="@style/zdzs_sayhi_content2"
+                    android:text=""/>
+
+                <!--未稽查-->
+                <TextView
+                    android:id="@+id/agency_content_rl_coverterms_statue"
+                    style="@style/zdzs_sayhi_statue"
+                    android:text="未稽查"/>
+
+                <ImageView
+                    style="@style/xtbf_sayhi_third_tv"
+                    android:visibility="visible"/>
+            </RelativeLayout>
+            <!-- 直供终端： -->
+            <RelativeLayout
+                android:id="@+id/agency_content_rl_supplyterms"
+                style="@style/agency_content_rl_all">
+
+                <!--标题-->
+                <TextView
+                    style="@style/zdzs_sayhi_title"
+                    android:text="@string/agencykf_supplyterms"/>
+
+                <!--内容1-->
+                <TextView
+                    android:id="@+id/agency_content_rl_supplyterms_con1"
+                    style="@style/zdzs_sayhi_content1"
+                    android:text=""/>
+
+                <!--内容2-->
+                <TextView
+                    style="@style/zdzs_sayhi_content2"
+                    android:text=""/>
+
+                <!--未稽查-->
+                <TextView
+                    android:id="@+id/agency_content_rl_supplyterms_statue"
+                    style="@style/zdzs_sayhi_statue"
+                    android:text="未稽查"/>
+
+                <ImageView
+                    style="@style/xtbf_sayhi_third_tv"
+                    android:visibility="visible"/>
+            </RelativeLayout>
+            <!-- layout_gravity属性是**指定当前控件在父元素的位置layout_gravity属性是**指定当前控件在父元素的位置- -->
+
+            <!--拜访记录输入框-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/white"
+                android:gravity="center_vertical">
+
+                <EditText
+                    android:id="@+id/agency_content_dd_et_report"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/bg_visit_record"
+                    android:maxLength="280"
+                    android:hint="请输入稽查信息"
+                    android:inputType="textMultiLine"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+
+            <!--下一步-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/agency_content_dd_bt_save"
+                    style="@style/xtbf_btn_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/width_height_size08"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_select_green"
+                    android:text="保存"
+                    />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="80dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

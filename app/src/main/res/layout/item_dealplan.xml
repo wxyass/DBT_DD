@@ -1,0 +1,276 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/item_dealplan_ll_all"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- 整改终端： -->
+        <RelativeLayout
+            android:id="@+id/item_dealplan_rl_termname"
+            style="@style/xtbf_sayhi_rl">
+
+            <TextView
+                android:id="@+id/tv01"
+                style="@style/xtbf_sayhi_one_tv"
+                android:text="整改终端"/>
+
+            <TextView
+                android:id="@+id/item_dealplan_termname"
+                style="@style/zgjh_first_con"
+                android:layout_toRightOf="@id/tv01"
+                android:text=""
+                />
+
+            <ImageView
+                style="@style/xtbf_sayhi_third_tv"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/downarrow"
+                android:visibility="visible"
+                />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/item_dealplan_ll_plan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/list_line"/>
+
+            <!-- 所属定格： -->
+            <RelativeLayout
+                android:id="@+id/item_dealplan_rl_grid"
+                style="@style/xtbf_sayhi_rl"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/tv02"
+                    style="@style/xtbf_sayhi_one_tv"
+                    android:text="所属定格"/>
+
+                <TextView
+                    android:id="@+id/item_dealplan_grid"
+                    style="@style/zgjh_first_con"
+                    android:layout_toRightOf="@id/tv02"
+                    android:text=""
+                    />
+
+                <ImageView
+                    style="@style/xtbf_sayhi_third_tv"/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/list_line"/>
+            <!-- 所属路线： -->
+            <RelativeLayout
+                android:id="@+id/item_dealplan_rl_route"
+                style="@style/xtbf_sayhi_rl"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/tv10"
+                    style="@style/xtbf_sayhi_one_tv"
+                    android:text="所属路线"/>
+
+                <TextView
+                    android:id="@+id/item_dealplan_route"
+                    style="@style/zgjh_first_con"
+                    android:layout_toRightOf="@id/tv10"
+                    android:text=""
+                    />
+
+                <ImageView
+                    style="@style/xtbf_sayhi_third_tv"/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/list_line"/>
+
+            <!-- 业代名称： -->
+            <RelativeLayout
+                android:id="@+id/item_dealplan_rl_ydname"
+                style="@style/xtbf_sayhi_rl"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/tv03"
+                    style="@style/xtbf_sayhi_one_tv"
+                    android:text="业代名称"/>
+
+                <TextView
+                    android:id="@+id/item_dealplan_ydname"
+                    style="@style/zgjh_first_con"
+                    android:layout_toRightOf="@id/tv03"
+                    android:text=""
+                    />
+
+                <ImageView
+                    style="@style/xtbf_sayhi_third_tv"/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/list_line"/>
+
+            <!-- 问题描述： -->
+            <RelativeLayout
+                android:id="@+id/item_dealplan_rl_question"
+                style="@style/xtbf_sayhi_rl"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/tv04"
+                    style="@style/xtbf_sayhi_one_tv"
+                    android:text="问题描述"/>
+
+                <TextView
+                    android:id="@+id/item_dealplan_question"
+                    style="@style/zgjh_first_con"
+                    android:layout_toRightOf="@id/tv04"
+                    android:maxLength="30"
+                    />
+
+                <ImageView
+                    style="@style/xtbf_sayhi_third_tv"/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/list_line"/>
+
+            <!-- 改进计划： -->
+            <RelativeLayout
+                android:id="@+id/item_dealplan_rl_amendplan"
+                style="@style/xtbf_sayhi_rl"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/tv05"
+                    style="@style/xtbf_sayhi_one_tv"
+                    android:text="改进计划"/>
+
+                <TextView
+                    android:id="@+id/item_dealplan_amendplan"
+                    style="@style/zgjh_first_con"
+                    android:layout_toRightOf="@id/tv05"
+                    android:maxLength="30"
+                    />
+
+                <ImageView
+                    style="@style/xtbf_sayhi_third_tv"/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/list_line"/>
+
+            <!-- 考核措施： -->
+            <RelativeLayout
+                android:id="@+id/item_dealplan_rl_measure"
+                style="@style/xtbf_sayhi_rl"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/tv06"
+                    style="@style/xtbf_sayhi_one_tv"
+                    android:text="考核措施"/>
+
+                <TextView
+                    android:id="@+id/item_dealplan_measure"
+                    style="@style/zgjh_first_con"
+                    android:layout_toRightOf="@id/tv06"
+                    android:maxLength="30"
+                    />
+
+                <ImageView
+                    style="@style/xtbf_sayhi_third_tv"/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/list_line"/>
+
+            <!-- 复查时间： -->
+            <RelativeLayout
+                android:id="@+id/item_dealplan_rl_checktime"
+                style="@style/xtbf_sayhi_rl"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/tv08"
+                    style="@style/xtbf_sayhi_one_tv"
+                    android:text="复查时间"/>
+
+                <TextView
+                    android:id="@+id/item_dealplan_checktime"
+                    style="@style/zgjh_first_con"
+                    android:layout_toRightOf="@id/tv08"
+                    android:hint="请选择完成时间"
+                    />
+
+                <ImageView
+                    style="@style/xtbf_sayhi_third_tv"
+                    />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/list_line"/>
+            <!-- 复查结果： -->
+            <RelativeLayout
+                android:id="@+id/item_dealplan_rl_checkstatus"
+                style="@style/xtbf_sayhi_rl">
+
+                <TextView
+                    android:id="@+id/tv09"
+                    style="@style/xtbf_sayhi_one_tv"
+                    android:text="复查结果"/>
+
+                <TextView
+                    android:id="@+id/item_dealplan_checkstatus"
+                    style="@style/zgjh_dealmake_con"
+                    android:layout_toRightOf="@id/tv09"
+                    android:hint="复查结果"
+                    />
+
+                <TextView
+                    android:id="@+id/item_dealplan_operation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="35dp"
+                    android:text="复查"
+                    android:textColor="@color/green"
+                    android:textSize="@dimen/font_size4"/>
+
+                <ImageView
+                    style="@style/xtbf_sayhi_third_tv"
+                    android:visibility="visible"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

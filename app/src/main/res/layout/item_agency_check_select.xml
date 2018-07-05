@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/item_agencyselect_rl"
+                style="@style/listview_bg_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/item_agency_check_select_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!-- 终端名称 -->
+
+            <TextView
+                android:id="@+id/item_agency_check_select_tv_name"
+                style="@style/listview_tv_item_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:textColor="@color/gray_color_333333"/>
+
+            <!-- 上传成功标识 -->
+
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/item_agency_check_select_iv_update"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ico_terminal_syncflag"
+                    android:visibility="gone"/>
+
+                <ImageView
+                    android:id="@+id/item_agency_check_select_iv_update_fail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/icon_select_syncflagoff"
+                    android:visibility="gone"/>
+            </RelativeLayout>
+
+            <!-- 电话 -->
+            <TextView
+                android:id="@+id/item_agency_check_select_tv_type"
+                style="@style/listview_tv_item_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:textColor="@color/gray"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

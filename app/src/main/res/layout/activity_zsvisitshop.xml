@@ -1,0 +1,112 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:id="@+id/zs_container"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/bg_app"
+        android:orientation="vertical">
+
+        <include layout="@layout/top_navigation"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <LinearLayout
+                style="@style/content_margin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- 该终端上次拜访时间:距离今天0天 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:gravity="center_vertical">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ico_clock"/>
+
+                    <android.support.v7.widget.AppCompatTextView
+                        style="@style/banner_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/shopvisit_visitdatelabel1"/>
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/zs_tv_date"
+                        style="@style/banner_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2018-03-12"
+                        android:textColor="#727171"/>
+
+                    <android.support.v7.widget.AppCompatTextView
+                        style="@style/banner_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/shopvisit_visitdatelabel2"/>
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/zs_tv_day"
+                        style="@style/banner_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="8"
+                        android:textColor="#727171"/>
+
+                    <android.support.v7.widget.AppCompatTextView
+                        style="@style/banner_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:text="@string/shopvisit_visitdatelabel3"/>
+                </LinearLayout>
+
+                <!--第2种方式-->
+                <android.support.v4.app.FragmentTabHost
+                    android:id="@+id/tabhost"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                     >
+
+                    <FrameLayout
+                        android:id="@+id/tabcontent"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+                </android.support.v4.app.FragmentTabHost>
+
+                <FrameLayout
+                    android:id="@+id/zs_fl_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    >
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <!-- 客情备忘录 -->
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/zs_bt_memo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginBottom="200dp"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/bt_shopvisit_memo"
+                android:visibility="gone"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+</FrameLayout>

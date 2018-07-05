@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="163dp"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/item_dealplan_ll_all"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- 复查时间： -->
+        <RelativeLayout
+            style="@style/xtbf_sayhi_rl">
+
+            <TextView
+                android:id="@+id/tv08"
+                style="@style/xtbf_sayhi_one_tv"
+                android:textColor="@color/gray"
+                android:text="复查时间"/>
+
+            <TextView
+                android:id="@+id/item_re_checktime_show"
+                style="@style/zgjh_dealmake_con"
+                android:layout_toRightOf="@id/tv08"
+                android:textColor="@color/gray"
+                android:hint="请选择完成时间"
+                />
+
+            <TextView
+                android:id="@+id/item_re_status_show"
+                style="@style/zgjh_dealmake_con"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="50dp"
+                android:textColor="@color/gray"
+                android:gravity="right"
+                android:text=""
+                />
+
+            <ImageView
+                style="@style/xtbf_sayhi_third_tv"
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

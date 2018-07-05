@@ -1,0 +1,207 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/bg_app"
+              android:orientation="vertical">
+
+    <include layout="@layout/top_navigation"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            style="@style/content_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--业代数据-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/ico_point"/>
+
+                <TextView
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="业代数据"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+            <!-- 业代数据： -->
+            <RelativeLayout
+                style="@style/xtbf_sayhi_rl">
+
+                <!--标题-->
+                <TextView
+                    android:id="@+id/zdzs_check_promo_tv_title"
+                    style="@style/zdzs_sayhi_title"
+                    android:text="达成组数"/>
+
+                <!--内容1-->
+                <TextView
+                    android:id="@+id/zdzs_check_promo_tv_con1"
+                    style="@style/zdzs_sayhi_content1"
+                    android:text=""/>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+            <!--督导数据-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        style="@style/point"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:src="@drawable/ico_point"/>
+
+                    <TextView
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="督导数据"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+
+                <!-- 督导数据： -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/bg_select_white_gray">
+
+                    <!--第一种类型,输入框-->
+                    <RelativeLayout
+                        style="@style/xtbf_sayhi_rl"
+                        >
+
+                        <!--标题-->
+                        <TextView
+                            android:id="@+id/zdzs_check_promo_et_title"
+                            style="@style/zdzs_sayhi_title"
+                            android:text="达成组数"/>
+
+                        <!--内容1-->
+                        <EditText
+                            android:id="@+id/zdzs_check_promo_et_con1"
+                            style="@style/zdzs_sayhi_content1"
+                            android:inputType="number|numberDecimal"
+                            android:background="@drawable/bg_visit_record"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:maxLength="10"
+                            android:text=""/>
+                    </RelativeLayout>
+
+                </RelativeLayout>
+            </LinearLayout>
+
+
+            <!--督导备注-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:visibility="gone"
+                android:orientation="horizontal">
+
+                <ImageView
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/ico_point"/>
+
+                <TextView
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="督导备注"/>
+            </LinearLayout>
+
+
+            <!--拜访记录输入框-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="15dp"
+                android:visibility="gone"
+                android:background="@color/white"
+                android:gravity="center_vertical">
+
+                <EditText
+                    android:id="@+id/zdzs_check_promo_et_report"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/bg_visit_record"
+                    android:hint="请输入备注内容"
+                    android:inputType="textMultiLine"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+
+            <!--下一步-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/zdzs_check_promo_bt_save"
+                    style="@style/xtbf_btn_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/width_height_size08"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_select_green"
+                    android:text="保存"
+                    />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="80dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

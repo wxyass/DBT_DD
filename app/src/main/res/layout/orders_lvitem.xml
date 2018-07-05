@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <!-- 终端名称 -->
+
+    <TextView
+        android:id="@+id/orders_item_tv1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:background="@drawable/bg_shape_gray"
+        android:gravity="center"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:text="@string/orders_termname"
+        android:textColor="@color/darkgreen"
+        android:textSize="17dp" />
+
+    <!-- 产品 -->
+
+    <TextView
+        android:id="@+id/orders_item_tv2"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        android:background="@drawable/bg_shape_gray"
+        android:gravity="center"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:text="@string/orders_productname"
+        android:textColor="@color/darkgreen"
+        android:textSize="17dp" />
+
+    <!-- 订单量 -->
+
+    <TextView
+        android:id="@+id/orders_item_tv3"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:background="@drawable/bg_shape_gray"
+        android:gravity="center"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:text="@string/orders_prevnum"
+        android:textColor="@color/darkgreen"
+        android:textSize="17dp" />
+
+</LinearLayout>

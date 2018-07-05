@@ -1,0 +1,166 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/bg_app"
+              android:orientation="vertical">
+
+    <include layout="@layout/top_navigation"/>
+
+    <ScrollView
+        android:id="@+id/sayhi_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- 修改密码 -->
+            <RelativeLayout
+                android:id="@+id/dd_system_rl_repwd"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_select_white_gray"
+                android:clickable="true"
+                android:gravity="center_vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/system_tv01"
+                    style="@style/system_title"
+                    android:background="@drawable/icon_set_password"/>
+
+                <!--修改密码-->
+                <TextView
+                    android:id="@+id/dd_system_tv_repwd"
+                    style="@style/system_title_text"
+                    android:layout_toRightOf="@id/system_tv01"
+                    android:text="修改密码"/>
+
+                <ImageView
+                    style="@style/xtbf_sayhi_third_tv"
+                    android:visibility="visible"/>
+            </RelativeLayout>
+
+            <!-- 问题反馈 -->
+            <RelativeLayout
+                android:id="@+id/dd_system_rl_question"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_select_white_gray"
+                android:clickable="true"
+                android:gravity="center_vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/system_tv02"
+                    style="@style/system_title"
+                    android:background="@drawable/icon_set_que"/>
+
+                <!--问题反馈-->
+                <TextView
+                    android:id="@+id/dd_system_tv_question"
+                    style="@style/system_title_text"
+                    android:layout_toRightOf="@id/system_tv02"
+                    android:text="问题反馈"/>
+
+                <ImageView
+                    style="@style/xtbf_sayhi_third_tv"
+                    android:visibility="visible"/>
+            </RelativeLayout>
+
+            <!-- 检查更新 -->
+            <RelativeLayout
+                android:id="@+id/dd_system_rl_upload"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_select_white_gray"
+                android:clickable="true"
+                android:gravity="center_vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/system_tv03"
+                    style="@style/system_title"
+                    android:background="@drawable/icon_set_update"/>
+
+                <!--检查更新-->
+                <TextView
+                    android:id="@+id/dd_system_tv_upload"
+                    style="@style/system_title_text"
+                    android:layout_toRightOf="@id/system_tv03"
+                    android:text="检查更新"/>
+
+                <ImageView
+                    style="@style/xtbf_sayhi_third_tv"
+                    android:visibility="visible"/>
+            </RelativeLayout>
+
+            <!-- 关于系统 -->
+            <RelativeLayout
+                android:id="@+id/dd_system_rl_about"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_select_white_gray"
+                android:clickable="true"
+                android:gravity="center_vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/system_tv04"
+                    style="@style/system_title"
+                    android:background="@drawable/icon_set_sys"/>
+
+                <!--关于系统-->
+                <TextView
+                    android:id="@+id/dd_system_tv_about"
+                    style="@style/system_title_text"
+                    android:layout_toRightOf="@id/system_tv04"
+                    android:text="关于系统"/>
+
+                <ImageView
+                    style="@style/xtbf_sayhi_third_tv"
+                    android:visibility="visible"/>
+            </RelativeLayout>
+
+            <!-- 退出系统 -->
+            <RelativeLayout
+                android:id="@+id/dd_system_rl_exit"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_select_white_gray"
+                android:clickable="true"
+                android:gravity="center_vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/system_tv05"
+                    style="@style/system_title"
+                    android:background="@drawable/icon_set_quit"/>
+
+                <!--退出系统-->
+                <TextView
+                    android:id="@+id/dd_system_tv_exit"
+                    style="@style/system_title_text"
+                    android:layout_toRightOf="@id/system_tv05"
+                    android:text="退出系统"/>
+
+                <ImageView
+                    style="@style/xtbf_sayhi_third_tv"
+                    android:visibility="visible"/>
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

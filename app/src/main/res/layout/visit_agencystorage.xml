@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_search_content"
+    android:orientation="vertical" >
+
+    <include layout="@layout/banner_navigation" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:background="@color/bg_search_title"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="15dp" >
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <!-- 选择经销商 -->
+
+            <TextView
+                android:id="@+id/agencystorage_tv_selectagency"
+                style="@style/page_agency_big"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center_vertical"
+                android:text="@string/agencystorage_label_agency" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <!-- 经销商选择项 -->
+
+            <Spinner
+                android:id="@+id/agencystorage_sp_selectagency"
+                android:layout_width="150dp"
+                android:layout_height="43dp"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/bg_spinner"
+                android:gravity="center_vertical" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <!-- 时间A -->
+
+            <TextView
+                style="@style/page_agency_big"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
+                android:text="@string/agencystorage_select_timea" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <!-- 时间A选择项 -->
+
+            <Button
+                android:id="@+id/agencystorage_btn_time"
+                style="@style/button_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="@string/default_date" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <!-- 时间B -->
+
+            <TextView
+                style="@style/page_agency_big"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="@string/agencystorage_select_timeb" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <!-- 时间B选择项 -->
+
+            <Button
+                android:id="@+id/agencystorage_btn_timeb"
+                style="@style/button_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="@string/default_date" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <!-- 查询 -->
+
+            <ImageButton
+                android:id="@+id/agencystorage_ib_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:scaleType="fitXY"
+                android:src="@drawable/bt_indexstatus_search" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                style="@style/listview_bg_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="80dp"
+                    android:background="@color/listview_line" />
+
+                <!-- 产品名称 -->
+
+                <TextView
+                    style="@style/listview_tv_title"
+                    android:layout_width="330dp"
+                    android:layout_height="80dp"
+                    android:text="@string/agencystorage__lv_title_proname" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="80dp"
+                    android:background="@color/listview_line" />
+
+                <!-- 产品编码 -->
+
+                <TextView
+                    style="@style/listview_tv_title"
+                    android:layout_width="250dp"
+                    android:layout_height="80dp"
+                    android:text="@string/agencystorage__lv_title_procode" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="80dp"
+                    android:background="@color/listview_line" />
+
+                <RelativeLayout
+                    android:id="@+id/rl1"
+                    android:layout_width="400dp"
+                    android:layout_height="80dp" >
+
+                    <!-- 2013-05-28 -->
+
+                    <TextView
+                        android:id="@+id/listview_tv_title_selecttime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="@string/agencystorage__lv_title_selecttime"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
+
+                    <View
+                        android:id="@+id/vw1"
+                        android:layout_width="400dp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="40dp"
+                        android:background="@color/listview_line" />
+
+                    
+
+
+                    <!-- 期初库存 -->
+
+                    <TextView
+                        android:id="@+id/agencystorage__lv_title_prestorenum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/vw1"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="@string/agencystorage__lv_title_prestorenum"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
+
+                    <View
+                        android:id="@+id/vw2"
+                        android:layout_width="1dp"
+                        android:layout_height="40dp"
+                        android:layout_below="@+id/vw1"
+                        android:layout_marginBottom="50dp"
+                        android:layout_marginLeft="100dp"
+                        android:background="@color/listview_line" />
+
+                    <!-- 进货量 -->
+
+                    <TextView
+                        android:id="@+id/listview_tv_title_jinghuoliang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/vw1"
+                        android:layout_marginLeft="105dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="@string/agencystorage__lv_title_jinghuoliang"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
+
+                    <View
+                        android:id="@+id/vw3"
+                        android:layout_width="1dp"
+                        android:layout_height="40dp"
+                        android:layout_below="@+id/vw1"
+                        android:layout_marginBottom="50dp"
+                        android:layout_marginLeft="190dp"
+                        android:background="@color/listview_line" />
+
+                    <!-- 销售量 -->
+
+                    <TextView
+                        android:id="@+id/listview_tv_title_xiaoshouliang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/vw1"
+                        android:layout_marginLeft="195dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="@string/agencystorage__lv_title_xiaoshouliang"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
+
+                    <View
+                        android:id="@+id/vw4"
+                        android:layout_width="1dp"
+                        android:layout_height="40dp"
+                        android:layout_below="@+id/vw1"
+                        android:layout_marginBottom="50dp"
+                        android:layout_marginLeft="280dp"
+                        android:background="@color/listview_line" />
+
+                    <!-- 期末库存 -->
+
+                    <TextView
+                        android:id="@+id/agencystorage__lv_title_storenum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/vw1"
+                        android:layout_marginLeft="285dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="@string/agencystorage__lv_title_storenum"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/vw5"
+                    android:layout_width="1dp"
+                    android:layout_height="80dp"
+                    android:background="@color/listview_line" />
+
+                <RelativeLayout
+                    android:id="@+id/rl2"
+                    android:layout_width="400dp"
+                    android:layout_height="80dp" >
+
+                    <!-- 当前时间 -->
+
+                    <TextView
+                        android:id="@+id/listview_tv_title_creenttime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="@string/agencystorage__lv_title_creenttime"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
+
+                    <View
+                        android:id="@+id/vw6"
+                        android:layout_width="400dp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="40dp"
+                        android:background="@color/listview_line" />
+
+                    <!--
+                         <TextView
+                        android:id="@+id/agencystorage__lv_title_creentstorenum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/listview_tv_title_creenttime"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="@string/agencystorage__lv_title_storenum"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
+                    -->
+
+
+                    <!-- 期初库存 -->
+
+                    <TextView
+                        android:id="@+id/agencystorage__lv_title_precreentstorenum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/vw6"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="@string/agencystorage__lv_title_prestorenum"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
+
+                    <View
+                        android:id="@+id/vw7"
+                        android:layout_width="1dp"
+                        android:layout_height="40dp"
+                        android:layout_below="@+id/vw6"
+                        android:layout_marginBottom="50dp"
+                        android:layout_marginLeft="100dp"
+                        android:background="@color/listview_line" />
+
+                    <!-- 进货量 -->
+                    <TextView
+                        android:id="@+id/listview_tv_title_creentjinghuoliang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/vw6"
+                        android:layout_marginLeft="105dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="@string/agencystorage__lv_title_jinghuoliang"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
+
+                    <View
+                        android:id="@+id/vw8"
+                        android:layout_width="1dp"
+                        android:layout_height="40dp"
+                        android:layout_below="@+id/vw6"
+                        android:layout_marginBottom="50dp"
+                        android:layout_marginLeft="190dp"
+                        android:background="@color/listview_line" />
+
+                    <!-- 销售量 -->
+                    <TextView
+                        android:id="@+id/listview_tv_title_creentxiaoshouliang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/vw6"
+                        android:layout_marginLeft="195dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="@string/agencystorage__lv_title_xiaoshouliang"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
+
+                    <View
+                        android:id="@+id/vw9"
+                        android:layout_width="1dp"
+                        android:layout_height="40dp"
+                        android:layout_below="@+id/vw6"
+                        android:layout_marginBottom="50dp"
+                        android:layout_marginLeft="280dp"
+                        android:background="@color/listview_line" />
+
+                    <!-- 期末库存 -->
+                    <TextView
+                        android:id="@+id/agencystorage__lv_title_creentstorenum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/vw6"
+                        android:layout_marginLeft="285dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="@string/agencystorage__lv_title_storenum"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="80dp"
+                    android:background="@color/listview_line" />
+
+                <!-- 经销商 -->
+                <TextView
+                    style="@style/listview_tv_title"
+                    android:layout_width="160dp"
+                    android:layout_height="80dp"
+                    android:text="@string/agencystorage__lv_title_agencyname" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="80dp"
+                    android:background="@color/listview_line" />
+
+                <!-- 经销商编码 -->
+                <TextView
+                    style="@style/listview_tv_title"
+                    android:layout_width="140dp"
+                    android:layout_height="80dp"
+                    android:text="@string/agencystorage__lv_title_agencycode" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="80dp"
+                    android:background="@color/listview_line" />
+
+                <!-- 经销商负责人 -->
+                <TextView
+                    style="@style/listview_tv_title"
+                    android:layout_width="140dp"
+                    android:layout_height="80dp"
+                    android:text="@string/agencystorage__lv_title_agencyuser" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="80dp"
+                    android:background="@color/listview_line" />
+
+                <!-- 联系电话 -->
+                <TextView
+                    style="@style/listview_tv_title"
+                    android:layout_width="170dp"
+                    android:layout_height="80dp"
+                    android:text="@string/agencystorage__lv_title_phone" />
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/agencystorage_lv_agencystorage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:cacheColorHint="@color/bg_lv_item"
+                android:divider="@color/listview_line"
+                android:dividerHeight="1dp"
+                android:footerDividersEnabled="false" >
+            </ListView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/listview_line" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+</LinearLayout>

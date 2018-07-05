@@ -1,0 +1,278 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/bg_app"
+              android:orientation="vertical">
+
+    <include layout="@layout/top_navigation"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            style="@style/content_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--经销商-->
+            <LinearLayout
+                android:id="@+id/zdzs_chatvie_amend_rl_ll_agency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        style="@style/point"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:src="@drawable/ico_point"/>
+
+                    <TextView
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="填写经销商"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+
+                <!-- 填写经销商： -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical">
+
+                    <EditText
+                        android:id="@+id/zdzs_chatvie_dd_et_vieagency"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/bg_visit_record"
+                        android:hint="请输入经销商信息"
+                        android:inputType="textMultiLine"
+                        android:textSize="@dimen/font_size3"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <!--数据录入-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        style="@style/point"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:src="@drawable/ico_point"/>
+
+                    <TextView
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="数据填写"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+
+                <!-- 督导数据： -->
+                <!--渠道价-->
+                <RelativeLayout
+                    style="@style/xtbf_sayhi_rl"
+                    >
+                    <!--标题-->
+                    <TextView
+                        style="@style/zdzs_sayhi_title"
+                        android:text="渠道价:"/>
+
+
+                    <!--内容2-->
+                    <EditText
+                        android:id="@+id/zdzs_chatvie_adddata_rl_con2_qd"
+                        style="@style/zdzs_sayhi_content1"
+                        android:background="@drawable/bg_visit_record"
+                        android:inputType="number|numberDecimal"
+                        android:maxLength="10"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="3dp"
+                        android:text=""
+                        android:textSize="@dimen/font_size3"/>
+
+
+                </RelativeLayout>
+                <!--零售价-->
+                <RelativeLayout
+                    style="@style/xtbf_sayhi_rl"
+                    >
+
+                    <!--标题-->
+                    <TextView
+                        style="@style/zdzs_sayhi_title"
+                        android:text="零售价:"/>
+
+                    <!--内容2-->
+                    <EditText
+                        android:id="@+id/zdzs_chatvie_adddata_rl_con2_ls"
+                        style="@style/zdzs_sayhi_content1"
+                        android:background="@drawable/bg_visit_record"
+                        android:inputType="number|numberDecimal"
+                        android:maxLength="10"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="3dp"
+                        android:text=""
+                        android:textSize="@dimen/font_size3"/>
+
+
+                </RelativeLayout>
+                <!--销量-->
+                <RelativeLayout
+                    style="@style/xtbf_sayhi_rl"
+                    >
+
+                    <!--标题-->
+                    <TextView
+                        style="@style/zdzs_sayhi_title"
+                        android:text="销量:"/>
+
+                    <!--内容2-->
+                    <EditText
+                        android:id="@+id/zdzs_chatvie_adddata_rl_con2_ddl"
+                        style="@style/zdzs_sayhi_content1"
+                        android:background="@drawable/bg_visit_record"
+                        android:inputType="number|numberDecimal"
+                        android:maxLength="10"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="3dp"
+                        android:text=""
+                        android:textSize="@dimen/font_size3"/>
+
+
+                </RelativeLayout>
+                <!--当前库存-->
+                <RelativeLayout
+                    style="@style/xtbf_sayhi_rl"
+                    >
+
+                    <!--标题-->
+                    <TextView
+                        style="@style/zdzs_sayhi_title"
+                        android:text="当前库存:"/>
+
+                    <!--内容2-->
+                    <EditText
+                        android:id="@+id/zdzs_chatvie_adddata_rl_con2_ljk"
+                        style="@style/zdzs_sayhi_content1"
+                        android:background="@drawable/bg_visit_record"
+                        android:inputType="number|numberDecimal"
+                        android:maxLength="10"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="3dp"
+                        android:text=""
+                        android:textSize="@dimen/font_size3"/>
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+            <!--督导备注-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/ico_point"/>
+
+                <TextView
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="督导备注"/>
+            </LinearLayout>
+
+
+            <!--拜访记录输入框-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/white"
+                android:gravity="center_vertical">
+
+                <EditText
+                    android:id="@+id/zdzs_chatvie_adddata_dd_et_report"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/bg_visit_record"
+                    android:hint="请输入备注内容"
+                    android:inputType="textMultiLine"
+                    android:maxLength="150"
+                    android:textSize="@dimen/font_size3"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+
+            <!--下一步-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/zdzs_chatvie_adddata_dd_bt_save"
+                    style="@style/xtbf_btn_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/width_height_size08"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_select_green"
+                    android:text="保存"
+                    android:textSize="@dimen/font_size4"
+                    />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="80dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

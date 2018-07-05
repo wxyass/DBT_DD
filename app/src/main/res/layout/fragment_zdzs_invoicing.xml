@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/bg_page_color"
+              android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/zdzs_invoicing_scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--进销存标题-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <ImageView
+                    android:id="@+id/zdzs_invoicing_point1"
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ico_point"/>
+
+                <TextView
+                    android:id="@+id/zdzs_invocing_textview01"
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/zdzs_invoicing_point1"
+                    android:text="进销存"/>
+
+
+                <!-- 新增供货关系 -->
+
+                <RelativeLayout
+                    android:id="@+id/zdzs_invoicing_rl_addrelation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:visibility="gone"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/zdzs_invocing_textview01">
+
+                    <Button
+                        android:id="@+id/zdzs_invoicing_bt_addrelation"
+                        style="@style/xtbf_btn_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/width_height_size08"
+                        android:background="@drawable/bg_select_green"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:textSize="@dimen/font_size4"
+                        android:text="新增供货关系"
+                        />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <!--问货源列表-->
+            <ListView
+                android:id="@+id/zdzs_invoicing_lv_invoicing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:divider="@null"
+                android:dividerHeight="10dp"/>
+
+            <!--终端进货台账-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <ImageView
+                    android:id="@+id/zdzs_invoicing_point2"
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ico_point"/>
+
+                <TextView
+                    android:id="@+id/zdzs_invocing_textview02"
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/zdzs_invoicing_point2"
+                    android:text="终端进货台账"/>
+
+            </RelativeLayout>
+
+            <!--终端进货台账列表-->
+            <ListView
+                android:id="@+id/zdzs_invoicing_lv_tz"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:divider="@null"
+                android:dividerHeight="10dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="80dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
