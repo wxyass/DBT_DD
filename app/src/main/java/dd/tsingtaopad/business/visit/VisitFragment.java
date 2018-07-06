@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.lang.ref.SoftReference;
 import java.util.List;
@@ -25,6 +26,7 @@ import dd.tsingtaopad.db.table.MstTerminalinfoMZsCart;
 import dd.tsingtaopad.dd.ddaddterm.DdAddTermFragment;
 import dd.tsingtaopad.dd.ddagencycheck.DdAgencyCheckSelectFragment;
 import dd.tsingtaopad.dd.ddagencyres.DdAgencySelectFragment;
+import dd.tsingtaopad.dd.dddaysummary.DdDaySummaryFragment;
 import dd.tsingtaopad.dd.ddxt.term.cart.XtTermCartFragment;
 import dd.tsingtaopad.dd.ddxt.term.select.XtTermSelectFragment;
 import dd.tsingtaopad.dd.ddzs.zsterm.zscart.ZsTermCartFragment;
@@ -150,30 +152,71 @@ public class VisitFragment extends BaseFragmentSupport implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.dd_btn_xtbf:// 协同拜访
-                changeHomeFragment(new XtTermSelectFragment(), "xttermlistfragment");
+                if (getCmmAreaMCount() > 0) {
+                    changeHomeFragment(new XtTermSelectFragment(), "xttermlistfragment");
+                } else {
+                    Toast.makeText(getActivity(), R.string.sync_data, Toast.LENGTH_SHORT).show();
+                    changeHomeFragment(new SyncBasicFragment(), "syncbasicfragment");
+                }
                 break;
             case R.id.top_navigation_rl_confirm:// 同步数据
                 changeHomeFragment(new SyncBasicFragment(), "syncbasicfragment");
                 break;
             case R.id.dd_btn_xt_term:// 协同终端夹
-                toXtTermCartFragment();
+                if (getCmmAreaMCount() > 0) {
+                    toXtTermCartFragment();
+                } else {
+                    Toast.makeText(getActivity(), R.string.sync_data, Toast.LENGTH_SHORT).show();
+                    changeHomeFragment(new SyncBasicFragment(), "syncbasicfragment");
+                }
+
                 break;
             case R.id.dd_btn_zdzs:// 终端追溯
-                changeHomeFragment(new ZsTermSelectFragment(), "zstermselectfragment");
+                if (getCmmAreaMCount() > 0) {
+                    changeHomeFragment(new ZsTermSelectFragment(), "zstermselectfragment");
+                } else {
+                    Toast.makeText(getActivity(), R.string.sync_data, Toast.LENGTH_SHORT).show();
+                    changeHomeFragment(new SyncBasicFragment(), "syncbasicfragment");
+                }
+
                 break;
 
             case R.id.dd_btn_zs_term:// 追溯文件夹
-                toZsTermCartFragment();
+                if (getCmmAreaMCount() > 0) {
+                    toZsTermCartFragment();
+                } else {
+                    Toast.makeText(getActivity(), R.string.sync_data, Toast.LENGTH_SHORT).show();
+                    changeHomeFragment(new SyncBasicFragment(), "syncbasicfragment");
+                }
+
                 break;
 
             case R.id.dd_btn_zs_agencyres:// 经销商资料库
-                changeHomeFragment(new DdAgencySelectFragment(), "ddagencyselectfragment");
+                if (getCmmAreaMCount() > 0) {
+                    changeHomeFragment(new DdAgencySelectFragment(), "ddagencyselectfragment");
+                } else {
+                    Toast.makeText(getActivity(), R.string.sync_data, Toast.LENGTH_SHORT).show();
+                    changeHomeFragment(new SyncBasicFragment(), "syncbasicfragment");
+                }
+
                 break;
             case R.id.dd_btn_zs_agencycheck:// 经销商库存盘点
-                changeHomeFragment(new DdAgencyCheckSelectFragment(), "ddagencycheckselectfragment");
+                if (getCmmAreaMCount() > 0) {
+                    changeHomeFragment(new DdAgencyCheckSelectFragment(), "ddagencycheckselectfragment");
+                } else {
+                    Toast.makeText(getActivity(), R.string.sync_data, Toast.LENGTH_SHORT).show();
+                    changeHomeFragment(new SyncBasicFragment(), "syncbasicfragment");
+                }
+
                 break;
             case R.id.dd_btn_zs_addterm:// 漏店补录
-                changeHomeFragment(new DdAddTermFragment(), "ddaddtermfragment");
+                if (getCmmAreaMCount() > 0) {
+                    changeHomeFragment(new DdAddTermFragment(), "ddaddtermfragment");
+                } else {
+                    Toast.makeText(getActivity(), R.string.sync_data, Toast.LENGTH_SHORT).show();
+                    changeHomeFragment(new SyncBasicFragment(), "syncbasicfragment");
+                }
+
                 break;
         }
     }

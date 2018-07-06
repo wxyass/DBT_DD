@@ -12,6 +12,8 @@ import java.lang.ref.SoftReference;
 import dd.tsingtaopad.R;
 import dd.tsingtaopad.base.BaseActivity;
 import dd.tsingtaopad.base.BaseFragmentSupport;
+import dd.tsingtaopad.business.system.DownApkFragment;
+import dd.tsingtaopad.business.system.version.VersionService;
 import dd.tsingtaopad.core.util.dbtutil.ConstValues;
 import dd.tsingtaopad.core.util.dbtutil.PrefUtils;
 import dd.tsingtaopad.fragmentback.HandleBackUtil;
@@ -19,6 +21,13 @@ import dd.tsingtaopad.home.homefragment.MainFragment;
 import dd.tsingtaopad.home.initadapter.GlobalValues;
 
 public class MainActivity extends BaseActivity {
+
+    /*String apkUrl = "http://oss.wxyass.com/tscs2.4.3.1.0.apk";
+    String apkName = "tscs2.4.3.1.0.apk";
+    String downPath = "dbt";// apk的存放位置*/
+    private VersionService versionService;
+    private String departmentid;// 大区id
+    private String userid;// 用户id
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +38,7 @@ public class MainActivity extends BaseActivity {
         // new DatabaseHelper(this).getWritableDatabase();
 
         // 测试SharedPreferences
-        PrefUtils.putString(getApplicationContext(),"ceshi","ceshi");
+        PrefUtils.putString(getApplicationContext(), "ceshi", "ceshi");
 
         // 处理主Activity业务
         showFragmentAll();
@@ -37,7 +46,9 @@ public class MainActivity extends BaseActivity {
 
 
     // 处理主Activity业务
-    private void showFragmentAll(){
+    private void showFragmentAll() {
+
+        dealOther();
 
         //一开始进入程序,就往容器中替换Fragment
         changeFragment(MainFragment.newInstance(), "mainfragment");
@@ -45,7 +56,6 @@ public class MainActivity extends BaseActivity {
         //changeFragment(new XtTermSelectFragment(), "mainfragment");
         //changeFragment(new ZsSayhiFragment(), "mainfragment");
         //changeFragment(new ZsInvoicingFragment(), "mainfragment");
-        dealOther();
     }
 
     /**
@@ -59,8 +69,13 @@ public class MainActivity extends BaseActivity {
         //启动服务
         Intent service = new Intent(this, AutoUpService.class);
         startService(service);
-    }
 
+        // 检查版本
+        versionService = new VersionService(this, handler);
+        departmentid = PrefUtils.getString(this, "departmentid", "");
+        userid = PrefUtils.getString(this, "userid", "");
+        versionService.getUrlData(departmentid, userid);
+    }
 
 
     public void changeFragment(BaseFragmentSupport fragment, String tag) {
@@ -140,7 +155,6 @@ public class MainActivity extends BaseActivity {
                 return;
             }
 
-
             // 处理UI 变化
             switch (msg.what) {
                 case ConstValues.WAIT0://  结束上传  刷新本页面
@@ -153,7 +167,27 @@ public class MainActivity extends BaseActivity {
                     //fragment.shuaxinXtTermSelect(2);
                     break;
 
+                case ConstValues.WAIT5: // 升级进度弹窗
+                    Bundle bundle = msg.getData();
+                    String apkUrl = (String) bundle.getSerializable("apkUrl");
+                    String apkName = (String) bundle.getSerializable("apkName");
+                    fragment.startFrag(apkUrl,apkName);
+                    break;
+                case ConstValues.WAIT6: // 无需升级
+                    // fragment.showToa();
+                    break;
+
             }
         }
+    }
+
+    // 跳转到下载apk
+    private void startFrag(String apkUrl,String apkName) {
+        Bundle bundle = new Bundle();
+        bundle.putString("apkUrl", apkUrl);//
+        bundle.putString("apkName", apkName);//
+        DownApkFragment downApkFragment = new DownApkFragment();
+        downApkFragment.setArguments(bundle);
+        changeFragment(downApkFragment, "downapkfragment");
     }
 }

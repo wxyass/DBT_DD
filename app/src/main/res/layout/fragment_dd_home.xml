@@ -156,14 +156,11 @@
 
                         <TextView
                             style="@style/first_statue"
-                            android:text="协同拜访"/>
+                            android:text="协同拜访"
+                            />
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="36dp"
+                            style="@style/first_statue_img"
                             android:background="@drawable/icon_home_ent_xietong"/>
 
                     </RelativeLayout>
@@ -189,11 +186,7 @@
                             android:text="终端追溯"/>
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="36dp"
+                            style="@style/first_statue_img"
                             android:background="@drawable/icon_home_ent_back"/>
 
                     </RelativeLayout>
@@ -219,11 +212,7 @@
                             android:text="库存盘点"/>
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="36dp"
+                            style="@style/first_statue_img"
                             android:background="@drawable/icon_home_ent_sto"/>
 
                     </RelativeLayout>
@@ -249,11 +238,7 @@
                             android:text="整改计划"/>
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="36dp"
+                            style="@style/first_statue_img"
                             android:background="@drawable/icon_home_ent_coo"/>
 
                     </RelativeLayout>
@@ -279,11 +264,7 @@
                             android:text="计划制定"/>
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="36dp"
+                            style="@style/first_statue_img"
                             android:background="@drawable/icon_home_ent_rec"/>
 
                     </RelativeLayout>
@@ -309,11 +290,7 @@
                             android:text="工作总结"/>
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="36dp"
+                            style="@style/first_statue_img"
                             android:background="@drawable/icon_home_ent_sum"/>
 
                     </RelativeLayout>

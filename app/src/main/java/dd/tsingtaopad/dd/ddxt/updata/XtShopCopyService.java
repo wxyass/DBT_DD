@@ -2113,6 +2113,9 @@ public class XtShopCopyService {
                 mitValterM.setVidvisitottrueval(valterMTemp.getVidvisitottrueval());// 拜访对象其他VALUE正确值
                 mitValterM.setPadisconsistent("0");// 是否已上传 0:未上传 1:已上传
 
+                mitValterM.setLon(valterMTemp.getLon());// 经度
+                mitValterM.setLat(valterMTemp.getLat());// 纬度
+
                 mitValterM.setCredate(new Date());
                 mitValterM.setUpdatedate(new Date());
                 mitValterM.setCreuser(PrefUtils.getString(context,"userid",""));

@@ -234,6 +234,11 @@ public class MitValterMTemp implements java.io.Serializable {
 	@DatabaseField
 	private String uploaddate;//服务器上传时间
 
+	@DatabaseField
+	private String lon;//经度
+	@DatabaseField
+	private String lat;//维度
+
 	// Constructors
 
 	/** default constructor */
@@ -1181,5 +1186,21 @@ public class MitValterMTemp implements java.io.Serializable {
 
 	public void setUploaddate(String uploaddate) {
 		this.uploaddate = uploaddate;
+	}
+
+	public String getLon() {
+		return lon;
+	}
+
+	public void setLon(String lon) {
+		this.lon = lon;
+	}
+
+	public String getLat() {
+		return lat;
+	}
+
+	public void setLat(String lat) {
+		this.lat = lat;
 	}
 }

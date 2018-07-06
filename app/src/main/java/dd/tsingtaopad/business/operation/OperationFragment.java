@@ -14,6 +14,7 @@ import android.widget.Toast;
 import dd.tsingtaopad.R;
 import dd.tsingtaopad.base.BaseFragmentSupport;
 import dd.tsingtaopad.business.operation.bean.OperationDealplanStc;
+import dd.tsingtaopad.business.visit.SyncBasicFragment;
 import dd.tsingtaopad.core.net.HttpUrl;
 import dd.tsingtaopad.core.net.RestClient;
 import dd.tsingtaopad.core.net.callback.IError;
@@ -27,6 +28,7 @@ import dd.tsingtaopad.core.util.dbtutil.DateUtil;
 import dd.tsingtaopad.core.util.dbtutil.JsonUtil;
 import dd.tsingtaopad.core.util.dbtutil.PrefUtils;
 import dd.tsingtaopad.core.util.dbtutil.PropertiesUtil;
+import dd.tsingtaopad.dd.ddaddterm.DdAddTermFragment;
 import dd.tsingtaopad.dd.dddaysummary.DdDaySummaryFragment;
 import dd.tsingtaopad.dd.dddealplan.DdDealPlanFragment;
 import dd.tsingtaopad.dd.ddweekplan.DdWeekPlanFragment;
@@ -96,13 +98,31 @@ public class OperationFragment extends BaseFragmentSupport implements View.OnCli
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.dd_operation_btn_plan:// 周计划
-                changeHomeFragment(new DdWeekPlanFragment(), "ddweekplanfragment");
+                if (getCmmAreaMCount() > 0) {
+                    changeHomeFragment(new DdWeekPlanFragment(), "ddweekplanfragment");
+                } else {
+                    Toast.makeText(getActivity(), R.string.sync_data, Toast.LENGTH_SHORT).show();
+                    changeHomeFragment(new SyncBasicFragment(), "syncbasicfragment");
+                }
+
                 break;
             case R.id.dd_operation_btn_summer:// 日工作记录及总结
-                changeHomeFragment(new DdDaySummaryFragment(), "dddaysummaryfragment");
+                if (getCmmAreaMCount() > 0) {
+                    changeHomeFragment(new DdDaySummaryFragment(), "dddaysummaryfragment");
+                } else {
+                    Toast.makeText(getActivity(), R.string.sync_data, Toast.LENGTH_SHORT).show();
+                    changeHomeFragment(new SyncBasicFragment(), "syncbasicfragment");
+                }
+
                 break;
             case R.id.dd_operation_btn_zhenggai:// 整改计划
-                changeHomeFragment(new DdDealPlanFragment(), "dddealplanfragment");
+                if (getCmmAreaMCount() > 0) {
+                    changeHomeFragment(new DdDealPlanFragment(), "dddealplanfragment");
+                } else {
+                    Toast.makeText(getActivity(), R.string.sync_data, Toast.LENGTH_SHORT).show();
+                    changeHomeFragment(new SyncBasicFragment(), "syncbasicfragment");
+                }
+
                 //changeHomeFragment(new DdDealMakeFragment(), "dddealmakefragment");
                 //changeHomeFragment(new DdDealSelectFragment(), "dddealselectfragment");
                 break;

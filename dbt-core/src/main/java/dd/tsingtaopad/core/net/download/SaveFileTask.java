@@ -92,7 +92,7 @@ public class SaveFileTask extends AsyncTask<Object, Integer, File> {
         if(REQUEST!=null){
             REQUEST.onRequestEnd();
         }
-        autoInstallApk(file);
+        // autoInstallApk(file);
     }
 
     // 若是.apk文件, 直接安装

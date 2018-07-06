@@ -482,7 +482,7 @@ public class XtVisitShopActivity extends BaseActivity implements View.OnClickLis
                             }
 
                             // 更新GPS坐标  更新到拜访临时表
-                            xtShopVisitService.updateZsGps(visitId, longitude, latitude, "");
+                            xtShopVisitService.updateXtGps(visitId, longitude, latitude, "");
 
                             // 复制正表
                             //1  "MST_VISIT_M_TEMP"   原样复制create,并把enddate附上值   是否已上传用padisconsistent字段控制  0:还未上传  1:已上传 有visitkey

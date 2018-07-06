@@ -9,8 +9,6 @@
         <item name="colorAccent">@color/first_title</item>
     </style>
 
-    first_title
-
     <!-- 在继承Theme.AppCompat.Light.DarkActionBar基础上,做处理-->
     <!-- 1. 防止app启动时,出现白屏或者黑屏，设置一张图片 -->
     <style name="Theme.MyAppTheme" parent="AppTheme">
@@ -557,6 +555,8 @@
 
     <!-- 周计划首页条目 左侧内容 的设置 -->
     <style name="weekplan_first_left" parent="@style/font_size5">
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
         <item name="android:layout_gravity">center_vertical|left</item>
         <item name="android:layout_marginLeft">30dp</item>
         <item name="android:textColor">@color/gray_color_666666</item>
@@ -690,8 +690,16 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:layout_alignParentLeft">true</item>
-        <item name="android:layout_marginLeft">34dp</item>
+        <item name="android:layout_marginLeft">30dp</item>
         <item name="android:textColor">@color/gray_color_333333</item>
+    </style>
+    <!-- 督导首页快捷入口 图片  -->
+    <style name="first_statue_img">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginRight">30dp</item>
     </style>
 
     <!-- 模块底部图标样式  -->

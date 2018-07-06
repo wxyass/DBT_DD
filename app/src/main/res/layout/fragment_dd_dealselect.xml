@@ -118,7 +118,7 @@
                 android:layout_height="@dimen/width_height_size08"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/bg_select_green"
-                android:text="编辑排序"
+                android:text="排序"
                 android:textSize="@dimen/font_size4"
                 />
         </RelativeLayout>

@@ -1,11 +1,21 @@
 package dd.tsingtaopad.dd.ddzs.zsshopvisit;
 
+import android.content.Context;
+import android.content.Intent;
+import android.location.Criteria;
+import android.location.GpsStatus;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.location.LocationProvider;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -44,6 +54,7 @@ import dd.tsingtaopad.dd.ddzs.zsagree.ZsAgreeFragment;
 import dd.tsingtaopad.dd.ddzs.zsinvoicing.ZsInvoicingFragment;
 import dd.tsingtaopad.dd.ddzs.zssayhi.ZsSayhiFragment;
 import dd.tsingtaopad.fragmentback.HandleBackUtil;
+import dd.tsingtaopad.home.initadapter.GlobalValues;
 import dd.tsingtaopad.initconstvalues.domain.KvStc;
 import dd.tsingtaopad.main.visit.shopvisit.termvisit.sayhi.domain.MstTerminalInfoMStc;
 
@@ -115,6 +126,14 @@ public class ZsVisitShopActivity extends BaseActivity implements View.OnClickLis
         setContentView(R.layout.activity_zsvisitshop);
         initView();
         initData();
+
+        if (hasPermission(GlobalValues.LOCAL_PERMISSION)) {
+            // 拥有了此权限,那么直接执行业务逻辑
+            registerGPS();
+        } else {
+            // 还没有对一个权限(请求码,权限数组)这两个参数都事先定义好
+            requestPermission(GlobalValues.LOCAL_CODE, GlobalValues.LOCAL_PERMISSION);
+        }
     }
 
     // 初始化控件
@@ -405,7 +424,7 @@ public class ZsVisitShopActivity extends BaseActivity implements View.OnClickLis
                             }
 
                             // 更新GPS坐标  更新到拜访临时表
-                            //service.updateGps(visitId, longitude, latitude, "");
+                            xtShopVisitService.updateZsGps(mitValterMTempKey, longitude, latitude);
 
                             // 复制正表
                             //1  "MST_VISIT_M_TEMP"   原样复制create,并把enddate附上值   是否已上传用padisconsistent字段控制  0:还未上传  1:已上传 有visitkey
@@ -493,6 +512,187 @@ public class ZsVisitShopActivity extends BaseActivity implements View.OnClickLis
         if (!HandleBackUtil.handleBackPress(this)) {
             backFinish();
         }
+    }
+
+    // 原生经纬度 处理 --------------------------------------------------------
+
+    private double longitude;// 经度
+    private double latitude;// 维度
+    public LocationManager lm;
+
+    // 拥有定位权限 开启注册定位
+    @Override
+    public void doLocation() {
+        registerGPS();
+    }
+
+    private void registerGPS() {
+
+        lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        //判断GPS是否正常启动
+        if (!lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            Toast.makeText(this, "请开启GPS导航...", Toast.LENGTH_SHORT).show();
+            //返回开启GPS导航设置界面
+            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            startActivityForResult(intent, 0);
+            return;
+        }
+
+        //为获取地理位置信息时设置查询条件
+        String bestProvider = lm.getBestProvider(getCriteria(), true);
+        //获取位置信息
+        //如果不设置查询要求，getLastKnownLocation方法传人的参数为LocationManager.GPS_PROVIDER
+        Location location = lm.getLastKnownLocation(bestProvider);
+        //        Location location= lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+        updateView(location);
+        //监听状态
+        lm.addGpsStatusListener(listener);
+        //绑定监听，有4个参数
+        //参数1，设备：有GPS_PROVIDER和NETWORK_PROVIDER两种
+        //参数2，位置信息更新周期，单位毫秒
+        //参数3，位置变化最小距离：当位置距离变化超过此值时，将更新位置信息
+        //参数4，监听
+        //备注：参数2和3，如果参数3不为0，则以参数3为准；参数3为0，则通过时间来定时更新；两者为0，则随时刷新
+
+        // 1秒更新一次，或最小位移变化超过1米更新一次；
+        //注意：此处更新准确度非常低，推荐在service里面启动一个Thread，在run中sleep(10000);然后执行handler.sendMessage(),更新位置
+        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 0, locationListener);
+        //        lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1, locationListener);
+    }
+
+    //位置监听
+    private LocationListener locationListener = new LocationListener() {
+
+        /**
+         * 位置信息变化时触发
+         */
+        public void onLocationChanged(Location location) {
+            updateView(location);
+            Log.i(TAG, "时间：" + location.getTime());
+            Log.i(TAG, "经度：" + location.getLongitude());
+            Log.i(TAG, "纬度：" + location.getLatitude());
+            Log.i(TAG, "海拔：" + location.getAltitude());
+        }
+
+        /**
+         * GPS状态变化时触发
+         */
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+            switch (status) {
+                //GPS状态为可见时
+                case LocationProvider.AVAILABLE:
+                    Log.i(TAG, "当前GPS状态为可见状态");
+                    break;
+                //GPS状态为服务区外时
+                case LocationProvider.OUT_OF_SERVICE:
+                    Log.i(TAG, "当前GPS状态为服务区外状态");
+                    break;
+                //GPS状态为暂停服务时
+                case LocationProvider.TEMPORARILY_UNAVAILABLE:
+                    Log.i(TAG, "当前GPS状态为暂停服务状态");
+                    break;
+            }
+        }
+
+        /**
+         * GPS开启时触发
+         */
+        public void onProviderEnabled(String provider) {
+            Location location = lm.getLastKnownLocation(provider);
+            updateView(location);
+        }
+
+        /**
+         * GPS禁用时触发
+         */
+        public void onProviderDisabled(String provider) {
+            updateView(null);
+        }
+    };
+
+    //状态监听
+    GpsStatus.Listener listener = new GpsStatus.Listener() {
+        public void onGpsStatusChanged(int event) {
+            switch (event) {
+                //第一次定位
+                case GpsStatus.GPS_EVENT_FIRST_FIX:
+                    Log.i(TAG, "第一次定位");
+                    break;
+                //卫星状态改变
+                case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
+                    Log.i(TAG, "卫星状态改变");
+                    //获取当前状态
+                    /*GpsStatus gpsStatus=lm.getGpsStatus(null);
+                    //获取卫星颗数的默认最大值
+                    int maxSatellites = gpsStatus.getMaxSatellites();
+                    //创建一个迭代器保存所有卫星
+                    Iterator<GpsSatellite> iters = gpsStatus.getSatellites().iterator();
+                    int count = 0;
+                    while (iters.hasNext() && count <= maxSatellites) {
+                        GpsSatellite s = iters.next();
+                        count++;
+                    }
+                    System.out.println("搜索到："+count+"颗卫星");
+                    tv_gps.setText("搜索到："+count+"颗卫星");*/
+                    break;
+                //定位启动
+                case GpsStatus.GPS_EVENT_STARTED:
+                    Log.i(TAG, "定位启动");
+                    break;
+                //定位结束
+                case GpsStatus.GPS_EVENT_STOPPED:
+                    Log.i(TAG, "定位结束");
+                    break;
+            }
+        }
+
+        ;
+    };
+
+    /**
+     * 实时更新文本内容
+     *
+     * @param location
+     */
+    private void updateView(Location location) {
+        if (location != null) {
+            // 经度
+            longitude = location.getLongitude();
+            // 纬度
+            latitude = location.getLatitude();
+        } else {
+            //清空EditText对象
+            //editText.getEditableText().clear();
+        }
+    }
+
+    /**
+     * 返回查询条件
+     *
+     * @return
+     */
+    private Criteria getCriteria() {
+        Criteria criteria = new Criteria();
+        //设置定位精确度 Criteria.ACCURACY_COARSE比较粗略，Criteria.ACCURACY_FINE则比较精细
+        criteria.setAccuracy(Criteria.ACCURACY_FINE);
+        //设置是否要求速度
+        criteria.setSpeedRequired(false);
+        // 设置是否允许运营商收费
+        criteria.setCostAllowed(false);
+        //设置是否需要方位信息
+        criteria.setBearingRequired(false);
+        //设置是否需要海拔信息
+        criteria.setAltitudeRequired(false);
+        // 设置对电源的需求
+        criteria.setPowerRequirement(Criteria.POWER_LOW);
+        return criteria;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        lm.removeUpdates(locationListener);
     }
 
 }

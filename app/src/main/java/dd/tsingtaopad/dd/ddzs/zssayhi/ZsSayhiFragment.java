@@ -35,6 +35,7 @@ import dd.tsingtaopad.db.table.MstRouteM;
 import dd.tsingtaopad.db.table.MstTerminalinfoMTemp;
 import dd.tsingtaopad.dd.ddxt.base.XtBaseVisitFragment;
 import dd.tsingtaopad.dd.ddzs.zsshopvisit.ZsVisitShopActivity;
+import dd.tsingtaopad.home.app.MyApplication;
 import dd.tsingtaopad.home.initadapter.GlobalValues;
 import dd.tsingtaopad.initconstvalues.domain.KvStc;
 

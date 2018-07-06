@@ -23,6 +23,7 @@ import java.text.DecimalFormat;
 import dd.tsingtaopad.R;
 import dd.tsingtaopad.base.BaseFragmentSupport;
 import dd.tsingtaopad.business.system.repwd.ApkStc;
+import dd.tsingtaopad.business.system.version.VersionService;
 import dd.tsingtaopad.core.net.HttpUrl;
 import dd.tsingtaopad.core.net.RestClient;
 import dd.tsingtaopad.core.net.callback.IError;
@@ -40,6 +41,7 @@ import dd.tsingtaopad.core.util.dbtutil.PrefUtils;
 import dd.tsingtaopad.core.util.dbtutil.PropertiesUtil;
 import dd.tsingtaopad.core.util.dbtutil.logutil.DbtLog;
 import dd.tsingtaopad.dd.ddxt.updata.XtUploadService;
+import dd.tsingtaopad.dd.ddzs.zsinvoicing.ZsInvocingAmendFragment;
 import dd.tsingtaopad.home.initadapter.GlobalValues;
 import dd.tsingtaopad.http.HttpParseJson;
 import dd.tsingtaopad.util.requestHeadUtil;
@@ -70,6 +72,11 @@ public class SystemFragment extends BaseFragmentSupport implements View.OnClickL
     int count = 0;
 
     private XtUploadService uploadService;
+    private VersionService versionService;
+
+    /*String apkUrl = "http://oss.wxyass.com/tscs2.4.3.1.0.apk";
+    String apkName = "tscs2.4.3.1.0.apk";
+    String downPath = "dbt";// apk的存放位置*/
 
     /**
      * 接收子线程消息的 Handler
@@ -92,7 +99,7 @@ public class SystemFragment extends BaseFragmentSupport implements View.OnClickL
 
             // 处理UI 变化
             switch (msg.what) {
-                case SHOWDOWNLOADDIALOG:
+                /*case SHOWDOWNLOADDIALOG:
                     fragment.showDownloadDialog();
                     break;
                 case UPDATEDOWNLOADDIALOG: // 督导输入数据后
@@ -100,9 +107,32 @@ public class SystemFragment extends BaseFragmentSupport implements View.OnClickL
                     break;
                 case DOWNLOADFINISHED: // 督导输入数据后
                     fragment.stopDownloadDialog();
+                    break;*/
+                case ConstValues.WAIT5: // 升级进度弹窗
+                    Bundle bundle = msg.getData();
+                    String apkUrl = (String) bundle.getSerializable("apkUrl");
+                    String apkName = (String) bundle.getSerializable("apkName");
+                    fragment.startFrag(apkUrl,apkName);
+                    break;
+                case ConstValues.WAIT6: // 无需升级
+                    fragment.showToa();
                     break;
             }
         }
+    }
+
+    private void showToa() {
+        Toast.makeText(getActivity(), "已是最新版本,无需更新", Toast.LENGTH_SHORT).show();
+    }
+
+    private void startFrag(String apkUrl,String apkName) {
+
+        Bundle bundle = new Bundle();
+        bundle.putString("apkUrl", apkUrl);//
+        bundle.putString("apkName", apkName);//
+        DownApkFragment downApkFragment = new DownApkFragment();
+        downApkFragment.setArguments(bundle);
+        changeHomeFragment(downApkFragment, "downapkfragment");
     }
 
     private void closeProgress() {
@@ -153,6 +183,7 @@ public class SystemFragment extends BaseFragmentSupport implements View.OnClickL
         titleTv.setText("系统管理");
         handler = new MyHandler(this);
         uploadService = new XtUploadService(getActivity(), null);
+        versionService = new VersionService(getActivity(), handler);
     }
 
     @Override
@@ -218,9 +249,6 @@ public class SystemFragment extends BaseFragmentSupport implements View.OnClickL
             });
             builder.setNegativeButton("取消", null).create().show();
         }
-
-
-
     }
 
     // 权限 下载apk
@@ -230,16 +258,22 @@ public class SystemFragment extends BaseFragmentSupport implements View.OnClickL
     }
 
     private void initUrlData() {
+        // 获取是否需要升级
+        //getVersionData();
+        String departmentid = PrefUtils.getString(getActivity(), "departmentid", "");
+        String userid = PrefUtils.getString(getActivity(), "userid", "");
+        versionService.getUrlData(departmentid,userid);
+    }
+
+    /*private void getVersionData() {
 
         String content = "{" +
                 "areaid:'" + PrefUtils.getString(getActivity(), "departmentid", "") + "'," +
                 "softversion:'" + DbtLog.getVersion() + "'," +
                 "creuser:'" + PrefUtils.getString(getActivity(), "userid", "") + "'" +
                 "}";
-        ceshiHttp("opt_update_version", "workplan", content);
-    }
 
-    void ceshiHttp(final String optcode, final String table, String content) {
+        String optcode = "opt_update_version";
 
         // 组建请求Json
         RequestHeadStc requestHeadStc = requestHeadUtil.parseRequestHead(getContext());
@@ -291,6 +325,7 @@ public class SystemFragment extends BaseFragmentSupport implements View.OnClickL
                 .post();
     }
 
+
     // 解析数据
     private void parseTableJson(String formjson) {
         if(TextUtils.isEmpty(formjson)){
@@ -302,17 +337,30 @@ public class SystemFragment extends BaseFragmentSupport implements View.OnClickL
             apkUrl = info.getSoftpath();
             apkName = info.getSoftversion()+".apk";
 
+
             // 下载apk
-            downLoadApk();
+            Bundle bundle = new Bundle();
+            bundle.putString("apkUrl", apkUrl);//
+            bundle.putString("apkName", apkName);//
+            DownApkFragment downApkFragment = new DownApkFragment();
+            downApkFragment.setArguments(bundle);
+            // downLoadApk();
+            changeHomeFragment(downApkFragment, "downapkfragment");
         }
 
         // 下载apk
-        //downLoadApk();
-        // changeHomeFragment(new DownApkFragment(), "downapkfragment");
-    }
+//        Bundle bundle = new Bundle();
+//        bundle.putString("apkUrl", apkUrl);//
+//        bundle.putString("apkName", apkName);//
+//        DownApkFragment downApkFragment = new DownApkFragment();
+//        downApkFragment.setArguments(bundle);
+//        changeHomeFragment(downApkFragment, "downapkfragment");
+    }*/
+
+
 
     // 下载apk
-    private void downLoadApk() {
+    /*private void downLoadApk() {
 
         Message msg = Message.obtain();
         msg.what = SHOWDOWNLOADDIALOG;
@@ -359,15 +407,12 @@ public class SystemFragment extends BaseFragmentSupport implements View.OnClickL
                 .dir(downPath)
                 .builde()
                 .download();
-    }
+    }*/
 
     /**
      * 显示正在下载的对话框
      */
-    String apkUrl = "http://oss.wxyass.com/tscs2.4.3.1.0.apk";
-    String apkName = "tscs2.4.3.1.0.apk";
-    String downPath = "dbt";// apk的存放位置
-
+    /*
     //private HttpHandler httpHandler;
     private AlertDialog downloadDialog;//正在下载的对话框
     private TextView tvCur;//当前下载的百分比
@@ -394,18 +439,12 @@ public class SystemFragment extends BaseFragmentSupport implements View.OnClickL
     }
 
     private void showDownloading(android.os.Message msg) {
-        /*int curSize = (int) msg.obj;// 获取当前进度
-        pb.setProgress(curSize);
-        //tvCur.setText(df.format((float)curSize / (float)contentLength * 100) + "%");
-        tvCur.setText(curSize + "%");*/
 
 
         long totalSize = (long) msg.obj;// 总进度
         int curSize = (int) msg.arg1;// 获取当前进度
         pb.setMax((int)totalSize);
         pb.setProgress(curSize);
-        //tvCur.setText(df.format((float)curSize / (float)contentLength * 100) + "%");
-        // tvCur.setText(curSize + "%");
     }
 
     private void stopDownloadDialog() {
@@ -414,5 +453,5 @@ public class SystemFragment extends BaseFragmentSupport implements View.OnClickL
         if (downloadDialog.isShowing()) {
             downloadDialog.dismiss();
         }
-    }
+    }*/
 }

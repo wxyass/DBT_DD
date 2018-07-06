@@ -15,6 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="10dp"/>
 
+        <!--上半区-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/width_height_size08"
@@ -87,6 +88,7 @@
             android:layout_width="match_parent"
             android:layout_height="20dp"/>
 
+        <!--下半区-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="100dp"
@@ -96,6 +98,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <!--追溯区域:-->
@@ -120,6 +123,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <!--追溯路线 -->
@@ -145,6 +149,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <!--追溯项 -->

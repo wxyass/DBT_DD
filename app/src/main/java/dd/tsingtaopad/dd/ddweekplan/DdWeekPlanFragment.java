@@ -7,6 +7,7 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -224,7 +225,8 @@ public class DdWeekPlanFragment extends BaseFragmentSupport implements View.OnCl
                         checkkeys.append(valStc.getValcheckkey()).append(",");
                         checknames.append(valStc.getValcheckname()).append(",");
                         // 追溯项汇总
-                        if (!check.contains(valStc.getValcheckname())) {
+                        if (!check.contains(FunUtil.isBlankOrNullTo(valStc.getValcheckname(),""))) {
+
                             check = valStc.getValcheckname() + "," + check;
                         }
                     }
@@ -243,7 +245,7 @@ public class DdWeekPlanFragment extends BaseFragmentSupport implements View.OnCl
                             route = detailValStc.getValgridname() + "-" + detailValStc.getValroutename() + "," + route;
                         }
                         // 区域汇总
-                        if (!area.contains(detailValStc.getValareaname())) {
+                        if (!area.contains(FunUtil.isBlankOrNullTo(detailValStc.getValareaname(),""))) {
                             area = detailValStc.getValareaname() + "," + area;
                         }
                     }
@@ -293,6 +295,8 @@ public class DdWeekPlanFragment extends BaseFragmentSupport implements View.OnCl
             weektimeTv.setText(weekDateStart + "  -  " + weekDateEnd);
         } catch (Exception e) {
 
+            Log.e("[Android]", e.getMessage());
+            e.printStackTrace();
         }
 
         // 提交按钮消失

@@ -118,7 +118,7 @@
                 android:layout_height="@dimen/width_height_size08"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/bg_select_green"
-                android:text="编辑排序"
+                android:text="排序"
                 android:textSize="@dimen/font_size4"
                 />
         </RelativeLayout>
@@ -128,14 +128,14 @@
             android:id="@+id/xtbf_termselect_Rl_add"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2">
+            android:layout_weight="3">
 
             <Button
                 android:id="@+id/xtbf_termselect_bt_add"
                 style="@style/xtbf_btn_tv"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/width_height_size08"
-                android:layout_marginLeft="10dp"
+                android:layout_centerHorizontal="true"
                 android:background="@drawable/bg_select_green"
                 android:text="全部添加"
                 android:textSize="@dimen/font_size4"

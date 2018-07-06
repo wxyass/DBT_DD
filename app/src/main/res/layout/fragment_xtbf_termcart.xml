@@ -145,7 +145,7 @@
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/bg_select_green"
                     android:textSize="@dimen/font_size4"
-                    android:text="编辑排序"
+                    android:text="排序"
                     />
             </RelativeLayout>
 
@@ -164,7 +164,7 @@
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/bg_select_green"
                     android:textSize="@dimen/font_size4"
-                    android:text="全部同步"
+                    android:text="下载"
                     />
             </RelativeLayout>
         </LinearLayout>

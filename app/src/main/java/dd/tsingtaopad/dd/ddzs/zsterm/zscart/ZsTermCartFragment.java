@@ -207,13 +207,13 @@ public class ZsTermCartFragment extends BaseFragmentSupport implements View.OnCl
             case R.id.xtbf_termcart_bt_update:
                 termCartAdapter.setUpdate(true);
                 String s = updateBtn.getText().toString();
-                if ("编辑排序".equals(s)) {
+                if ("排序".equals(s)) {
                     updateBtn.setText("保存");
                     termCartAdapter.setUpdate(true);
                     termCartAdapter.notifyDataSetChanged();
                 } else {
                     updateTermSeq();
-                    updateBtn.setText("编辑排序");
+                    updateBtn.setText("排序");
                     termCartAdapter.setUpdate(false);
                     searchTerm();
                     Toast.makeText(getActivity(),"排序保存成功",Toast.LENGTH_SHORT).show();
@@ -271,7 +271,7 @@ public class ZsTermCartFragment extends BaseFragmentSupport implements View.OnCl
                 }
             }
         }else{// 未同步
-            Toast.makeText(getActivity(),"请先点击全部同步",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(),"请先点击下载",Toast.LENGTH_SHORT).show();
         }
     }
 

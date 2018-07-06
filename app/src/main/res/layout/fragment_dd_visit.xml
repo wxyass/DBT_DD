@@ -143,7 +143,7 @@
                         android:background="@drawable/bg_select_white_gray"
                         android:paddingBottom="15dp"
                         android:paddingLeft="0dp"
-                        android:paddingRight="15dp"
+                        android:paddingRight="0dp"
                         android:paddingTop="15dp">
 
                         <ImageView
@@ -152,7 +152,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="4dp"
+                            android:layout_marginLeft="2dp"
                             android:background="@drawable/icon_visit_folder"/>
 
                         <TextView
@@ -160,8 +160,10 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="6dp"
+                            android:layout_marginLeft="4dp"
                             android:layout_toRightOf="@id/dd_visit_img06"
+                            android:ellipsize="end"
+                            android:singleLine="true"
                             android:text="协同终端夹"
                             android:textSize="18dp"/>
                     </RelativeLayout>
@@ -178,7 +180,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="4dp"
+                            android:layout_marginLeft="2dp"
                             android:layout_weight="1"
                             android:ellipsize="end"
                             android:singleLine="true"
@@ -213,7 +215,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="4dp"
+                            android:layout_marginLeft="2dp"
                             android:ellipsize="end"
                             android:singleLine="true"
                             android:text="--"
@@ -346,7 +348,7 @@
                         android:background="@drawable/bg_select_white_gray"
                         android:paddingBottom="15dp"
                         android:paddingLeft="0dp"
-                        android:paddingRight="15dp"
+                        android:paddingRight="0dp"
                         android:paddingTop="15dp">
 
                         <ImageView
@@ -355,7 +357,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="4dp"
+                            android:layout_marginLeft="2dp"
                             android:background="@drawable/icon_visit_folder"/>
 
                         <TextView
@@ -363,9 +365,11 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="6dp"
+                            android:layout_marginLeft="4dp"
                             android:layout_toRightOf="@id/dd_visit_img07"
                             android:text="追溯终端夹"
+                            android:ellipsize="end"
+                            android:singleLine="true"
                             android:textSize="18dp"/>
 
                     </RelativeLayout>
@@ -382,7 +386,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="4dp"
+                            android:layout_marginLeft="2dp"
                             android:layout_weight="1"
                             android:ellipsize="end"
                             android:singleLine="true"
@@ -417,7 +421,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="4dp"
+                            android:layout_marginLeft="2dp"
                             android:ellipsize="end"
                             android:singleLine="true"
                             android:text="--"
@@ -516,6 +520,10 @@
                 </RelativeLayout>
 
             </LinearLayout>
+            
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
         </LinearLayout>
     </ScrollView>
 

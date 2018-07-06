@@ -143,7 +143,7 @@ public class XtCameraHandler implements View.OnClickListener {
     // Android 7.0调用系统相机适配 通过FileProvider来实现
     private Intent toCameraByFileProvider(Intent intent,File tempFile){
         //通过FileProvider创建一个content类型的Uri
-        Uri imageUri = FileProvider.getUriForFile(DELEGATE.getContext(), "et.tsingtaopad.provider", tempFile);
+        Uri imageUri = FileProvider.getUriForFile(DELEGATE.getContext(), "dd.tsingtaopad.provider", tempFile);
         //添加这一句表示对目标应用临时授权该Uri所代表的文件
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         //将拍取的照片保存到指定URI

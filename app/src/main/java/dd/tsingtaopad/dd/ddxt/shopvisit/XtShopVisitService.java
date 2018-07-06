@@ -187,13 +187,13 @@ public class XtShopVisitService {
     }
 
     /***
-     * 更新拜访经纬度
+     * 更新协同拜访经纬度
      * @param visitId
      * @param longitude 经度
      * @param latitude  维度
      * @param gpsStatus
      */
-    public void updateZsGps(String visitId, double longitude, double latitude, String gpsStatus) {
+    public void updateXtGps(String visitId, double longitude, double latitude, String gpsStatus) {
         try {
             if (0 != latitude && 0 != longitude) {
                 DatabaseHelper helper = DatabaseHelper.getHelper(context);
@@ -210,6 +210,35 @@ public class XtShopVisitService {
                 args[1] = String.valueOf(latitude);
                 args[2] = gpsStatus;
                 args[3] = visitId;
+                visitTempDao.executeRaw(buffer.toString(), args);
+            }
+
+        } catch (SQLException e) {
+            Log.e(TAG, "更新拜访GPS信息失败", e);
+        }
+    }
+    /***
+     * 更新终端追溯经纬度
+     * @param visitId
+     * @param longitude 经度
+     * @param latitude  维度
+     */
+    public void updateZsGps(String visitId, double longitude, double latitude) {
+        try {
+            if (0 != latitude && 0 != longitude) {
+                DatabaseHelper helper = DatabaseHelper.getHelper(context);
+
+                MstVisitMTempDao visitTempDao = helper.getDao(MstVisitMTemp.class);
+
+
+                StringBuffer buffer = new StringBuffer();
+                buffer.append("update mit_valter_m_temp set lon=?, ");
+                buffer.append("lat=? ");
+                buffer.append("where id = ? ");
+                String[] args = new String[3];
+                args[0] = String.valueOf(longitude);
+                args[1] = String.valueOf(latitude);
+                args[2] = visitId;
                 visitTempDao.executeRaw(buffer.toString(), args);
             }
 

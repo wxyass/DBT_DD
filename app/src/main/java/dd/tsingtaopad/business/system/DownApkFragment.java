@@ -1,10 +1,17 @@
 package dd.tsingtaopad.business.system;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v4.content.FileProvider;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +19,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.lang.ref.SoftReference;
 import java.text.DecimalFormat;
 
@@ -22,6 +30,9 @@ import dd.tsingtaopad.core.net.callback.IError;
 import dd.tsingtaopad.core.net.callback.IFailure;
 import dd.tsingtaopad.core.net.callback.ISuccess;
 import dd.tsingtaopad.core.net.callback.OnDownLoadProgress;
+import dd.tsingtaopad.core.util.dbtutil.FileUtil;
+import dd.tsingtaopad.core.util.dbtutil.PrefUtils;
+import dd.tsingtaopad.home.initadapter.GlobalValues;
 
 /**
  * 下载apk
@@ -35,6 +46,11 @@ public class DownApkFragment extends BaseFragmentSupport  {
     public static final int SHOWDOWNLOADDIALOG = 88; // 弹出进度条,设置最大值100 //显示正在下载的对话框
     public static final int UPDATEDOWNLOADDIALOG = 99;// 设置进度条  //刷新正在下载对话框的内容
     public static final int DOWNLOADFINISHED = 66;// 下载完成开始安装 //下载完成后进行的操作
+
+
+    String apkUrl = "http://oss.wxyass.com/tscs2.4.3.1.0.apk";
+    String apkName = "tscs2.4.3.1.0.apk";
+    String downPath = "dbt";// apk的存放位置
 
 
     @Nullable
@@ -60,7 +76,38 @@ public class DownApkFragment extends BaseFragmentSupport  {
 
     // 初始化数据
     private void initData() {
-        downLoadApk();
+
+        // 获取传递过来的数据
+        Bundle bundle = getArguments();
+        apkUrl = bundle.getString("apkUrl");
+        apkName = bundle.getString("apkName");
+
+
+        showNoticeDialog();
+
+    }
+
+    private Dialog noticeDialog;
+    private void showNoticeDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("软件版本更新");
+        builder.setMessage(R.string.version_msg_prompt);
+        builder.setPositiveButton("下载", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //                dialog.dismiss();
+                downLoadApk();
+            }
+        });
+        noticeDialog = builder.create();
+        noticeDialog.setCanceledOnTouchOutside(false);
+        noticeDialog.show();
+        noticeDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+            @Override
+            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                return true;
+            }
+        });
     }
 
     MyHandler handler;
@@ -152,10 +199,6 @@ public class DownApkFragment extends BaseFragmentSupport  {
     /**
      * 显示正在下载的对话框
      */
-    String apkUrl = "http://oss.wxyass.com/tscs2.4.3.1.0.apk";
-    String apkName = "tscs2.4.3.1.0.apk";
-    String downPath = "dbt";// apk的存放位置
-
     //private HttpHandler httpHandler;
     private AlertDialog downloadDialog;//正在下载的对话框
     private TextView tvCur;//当前下载的百分比
@@ -193,11 +236,39 @@ public class DownApkFragment extends BaseFragmentSupport  {
     }
 
     private void stopDownloadDialog() {
-        Toast.makeText(getActivity(), "下载成功", Toast.LENGTH_SHORT).show();
+        // Toast.makeText(getActivity(), "下载成功", Toast.LENGTH_SHORT).show();
+
+
         isDownloading = false;
         if (downloadDialog.isShowing()) {
             downloadDialog.dismiss();
-            supportFragmentManager.popBackStack();
+            // supportFragmentManager.popBackStack();
+        }
+
+        showNoticeDialog();
+
+        // 安装apk
+        String sdcardPath = FileUtil.getSDPath() + "/";
+        String apkpath = sdcardPath + downPath+  "/" + apkName;
+
+        File apkfile = new File(apkpath);
+        if (!apkfile.exists()) {
+            return;
+        }
+
+        final Intent intent = new Intent();
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setAction(Intent.ACTION_VIEW);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Uri contentUri = FileProvider.getUriForFile(getActivity(), "dd.tsingtaopad.provider", apkfile);
+            //添加这一句表示对目标应用临时授权该Uri所代表的文件
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            intent.setDataAndType(contentUri,"application/vnd.android.package-archive");
+            getActivity().startActivity(intent);
+        } else {
+            intent.setDataAndType(Uri.fromFile(apkfile),"application/vnd.android.package-archive");
+            getActivity().startActivity(intent);
         }
     }
 }
