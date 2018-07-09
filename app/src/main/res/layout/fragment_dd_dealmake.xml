@@ -48,6 +48,7 @@
                     />
 
                 <ImageView
+                    android:id="@+id/zgjh_make_termname_arrow"
                     style="@style/xtbf_sayhi_third_tv"
                     android:visibility="visible"/>
             </RelativeLayout>

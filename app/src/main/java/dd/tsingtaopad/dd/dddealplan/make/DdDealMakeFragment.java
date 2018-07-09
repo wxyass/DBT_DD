@@ -54,6 +54,7 @@ public class DdDealMakeFragment extends BaseFragmentSupport implements View.OnCl
     private int yearr;
     private int month;
     private int day;
+    private String selectDate;
 
     //
     public static final int MAKEPLAN_UP_SUC = 330001;
@@ -166,7 +167,7 @@ public class DdDealMakeFragment extends BaseFragmentSupport implements View.OnCl
 
     }
 
-    private String selectDate;
+
 
     // 点击事件
     @Override

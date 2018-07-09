@@ -38,93 +38,10 @@ public class XtCameraService extends XtShopVisitService {
         super(context, handler);
     }
 
-    /***
-     * 查询图片类型表中所有记录
-     */
-    public List<CameraInfoStc> queryPictypeMAll() {
-        // 事务控制
-        AndroidDatabaseConnection connection = null;
-        List<CameraInfoStc> valueLst = new ArrayList<CameraInfoStc>();
-        try {
 
-            DatabaseHelper helper = DatabaseHelper.getHelper(context);
-            MstPictypeMDao dao = (MstPictypeMDao) helper.getMstpictypeMDao();
 
-            connection = new AndroidDatabaseConnection(helper.getWritableDatabase(), true);
-            connection.setAutoCommit(false);
 
-            valueLst = dao.queryAllPictype(helper);
-            connection.commit(null);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            Log.e(TAG, "查询图片类型表中所有记录", e);
-        }
-        return valueLst;
-    }
-    /***
-     * 查询图片类型表中所有记录 用于追溯
-     */
-    public List<MitValpicMTemp> queryZsPictypeMAll() {
-        // 事务控制
-        AndroidDatabaseConnection connection = null;
-        List<MitValpicMTemp> valueLst = new ArrayList<MitValpicMTemp>();
-        try {
 
-            DatabaseHelper helper = DatabaseHelper.getHelper(context);
-            MstPictypeMDao dao = (MstPictypeMDao) helper.getMstpictypeMDao();
-
-            connection = new AndroidDatabaseConnection(helper.getWritableDatabase(), true);
-            connection.setAutoCommit(false);
-
-            valueLst = dao.queryZsAllPictype(helper);
-            connection.commit(null);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            Log.e(TAG, "查询图片类型表中所有记录", e);
-        }
-        return valueLst;
-    }
-
-    /**
-     * 获取当天拍照记录
-     *
-     * @param terminalkey 终端主键
-     * @param visitKey    拜访主键
-     * @return
-     */
-    public List<CameraInfoStc> queryCurrentPicRecord(String terminalkey, String visitKey) {
-        DbtLog.logUtils(TAG, "queryCurrentPicRecord()-获取当天拍照记录");
-        List<CameraInfoStc> lst = new ArrayList<CameraInfoStc>();
-        try {
-            DatabaseHelper helper = DatabaseHelper.getHelper(context);
-            MstCameraiInfoMDao dao = (MstCameraiInfoMDao) helper.getMstCameraiInfoMDao();
-            lst = dao.queryCurrentCameraLst(helper, terminalkey, visitKey);
-
-        } catch (Exception e) {
-            Log.e(TAG, "获取拜访拍照临时表DAO对象失败", e);
-        }
-        return lst;
-    }
-    /**
-     * 获取当天追溯拍照记录
-     *
-     * @param terminalkey 终端主键
-     * @param valterid    追溯主键
-     * @return
-     */
-    public List<MitValpicMTemp> queryZsCurrentPicRecord(String terminalkey, String valterid) {
-        DbtLog.logUtils(TAG, "queryCurrentPicRecord()-获取当天拍照记录");
-        List<MitValpicMTemp> lst = new ArrayList<MitValpicMTemp>();
-        try {
-            DatabaseHelper helper = DatabaseHelper.getHelper(context);
-            MstCameraiInfoMDao dao = (MstCameraiInfoMDao) helper.getMstCameraiInfoMDao();
-            lst = dao.queryZsCurrentCameraLst(helper, terminalkey, valterid);
-
-        } catch (Exception e) {
-            Log.e(TAG, "获取拜访拍照临时表DAO对象失败", e);
-        }
-        return lst;
-    }
 
     // 保存照片记录到数据库
     public String savePicData(CameraInfoStc cameraDataStc, String picname, String imagefileString,

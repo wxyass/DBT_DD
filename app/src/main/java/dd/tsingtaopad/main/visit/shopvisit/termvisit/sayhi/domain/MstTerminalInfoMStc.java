@@ -24,6 +24,12 @@ public class MstTerminalInfoMStc extends MstTerminalinfoM {
     private String areaid;// 二级区域id
     private String areapid;// 大区id
     private String gridkey;// 定格key
+    private String gridname;// 定格name
+    private String userid;// 业代id
+    private String username;// 业代name
+    private String routename;// 路线name
+    private String terminalname;// 终端name
+
 
     public String getProvName() {
         return provName;
@@ -95,5 +101,47 @@ public class MstTerminalInfoMStc extends MstTerminalinfoM {
 
     public void setGridkey(String gridkey) {
         this.gridkey = gridkey;
+    }
+
+    public String getGridname() {
+        return gridname;
+    }
+
+    public void setGridname(String gridname) {
+        this.gridname = gridname;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getRoutename() {
+        return routename;
+    }
+
+    public void setRoutename(String routename) {
+        this.routename = routename;
+    }
+
+    @Override
+    public String getTerminalname() {
+        return terminalname;
+    }
+
+    @Override
+    public void setTerminalname(String terminalname) {
+        this.terminalname = terminalname;
+    }
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 }

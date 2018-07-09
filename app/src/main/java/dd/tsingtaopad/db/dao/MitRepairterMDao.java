@@ -33,5 +33,7 @@ public interface MitRepairterMDao extends Dao<MitRepairterM, String> {
 
     public List<DealStc> queryDealPlanTermName(DatabaseHelper helper,String repairid);
 
+    public List<DealStc> queryTermDealPlan(DatabaseHelper helper,String terminalkey);// queryTermDealPlan
+
 
 }

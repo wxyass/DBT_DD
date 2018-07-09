@@ -1,5 +1,7 @@
 package dd.tsingtaopad.dd.ddzs.zsshopvisit;
 
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Criteria;
@@ -15,31 +17,53 @@ import android.support.v4.app.FragmentTabHost;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TabHost;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 import dd.tsingtaopad.R;
+import dd.tsingtaopad.adapter.DayDetailSelectKeyValueAdapter;
 import dd.tsingtaopad.base.BaseActivity;
 import dd.tsingtaopad.base.BaseFragmentSupport;
 import dd.tsingtaopad.core.ui.loader.LatteLoader;
 import dd.tsingtaopad.core.util.dbtutil.ConstValues;
+import dd.tsingtaopad.core.util.dbtutil.DateUtil;
+import dd.tsingtaopad.core.util.dbtutil.FunUtil;
+import dd.tsingtaopad.core.util.dbtutil.PrefUtils;
 import dd.tsingtaopad.core.util.dbtutil.logutil.DbtLog;
 import dd.tsingtaopad.core.view.alertview.AlertView;
 import dd.tsingtaopad.core.view.alertview.OnDismissListener;
 import dd.tsingtaopad.core.view.alertview.OnItemClickListener;
+import dd.tsingtaopad.db.table.MitRepairM;
+import dd.tsingtaopad.db.table.MitRepaircheckM;
+import dd.tsingtaopad.db.table.MitRepairterM;
 import dd.tsingtaopad.db.table.MitValcheckterM;
+import dd.tsingtaopad.db.table.MitValpicMTemp;
+import dd.tsingtaopad.db.table.MstRouteM;
 import dd.tsingtaopad.db.table.MstVisitM;
+import dd.tsingtaopad.dd.dddealplan.domain.DealStc;
+import dd.tsingtaopad.dd.ddweekplan.domain.DayDetailStc;
 import dd.tsingtaopad.dd.ddxt.checking.domain.XtCheckIndexCalculateStc;
 import dd.tsingtaopad.dd.ddxt.checking.domain.XtProIndex;
 import dd.tsingtaopad.dd.ddxt.checking.domain.XtProItem;
@@ -56,6 +80,7 @@ import dd.tsingtaopad.dd.ddzs.zssayhi.ZsSayhiFragment;
 import dd.tsingtaopad.fragmentback.HandleBackUtil;
 import dd.tsingtaopad.home.initadapter.GlobalValues;
 import dd.tsingtaopad.initconstvalues.domain.KvStc;
+import dd.tsingtaopad.main.visit.shopvisit.termvisit.camera.domain.CameraInfoStc;
 import dd.tsingtaopad.main.visit.shopvisit.termvisit.sayhi.domain.MstTerminalInfoMStc;
 
 /**
@@ -120,6 +145,13 @@ public class ZsVisitShopActivity extends BaseActivity implements View.OnClickLis
     List<MitValcheckterM>  mitValcheckterMs;
     MitValcheckterM  mitValcheckterM;
 
+    private String aday;
+    private Calendar calendar;
+    private int yearr;
+    private int month;
+    private int day;
+    private String selectDate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -152,7 +184,9 @@ public class ZsVisitShopActivity extends BaseActivity implements View.OnClickLis
         mDayTv = (AppCompatTextView) findViewById(R.id.zs_tv_day);
         //mTextTv = (AppCompatTextView) findViewById(R.id.xtvisit_tv_textView2);
         mContentFl = (FrameLayout) findViewById(R.id.zs_fl_content);
-        mMemoImg = (AppCompatImageView) findViewById(R.id.zs_bt_memo);
+        mMemoImg = (AppCompatImageView) findViewById(R.id.zs_bt_zhenggai);
+
+        mMemoImg.setOnClickListener(this);
 
         LatteLoader.stopLoading(); // 若有进度条,关闭
     }
@@ -161,6 +195,13 @@ public class ZsVisitShopActivity extends BaseActivity implements View.OnClickLis
     private void initData() {
 
         confirmTv.setText("确定");
+
+        // 获取系统时间
+        calendar = Calendar.getInstance();
+        yearr = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+
 
         // 获取参数“终端信息”
         Bundle bundle = getIntent().getExtras();
@@ -269,11 +310,17 @@ public class ZsVisitShopActivity extends BaseActivity implements View.OnClickLis
                 this.backFinish();
                 break;
             case R.id.top_navigation_rl_confirm://
-                //大区所有的
-                //confirmUplad();
-                confirmXtUplad();
+                if(checkTakeCamera()){// 必须拍照
+                    confirmXtUplad();
+                }else{
+                    Toast.makeText(getApplicationContext(), "拍照任务未完成,不能上传", Toast.LENGTH_SHORT).show();
+                }
                 break;
+            // 客情备忘录
+            case R.id.zs_bt_zhenggai:
 
+                alertShow7();
+                break;
 
             /*case R.id.xtvisit_rb_sayhi:
                 if (fragmentType == 1) {
@@ -330,6 +377,201 @@ public class ZsVisitShopActivity extends BaseActivity implements View.OnClickLis
             default:
                 break;
         }
+    }
+
+    // 整改计划  从中间弹出
+    public void alertShow7() {
+
+        // 查询数据
+        String terminalkey = mstTerminalInfoMStc.getTerminalkey();
+        final List<DealStc> valueLst =  xtShopVisitService.getTermDealPlan(terminalkey);
+
+        ViewGroup extView = (ViewGroup) LayoutInflater.from(ZsVisitShopActivity.this).inflate(R.layout.fragment_dd_dealmake, null);
+
+        RelativeLayout rl_back1 = (RelativeLayout) extView.findViewById(R.id.top_navigation_rl_back);
+        android.support.v7.widget.AppCompatTextView bt_back1 = (android.support.v7.widget.AppCompatTextView) extView.findViewById(R.id.top_navigation_bt_back);
+        android.support.v7.widget.AppCompatTextView title = (android.support.v7.widget.AppCompatTextView) extView.findViewById(R.id.top_navigation_tv_title);
+        RelativeLayout rl_confirm1 = (RelativeLayout) extView.findViewById(R.id.top_navigation_rl_confirm);
+        android.support.v7.widget.AppCompatTextView bt_confirm1 = (android.support.v7.widget.AppCompatTextView) extView.findViewById(R.id.top_navigation_bt_confirm);
+
+        RelativeLayout rl_termname = (RelativeLayout) extView.findViewById(R.id.zgjh_make_rl_termname);
+        ImageView img_termname_arrow = (ImageView) extView.findViewById(R.id.zgjh_make_termname_arrow);
+        img_termname_arrow.setVisibility(View.INVISIBLE);
+        TextView termname = (TextView) extView.findViewById(R.id.zgjh_make_termname);
+
+        RelativeLayout rl_grid = (RelativeLayout) extView.findViewById(R.id.zgjh_make_rl_grid);
+        TextView grid = (TextView) extView.findViewById(R.id.zgjh_make_grid);
+        RelativeLayout rl_route = (RelativeLayout) extView.findViewById(R.id.zgjh_make_rl_route);
+        TextView routename = (TextView) extView.findViewById(R.id.zgjh_make_route);
+
+        RelativeLayout rl_ydname = (RelativeLayout) extView.findViewById(R.id.zgjh_make_rl_ydname);
+        TextView ydname = (TextView) extView.findViewById(R.id.zgjh_make_ydname);
+
+        RelativeLayout rl_question = (RelativeLayout) extView.findViewById(R.id.zgjh_make_rl_question);
+        final EditText question = (EditText) extView.findViewById(R.id.zgjh_make_question);
+
+        RelativeLayout rl_amendplan = (RelativeLayout) extView.findViewById(R.id.zgjh_make_rl_amendplan);
+        final EditText amendplan = (EditText) extView.findViewById(R.id.zgjh_make_amendplan);
+
+        RelativeLayout rl_measure = (RelativeLayout) extView.findViewById(R.id.zgjh_make_rl_measure);
+        final EditText measure = (EditText) extView.findViewById(R.id.zgjh_make_measure);
+
+        RelativeLayout rl_checktime = (RelativeLayout) extView.findViewById(R.id.zgjh_make_rl_checktime);
+        final TextView checktime = (TextView) extView.findViewById(R.id.zgjh_make_checktime);
+
+        Button submit = (Button) extView.findViewById(R.id.zgjh_make_submit);
+
+        rl_checktime.setOnClickListener(this);
+        submit.setOnClickListener(this);
+
+        title.setText("添加整改");
+
+        termname.setText(mstTerminalInfoMStc.getTerminalname());
+        grid.setText(mstTerminalInfoMStc.getGridname());
+        routename.setText(mstTerminalInfoMStc.getRoutename());
+        ydname.setText(mstTerminalInfoMStc.getUsername());
+
+        if(valueLst.size()>0){
+            DealStc dealStc = valueLst.get(0);
+            question.setText(dealStc.getContent());
+            amendplan.setText(dealStc.getRepairremark());
+            measure.setText(dealStc.getCheckcontent());
+            checktime.setText(dealStc.getRepairtime().substring(0,10));
+        }
+
+        // 显示对话框
+        final AlertDialog dealdialog = new AlertDialog.Builder(ZsVisitShopActivity.this).create();
+        dealdialog.setView(extView, 0, 0, 0, 0);
+        dealdialog.setCancelable(true);
+        dealdialog.show();
+
+        // 选择时间
+        rl_checktime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+
+                // Toast.makeText(getActivity(), "选择核查时间", Toast.LENGTH_SHORT).show();
+                DatePickerDialog dateDialog = new DatePickerDialog(ZsVisitShopActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        calendar.set(year, monthOfYear, dayOfMonth);
+                        yearr = year;
+                        month = monthOfYear;
+                        day = dayOfMonth;
+                        if (dayOfMonth < 10) {
+                            aday = "0" + dayOfMonth;
+                        } else {
+                            aday = Integer.toString(dayOfMonth);
+                        }
+
+                        selectDate = (Integer.toString(year) + "-" + String.format("%02d", monthOfYear + 1) + "-" + aday);
+
+                        checktime.setText(selectDate);
+
+                    }
+                }, yearr, month, day);
+                if (!dateDialog.isShowing()) {
+                    dateDialog.show();
+                }
+            }
+        });
+
+        // 确定
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+
+                if(!checkTermName(checktime.getText().toString())){
+                    return;
+                }
+
+                // 整顿计划 主表
+                MitRepairM repairM = new MitRepairM();
+                // repairM.setId(FunUtil.getUUID());
+                repairM.setGridkey(mstTerminalInfoMStc.getGridkey());//定格
+                repairM.setUserid(mstTerminalInfoMStc.getUserid());// 业代ID
+                repairM.setContent(question.getText().toString());//问题描述
+                repairM.setRepairremark(amendplan.getText().toString());//改进计划
+                repairM.setCheckcontent(measure.getText().toString());//考核措施
+                repairM.setCreuser(PrefUtils.getString(ZsVisitShopActivity.this, "userid", ""));//追溯人
+                repairM.setCreuserareaid(PrefUtils.getString(ZsVisitShopActivity.this, "departmentid", ""));//追溯人所属区域
+                repairM.setCredate(DateUtil.getDateTimeStr(8));//创建日期
+                repairM.setUpdateuser(PrefUtils.getString(ZsVisitShopActivity.this, "userid", ""));//更新人
+                repairM.setUpdatedate(DateUtil.getDateTimeStr(8));//更新时间
+                repairM.setUploadflag("1");
+                repairM.setPadisconsistent("0");
+                repairM.setStatus("0");// 刚制定 状态为  0未复查1未通过2已通过
+
+                MitRepaircheckM mitRepaircheckM = new MitRepaircheckM();
+                //mitRepaircheckM.setId(FunUtil.getUUID());//
+                //mitRepaircheckM.setRepairid(repairM.getId());//整改计划主表ID
+                mitRepaircheckM.setStatus("0");//整改状态
+                mitRepaircheckM.setRepairtime(checktime.getText().toString());//整改日期
+                mitRepaircheckM.setUploadflag("1");
+                mitRepaircheckM.setPadisconsistent("0");
+                mitRepaircheckM.setCredate(DateUtil.getDateTimeStr(8));
+
+                MitRepairterM mitRepairterM = new MitRepairterM();
+                // mitRepairterM.setId(FunUtil.getUUID());
+                // mitRepairterM.setRepairid(repairM.getId());
+                mitRepairterM.setGridkey(mstTerminalInfoMStc.getGridkey());//
+                mitRepairterM.setRoutekey(mstTerminalInfoMStc.getRoutekey());//
+                mitRepairterM.setTerminalkey(mstTerminalInfoMStc.getTerminalkey());//
+                mitRepairterM.setTerminalname(mstTerminalInfoMStc.getTerminalname());//
+                mitRepairterM.setUploadflag("1");//
+                mitRepairterM.setPadisconsistent("0");//
+
+                // 设置id, 若有整改计划,复用之前的id   若没有整改计划新建id
+                if(valueLst.size()>0){
+                    DealStc dealStc = valueLst.get(0);
+                    repairM.setId(dealStc.getRepairid());
+                    mitRepaircheckM.setId(dealStc.getRepaircheckid());//
+                    mitRepaircheckM.setRepairid(dealStc.getRepairid());//整改计划主表ID
+                    mitRepairterM.setId(dealStc.getRepairterid());
+                    mitRepairterM.setRepairid(dealStc.getRepairid());
+                }else{
+                    repairM.setId(FunUtil.getUUID());
+                    mitRepaircheckM.setId(FunUtil.getUUID());//
+                    mitRepaircheckM.setRepairid(repairM.getId());//整改计划主表ID
+                    mitRepairterM.setId(FunUtil.getUUID());
+                    mitRepairterM.setRepairid(repairM.getId());
+                }
+
+                xtShopVisitService.saveDealMitRepairM(repairM,mitRepaircheckM,mitRepairterM);
+
+                // 上传整顿计划
+                XtUploadService xtUploadService = new XtUploadService(ZsVisitShopActivity.this,null);
+                xtUploadService.upload_repair(false,repairM,mitRepaircheckM,1);
+
+                dealdialog.dismiss();
+            }
+        });
+
+        // 取消
+        rl_back1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+
+                dealdialog.dismiss();
+            }
+        });
+    }
+
+    private boolean checkTermName(String checktime) {
+        long b = DateUtil.parse(DateUtil.getDateTimeStr(7), "yyyy-MM-dd").getTime();// 当前时间
+        boolean ishaveName = true;
+        /*if(TextUtils.isEmpty(termname.getText().toString())){
+            ishaveName = false;
+            Toast.makeText(getActivity(),"请选择整改终端",Toast.LENGTH_SHORT).show();
+        }else*/ if(TextUtils.isEmpty(checktime)){
+            ishaveName = false;
+            Toast.makeText(ZsVisitShopActivity.this,"请选择复查时间",Toast.LENGTH_SHORT).show();
+        }else if(b > DateUtil.parse(checktime, "yyyy-MM-dd").getTime()){
+            // 校验复查时间不能小于当前时间
+            ishaveName = false;
+            Toast.makeText(ZsVisitShopActivity.this,"复查时间不能小于当前时间",Toast.LENGTH_SHORT).show();
+        }
+        return ishaveName;
     }
 
     // 替换XtVisitShopActivity中的Fragment布局
@@ -466,6 +708,29 @@ public class ZsVisitShopActivity extends BaseActivity implements View.OnClickLis
         mAlertViewExt.show();
     }
 
+    /**
+     * 检测该终端本次拜访是否已拍照
+     *
+     * @return true:已拍照  false:未拍照
+     */
+    private boolean checkTakeCamera() {
+        List<MitValpicMTemp>   valueLst = new ArrayList<MitValpicMTemp>();
+        List<MitValpicMTemp>  piclst = new ArrayList<MitValpicMTemp>();
+
+        // 已拍张数
+        piclst = xtShopVisitService.queryZsCurrentPicRecord(termStc.getTerminalkey(), mitValterMTempKey);
+        // 后台配置需拍多少张
+        valueLst = xtShopVisitService.queryZsPictypeMAll();
+
+        int piccount = piclst.size();
+        if (valueLst.size() == 0) {// 没配照片且没促销活动,允许上传  &&piclst.size()>=piccount
+            return true;
+        } else if (valueLst.size() > 0 && piccount > 0) {//
+            return true;
+        }
+        return false;
+    }
+
     private void backFinish() {
         // 普通窗口
         mAlertViewExt = new AlertView("若返回,这次追溯数据不会保存", null, "取消", new String[]{"确定"}, null, this, AlertView.Style.Alert,
@@ -557,7 +822,7 @@ public class ZsVisitShopActivity extends BaseActivity implements View.OnClickLis
 
         // 1秒更新一次，或最小位移变化超过1米更新一次；
         //注意：此处更新准确度非常低，推荐在service里面启动一个Thread，在run中sleep(10000);然后执行handler.sendMessage(),更新位置
-        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 0, locationListener);
+        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 0, locationListener);
         //        lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1, locationListener);
     }
 

@@ -802,7 +802,8 @@ public class MstTerminalinfoMDaoImpl extends BaseDaoImpl<MstTerminalinfoM, Strin
         MstTerminalInfoMStc stc = new MstTerminalInfoMStc();
 
         StringBuffer buffer = new StringBuffer();
-        buffer.append("select sm.areaid,sm.areapid,g.gridkey,r.routekey,t.terminalkey  ");
+        buffer.append("select sm.areaid,sm.areapid,g.gridkey,g.gridname,g.username,g.userid,  ");
+        buffer.append("r.routekey,r.routename,t.terminalkey,t.terminalname   ");
         buffer.append("from mst_terminalinfo_m_temp t  ");
         buffer.append("left join mst_route_m r on t.routekey = r.routekey  ");
         buffer.append("left join mst_grid_m g on g.gridkey = r.gridkey  ");
@@ -815,8 +816,13 @@ public class MstTerminalinfoMDaoImpl extends BaseDaoImpl<MstTerminalinfoM, Strin
             stc.setAreaid(cursor.getString(cursor.getColumnIndex("areaid")));
             stc.setAreapid(cursor.getString(cursor.getColumnIndex("areapid")));
             stc.setGridkey(cursor.getString(cursor.getColumnIndex("gridkey")));
+            stc.setGridname(cursor.getString(cursor.getColumnIndex("gridname")));
+            stc.setUserid(cursor.getString(cursor.getColumnIndex("userid")));
+            stc.setUsername(cursor.getString(cursor.getColumnIndex("username")));
             stc.setRoutekey(cursor.getString(cursor.getColumnIndex("routekey")));
+            stc.setRoutename(cursor.getString(cursor.getColumnIndex("routename")));
             stc.setTerminalkey(cursor.getString(cursor.getColumnIndex("terminalkey")));
+            stc.setTerminalname(cursor.getString(cursor.getColumnIndex("terminalname")));
         }
         return stc;
     }

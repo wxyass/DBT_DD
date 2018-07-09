@@ -97,7 +97,7 @@
 
             <!-- 客情备忘录 -->
             <android.support.v7.widget.AppCompatImageView
-                android:id="@+id/zs_bt_memo"
+                android:id="@+id/zs_bt_zhenggai"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
@@ -105,7 +105,7 @@
                 android:layout_marginBottom="200dp"
                 android:layout_marginRight="5dp"
                 android:src="@drawable/bt_shopvisit_memo"
-                android:visibility="gone"/>
+                />
         </RelativeLayout>
 
     </LinearLayout>

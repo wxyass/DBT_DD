@@ -96,6 +96,44 @@ public class MitRepairterMDaoImpl extends BaseDaoImpl<MitRepairterM, String> imp
         }
         return detailStcs;
     }
+    /**
+     * 根据终端 查找整改计划
+     * @param helper
+     * @return
+     */
+    @Override
+    public List<DealStc> queryTermDealPlan(DatabaseHelper helper,String terminalkey) {
+        List<DealStc> detailStcs = new ArrayList<>();
+        StringBuffer buffer = new StringBuffer();
+
+        buffer.append("select mv.id repairid,g.id repaircheckid,mrm.id repairterid,mv.credate, mv.content,mv.status repairstatus,   ");
+        buffer.append("    mv.repairremark, mv.checkcontent,  g.status, g.repairtime  ,mrm.terminalname     ");
+        buffer.append("    from MIT_REPAIR_M mv     ");
+        buffer.append("    left join MIT_REPAIRCHECK_M g     on g.repairid = mv.id  and g.status = '0'  ");
+        buffer.append("    inner join MIT_REPAIRTER_M mrm     on mrm.repairid = mv.id and mrm.terminalkey = ?   ");
+        buffer.append("    group by mv.id ");
+        buffer.append("    order by g.credate desc ");
+
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(buffer.toString(), new String[]{terminalkey});
+        DealStc kvStc ;
+        while (cursor.moveToNext()) {
+            kvStc = new DealStc();
+            kvStc.setRepairid(cursor.getString(cursor.getColumnIndex("repairid")));
+            kvStc.setRepaircheckid(cursor.getString(cursor.getColumnIndex("repaircheckid")));
+            kvStc.setRepairterid(cursor.getString(cursor.getColumnIndex("repairterid")));
+            kvStc.setCredate(cursor.getString(cursor.getColumnIndex("credate")));
+            kvStc.setContent(cursor.getString(cursor.getColumnIndex("content")));
+            kvStc.setRepairstatus(cursor.getString(cursor.getColumnIndex("repairstatus")));
+            kvStc.setRepairremark(cursor.getString(cursor.getColumnIndex("repairremark")));
+            kvStc.setCheckcontent(cursor.getString(cursor.getColumnIndex("checkcontent")));
+            kvStc.setStatus(cursor.getString(cursor.getColumnIndex("status")));
+            kvStc.setRepairtime(cursor.getString(cursor.getColumnIndex("repairtime")));
+
+            detailStcs.add(kvStc);
+        }
+        return detailStcs;
+    }
 
     @Override
     public List<DealStc> queryDealPlanTermName(DatabaseHelper helper,String repairid) {

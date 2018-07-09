@@ -58,6 +58,9 @@ import dd.tsingtaopad.dd.ddxt.updata.XtUploadService;
 import dd.tsingtaopad.fragmentback.HandleBackUtil;
 import dd.tsingtaopad.home.initadapter.GlobalValues;
 import dd.tsingtaopad.initconstvalues.domain.KvStc;
+import dd.tsingtaopad.main.visit.shopvisit.termvisit.camera.domain.CameraDataStc;
+import dd.tsingtaopad.main.visit.shopvisit.termvisit.camera.domain.CameraInfoStc;
+import dd.tsingtaopad.main.visit.shopvisit.termvisit.camera.domain.PictypeDataStc;
 import dd.tsingtaopad.main.visit.shopvisit.termvisit.sayhi.domain.MstTerminalInfoMStc;
 
 /**
@@ -271,9 +274,12 @@ public class XtVisitShopActivity extends BaseActivity implements View.OnClickLis
                 this.backFinish();
                 break;
             case R.id.top_navigation_rl_confirm://
-                //大区所有的
-                //confirmUplad();
-                confirmXtUplad();
+                if(checkTakeCamera()){// 必须拍照
+                    confirmXtUplad();
+                }else{
+                    Toast.makeText(getApplicationContext(), "拍照任务未完成,不能上传", Toast.LENGTH_SHORT).show();
+                }
+
                 break;
 
 
@@ -526,6 +532,30 @@ public class XtVisitShopActivity extends BaseActivity implements View.OnClickLis
         mAlertViewExt.show();
     }
 
+
+    /**
+     * 检测该终端本次拜访是否已拍照
+     *
+     * @return true:已拍照  false:未拍照
+     */
+    private boolean checkTakeCamera() {
+        List<CameraInfoStc>  valueLst = new ArrayList<CameraInfoStc>();
+        List<CameraInfoStc> piclst = new ArrayList<CameraInfoStc>();
+
+        // 已拍张数
+        piclst = xtShopVisitService.queryCurrentPicRecord(termStc.getTerminalkey(), visitId);
+        // 后台配置需拍多少张
+        valueLst = xtShopVisitService.queryPictypeMAll();
+
+        int piccount = piclst.size();
+        if (valueLst.size() == 0) {// 没配照片且没促销活动,允许上传  &&piclst.size()>=piccount
+            return true;
+        } else if (valueLst.size() > 0 && piccount > 0) {//
+            return true;
+        }
+        return false;
+    }
+
     private void backFinish() {
         // 普通窗口
         mAlertViewExt = new AlertView("若返回,这次拜访数据不会保存", null, "取消", new String[]{"确定"}, null, this, AlertView.Style.Alert,
@@ -634,7 +664,7 @@ public class XtVisitShopActivity extends BaseActivity implements View.OnClickLis
 
         // 1秒更新一次，或最小位移变化超过1米更新一次；
         //注意：此处更新准确度非常低，推荐在service里面启动一个Thread，在run中sleep(10000);然后执行handler.sendMessage(),更新位置
-        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 0, locationListener);
+        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 0, locationListener);
         //        lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1, locationListener);
     }
 

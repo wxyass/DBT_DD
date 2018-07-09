@@ -24,14 +24,18 @@ import dd.tsingtaopad.core.util.dbtutil.FunUtil;
 import dd.tsingtaopad.core.util.dbtutil.PrefUtils;
 import dd.tsingtaopad.core.util.dbtutil.PropertiesUtil;
 import dd.tsingtaopad.core.util.dbtutil.ViewUtil;
+import dd.tsingtaopad.core.util.dbtutil.logutil.DbtLog;
 import dd.tsingtaopad.db.DatabaseHelper;
+import dd.tsingtaopad.db.dao.MitRepairterMDao;
 import dd.tsingtaopad.db.dao.MitValaddaccountMDao;
 import dd.tsingtaopad.db.dao.MitValcmpotherMTempDao;
 import dd.tsingtaopad.db.dao.MitValterMTempDao;
 import dd.tsingtaopad.db.dao.MstAgencysupplyInfoDao;
+import dd.tsingtaopad.db.dao.MstCameraiInfoMDao;
 import dd.tsingtaopad.db.dao.MstCheckexerecordInfoDao;
 import dd.tsingtaopad.db.dao.MstGroupproductMDao;
 import dd.tsingtaopad.db.dao.MstGroupproductMTempDao;
+import dd.tsingtaopad.db.dao.MstPictypeMDao;
 import dd.tsingtaopad.db.dao.MstPromotionsmDao;
 import dd.tsingtaopad.db.dao.MstTermLedgerInfoDao;
 import dd.tsingtaopad.db.dao.MstTerminalinfoMCartDao;
@@ -40,6 +44,9 @@ import dd.tsingtaopad.db.dao.MstTerminalinfoMTempDao;
 import dd.tsingtaopad.db.dao.MstVisitMDao;
 import dd.tsingtaopad.db.dao.MstVisitMTempDao;
 import dd.tsingtaopad.db.dao.MstVistproductInfoDao;
+import dd.tsingtaopad.db.table.MitRepairM;
+import dd.tsingtaopad.db.table.MitRepaircheckM;
+import dd.tsingtaopad.db.table.MitRepairterM;
 import dd.tsingtaopad.db.table.MitValaddaccountM;
 import dd.tsingtaopad.db.table.MitValaddaccountMTemp;
 import dd.tsingtaopad.db.table.MitValaddaccountproMTemp;
@@ -50,6 +57,7 @@ import dd.tsingtaopad.db.table.MitValchecktypeMTemp;
 import dd.tsingtaopad.db.table.MitValcmpMTemp;
 import dd.tsingtaopad.db.table.MitValcmpotherMTemp;
 import dd.tsingtaopad.db.table.MitValgroupproMTemp;
+import dd.tsingtaopad.db.table.MitValpicMTemp;
 import dd.tsingtaopad.db.table.MitValpromotionsMTemp;
 import dd.tsingtaopad.db.table.MitValsupplyMTemp;
 import dd.tsingtaopad.db.table.MitValterMTemp;
@@ -80,6 +88,7 @@ import dd.tsingtaopad.db.table.MstVisitMTemp;
 import dd.tsingtaopad.db.table.MstVistproductInfo;
 import dd.tsingtaopad.db.table.MstVistproductInfoTemp;
 import dd.tsingtaopad.db.table.PadCheckaccomplishInfo;
+import dd.tsingtaopad.dd.dddealplan.domain.DealStc;
 import dd.tsingtaopad.dd.ddxt.chatvie.domain.XtChatVieStc;
 import dd.tsingtaopad.dd.ddxt.checking.domain.XtCheckIndexCalculateStc;
 import dd.tsingtaopad.dd.ddxt.checking.domain.XtProIndex;
@@ -89,6 +98,7 @@ import dd.tsingtaopad.dd.ddxt.invoicing.domain.XtInvoicingStc;
 import dd.tsingtaopad.dd.ddxt.term.select.domain.XtTermSelectMStc;
 import dd.tsingtaopad.dd.ddzs.zsinvoicing.zsinvocingtz.domain.ZsTzItemIndex;
 import dd.tsingtaopad.dd.ddzs.zsinvoicing.zsinvocingtz.domain.ZsTzLedger;
+import dd.tsingtaopad.main.visit.shopvisit.termvisit.camera.domain.CameraInfoStc;
 import dd.tsingtaopad.main.visit.shopvisit.termvisit.checkindex.domain.CheckIndexCalculateStc;
 import dd.tsingtaopad.main.visit.shopvisit.termvisit.checkindex.domain.CheckIndexPromotionStc;
 import dd.tsingtaopad.main.visit.shopvisit.termvisit.checkindex.domain.CheckIndexQuicklyStc;
@@ -118,6 +128,95 @@ public class XtShopVisitService {
     public XtShopVisitService(Context context, Handler handler) {
         this.context = context;
         this.handler = handler;
+    }
+
+    /***
+     * 查询图片类型表中所有记录 协同用
+     */
+    public List<CameraInfoStc> queryPictypeMAll() {
+        // 事务控制
+        AndroidDatabaseConnection connection = null;
+        List<CameraInfoStc> valueLst = new ArrayList<CameraInfoStc>();
+        try {
+
+            DatabaseHelper helper = DatabaseHelper.getHelper(context);
+            MstPictypeMDao dao = (MstPictypeMDao) helper.getMstpictypeMDao();
+
+            connection = new AndroidDatabaseConnection(helper.getWritableDatabase(), true);
+            connection.setAutoCommit(false);
+
+            valueLst = dao.queryAllPictype(helper);
+            connection.commit(null);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Log.e(TAG, "查询图片类型表中所有记录", e);
+        }
+        return valueLst;
+    }
+
+    /***
+     * 查询图片类型表中所有记录 用于追溯
+     */
+    public List<MitValpicMTemp> queryZsPictypeMAll() {
+        // 事务控制
+        AndroidDatabaseConnection connection = null;
+        List<MitValpicMTemp> valueLst = new ArrayList<MitValpicMTemp>();
+        try {
+
+            DatabaseHelper helper = DatabaseHelper.getHelper(context);
+            MstPictypeMDao dao = (MstPictypeMDao) helper.getMstpictypeMDao();
+
+            connection = new AndroidDatabaseConnection(helper.getWritableDatabase(), true);
+            connection.setAutoCommit(false);
+
+            valueLst = dao.queryZsAllPictype(helper);
+            connection.commit(null);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Log.e(TAG, "查询图片类型表中所有记录", e);
+        }
+        return valueLst;
+    }
+
+    /**
+     * 获取当天拍照记录 协同
+     *
+     * @param terminalkey 终端主键
+     * @param visitKey    拜访主键
+     * @return
+     */
+    public List<CameraInfoStc> queryCurrentPicRecord(String terminalkey, String visitKey) {
+        DbtLog.logUtils(TAG, "queryCurrentPicRecord()-获取当天拍照记录");
+        List<CameraInfoStc> lst = new ArrayList<CameraInfoStc>();
+        try {
+            DatabaseHelper helper = DatabaseHelper.getHelper(context);
+            MstCameraiInfoMDao dao = (MstCameraiInfoMDao) helper.getMstCameraiInfoMDao();
+            lst = dao.queryCurrentCameraLst(helper, terminalkey, visitKey);
+
+        } catch (Exception e) {
+            Log.e(TAG, "获取拜访拍照临时表DAO对象失败", e);
+        }
+        return lst;
+    }
+    /**
+     * 获取当天追溯拍照记录
+     *
+     * @param terminalkey 终端主键
+     * @param valterid    追溯主键
+     * @return
+     */
+    public List<MitValpicMTemp> queryZsCurrentPicRecord(String terminalkey, String valterid) {
+        DbtLog.logUtils(TAG, "queryCurrentPicRecord()-获取当天拍照记录");
+        List<MitValpicMTemp> lst = new ArrayList<MitValpicMTemp>();
+        try {
+            DatabaseHelper helper = DatabaseHelper.getHelper(context);
+            MstCameraiInfoMDao dao = (MstCameraiInfoMDao) helper.getMstCameraiInfoMDao();
+            lst = dao.queryZsCurrentCameraLst(helper, terminalkey, valterid);
+
+        } catch (Exception e) {
+            Log.e(TAG, "获取拜访拍照临时表DAO对象失败", e);
+        }
+        return lst;
     }
 
     /**
@@ -4036,6 +4135,57 @@ public class XtShopVisitService {
         }
 
         return lst;
+    }
+
+    public void saveDealMitRepairM(MitRepairM repairM, MitRepaircheckM mitRepaircheckM,MitRepairterM mitRepairterM) {
+        AndroidDatabaseConnection connection = null;
+        try {
+            DatabaseHelper helper = DatabaseHelper.getHelper(context);
+            Dao<MitRepairM, String> mitRepairMDao = helper.getDao(MitRepairM.class);
+            Dao<MitRepaircheckM, String> mitRepaircheckMDao = helper.getDao(MitRepaircheckM.class);
+            Dao<MitRepairterM, String> mitRepairterMDao = helper.getDao(MitRepairterM.class);
+            connection = new AndroidDatabaseConnection(helper.getWritableDatabase(), true);
+            connection.setAutoCommit(false);
+
+            mitRepairMDao.createOrUpdate(repairM);
+            mitRepaircheckMDao.createOrUpdate(mitRepaircheckM);
+            mitRepairterMDao.createOrUpdate(mitRepairterM);
+
+            connection.commit(null);
+        } catch (Exception e) {
+            DbtLog.logUtils(TAG, e.getMessage());
+            e.printStackTrace();
+            Log.e(TAG, "追溯保存整顿计划发生异常", e);
+            try {
+                connection.rollback(null);
+            } catch (SQLException e1) {
+                Log.e(TAG, "回滚整顿计划主表发生异常", e1);
+            }
+        }
+    }
+
+    /***
+     * 查询某个终端的整改计划
+     */
+    public List<DealStc> getTermDealPlan(String terminalkey) {
+        // 事务控制
+        AndroidDatabaseConnection connection = null;
+        List<DealStc> valueLst = new ArrayList<DealStc>();
+        try {
+
+            DatabaseHelper helper = DatabaseHelper.getHelper(context);
+            MitRepairterMDao dao = helper.getDao(MitRepairterM.class);
+
+            connection = new AndroidDatabaseConnection(helper.getWritableDatabase(), true);
+            connection.setAutoCommit(false);
+
+            valueLst = dao.queryTermDealPlan(helper,terminalkey);// queryTermDealPlan
+            connection.commit(null);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Log.e(TAG, "查询图片类型表中所有记录", e);
+        }
+        return valueLst;
     }
 
 }

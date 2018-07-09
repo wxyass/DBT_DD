@@ -151,7 +151,7 @@ public class XtTermSelectFragment extends BaseFragmentSupport implements View.On
         setDropdownItemSelectListener();
 
         // 设置终端列表数据 假数据
-        initTermListData("1-63UNEX");
+        initTermListData("");
 
         // 查询已选中的终端
         selectedList = xtSelectService.queryXtTerminalCart("1");
