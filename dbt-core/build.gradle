@@ -84,5 +84,7 @@ dependencies {
     // 适配 https://github.com/yatoooon/AndroidScreenAdaptation
     compile 'me.yatoooon:screenadaptation:1.1.1'
 
+    // 上拉加载下拉舒心
+    compile 'in.srain.cube:ultra-ptr:1.0.11'
 
 }

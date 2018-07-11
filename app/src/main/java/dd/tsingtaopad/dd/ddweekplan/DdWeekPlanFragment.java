@@ -199,7 +199,7 @@ public class DdWeekPlanFragment extends BaseFragmentSupport implements View.OnCl
                     dayPlanStc.setState(planList.get(0).getStatus());
                 }
 
-                // 日计划详情
+                // 日计划详情(多条)   dayPlanStc.setDetailStcs(detailStcs);
                 List<DayDetailStc> detailStcs = mitPlandayvalMDao.queryPlanMitPlandaydetailM(helper, dayPlanStc.getPlanKey());
                 // List<DayDetailStc> detailStcs = new ArrayList<>();
                 String check = "";
@@ -269,7 +269,7 @@ public class DdWeekPlanFragment extends BaseFragmentSupport implements View.OnCl
             Map<String, Object> map2 = new HashMap<String, Object>();
             map2.put("starttime", weekDateStart);
             map2.put("endtime", weekDateEnd);
-            weekplanLst = mitPlanweekMDao.queryForFieldValues(map2);
+            weekplanLst = mitPlanweekMDao.queryForFieldValues(map2);// 查出一条周计划(也仅有一条)
             if (weekplanLst.size() > 0) {
                 mitPlanweekM = weekplanLst.get(0);
             }
@@ -287,6 +287,7 @@ public class DdWeekPlanFragment extends BaseFragmentSupport implements View.OnCl
             adapter = new WeekPlanAdapter(getActivity(), dayPlanStcs, new IClick() {
                 @Override
                 public void listViewItemClick(int position, View v) {
+                    // 跳转到日计划
                     toDayPlanFragment(position, dayPlanStcs, weekplanLst);
                 }
             });

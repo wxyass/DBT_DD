@@ -1,0 +1,277 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/bg_app"
+              android:orientation="vertical">
+
+    <include layout="@layout/top_navigation"/>
+
+    <ScrollView
+        android:id="@+id/meeting_dd_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/meeting_dd_ll_psw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+
+            <!--选择时间-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ico_point"/>
+
+                <TextView
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="选择时间"/>
+            </LinearLayout>
+            <!-- 开始日期：  -->
+            <RelativeLayout
+                android:id="@+id/meeting_dd_rl_startdate"
+                style="@style/xtbf_sayhi_rl_all"
+                android:layout_marginTop="15dp"
+                android:visibility="visible">
+
+                <!--标题-->
+                <TextView
+                    style="@style/zdzs_sayhi_title"
+                    android:text="开始日期"/>
+
+                <!--内容1-->
+                <TextView
+                    android:id="@+id/meeting_dd_rl_startdate_con1"
+                    style="@style/zdzs_sayhi_content1"
+                    android:text="请选择"/>
+
+                <!--内容2-->
+                <TextView
+                    style="@style/zdzs_sayhi_content2"
+                    android:text=""/>
+
+                <!--未稽查-->
+                <TextView
+                    android:id="@+id/meeting_dd_rl_startdate_statue"
+                    style="@style/zdzs_sayhi_statue"
+                    android:text=""/>
+
+                <ImageView
+                    style="@style/xtbf_sayhi_third_tv"
+                    android:visibility="visible"/>
+            </RelativeLayout>
+            <!-- 结束日期：  -->
+            <RelativeLayout
+                android:id="@+id/meeting_dd_rl_enddate"
+                style="@style/xtbf_sayhi_rl_all"
+                android:visibility="visible">
+
+                <!--标题-->
+                <TextView
+                    style="@style/zdzs_sayhi_title"
+                    android:text="结束日期"/>
+
+                <!--内容1-->
+                <TextView
+                    android:id="@+id/meeting_dd_rl_enddate_con1"
+                    style="@style/zdzs_sayhi_content1"
+                    android:text="请选择"/>
+
+                <!--内容2-->
+                <TextView
+                    style="@style/zdzs_sayhi_content2"
+                    android:text=""/>
+
+                <!--未稽查-->
+                <TextView
+                    android:id="@+id/meeting_dd_rl_enddate_statue"
+                    style="@style/zdzs_sayhi_statue"
+                    android:text=""/>
+
+                <ImageView
+                    style="@style/xtbf_sayhi_third_tv"
+                    android:visibility="visible"/>
+            </RelativeLayout>
+
+            <!--主持人-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ico_point"/>
+
+                <TextView
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="主持人"/>
+            </LinearLayout>
+
+            <!--参会人输入框-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                >
+
+                <EditText
+                    android:id="@+id/meeting_dd_et_take"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/bg_visit_record"
+                    android:hint="如:张三"
+                    android:inputType="textMultiLine"
+                    android:textColorHint="@color/gray_color_cccccc"
+                    android:padding="6dp"
+                    android:maxLength="150"
+                    android:textSize="@dimen/font_size3"/>
+            </LinearLayout>
+            <!--参会人-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ico_point"/>
+
+                <TextView
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="参会人"/>
+            </LinearLayout>
+
+            <!--参会人输入框-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                >
+
+                <EditText
+                    android:id="@+id/meeting_dd_et_partin"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/bg_visit_record"
+                    android:hint="如:张三,李四,王五"
+                    android:inputType="textMultiLine"
+                    android:textColorHint="@color/gray_color_cccccc"
+                    android:padding="6dp"
+                    android:maxLength="150"
+                    android:textSize="@dimen/font_size3"/>
+            </LinearLayout>
+
+            <!--会议记录-->
+            <LinearLayout
+                android:id="@+id/meeting_dd_visitreport_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ico_point"/>
+
+                <TextView
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="会议记录"/>
+            </LinearLayout>
+
+            <!--会议记录输入框-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                >
+
+                <EditText
+                    android:id="@+id/meeting_dd_et_record"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/bg_visit_record"
+                    android:hint="请输入会议记录"
+                    android:inputType="textMultiLine"
+                    android:textColorHint="@color/gray_color_cccccc"
+                    android:maxLength="1000"
+                    android:padding="6dp"
+                    android:textSize="@dimen/font_size3"/>
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/meeting_dd_btn_submit"
+                    style="@style/xtbf_btn_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/width_height_size08"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_select_green"
+                    android:text="提交"
+                    />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

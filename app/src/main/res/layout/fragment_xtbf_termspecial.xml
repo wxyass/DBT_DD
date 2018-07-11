@@ -45,47 +45,65 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:textSize="@dimen/font_size2"/>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/xtbf_termspecial_mine"
+                style="@style/xtbf_btn_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/width_height_size08"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/bg_select_green"
+                android:text="我品"
+                android:textSize="@dimen/font_size4"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/xtbf_termspecial_vie"
+                style="@style/xtbf_btn_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/width_height_size08"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/bg_select_green"
+                android:text="竞品"
+                android:textSize="@dimen/font_size4"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <CheckBox
+                android:id="@+id/xtbf_termspecial_agree"
+                style="@style/xtbf_btn_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/width_height_size08"
+                android:layout_centerHorizontal="true"
+                android:text="协议店"
+                android:textColor="@color/prompt_bkr"
+                android:textSize="@dimen/font_size4"
+                />
+        </RelativeLayout>
     </LinearLayout>
 
     <!--我品 竞品 协议店 搜索-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:gravity="center_vertical">
 
-        <Button
-            android:id="@+id/xtbf_termspecial_mine"
-            android:layout_width="0px"
-            android:layout_height="45dp"
-            android:layout_weight="1"
-            android:text="我品"
-            android:textSize="@dimen/font_size2"/>
-
-        <Button
-            android:id="@+id/xtbf_termspecial_vie"
-            android:layout_width="0px"
-            android:layout_height="45dp"
-            android:layout_weight="1"
-            android:text="竞品"
-            android:textSize="@dimen/font_size2"/>
 
 
-        <RadioButton
-            android:id="@+id/xtbf_termspecial_agree"
-            android:layout_width="0px"
-            android:layout_height="45dp"
-            android:layout_weight="1"
-            android:text="协议店"
-            android:textSize="@dimen/font_size2"/>
-
-        <Button
-            android:id="@+id/xtbf_termspecial_search"
-            android:layout_width="0px"
-            android:layout_height="45dp"
-            android:layout_weight="1"
-            android:text="搜索"
-            android:textSize="@dimen/font_size2"/>
     </LinearLayout>
 
     <View
@@ -169,6 +187,7 @@
             android:id="@+id/xtbf_termspecial_Rl_add"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_weight="3">
 
             <Button
@@ -179,6 +198,24 @@
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/bg_select_green"
                 android:text="全部添加"
+                android:textSize="@dimen/font_size4"
+                />
+        </RelativeLayout>
+        <!-- 全部添加 -->
+        <RelativeLayout
+            android:id="@+id/xtbf_termspecial_Rl_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3">
+
+            <Button
+                android:id="@+id/xtbf_termspecial_search"
+                style="@style/xtbf_btn_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/width_height_size08"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/bg_select_green"
+                android:text="搜索"
                 android:textSize="@dimen/font_size4"
                 />
         </RelativeLayout>
@@ -195,13 +232,19 @@
         android:padding="1dp"
         android:visibility="invisible">
 
-        <ListView
-            android:id="@+id/xtbf_termspecial_lv"
+        <in.srain.cube.views.ptr.PtrClassicFrameLayout
+            android:id="@+id/ultra_ptr"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:cacheColorHint="@color/bg_lv_item"
-            android:divider="@color/gray_color_cccccc"
-            android:dividerHeight="1dp">
-        </ListView>
+            android:layout_height="match_parent">
+
+            <dd.tsingtaopad.core.view.refresh.UltraRefreshListView
+                android:id="@+id/xtbf_termspecial_lv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:cacheColorHint="@color/bg_lv_item"
+                android:divider="@color/gray_color_cccccc"
+                android:dividerHeight="1dp"/>
+        </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+
     </LinearLayout>
 </LinearLayout>

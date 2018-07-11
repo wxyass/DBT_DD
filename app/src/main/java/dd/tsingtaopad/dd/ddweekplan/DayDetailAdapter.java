@@ -73,9 +73,9 @@ public class DayDetailAdapter extends BaseAdapter implements View.OnClickListene
         xtSelectService = new XtTermSelectService(context);
 
         if ("2".equals(weekplan.getStatus()) || "3".equals(weekplan.getStatus())) {// 0未制定1未提交2待审核3审核通过4未通过
-            isChecking = true;
+            isChecking = false;// 不允许再次编辑
         } else {
-            isChecking = false;
+            isChecking = true;// 可编辑
         }
     }
 
@@ -186,36 +186,38 @@ public class DayDetailAdapter extends BaseAdapter implements View.OnClickListene
         switch (v.getId()) {
             case R.id.item_daydetail_rl_check:// 追溯项
                 // alertShow3(posi);
-                if(!isChecking){
-                    //alertShow7(posi);
-                    alertZsShow3(posi);
+                /*if(isChecking){
+                    alertZsShow3(posi,isChecking);
                 }else{
                     Toast.makeText(context,"审核状态下不可修改",Toast.LENGTH_SHORT).show();
-                }
+                }*/
+
+                alertZsShow3(posi,isChecking);
 
                 break;
             case R.id.item_daydetail_rl_areaid:// 追溯区域
 
-                if(!isChecking){
+                if(isChecking){
                     alertShow4(posi);
                 }else{
                     Toast.makeText(context,"审核状态下不可修改",Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.item_daydetail_tv_gridkey:// 追溯定格
-                if(!isChecking){
+                if(isChecking){
                     alertShow5(posi);
                 }else{
                     Toast.makeText(context,"审核状态下不可修改",Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.item_daydetail_rl_routekey:// 追溯路线
-                if(!isChecking){
+                /*if(isChecking){
                     // alertShow6(posi); 从下方弹出
                     alertShow7(posi);// 从中间弹出
                 }else{
                     Toast.makeText(context,"审核状态下不可修改",Toast.LENGTH_SHORT).show();
-                }
+                }*/
+                alertShow7(posi,isChecking);// 从中间弹出
                 break;
             default:
                 break;
@@ -306,7 +308,7 @@ public class DayDetailAdapter extends BaseAdapter implements View.OnClickListene
 
 
     // 新追溯项
-    public void alertZsShow3(final int position) {
+    public void alertZsShow3(final int position, final boolean isreput) {
 
         final DayDetailStc item = dataLst.get(position);
 
@@ -353,50 +355,54 @@ public class DayDetailAdapter extends BaseAdapter implements View.OnClickListene
         dataLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int posi, long arg3) {
-                CheckBox itemCB = (CheckBox) arg1.findViewById(R.id.common_multiple_cb_lvitem);
-                TextView itemTv = (TextView) arg1.findViewById(R.id.common_multiple_tv_lvitem);
-                itemCB.toggle();//点击整行可以显示效果
+                if(isreput){
+                    CheckBox itemCB = (CheckBox) arg1.findViewById(R.id.common_multiple_cb_lvitem);
+                    TextView itemTv = (TextView) arg1.findViewById(R.id.common_multiple_tv_lvitem);
+                    itemCB.toggle();//点击整行可以显示效果
 
-                String checkkey = FunUtil.isBlankOrNullTo(itemTv.getHint(), " ") + ",";
-                String checkname = FunUtil.isBlankOrNullTo(itemTv.getText().toString(), " ") + ",";
+                    String checkkey = FunUtil.isBlankOrNullTo(itemTv.getHint(), " ") + ",";
+                    String checkname = FunUtil.isBlankOrNullTo(itemTv.getText().toString(), " ") + ",";
 
-                if(0 == posi){// 全选
-                    if(itemCB.isChecked()){// 是选中状态
-                        StringBuffer key = new StringBuffer();
-                        StringBuffer name = new StringBuffer();
-                        for (KvStc stc : typeLst){
-                            if(!"-1".equals(stc.getParentKey())){
-                                key.append(stc.getKey());
-                                key.append(",");
-                                name.append(stc.getValue());
-                                name.append(",");
+                    if(0 == posi){// 全选
+                        if(itemCB.isChecked()){// 是选中状态
+                            StringBuffer key = new StringBuffer();
+                            StringBuffer name = new StringBuffer();
+                            for (KvStc stc : typeLst){
+                                if(!"-1".equals(stc.getParentKey())){
+                                    key.append(stc.getKey());
+                                    key.append(",");
+                                    name.append(stc.getValue());
+                                    name.append(",");
+                                }
+                                stc.setIsDefault("1");
                             }
-                            stc.setIsDefault("1");
+                            item.setValcheckkey(key.toString());
+                            item.setValcheckname(name.toString());
+                        }else{// 是未选中状态
+                            for (KvStc stc : typeLst){
+                                stc.setIsDefault("0");
+                            }
+                            item.setValcheckkey("");
+                            item.setValcheckname("");
                         }
-                        item.setValcheckkey(key.toString());
-                        item.setValcheckname(name.toString());
-                    }else{// 是未选中状态
-                        for (KvStc stc : typeLst){
-                            stc.setIsDefault("0");
+                    }else{
+                        if (itemCB.isChecked()) {
+                            item.setValcheckkey(FunUtil.isBlankOrNullTo(item.getValcheckkey(),"")  + checkkey);
+                            item.setValcheckname(FunUtil.isBlankOrNullTo(item.getValcheckname(),"") + checkname);
+                            ((KvStc)typeLst.get(posi)).setIsDefault("1");
+                        } else {
+                            item.setValcheckkey(FunUtil.isBlankOrNullTo(item.getValcheckkey(),"") .replace(checkkey, ""));
+                            item.setValcheckname(FunUtil.isBlankOrNullTo(item.getValcheckname(),"").replace(checkname, ""));
+                            ((KvStc)typeLst.get(posi)).setIsDefault("0");
+                            ((KvStc)typeLst.get(0)).setIsDefault("0");
                         }
-                        item.setValcheckkey("");
-                        item.setValcheckname("");
                     }
+                    sadapter.notifyDataSetChanged();
                 }else{
-                    if (itemCB.isChecked()) {
-                        item.setValcheckkey(FunUtil.isBlankOrNullTo(item.getValcheckkey(),"")  + checkkey);
-                        item.setValcheckname(FunUtil.isBlankOrNullTo(item.getValcheckname(),"") + checkname);
-                        ((KvStc)typeLst.get(posi)).setIsDefault("1");
-                    } else {
-                        item.setValcheckkey(FunUtil.isBlankOrNullTo(item.getValcheckkey(),"") .replace(checkkey, ""));
-                        item.setValcheckname(FunUtil.isBlankOrNullTo(item.getValcheckname(),"").replace(checkname, ""));
-                        ((KvStc)typeLst.get(posi)).setIsDefault("0");
-                        ((KvStc)typeLst.get(0)).setIsDefault("0");
-                    }
+                    Toast.makeText(context,"审核状态下不可修改",Toast.LENGTH_SHORT).show();
                 }
 
 
-                sadapter.notifyDataSetChanged();
             }
         });
 
@@ -614,7 +620,7 @@ public class DayDetailAdapter extends BaseAdapter implements View.OnClickListene
     }
 
     // 追溯路线  从中间弹出
-    public void alertShow7(final int position) {
+    public void alertShow7(final int position, final boolean isreput) {
 
         final DayDetailStc item = dataLst.get(position);
         List<MstRouteM> valueLst = xtSelectService.getMstRouteMList(FunUtil.isBlankOrNullTo(item.getValgridkey(),""));
@@ -666,48 +672,52 @@ public class DayDetailAdapter extends BaseAdapter implements View.OnClickListene
         dataLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                CheckBox itemCB = (CheckBox) arg1.findViewById(R.id.common_multiple_cb_lvitem);
-                TextView itemTv = (TextView) arg1.findViewById(R.id.common_multiple_tv_lvitem);
-                itemCB.toggle();//点击整行可以显示效果
+                if(isreput){
+                    CheckBox itemCB = (CheckBox) arg1.findViewById(R.id.common_multiple_cb_lvitem);
+                    TextView itemTv = (TextView) arg1.findViewById(R.id.common_multiple_tv_lvitem);
+                    itemCB.toggle();//点击整行可以显示效果
 
-                String routekey = FunUtil.isBlankOrNullTo(itemTv.getHint(), " ") + ",";
-                String routename = FunUtil.isBlankOrNullTo(itemTv.getText().toString(), " ") + ",";
+                    String routekey = FunUtil.isBlankOrNullTo(itemTv.getHint(), " ") + ",";
+                    String routename = FunUtil.isBlankOrNullTo(itemTv.getText().toString(), " ") + ",";
 
-                if(0 == arg2){// 全选
-                    if(itemCB.isChecked()){// 是选中状态
-                        StringBuffer key = new StringBuffer();
-                        StringBuffer name = new StringBuffer();
-                        for (KvStc stc : typeLst){
-                            if(!"-1".equals(stc.getParentKey())){
-                                key.append(stc.getKey());
-                                key.append(",");
-                                name.append(stc.getValue());
-                                name.append(",");
+                    if(0 == arg2){// 全选
+                        if(itemCB.isChecked()){// 是选中状态
+                            StringBuffer key = new StringBuffer();
+                            StringBuffer name = new StringBuffer();
+                            for (KvStc stc : typeLst){
+                                if(!"-1".equals(stc.getParentKey())){
+                                    key.append(stc.getKey());
+                                    key.append(",");
+                                    name.append(stc.getValue());
+                                    name.append(",");
+                                }
+                                stc.setIsDefault("1");
                             }
-                            stc.setIsDefault("1");
+                            item.setValroutekeys(key.toString());
+                            item.setValroutenames(name.toString());
+                        }else{// 是未选中状态
+                            for (KvStc stc : typeLst){
+                                stc.setIsDefault("0");
+                            }
+                            item.setValroutekeys("");
+                            item.setValroutenames("");
                         }
-                        item.setValroutekeys(key.toString());
-                        item.setValroutenames(name.toString());
-                    }else{// 是未选中状态
-                        for (KvStc stc : typeLst){
-                            stc.setIsDefault("0");
+                    }else{
+                        if (itemCB.isChecked()) {
+                            item.setValroutekeys(FunUtil.isBlankOrNullTo(item.getValroutekeys(),"")  + routekey);
+                            item.setValroutenames(FunUtil.isBlankOrNullTo(item.getValroutenames(),"") + routename);
+                            ((KvStc)typeLst.get(arg2)).setIsDefault("1");
+                        } else {
+                            item.setValroutekeys(FunUtil.isBlankOrNullTo(item.getValroutekeys(),"") .replace(routekey, ""));
+                            item.setValroutenames(FunUtil.isBlankOrNullTo(item.getValroutenames(),"").replace(routename, ""));
+                            ((KvStc)typeLst.get(arg2)).setIsDefault("0");
+                            ((KvStc)typeLst.get(0)).setIsDefault("0");
                         }
-                        item.setValroutekeys("");
-                        item.setValroutenames("");
                     }
+                    sadapter.notifyDataSetChanged();
                 }else{
-                    if (itemCB.isChecked()) {
-                        item.setValroutekeys(FunUtil.isBlankOrNullTo(item.getValroutekeys(),"")  + routekey);
-                        item.setValroutenames(FunUtil.isBlankOrNullTo(item.getValroutenames(),"") + routename);
-                        ((KvStc)typeLst.get(arg2)).setIsDefault("1");
-                    } else {
-                        item.setValroutekeys(FunUtil.isBlankOrNullTo(item.getValroutekeys(),"") .replace(routekey, ""));
-                        item.setValroutenames(FunUtil.isBlankOrNullTo(item.getValroutenames(),"").replace(routename, ""));
-                        ((KvStc)typeLst.get(arg2)).setIsDefault("0");
-                        ((KvStc)typeLst.get(0)).setIsDefault("0");
-                    }
+                    Toast.makeText(context,"审核状态下不可修改",Toast.LENGTH_SHORT).show();
                 }
-                sadapter.notifyDataSetChanged();
             }
         });
 

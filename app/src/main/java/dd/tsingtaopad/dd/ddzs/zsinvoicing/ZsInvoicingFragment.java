@@ -33,6 +33,7 @@ import dd.tsingtaopad.core.util.dbtutil.logutil.DbtLog;
 import dd.tsingtaopad.core.view.alertview.AlertView;
 import dd.tsingtaopad.core.view.alertview.OnDismissListener;
 import dd.tsingtaopad.core.view.alertview.OnItemClickListener;
+import dd.tsingtaopad.db.table.MitValaddaccountproMTemp;
 import dd.tsingtaopad.db.table.MitValsupplyMTemp;
 import dd.tsingtaopad.dd.ddxt.base.XtBaseVisitFragment;
 import dd.tsingtaopad.dd.ddxt.invoicing.XtInvoicingService;
@@ -603,6 +604,10 @@ public class ZsInvoicingFragment extends XtBaseVisitFragment implements View.OnC
                         // Toast.makeText(getActivity(), "点击了第" + position + "个", Toast.LENGTH_SHORT).show();
                         if (0 == position) {// 正确
                             termLedgerInfos.get(posi).setValprostatus("Y");
+                            List<MitValaddaccountproMTemp>  mTemps = termLedgerInfos.get(posi).getIndexValueLst();
+                            for(MitValaddaccountproMTemp temp : mTemps){
+                                temp.setValpronumfalg("Y");
+                            }
                             handler.sendEmptyMessage(ZsInvoicingFragment.MAKE_RIGHT_TZ);
                         } else if (1 == position) {// 错误
                             Bundle bundle = new Bundle();

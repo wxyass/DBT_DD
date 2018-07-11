@@ -112,6 +112,9 @@
     <!-- bk 纯黑色 -->
     <color name="prompt_bk">#000000</color>
 
+    <!--半黑色-->
+    <color name="prompt_bkr">#222222</color>
+
 
     <!-- 查询类界面的条件部分的背景色 -->
     <color name="bg_search_title">#f4f4f4</color>

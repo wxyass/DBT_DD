@@ -100,6 +100,12 @@ public class XtTermSelectService extends XtTermService{
         }
         return terminalList;
     }
+
+    /**
+     *
+     * @param lineKeys  这个参数没用了
+     * @return
+     */
     public List<XtTermSelectMStc> queryZsTerminal(List<String> lineKeys) {
 
         List<XtTermSelectMStc> terminalList = new ArrayList<XtTermSelectMStc>();

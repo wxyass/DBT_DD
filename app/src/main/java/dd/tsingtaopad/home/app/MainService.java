@@ -731,6 +731,7 @@ public class MainService extends XtShopVisitService {
         String MST_AGREE_TMP = emp.getMST_AGREE_TMP();
         String MST_AGREE_DETAIL_TMP = emp.getMST_AGREE_DETAIL_TMP();
 
+        // 此处不删除上次数据 是因为单独拜访需要加入购物车,删除会报错
         createOrUpdateTable(MST_AGENCYGRID_INFO, "MST_AGENCYGRID_INFO", MstAgencygridInfo.class,0);
         // createOrUpdateTable(MST_AGENCYINFO_M, "MST_AGENCYINFO_M", MstAgencyinfoM.class,0);
         createOrUpdateTable(MST_AGENCYSUPPLY_INFO, "MST_AGENCYSUPPLY_INFO", MstAgencysupplyInfo.class,0);

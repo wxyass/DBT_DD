@@ -23,7 +23,8 @@ public class TermSpecialStc {
     private String isagree;// 0:未选中 不是协议店   1选中 是协议店
     private String termname;
     private String tablename;
-    private String pager;// 第几页
+    private int pager;// 第几页
+    private int count;// 每次请求获取多少条 500
 
     public String getAreakey() {
         return areakey;
@@ -129,11 +130,19 @@ public class TermSpecialStc {
         this.tablename = tablename;
     }
 
-    public String getPager() {
+    public int getPager() {
         return pager;
     }
 
-    public void setPager(String pager) {
+    public void setPager(int pager) {
         this.pager = pager;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }

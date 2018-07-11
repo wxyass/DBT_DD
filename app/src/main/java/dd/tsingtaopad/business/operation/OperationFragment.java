@@ -31,6 +31,7 @@ import dd.tsingtaopad.core.util.dbtutil.PropertiesUtil;
 import dd.tsingtaopad.dd.ddaddterm.DdAddTermFragment;
 import dd.tsingtaopad.dd.dddaysummary.DdDaySummaryFragment;
 import dd.tsingtaopad.dd.dddealplan.DdDealPlanFragment;
+import dd.tsingtaopad.dd.ddmeeting.MeetingFragment;
 import dd.tsingtaopad.dd.ddweekplan.DdWeekPlanFragment;
 import dd.tsingtaopad.http.HttpParseJson;
 import dd.tsingtaopad.util.requestHeadUtil;
@@ -49,6 +50,7 @@ public class OperationFragment extends BaseFragmentSupport implements View.OnCli
 
     RelativeLayout weekPlan;
     RelativeLayout summaryBtn;//
+    RelativeLayout meetingBtn;//
     LinearLayout dealBtn;
     private TextView username;
     private TextView num;
@@ -76,6 +78,7 @@ public class OperationFragment extends BaseFragmentSupport implements View.OnCli
 
         weekPlan = (RelativeLayout)view.findViewById(R.id.dd_operation_btn_plan);
         summaryBtn = (RelativeLayout)view.findViewById(R.id.dd_operation_btn_summer);
+        meetingBtn = (RelativeLayout)view.findViewById(R.id.dd_operation_btn_meeting);
         dealBtn = (LinearLayout)view.findViewById(R.id.dd_operation_btn_zhenggai);
         username = (TextView)view.findViewById(R.id.dd_operation_btn_zhenggai_username);
         num = (TextView)view.findViewById(R.id.dd_operation_btn_zhenggai_num);
@@ -84,6 +87,7 @@ public class OperationFragment extends BaseFragmentSupport implements View.OnCli
         weekPlan.setOnClickListener(this);
         summaryBtn.setOnClickListener(this);
         dealBtn.setOnClickListener(this);
+        meetingBtn.setOnClickListener(this);
 
     }
 
@@ -114,6 +118,9 @@ public class OperationFragment extends BaseFragmentSupport implements View.OnCli
                     changeHomeFragment(new SyncBasicFragment(), "syncbasicfragment");
                 }
 
+                break;
+            case R.id.dd_operation_btn_meeting:// 晨会录入
+                changeHomeFragment(new MeetingFragment(), "dddaysummaryfragment");
                 break;
             case R.id.dd_operation_btn_zhenggai:// 整改计划
                 if (getCmmAreaMCount() > 0) {

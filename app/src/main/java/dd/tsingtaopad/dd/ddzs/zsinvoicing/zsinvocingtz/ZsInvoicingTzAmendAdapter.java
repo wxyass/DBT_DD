@@ -77,6 +77,7 @@ public class ZsInvoicingTzAmendAdapter extends BaseAdapter implements OnClickLis
             holder = new ViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.item_zdzs_invocing_tz_amend, null);
             holder.timeTv = (TextView)convertView.findViewById(R.id.item_tz_amend_time);
+            holder.ydnum = (TextView)convertView.findViewById(R.id.item_tz_amend_ydnum);
             holder.numTv = (EditText)convertView.findViewById(R.id.item_tz_amend_num);
             holder.nullTv = (TextView)convertView.findViewById(R.id.item_tz_amend_null);
             convertView.setTag(holder);
@@ -84,6 +85,7 @@ public class ZsInvoicingTzAmendAdapter extends BaseAdapter implements OnClickLis
             holder = (ViewHolder)convertView.getTag();
         }
         MitValaddaccountproMTemp item = dataLst.get(position);
+        holder.ydnum.setText(item.getValpronum());
         holder.numTv.setText(item.getValprotruenum());
         holder.timeTv.setText(item.getValprotime().substring(0,10));
 
@@ -91,6 +93,7 @@ public class ZsInvoicingTzAmendAdapter extends BaseAdapter implements OnClickLis
     }
 
     private class ViewHolder {
+        private TextView ydnum;
         private EditText numTv;
         private TextView timeTv;
         private TextView nullTv;
