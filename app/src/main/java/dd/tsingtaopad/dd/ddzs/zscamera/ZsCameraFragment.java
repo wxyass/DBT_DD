@@ -37,6 +37,7 @@ import dd.tsingtaopad.core.util.file.FileTool;
 import dd.tsingtaopad.db.table.MitValpicMTemp;
 import dd.tsingtaopad.db.table.MstTerminalinfoMCart;
 import dd.tsingtaopad.db.table.MstTerminalinfoMTemp;
+import dd.tsingtaopad.db.table.MstTerminalinfoMZsCart;
 import dd.tsingtaopad.dd.ddxt.base.XtBaseVisitFragment;
 import dd.tsingtaopad.dd.ddxt.camera.XtCameraHandler;
 import dd.tsingtaopad.dd.ddxt.camera.XtCameraService;
@@ -69,7 +70,7 @@ public class ZsCameraFragment extends XtBaseVisitFragment implements View.OnClic
 
     // 最新终端信息
     private MstTerminalinfoMTemp termTemp;
-    private MstTerminalinfoMCart termCart;
+    private MstTerminalinfoMZsCart termCart;
 
     // 读取数据库图片表已拍照记录
     private List<MitValpicMTemp> piclst;
@@ -148,7 +149,8 @@ public class ZsCameraFragment extends XtBaseVisitFragment implements View.OnClic
         valueLst = xtCameraService.queryZsPictypeMAll();
         // 获取最新的终端数据
         termTemp = xtCameraService.findTermTempById(termId);
-        termCart = xtCameraService.findTermById(termId);
+        //termCart = xtCameraService.findTermById(termId);
+        termCart = xtCameraService.findZsTermById(termId);
 
         mstTerminalInfoMStc = xtCameraService.findTermKeyById(termId);
 

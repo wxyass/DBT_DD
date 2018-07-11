@@ -74,5 +74,28 @@ public class MstProductMDaoImpl extends BaseDaoImpl<MstProductM, String> impleme
 		}
 		return proLst;
 	}
+	/**
+	 * 获取竞品数据
+	 *
+	 * @param helper
+	 * @param //gridkey 定格主键
+	 * @return
+	 */
+	@Override
+	public List<KvStc> getVieProductData(DatabaseHelper helper) {
+		List<KvStc> proLst = new ArrayList<KvStc>();
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("select mpm.[cmpproductkey],mpm.[cmpproductcode],mpm.[cmpproname] " );
+		buffer.append(" from MST_CMPRODUCTINFO_M mpm order by mpm.cmpbrandkey ");
+		SQLiteDatabase db = helper.getReadableDatabase();
+		Cursor cursor = db.rawQuery(buffer.toString(), null);
+		while (cursor.moveToNext()) {
+			KvStc pro = new KvStc();
+			pro.setKey(cursor.getString(cursor.getColumnIndex("cmpproductkey")));
+			pro.setValue(cursor.getString(cursor.getColumnIndex("cmpproname")));
+			proLst.add(pro);
+		}
+		return proLst;
+	}
 
 }

@@ -336,7 +336,7 @@ public class MainService extends XtShopVisitService {
      * @param json          数据
      * @param tablename     表名称
      * @param cls           bean对象
-     * @param what          是否需要清除该表,再插入  0:不需要  1需要
+     * @param what          是否需要清除该表,再插入  0:不需要  1需要删除
      */
     public void createOrUpdateTable(String json, String tablename, Class<?> cls,int what) {
         Log.e(TAG, "createOrUpdateTable");
@@ -357,7 +357,7 @@ public class MainService extends XtShopVisitService {
 
             String upDataRoutetime = PrefUtils.getString(context, GlobalValues.ROUNTE_TIME,"");
             // 先将之前此表中的数据全部删除  在做插入记录操作,(终端表不删,之后做处理)
-            if(table.equals(tablename)){
+            /*if(table.equals(tablename)){
                 if(!upDataRoutetime.equals(DateUtil.getDateTimeStr(7))){
                     StringBuffer buffer = new StringBuffer();
                     buffer.append("DELETE FROM "+tablename);
@@ -369,6 +369,11 @@ public class MainService extends XtShopVisitService {
                     buffer.append("DELETE FROM "+tablename);
                     database.execSQL(buffer.toString());
                 }
+            }*/
+            if(what == 1){// 是否需要清除该表,再插入  0:不需要  1需要
+                StringBuffer buffer = new StringBuffer();
+                buffer.append("DELETE FROM "+tablename);
+                database.execSQL(buffer.toString());
             }
 
             // 更新 插入

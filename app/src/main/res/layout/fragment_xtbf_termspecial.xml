@@ -1,0 +1,207 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/bg_app"
+              android:orientation="vertical">
+
+    <include layout="@layout/top_navigation"/>
+
+
+    <!-- 3个下拉菜单 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <dd.tsingtaopad.core.view.dropdownmenu.DropdownButton
+            android:id="@+id/xtbf_termspecial_area"
+            android:layout_width="0px"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:textSize="@dimen/font_size2"/>
+
+        <View
+            android:layout_width="2px"
+            android:layout_height="30dp"
+            android:background="#dfdfdf"/>
+
+        <dd.tsingtaopad.core.view.dropdownmenu.DropdownButton
+            android:id="@+id/xtbf_termspecial_grid"
+            android:layout_width="0px"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:textSize="@dimen/font_size2"/>
+
+        <View
+            android:layout_width="2px"
+            android:layout_height="30dp"
+            android:background="#dfdfdf"/>
+
+        <dd.tsingtaopad.core.view.dropdownmenu.DropdownButton
+            android:id="@+id/xtbf_termspecial_route"
+            android:layout_width="0px"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:textSize="@dimen/font_size2"/>
+    </LinearLayout>
+
+    <!--我品 竞品 协议店 搜索-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <Button
+            android:id="@+id/xtbf_termspecial_mine"
+            android:layout_width="0px"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:text="我品"
+            android:textSize="@dimen/font_size2"/>
+
+        <Button
+            android:id="@+id/xtbf_termspecial_vie"
+            android:layout_width="0px"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:text="竞品"
+            android:textSize="@dimen/font_size2"/>
+
+
+        <RadioButton
+            android:id="@+id/xtbf_termspecial_agree"
+            android:layout_width="0px"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:text="协议店"
+            android:textSize="@dimen/font_size2"/>
+
+        <Button
+            android:id="@+id/xtbf_termspecial_search"
+            android:layout_width="0px"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:text="搜索"
+            android:textSize="@dimen/font_size2"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="#dfdfdf"/>
+
+    <!--搜索一行-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width_height_size08"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/width_height_size08"
+            android:layout_weight="7"
+            android:background="@drawable/bg_visit_record"
+            android:orientation="horizontal"
+            >
+
+            <!-- 搜索终端 -->
+            <EditText
+                android:id="@+id/xtbf_termspecial_et_search"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/width_height_size08"
+                android:layout_gravity="center"
+                android:layout_weight="6"
+                android:background="@null"
+                android:ems="14"
+                android:hint="@string/termlist_search_hit"
+                android:paddingLeft="5dp"
+                android:singleLine="true"
+                android:textColor="@color/gray_color_666666"
+                android:textColorHint="@color/gray_color_cccccc"
+                android:textSize="@dimen/font_size3">
+
+                <requestFocus/>
+            </EditText>
+
+            <!-- 搜索按钮 -->
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/xtbf_termspecial_bt_search"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/img_selecttermina_search"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <!-- 排序按钮 -->
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/xtbf_termspecial_bt_update"
+                style="@style/xtbf_btn_tv"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/width_height_size08"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/bg_select_green"
+                android:text="排序"
+                android:textSize="@dimen/font_size4"
+                />
+        </RelativeLayout>
+
+        <!-- 全部添加 -->
+        <RelativeLayout
+            android:id="@+id/xtbf_termspecial_Rl_add"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3">
+
+            <Button
+                android:id="@+id/xtbf_termspecial_bt_add"
+                style="@style/xtbf_btn_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/width_height_size08"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/bg_select_green"
+                android:text="全部添加"
+                android:textSize="@dimen/font_size4"
+                />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <!--终端列表-->
+    <LinearLayout
+        android:id="@+id/xtbf_termspecial_ll_lv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/listview_line"
+        android:orientation="vertical"
+        android:padding="1dp"
+        android:visibility="invisible">
+
+        <ListView
+            android:id="@+id/xtbf_termspecial_lv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:cacheColorHint="@color/bg_lv_item"
+            android:divider="@color/gray_color_cccccc"
+            android:dividerHeight="1dp">
+        </ListView>
+    </LinearLayout>
+</LinearLayout>

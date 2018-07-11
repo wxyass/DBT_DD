@@ -609,6 +609,18 @@ public class FunUtil {
         }
         return dou;
     }
+    // 为空为null时  返回null
+    public static Double isBlankOrNullToDouble(Double obj) {
+        Double dou = 0.0;
+        if (Double.isNaN(obj)) {
+            dou = 0.0;
+
+        } else  {
+
+            dou = obj;
+        }
+        return dou;
+    }
 
 
     /**

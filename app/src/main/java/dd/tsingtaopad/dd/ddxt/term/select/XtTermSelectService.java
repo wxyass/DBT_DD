@@ -85,7 +85,7 @@ public class XtTermSelectService extends XtTermService{
      * @param lineKeys 线路表主键
      * @return
      */
-    public List<XtTermSelectMStc> queryZsTerminal(List<String> lineKeys) {
+    public List<XtTermSelectMStc> queryZsTerminal2(List<String> lineKeys) {
 
         List<XtTermSelectMStc> terminalList = new ArrayList<XtTermSelectMStc>();
         try {
@@ -95,6 +95,19 @@ public class XtTermSelectService extends XtTermService{
                 List<XtTermSelectMStc> termlst = dao.queryZsLineTermLst(helper, lineKeys.get(i));
                 terminalList.addAll(termlst);
             }
+        } catch (SQLException e) {
+            Log.e(TAG, "获取线路表DAO对象失败", e);
+        }
+        return terminalList;
+    }
+    public List<XtTermSelectMStc> queryZsTerminal(List<String> lineKeys) {
+
+        List<XtTermSelectMStc> terminalList = new ArrayList<XtTermSelectMStc>();
+        try {
+            DatabaseHelper helper = DatabaseHelper.getHelper(context);
+            MstTerminalinfoMDao dao = helper.getDao(MstTerminalinfoM.class);
+            List<XtTermSelectMStc> termlst = dao.queryZsTestLineTermLst(helper);
+            terminalList.addAll(termlst);
         } catch (SQLException e) {
             Log.e(TAG, "获取线路表DAO对象失败", e);
         }

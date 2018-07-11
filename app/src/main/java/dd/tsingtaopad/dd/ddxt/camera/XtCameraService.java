@@ -22,6 +22,7 @@ import dd.tsingtaopad.db.table.MitValpicMTemp;
 import dd.tsingtaopad.db.table.MstCameraInfoMTemp;
 import dd.tsingtaopad.db.table.MstTerminalinfoMCart;
 import dd.tsingtaopad.db.table.MstTerminalinfoMTemp;
+import dd.tsingtaopad.db.table.MstTerminalinfoMZsCart;
 import dd.tsingtaopad.dd.ddxt.shopvisit.XtShopVisitService;
 import dd.tsingtaopad.main.visit.shopvisit.termvisit.camera.domain.CameraInfoStc;
 import dd.tsingtaopad.main.visit.shopvisit.termvisit.sayhi.domain.MstTerminalInfoMStc;
@@ -108,7 +109,7 @@ public class XtCameraService extends XtShopVisitService {
 
     // 保存照片记录到追溯 数据库
     public String saveZsPicData(MitValpicMTemp valpicMTemp, String picname, String imagefileString,
-                              String termId, MstTerminalinfoMCart termCart, String valterid,MstTerminalInfoMStc mstTerminalInfoMStc) {
+                                String termId, MstTerminalinfoMZsCart termCart, String valterid, MstTerminalInfoMStc mstTerminalInfoMStc) {
 
         DbtLog.logUtils(TAG, "queryCurrentPicRecord()-获取当天拍照记录");
         //List<CameraInfoStc> lst = new ArrayList<CameraInfoStc>();
@@ -123,7 +124,8 @@ public class XtCameraService extends XtShopVisitService {
                 mitValpicMTemp.setValterid(valterid); // 追溯主键
                 mitValpicMTemp.setPictypekey(valpicMTemp.getPictypekey());// 图片类型主键(UUID)
                 mitValpicMTemp.setPicname(picname);// 图片名称
-                mitValpicMTemp.setTerminalname(termCart.getTerminalname());// 本地图片路径 -> 改为终端名称
+                //mitValpicMTemp.setTerminalname(termCart.getTerminalname());// 本地图片路径 -> 改为终端名称
+                mitValpicMTemp.setTerminalname(mstTerminalInfoMStc.getTerminalname());// 本地图片路径 -> 改为终端名称
                 mitValpicMTemp.setCameradata(DateUtil.getDateTimeStr(1));// 拍照时间
                 mitValpicMTemp.setPictypename(valpicMTemp.getPictypename());// 图片类型(中文名称)
                 mitValpicMTemp.setImagefileString(imagefileString);// 将图片文件转成String保存在数据库

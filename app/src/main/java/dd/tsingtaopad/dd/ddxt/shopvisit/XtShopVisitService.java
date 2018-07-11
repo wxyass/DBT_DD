@@ -41,6 +41,7 @@ import dd.tsingtaopad.db.dao.MstTermLedgerInfoDao;
 import dd.tsingtaopad.db.dao.MstTerminalinfoMCartDao;
 import dd.tsingtaopad.db.dao.MstTerminalinfoMDao;
 import dd.tsingtaopad.db.dao.MstTerminalinfoMTempDao;
+import dd.tsingtaopad.db.dao.MstTerminalinfoMZsCartDao;
 import dd.tsingtaopad.db.dao.MstVisitMDao;
 import dd.tsingtaopad.db.dao.MstVisitMTempDao;
 import dd.tsingtaopad.db.dao.MstVistproductInfoDao;
@@ -83,6 +84,7 @@ import dd.tsingtaopad.db.table.MstTermLedgerInfo;
 import dd.tsingtaopad.db.table.MstTerminalinfoM;
 import dd.tsingtaopad.db.table.MstTerminalinfoMCart;
 import dd.tsingtaopad.db.table.MstTerminalinfoMTemp;
+import dd.tsingtaopad.db.table.MstTerminalinfoMZsCart;
 import dd.tsingtaopad.db.table.MstVisitM;
 import dd.tsingtaopad.db.table.MstVisitMTemp;
 import dd.tsingtaopad.db.table.MstVistproductInfo;
@@ -2161,7 +2163,11 @@ public class XtShopVisitService {
                             //mitValcheckitemMTemp.setAddcount(item.getAddcount());//  变化量varchar2(36) null,
                             //mitValcheckitemMTemp.setTotalcount(item.getTotalcount());// 现有量 varchar2(36) null,
                             mitValcheckitemMTemp.setProductkey(item.getProductkey()); // 产品key varchar2(36) null,
-                            mitValcheckitemMTemp.setValitem(item.getAddcount() + item.getTotalcount() + "");// 采集项原值结果量
+                            // Double sd = item.getTotalcount();
+                            double total = FunUtil.isBlankOrNullToDouble(item.getTotalcount());
+                            double add = FunUtil.isBlankOrNullToDouble(item.getAddcount());
+                            double plus = add + total;
+                            mitValcheckitemMTemp.setValitem(plus + "");// 采集项原值结果量
                             // mitValcheckitemMTemp.setValitemval(item.getAddcount() + item.getTotalcount() + "");// 采集项正确结果量
                             mitValcheckitemMTemp.setCreuser(item.getCreuser());
                             mitValcheckitemMTemp.setUpdateuser(item.getUpdateuser());
@@ -2361,6 +2367,26 @@ public class XtShopVisitService {
         try {
             DatabaseHelper helper = DatabaseHelper.getHelper(context);
             MstTerminalinfoMCartDao dao = helper.getDao(MstTerminalinfoMCart.class);
+            termInfo = dao.queryForId(termId);
+
+        } catch (SQLException e) {
+            Log.e(TAG, "获取终端表DAO对象失败", e);
+        }
+
+        return termInfo;
+    }
+    /**
+     * 获取追溯终端购物车 记录信息
+     *
+     * @param termId 终端ID
+     * @return
+     */
+    public MstTerminalinfoMZsCart findZsTermById(String termId) {
+
+        MstTerminalinfoMZsCart termInfo = null;
+        try {
+            DatabaseHelper helper = DatabaseHelper.getHelper(context);
+            MstTerminalinfoMZsCartDao dao = helper.getDao(MstTerminalinfoMZsCart.class);
             termInfo = dao.queryForId(termId);
 
         } catch (SQLException e) {

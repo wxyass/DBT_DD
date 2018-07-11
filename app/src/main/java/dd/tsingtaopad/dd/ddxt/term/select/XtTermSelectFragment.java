@@ -160,6 +160,8 @@ public class XtTermSelectFragment extends BaseFragmentSupport implements View.On
         String addTime = PrefUtils.getString(getActivity(), GlobalValues.XT_CART_TIME, DateUtil.getDateTimeStr(7));
         if(!DateUtil.getDateTimeStr(7).equals(addTime)){
             selectedList.clear();
+            // 隔天清空购物车表数据
+            xtSelectService.deleteCartData("MST_TERMINALINFO_M_CART","1");
         }
 
         setSelectTerm();// 设置已添加购物车的符号
@@ -386,8 +388,8 @@ public class XtTermSelectFragment extends BaseFragmentSupport implements View.On
         // 跳转购物车Fragment
         if (TOFRAGMENT == type) {
             if(selectedList.size()>0){
-                // 清空购物车表数据  // 购物车表ddtype 1:协同  2:追溯
-                xtSelectService.deleteCartData("MST_TERMINALINFO_M_CART","1");
+                // 清空购物车表数据  // 购物车表ddtype 1:协同  2:追溯   (因为每次请求终端数据,会将之前的终端表数据删除,当复制购物车表时,会复制null,所以不再删除购物车表了)
+                // xtSelectService.deleteCartData("MST_TERMINALINFO_M_CART","1");
                 // 复制终端临时表
                 for (XtTermSelectMStc xtselect : selectedList) {
                     copyMstTerminalinfoMCart(xtselect);
@@ -461,7 +463,9 @@ public class XtTermSelectFragment extends BaseFragmentSupport implements View.On
     // 查找终端,并复制到终端购物车
     public void copyMstTerminalinfoMCart(XtTermSelectMStc termSelectMStc) {
         MstTerminalinfoM term = xtSelectService.findTermByTerminalkey(termSelectMStc.getTerminalkey());
-        xtSelectService.toCopyMstTerminalinfoMCartData(term,"1");
+        if(term!=null){
+            xtSelectService.toCopyMstTerminalinfoMCartData(term,"1");
+        }
     }
 
     // 条目点击 确定拜访一家终端

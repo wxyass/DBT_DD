@@ -1,27 +1,34 @@
 package dd.tsingtaopad.dd.ddzs.zsterm.zsselect;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import dd.tsingtaopad.R;
+import dd.tsingtaopad.adapter.DayDetailSelectKeyValueAdapter;
 import dd.tsingtaopad.base.BaseFragmentSupport;
 import dd.tsingtaopad.business.visit.bean.AreaGridRoute;
 import dd.tsingtaopad.core.net.HttpUrl;
@@ -34,6 +41,7 @@ import dd.tsingtaopad.core.net.domain.RequestStructBean;
 import dd.tsingtaopad.core.net.domain.ResponseStructBean;
 import dd.tsingtaopad.core.util.dbtutil.ConstValues;
 import dd.tsingtaopad.core.util.dbtutil.DateUtil;
+import dd.tsingtaopad.core.util.dbtutil.FunUtil;
 import dd.tsingtaopad.core.util.dbtutil.JsonUtil;
 import dd.tsingtaopad.core.util.dbtutil.NetStatusUtil;
 import dd.tsingtaopad.core.util.dbtutil.PrefUtils;
@@ -51,6 +59,8 @@ import dd.tsingtaopad.db.table.MstMarketareaM;
 import dd.tsingtaopad.db.table.MstRouteM;
 import dd.tsingtaopad.db.table.MstTerminalinfoM;
 import dd.tsingtaopad.db.table.MstVisitM;
+import dd.tsingtaopad.dd.ddweekplan.domain.DayDetailStc;
+import dd.tsingtaopad.dd.ddxt.invoicing.addinvoicing.XtAddInvocingService;
 import dd.tsingtaopad.dd.ddxt.term.select.IXtTermSelectClick;
 import dd.tsingtaopad.dd.ddxt.term.select.XtTermSelectService;
 import dd.tsingtaopad.dd.ddxt.term.select.adapter.XtTermSelectAdapter;
@@ -58,19 +68,22 @@ import dd.tsingtaopad.dd.ddxt.term.select.domain.XtTermSelectMStc;
 import dd.tsingtaopad.dd.ddxt.updata.XtUploadService;
 import dd.tsingtaopad.dd.ddzs.zsshopvisit.ZsVisitShopActivity;
 import dd.tsingtaopad.dd.ddzs.zsterm.zscart.ZsTermCartFragment;
+import dd.tsingtaopad.dd.ddzs.zsterm.zsselect.domain.TermSpecialStc;
 import dd.tsingtaopad.home.app.MainService;
 import dd.tsingtaopad.home.app.MyApplication;
 import dd.tsingtaopad.home.initadapter.GlobalValues;
 import dd.tsingtaopad.http.HttpParseJson;
+import dd.tsingtaopad.initconstvalues.domain.KvStc;
 import dd.tsingtaopad.util.requestHeadUtil;
 
 /**
+ * 专项追溯 用于终端筛选
  * Created by yangwenmin on 2018/3/12.
  */
 
-public class ZsTermSelectFragment extends BaseFragmentSupport implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.OnClickListener, AdapterView.OnItemClickListener {
 
-    private final String TAG = "ZsTermSelectFragment";
+    private final String TAG = "ZsTermSpecialFragment";
 
     private RelativeLayout backBtn;
     private RelativeLayout confirmBtn;
@@ -90,12 +103,18 @@ public class ZsTermSelectFragment extends BaseFragmentSupport implements View.On
     private LinearLayout termRouteLl;
     private ListView termRouteLv;
     private Button searchBtn;
+    private Button mineBtn;
+    private Button vieBtn;
+    private RadioButton agreeRb;
+    private Button termsearchBtn;
     private Button addAllTermBtn;
 
     private XtTermSelectMStc xtTermSelectMStc;
     private List<MitValcheckterM> mitValcheckterMs;
 
     private XtTermSelectService xtSelectService;
+    private XtAddInvocingService addInvocingService;
+    private TermSpecialStc specialStc;
     // MstTerminalinfoM term = xtSelectService.findTermByTerminalkey(xtselect.getTerminalkey());
     //private List<XtTermSelectMStc> selectedList = new ArrayList<XtTermSelectMStc>();// 当前adapter的数据
     private List<XtTermSelectMStc> selectedList = new ArrayList<XtTermSelectMStc>();// 当前adapter的数据
@@ -106,12 +125,14 @@ public class ZsTermSelectFragment extends BaseFragmentSupport implements View.On
 
     private AlertView mAlertViewExt;//窗口拓展
 
-    private String routeKey;
+    private String areaKey ="";
+    private String gridKey="";
+    private String routeKey="";
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_xtbf_termselect, container, false);
+        View view = inflater.inflate(R.layout.fragment_xtbf_termspecial, container, false);
         initView(view);
         return view;
     }
@@ -127,15 +148,26 @@ public class ZsTermSelectFragment extends BaseFragmentSupport implements View.On
         confirmBtn.setOnClickListener(this);
         backBtn.setOnClickListener(this);
 
-        areaBtn = (DropdownButton) view.findViewById(R.id.xtbf_termselect_area);
-        gridBtn = (DropdownButton) view.findViewById(R.id.xtbf_termselect_grid);
-        routeBtn = (DropdownButton) view.findViewById(R.id.xtbf_termselect_route);
-        searchBtn = (Button) view.findViewById(R.id.xtbf_termselect_bt_search);
-        addAllTermBtn = (Button) view.findViewById(R.id.xtbf_termselect_bt_add);
-        termRouteLl = (LinearLayout) view.findViewById(R.id.xtbf_termselect_ll_lv);
-        termRouteLv = (ListView) view.findViewById(R.id.xtbf_termselect_lv);
+        areaBtn = (DropdownButton) view.findViewById(R.id.xtbf_termspecial_area);
+        gridBtn = (DropdownButton) view.findViewById(R.id.xtbf_termspecial_grid);
+        routeBtn = (DropdownButton) view.findViewById(R.id.xtbf_termspecial_route);
+        searchBtn = (Button) view.findViewById(R.id.xtbf_termspecial_bt_search);
+
+        addAllTermBtn = (Button) view.findViewById(R.id.xtbf_termspecial_bt_add);
+        termRouteLl = (LinearLayout) view.findViewById(R.id.xtbf_termspecial_ll_lv);
+        termRouteLv = (ListView) view.findViewById(R.id.xtbf_termspecial_lv);
+
+        mineBtn = (Button) view.findViewById(R.id.xtbf_termspecial_mine);
+        vieBtn = (Button) view.findViewById(R.id.xtbf_termspecial_vie);
+        agreeRb = (RadioButton) view.findViewById(R.id.xtbf_termspecial_agree);
+        termsearchBtn = (Button) view.findViewById(R.id.xtbf_termspecial_search);
+
+
         addAllTermBtn.setOnClickListener(this);
         searchBtn.setOnClickListener(this);
+        mineBtn.setOnClickListener(this);
+        vieBtn.setOnClickListener(this);
+        termsearchBtn.setOnClickListener(this);
     }
 
     @Override
@@ -148,6 +180,8 @@ public class ZsTermSelectFragment extends BaseFragmentSupport implements View.On
         ConstValues.handler = handler;
 
         xtSelectService = new XtTermSelectService(getActivity());
+        addInvocingService = new XtAddInvocingService(getActivity(),null);
+         specialStc = new TermSpecialStc();
 
         // 设置三个下拉按钮的假数据
         initSomeData();
@@ -185,8 +219,6 @@ public class ZsTermSelectFragment extends BaseFragmentSupport implements View.On
         if (selectedList.size() > 0) {
             confirmTv.setText("确定" + "(" + selectedList.size() + ")");
         }
-
-
     }
 
     // 三个下拉按钮的点击监听
@@ -217,8 +249,8 @@ public class ZsTermSelectFragment extends BaseFragmentSupport implements View.On
                 } else {
                     gridList.clear();
                     gridList.add(new DropBean("请选择定格"));
-
-                    List<MstGridM> valueLst = xtSelectService.getMstGridMList(areaList.get(Postion).getKey());
+                    areaKey = areaList.get(Postion).getKey();
+                    List<MstGridM> valueLst = xtSelectService.getMstGridMList(areaKey);
                     for (MstGridM mstGridM : valueLst) {
                         gridList.add(new DropBean(mstGridM.getGridname(), mstGridM.getGridkey()));
                     }
@@ -241,7 +273,8 @@ public class ZsTermSelectFragment extends BaseFragmentSupport implements View.On
                 } else {
                     routeList.clear();
                     routeList.add(new DropBean("请选择路线"));
-                    List<MstRouteM> valueLst = xtSelectService.getMstRouteMList(gridList.get(Postion).getKey());
+                    gridKey = gridList.get(Postion).getKey();
+                    List<MstRouteM> valueLst = xtSelectService.getMstRouteMList(gridKey);
                     for (MstRouteM mstRouteM : valueLst) {
                         routeList.add(new DropBean(mstRouteM.getRoutename(), mstRouteM.getRoutekey()));
                     }
@@ -341,7 +374,7 @@ public class ZsTermSelectFragment extends BaseFragmentSupport implements View.On
                 }
 
                 break;
-            case R.id.xtbf_termselect_bt_add:// 全部添加
+            case R.id.xtbf_termspecial_bt_add:// 全部添加
                 for (XtTermSelectMStc selectMStc : termList) {
                     //MstTerminalinfoM term = xtSelectService.findTermByTerminalkey(selectMStc.getTerminalkey());
                     if (selectedList.contains(selectMStc)) {
@@ -353,12 +386,275 @@ public class ZsTermSelectFragment extends BaseFragmentSupport implements View.On
                 selectAdapter.notifyDataSetChanged();
                 confirmTv.setText("确定" + "(" + selectedList.size() + ")");
                 break;
-            case R.id.xtbf_termselect_bt_search:// 查询
+            case R.id.xtbf_termspecial_bt_search:// 查询
                 Toast.makeText(getActivity(),"未查到终端,请到相关路线下寻找",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.xtbf_termspecial_mine:// 我品
+                alertZsShow3();
+                break;
+            case R.id.xtbf_termspecial_vie:// 竞品
+                alertZsShow4();
+                break;
+            case R.id.xtbf_termspecial_search:// 查询
+                getTermData();
                 break;
             default:
                 break;
         }
+    }
+
+    private void getTermData() {
+        if(agreeRb.isChecked()){
+            specialStc.setIsagree("1");
+        }else{
+            specialStc.setIsagree("0");
+        }
+        specialStc.setAreakey(areaKey);
+        specialStc.setGridkey(gridKey);
+        specialStc.setRoutekey(routeKey);
+        specialStc.setTablename("'MST_TERMINALINFO_M");
+
+        String json = JsonUtil.toJson(specialStc);
+
+    }
+
+    // 我品
+    public void alertZsShow3() {
+
+        final List<KvStc> typeLst  = addInvocingService.getProList();
+
+        // 如果追溯项大于0,添加全选按钮
+        if(typeLst.size()>0){
+            typeLst.add(0, new KvStc("-1", "全选", "-1"));
+        }
+
+        // 加载视图
+        View extView = LayoutInflater.from(getActivity()).inflate(R.layout.alert_daydetail_form, null);
+
+        final ListView dataLv = (ListView) extView.findViewById(R.id.alert_daydetal_lv);
+        RelativeLayout rl_back1 = (RelativeLayout) extView.findViewById(R.id.top_navigation_rl_back);
+        android.support.v7.widget.AppCompatTextView bt_back1 = (android.support.v7.widget.AppCompatTextView) extView.findViewById(R.id.top_navigation_bt_back);
+        android.support.v7.widget.AppCompatTextView title = (android.support.v7.widget.AppCompatTextView) extView.findViewById(R.id.top_navigation_tv_title);
+        RelativeLayout rl_confirm1 = (RelativeLayout) extView.findViewById(R.id.top_navigation_rl_confirm);
+        android.support.v7.widget.AppCompatTextView bt_confirm1 = (android.support.v7.widget.AppCompatTextView) extView.findViewById(R.id.top_navigation_bt_confirm);
+
+        title.setText("选择结果");
+        rl_confirm1.setVisibility(View.VISIBLE);
+        bt_confirm1.setText("确定");
+
+
+        // 获取已选中的集合
+        List<String>  selectedId = new ArrayList<String>();
+        if(!TextUtils.isEmpty(specialStc.getMineprokey())){
+            selectedId = Arrays.asList(specialStc.getMineprokey().split(","));
+        }
+
+        // 标记选中状态
+        for (KvStc kvstc : typeLst) {
+            for (String itemselect : selectedId) {
+                if (kvstc.getKey().equals(itemselect)) {
+                    kvstc.setIsDefault("1");// 0:没选中 1已选中
+                }
+            }
+        }
+
+        final DayDetailSelectKeyValueAdapter sadapter = new DayDetailSelectKeyValueAdapter(getActivity(),typeLst,
+                new String[]{"key","value"}, null);
+        dataLv.setAdapter(sadapter);
+        dataLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int posi, long arg3) {
+                CheckBox itemCB = (CheckBox) arg1.findViewById(R.id.common_multiple_cb_lvitem);
+                TextView itemTv = (TextView) arg1.findViewById(R.id.common_multiple_tv_lvitem);
+                itemCB.toggle();//点击整行可以显示效果
+
+                String checkkey = FunUtil.isBlankOrNullTo(itemTv.getHint(), " ") + ",";
+                String checkname = FunUtil.isBlankOrNullTo(itemTv.getText().toString(), " ") + ",";
+
+                if(0 == posi){// 全选
+                    if(itemCB.isChecked()){// 是选中状态
+                        StringBuffer key = new StringBuffer();
+                        StringBuffer name = new StringBuffer();
+                        for (KvStc stc : typeLst){
+                            if(!"-1".equals(stc.getParentKey())){
+                                key.append(stc.getKey());
+                                key.append(",");
+                                name.append(stc.getValue());
+                                name.append(",");
+                            }
+                            stc.setIsDefault("1");
+                        }
+                        specialStc.setMineprokey(key.toString());
+                        specialStc.setMineproname(name.toString());
+                    }else{// 是未选中状态
+                        for (KvStc stc : typeLst){
+                            stc.setIsDefault("0");
+                        }
+                        specialStc.setMineprokey("");
+                        specialStc.setMineproname("");
+                    }
+                }else{
+                    if (itemCB.isChecked()) {
+                        specialStc.setMineprokey(FunUtil.isBlankOrNullTo(specialStc.getMineprokey(),"")  + checkkey);
+                        specialStc.setMineproname(FunUtil.isBlankOrNullTo(specialStc.getMineproname(),"") + checkname);
+                        ((KvStc)typeLst.get(posi)).setIsDefault("1");
+                    } else {
+                        specialStc.setMineprokey(FunUtil.isBlankOrNullTo(specialStc.getMineprokey(),"") .replace(checkkey, ""));
+                        specialStc.setMineproname(FunUtil.isBlankOrNullTo(specialStc.getMineproname(),"").replace(checkname, ""));
+                        ((KvStc)typeLst.get(posi)).setIsDefault("0");
+                        ((KvStc)typeLst.get(0)).setIsDefault("0");
+                    }
+                }
+
+
+                sadapter.notifyDataSetChanged();
+            }
+        });
+
+
+        // 显示对话框
+        final AlertDialog dialog = new AlertDialog.Builder(getActivity()).create();
+        dialog.setView(extView, 0, 0, 0, 0);
+        dialog.setCancelable(true);
+        dialog.show();
+
+
+        // 确定
+        rl_confirm1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+
+                dialog.dismiss();
+            }
+        });
+
+        // 取消
+        rl_back1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+
+                dialog.dismiss();
+            }
+        });
+    }
+    // 竞品
+    public void alertZsShow4() {
+
+        final List<KvStc> typeLst  = addInvocingService.getVieProList();
+
+        // 如果追溯项大于0,添加全选按钮
+        if(typeLst.size()>0){
+            typeLst.add(0, new KvStc("-1", "全选", "-1"));
+        }
+
+        // 加载视图
+        View extView = LayoutInflater.from(getActivity()).inflate(R.layout.alert_daydetail_form, null);
+
+        final ListView dataLv = (ListView) extView.findViewById(R.id.alert_daydetal_lv);
+        RelativeLayout rl_back1 = (RelativeLayout) extView.findViewById(R.id.top_navigation_rl_back);
+        android.support.v7.widget.AppCompatTextView bt_back1 = (android.support.v7.widget.AppCompatTextView) extView.findViewById(R.id.top_navigation_bt_back);
+        android.support.v7.widget.AppCompatTextView title = (android.support.v7.widget.AppCompatTextView) extView.findViewById(R.id.top_navigation_tv_title);
+        RelativeLayout rl_confirm1 = (RelativeLayout) extView.findViewById(R.id.top_navigation_rl_confirm);
+        android.support.v7.widget.AppCompatTextView bt_confirm1 = (android.support.v7.widget.AppCompatTextView) extView.findViewById(R.id.top_navigation_bt_confirm);
+
+        title.setText("选择竞品");
+        rl_confirm1.setVisibility(View.VISIBLE);
+        bt_confirm1.setText("确定");
+
+
+        // 获取已选中的集合
+        List<String>  selectedId = new ArrayList<String>();
+        if(!TextUtils.isEmpty(specialStc.getMineprokey())){
+            selectedId = Arrays.asList(specialStc.getMineprokey().split(","));
+        }
+
+        // 标记选中状态
+        for (KvStc kvstc : typeLst) {
+            for (String itemselect : selectedId) {
+                if (kvstc.getKey().equals(itemselect)) {
+                    kvstc.setIsDefault("1");// 0:没选中 1已选中
+                }
+            }
+        }
+
+        final DayDetailSelectKeyValueAdapter sadapter = new DayDetailSelectKeyValueAdapter(getActivity(),typeLst,
+                new String[]{"key","value"}, null);
+        dataLv.setAdapter(sadapter);
+        dataLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int posi, long arg3) {
+                CheckBox itemCB = (CheckBox) arg1.findViewById(R.id.common_multiple_cb_lvitem);
+                TextView itemTv = (TextView) arg1.findViewById(R.id.common_multiple_tv_lvitem);
+                itemCB.toggle();//点击整行可以显示效果
+
+                String checkkey = FunUtil.isBlankOrNullTo(itemTv.getHint(), " ") + ",";
+                String checkname = FunUtil.isBlankOrNullTo(itemTv.getText().toString(), " ") + ",";
+
+                if(0 == posi){// 全选
+                    if(itemCB.isChecked()){// 是选中状态
+                        StringBuffer key = new StringBuffer();
+                        StringBuffer name = new StringBuffer();
+                        for (KvStc stc : typeLst){
+                            if(!"-1".equals(stc.getParentKey())){
+                                key.append(stc.getKey());
+                                key.append(",");
+                                name.append(stc.getValue());
+                                name.append(",");
+                            }
+                            stc.setIsDefault("1");
+                        }
+                        specialStc.setVieprokey(key.toString());
+                        specialStc.setVieproname(name.toString());
+                    }else{// 是未选中状态
+                        for (KvStc stc : typeLst){
+                            stc.setIsDefault("0");
+                        }
+                        specialStc.setVieprokey("");
+                        specialStc.setVieproname("");
+                    }
+                }else{
+                    if (itemCB.isChecked()) {
+                        specialStc.setVieprokey(FunUtil.isBlankOrNullTo(specialStc.getVieprokey(),"")  + checkkey);
+                        specialStc.setVieproname(FunUtil.isBlankOrNullTo(specialStc.getVieproname(),"") + checkname);
+                        ((KvStc)typeLst.get(posi)).setIsDefault("1");
+                    } else {
+                        specialStc.setVieprokey(FunUtil.isBlankOrNullTo(specialStc.getVieprokey(),"") .replace(checkkey, ""));
+                        specialStc.setVieproname(FunUtil.isBlankOrNullTo(specialStc.getVieproname(),"").replace(checkname, ""));
+                        ((KvStc)typeLst.get(posi)).setIsDefault("0");
+                        ((KvStc)typeLst.get(0)).setIsDefault("0");
+                    }
+                }
+
+
+                sadapter.notifyDataSetChanged();
+            }
+        });
+
+
+        // 显示对话框
+        final AlertDialog dialog = new AlertDialog.Builder(getActivity()).create();
+        dialog.setView(extView, 0, 0, 0, 0);
+        dialog.setCancelable(true);
+        dialog.show();
+
+
+        // 确定
+        rl_confirm1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+
+                dialog.dismiss();
+            }
+        });
+
+        // 取消
+        rl_back1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+
+                dialog.dismiss();
+            }
+        });
     }
 
     // listview的条目点击事件
@@ -653,15 +949,15 @@ public class ZsTermSelectFragment extends BaseFragmentSupport implements View.On
     public static class MyHandler extends Handler {
 
         // 软引用
-        SoftReference<ZsTermSelectFragment> fragmentRef;
+        SoftReference<ZsTermSpecialFragment> fragmentRef;
 
-        public MyHandler(ZsTermSelectFragment fragment) {
-            fragmentRef = new SoftReference<ZsTermSelectFragment>(fragment);
+        public MyHandler(ZsTermSpecialFragment fragment) {
+            fragmentRef = new SoftReference<ZsTermSpecialFragment>(fragment);
         }
 
         @Override
         public void handleMessage(Message msg) {
-            ZsTermSelectFragment fragment = fragmentRef.get();
+            ZsTermSpecialFragment fragment = fragmentRef.get();
             if (fragment == null) {
                 return;
             }

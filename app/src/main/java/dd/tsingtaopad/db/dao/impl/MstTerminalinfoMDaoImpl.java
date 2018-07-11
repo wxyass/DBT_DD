@@ -84,6 +84,21 @@ public class MstTerminalinfoMDaoImpl extends BaseDaoImpl<MstTerminalinfoM, Strin
     }
 
     /**
+     *  终端追溯, 选择终端界面 有多少终端显示多少
+     * <p>
+     * 用于：终端追溯  -- 终端选择  (2018年5月2日新加 )
+     *
+     * @param helper
+     * @return
+     */
+    public List<XtTermSelectMStc> queryZsTestLineTermLst(SQLiteOpenHelper helper) {
+        List<XtTermSelectMStc> lst = new ArrayList<XtTermSelectMStc>();
+        lst.addAll(getZsTestLineTermList_sequence(helper, true));
+        lst.addAll(getZsTestLineTermList_sequence(helper, false));
+        return lst;
+    }
+
+    /**
      * 获取购物车下的终端列表  (协同)
      * <p>
      * 用于：巡店拜访  -- 终端选择  (2018年3月23日16:50:54 新加 )
@@ -337,6 +352,71 @@ public class MstTerminalinfoMDaoImpl extends BaseDaoImpl<MstTerminalinfoM, Strin
         while (cursor.moveToNext()) {
             item = new XtTermSelectMStc();
             item.setRoutekey(lineId);
+            item.setTerminalkey(cursor.getString(cursor.getColumnIndex("terminalkey")));
+            item.setTerminalcode(cursor.getString(cursor.getColumnIndex("terminalcode")));
+            item.setTerminalname(cursor.getString(cursor.getColumnIndex("terminalname")));
+            item.setStatus(cursor.getString(cursor.getColumnIndex("status")));
+            item.setSequence(cursor.getString(cursor.getColumnIndex("sequence")));
+            item.setMineFlag(cursor.getString(cursor.getColumnIndex("isself")));
+            item.setVieFlag(cursor.getString(cursor.getColumnIndex("iscmp")));
+            item.setMineProtocolFlag(cursor.getString(cursor.getColumnIndex("selftreaty")));
+            item.setVieProtocolFlag(cursor.getString(cursor.getColumnIndex("cmptreaty")));
+            item.setEndDate(cursor.getString(cursor.getColumnIndex("videnddate")));
+            visitDate = cursor.getString(cursor.getColumnIndex("visitdate"));
+            if (visitDate != null && currDay.equals(visitDate.substring(0, 8))) {// 若果 记录是当天生成的
+                item.setVisitTime(visitDate);
+                item.setSyncFlag(cursor.getString(cursor.getColumnIndex("padisconsistent")));// 0:未上传  1:已上传
+                item.setUploadFlag("1");// 0:不上传  1:需上传
+            } else {
+                item.setSyncFlag(null);
+                item.setUploadFlag(null);
+            }
+            item.setMinorchannel(FunUtil.isNullSetSpace(cursor.getString(cursor.getColumnIndex("minorchannel"))));
+            item.setTerminalType(cursor.getString(cursor.getColumnIndex("terminalType")));
+            String status = item.getStatus();
+            if (!"2".equals(status)) {//有效终端
+                lst.add(item);
+            }
+        }
+        return lst;
+    }
+    /***
+     * 获取追溯终端集合, 终端表有多少出多少
+     * @param helper
+     * @param isSequence  是否查询已排序的终端
+     * @return
+     */
+    private List<XtTermSelectMStc> getZsTestLineTermList_sequence(SQLiteOpenHelper helper, boolean isSequence) {
+        List<XtTermSelectMStc> lst = new ArrayList<XtTermSelectMStc>();
+        StringBuffer buffer = new StringBuffer();
+        buffer.append("select m.terminalkey, m.terminalcode, m.routekey, m.terminalname,m.status,m.sequence, ");
+        //buffer.append("vm.isself, vm.iscmp, vm.selftreaty, vm.cmptreaty, ");
+        buffer.append("vmn.isself, vmn.iscmp, m.selftreaty, vmn.cmptreaty, ");// 我品 竞品 我品协议店,竞品协议店
+        buffer.append("vm.padisconsistent,  m.minorchannel, ");// 销售渠道编码
+        buffer.append("dm.dicname terminalType, vm.visitdate,vm.videnddate ");// 终端渠道类型 拜访时间
+        buffer.append("from mst_terminalinfo_m m ");
+        buffer.append("left join cmm_datadic_m dm on m.minorchannel = dm.diccode ");
+        buffer.append("     and coalesce(dm.deleteflag,'0') != '1' ");
+        buffer.append("left join v_mit_valter_m_newest vm on m.terminalkey = vm.terminalkey ");
+        buffer.append("left join v_visit_m_newest vmn on m.terminalkey = vmn.terminalkey ");
+        buffer.append("where coalesce(m.status,'0') != '2'  ");
+        buffer.append(" and coalesce(m.deleteflag,'0') != '1' ");
+        if (isSequence) {
+            buffer.append(" and m.sequence!='' and m.sequence not null ");// 终端排序不为空
+        } else {
+            buffer.append(" and (m.sequence='' or m.sequence is null) ");// 终端排序为空的
+        }
+        buffer.append("order by m.sequence+0 asc, m.orderbyno, m.terminalname ");
+
+        String visitDate = "";
+        String currDay = DateUtil.formatDate(new Date(), "yyyyMMdd");
+
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(buffer.toString(), null);
+        XtTermSelectMStc item;
+        while (cursor.moveToNext()) {
+            item = new XtTermSelectMStc();
+            item.setRoutekey(cursor.getString(cursor.getColumnIndex("routekey")));
             item.setTerminalkey(cursor.getString(cursor.getColumnIndex("terminalkey")));
             item.setTerminalcode(cursor.getString(cursor.getColumnIndex("terminalcode")));
             item.setTerminalname(cursor.getString(cursor.getColumnIndex("terminalname")));

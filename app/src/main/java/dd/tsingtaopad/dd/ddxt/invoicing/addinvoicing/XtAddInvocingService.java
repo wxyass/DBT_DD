@@ -12,6 +12,7 @@ import dd.tsingtaopad.db.DatabaseHelper;
 import dd.tsingtaopad.db.dao.MstAgencyinfoMDao;
 import dd.tsingtaopad.db.dao.MstProductMDao;
 import dd.tsingtaopad.db.table.MstAgencyinfoM;
+import dd.tsingtaopad.db.table.MstCmproductinfoM;
 import dd.tsingtaopad.db.table.MstProductM;
 import dd.tsingtaopad.dd.ddxt.shopvisit.XtShopVisitService;
 import dd.tsingtaopad.initconstvalues.domain.KvStc;
@@ -52,6 +53,21 @@ public class XtAddInvocingService extends XtShopVisitService {
             DatabaseHelper helper = DatabaseHelper.getHelper(context);
             MstProductMDao dao = helper.getDao(MstProductM.class);
             proList= dao.getProductData(helper);
+        } catch (SQLException e) {
+            Log.e(TAG, "获取拜访指标失败", e);
+            e.printStackTrace();
+        }
+        return proList;
+    }
+    /**
+     * 查询所有竞品
+     */
+    public List<KvStc> getVieProList() {
+        List<KvStc> proList=new ArrayList<KvStc>();
+        try {
+            DatabaseHelper helper = DatabaseHelper.getHelper(context);
+            MstProductMDao dao = helper.getDao(MstProductM.class);
+            proList= dao.getVieProductData(helper);
         } catch (SQLException e) {
             Log.e(TAG, "获取拜访指标失败", e);
             e.printStackTrace();

@@ -31,6 +31,7 @@ import dd.tsingtaopad.dd.ddxt.term.cart.XtTermCartFragment;
 import dd.tsingtaopad.dd.ddxt.term.select.XtTermSelectFragment;
 import dd.tsingtaopad.dd.ddzs.zsterm.zscart.ZsTermCartFragment;
 import dd.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTermSelectFragment;
+import dd.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTermSpecialFragment;
 import dd.tsingtaopad.home.app.MainService;
 
 /**
@@ -173,7 +174,8 @@ public class VisitFragment extends BaseFragmentSupport implements View.OnClickLi
                 break;
             case R.id.dd_btn_zdzs:// 终端追溯
                 if (getCmmAreaMCount() > 0) {
-                    changeHomeFragment(new ZsTermSelectFragment(), "zstermselectfragment");
+                    // changeHomeFragment(new ZsTermSelectFragment(), "zstermselectfragment");// 常规追溯
+                    changeHomeFragment(new ZsTermSpecialFragment(), "zstermselectfragment");// 专项追溯
                 } else {
                     Toast.makeText(getActivity(), R.string.sync_data, Toast.LENGTH_SHORT).show();
                     changeHomeFragment(new SyncBasicFragment(), "syncbasicfragment");
