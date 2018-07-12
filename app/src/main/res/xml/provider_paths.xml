@@ -4,6 +4,9 @@
         name="download"
         path=""/>
     <external-path
+        name="download"
+        path="."/>
+    <external-path
         name="external_files"
         path="."/>
     <!--内置SD卡 Environment.getExternalStorageDirectory() .表示共享所有的目录，也可以指定共享的目录-->

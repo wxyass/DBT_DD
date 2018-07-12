@@ -211,6 +211,7 @@ public class DownApkFragment extends BaseFragmentSupport {
                 })
                 .name(apkName)
                 .dir(downPath)
+                //.dir("")
                 .builde()
                 .download();
     }

@@ -3,7 +3,8 @@ package dd.tsingtaopad.core.net.download;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
-
+import android.os.Build;
+import android.support.v4.content.FileProvider;
 
 
 import java.io.File;
@@ -92,7 +93,8 @@ public class SaveFileTask extends AsyncTask<Object, Integer, File> {
         if(REQUEST!=null){
             REQUEST.onRequestEnd();
         }
-        // autoInstallApk(file);
+        autoInstallApk(file);
+        //InstallAPK(file);
     }
 
     // 若是.apk文件, 直接安装
@@ -102,6 +104,34 @@ public class SaveFileTask extends AsyncTask<Object, Integer, File> {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.setAction(Intent.ACTION_VIEW);
             intent.setDataAndType(Uri.fromFile(file),"application/vnd.android.package-archive");
+            Latte.getApplicationContext().startActivity(intent);
+        }
+    }
+
+    /**
+     * 安装apk
+     *
+     * @param apkfile
+     */
+    private void InstallAPK(File apkfile) {
+        /*File apkfile = new File(apkpath);
+        if (!apkfile.exists()) {
+            return;
+        }*/
+
+        final Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Uri contentUri = FileProvider.getUriForFile(Latte.getApplicationContext(), "dd.tsingtaopad.provider", apkfile);
+            //添加这一句表示对目标应用临时授权该Uri所代表的文件
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            intent.setDataAndType(contentUri, "application/vnd.android.package-archive");
+            Latte.getApplicationContext().startActivity(intent);
+        } else {
+            intent.setDataAndType(Uri.fromFile(apkfile), "application/vnd.android.package-archive");
             Latte.getApplicationContext().startActivity(intent);
         }
     }
