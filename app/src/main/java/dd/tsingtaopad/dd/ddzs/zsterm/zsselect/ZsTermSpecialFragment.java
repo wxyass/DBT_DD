@@ -109,8 +109,10 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
     private UltraRefreshListView termRouteLv;
     private EditText termNameEt;
     private Button searchBtn;
-    private Button mineBtn;
-    private Button vieBtn;
+    private RelativeLayout mineBtn;
+    private RelativeLayout vieBtn;
+    private TextView mine_con1;
+    private TextView vie_con1;
     private CheckBox agreeRb;
     private Button termsearchBtn;
     private Button addAllTermBtn;
@@ -167,8 +169,10 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
         mPtrFrame = ((PtrClassicFrameLayout) view.findViewById(R.id.ultra_ptr));
         termRouteLv = (UltraRefreshListView) view.findViewById(R.id.xtbf_termspecial_lv);
 
-        mineBtn = (Button) view.findViewById(R.id.xtbf_termspecial_mine);
-        vieBtn = (Button) view.findViewById(R.id.xtbf_termspecial_vie);
+        mineBtn = (RelativeLayout) view.findViewById(R.id.xtbf_termspecial_mine);
+        vieBtn = (RelativeLayout) view.findViewById(R.id.xtbf_termspecial_vie);
+        mine_con1 = (TextView) view.findViewById(R.id.xtbf_termspecial_mine_con1);
+        vie_con1 = (TextView) view.findViewById(R.id.xtbf_termspecial_vie_con1);
         agreeRb = (CheckBox) view.findViewById(R.id.xtbf_termspecial_agree);
         termsearchBtn = (Button) view.findViewById(R.id.xtbf_termspecial_search);
 
@@ -594,6 +598,7 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
                     }
                 }
 
+                mine_con1.setText(specialStc.getMineproname());
 
                 sadapter.notifyDataSetChanged();
             }
@@ -713,6 +718,7 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
                     }
                 }
 
+                vie_con1.setText(specialStc.getVieproname());
 
                 sadapter.notifyDataSetChanged();
             }

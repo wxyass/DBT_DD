@@ -1,4 +1,4 @@
-package dd.tsingtaopad.business.system;
+package dd.tsingtaopad.business.system.question;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,6 +8,8 @@ import android.support.v7.widget.AppCompatTextView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -23,7 +25,10 @@ import dd.tsingtaopad.core.net.callback.ISuccess;
 import dd.tsingtaopad.core.net.domain.RequestHeadStc;
 import dd.tsingtaopad.core.net.domain.RequestStructBean;
 import dd.tsingtaopad.core.net.domain.ResponseStructBean;
+import dd.tsingtaopad.core.util.dbtutil.CheckUtil;
 import dd.tsingtaopad.core.util.dbtutil.ConstValues;
+import dd.tsingtaopad.core.util.dbtutil.DateUtil;
+import dd.tsingtaopad.core.util.dbtutil.FunUtil;
 import dd.tsingtaopad.core.util.dbtutil.JsonUtil;
 import dd.tsingtaopad.core.util.dbtutil.PrefUtils;
 import dd.tsingtaopad.core.util.dbtutil.PropertiesUtil;
@@ -31,13 +36,13 @@ import dd.tsingtaopad.http.HttpParseJson;
 import dd.tsingtaopad.util.requestHeadUtil;
 
 /**
- * 关于系统
+ * 问题反馈
  * Created by yangwenmin on 2018/3/12.
  */
 
-public class DdAboutFragment extends BaseFragmentSupport implements View.OnClickListener {
+public class QueryBackFragment extends BaseFragmentSupport implements View.OnClickListener {
 
-    private final String TAG = "DdAboutFragment";
+    private final String TAG = "QueryBackFragment";
 
     private RelativeLayout backBtn;
     private RelativeLayout confirmBtn;
@@ -52,10 +57,14 @@ public class DdAboutFragment extends BaseFragmentSupport implements View.OnClick
 
     public static final int DEALPLAN_NEED_UP = 3303;
 
+    private EditText et_queryback;
+    private EditText et_phone;
+    private Button btn_queryback;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_dd_about, container, false);
+        View view = inflater.inflate(R.layout.fragment_dd_queryback, container, false);
         initView(view);
         return view;
     }
@@ -72,6 +81,11 @@ public class DdAboutFragment extends BaseFragmentSupport implements View.OnClick
         //confirmBtn.setOnClickListener(this);
         backBtn.setOnClickListener(this);
 
+        et_queryback = (EditText) view.findViewById(R.id.queryback_dd_et_queryback);
+        et_phone = (EditText) view.findViewById(R.id.queryback_dd_et_phone);
+        btn_queryback = (Button) view.findViewById(R.id.syssetting_dd_queryback_btn_submit);
+
+        btn_queryback.setOnClickListener(this);
     }
 
     @Override
@@ -81,27 +95,29 @@ public class DdAboutFragment extends BaseFragmentSupport implements View.OnClick
         handler = new MyHandler(this);
 
         initData();
+        // initUrlData();
     }
 
     // 初始化数据
     private void initData() {
-        titleTv.setText("关于系统");
+        titleTv.setText("问题反馈");
     }
 
-    // 修改密码json
-    private void initUrlData(final String pwd, final String newpwd, final String repeatpwd) {
+    private void initUrlData(final String queryback,final String mobile) {
 
         String content = "{" +
                 "areaid:'" + PrefUtils.getString(getActivity(), "departmentid", "") + "'," +
-                "currentpwd:'" + pwd + "'," +
-                "newpwd:'" + newpwd + "'," +
+                "id:'" + FunUtil.getUUID() + "'," +
+                "mobile:'" + mobile + "'," +
+                "remark:'" + queryback + "'," +
+                "credate:'" + DateUtil.getDateTimeStr(8) + "'," +
                 "creuser:'" + PrefUtils.getString(getActivity(), "userid", "") + "'" +
                 "}";
-        ceshiHttp("opt_save_repwd", "workplan", content);
+        ceshiHttp("opt_save_queryback", "workplan", content);
     }
 
     /**
-     * 发起请求
+     * 发起请求数据
      *
      * @param optcode 请求码
      * @param table   请求表名(请求不同的)
@@ -131,11 +147,12 @@ public class DdAboutFragment extends BaseFragmentSupport implements View.OnClick
                         } else {
                             ResponseStructBean resObj = new ResponseStructBean();
                             resObj = JsonUtil.parseJson(json, ResponseStructBean.class);
-                            // 保存信息
+                            // 保存登录信息
                             if (ConstValues.SUCCESS.equals(resObj.getResHead().getStatus())) {
                                 // 保存信息
                                 String formjson = resObj.getResBody().getContent();
                                 parseTableJson(formjson);
+
                             } else {
                                 Toast.makeText(getActivity(), resObj.getResHead().getContent(), Toast.LENGTH_SHORT).show();
                             }
@@ -160,8 +177,9 @@ public class DdAboutFragment extends BaseFragmentSupport implements View.OnClick
 
     // 解析数据
     private void parseTableJson(String formjson) {
-
+        Toast.makeText(getActivity(),"问题已反馈",Toast.LENGTH_SHORT).show();
     }
+
 
     // 点击事件
     @Override
@@ -172,14 +190,45 @@ public class DdAboutFragment extends BaseFragmentSupport implements View.OnClick
                 supportFragmentManager.popBackStack();
                 break;
             case R.id.top_navigation_rl_confirm://
+                // Toast.makeText(getActivity(), "弹出日历", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.syssetting_dd_btn_submit:// 上传数据库
-                // 上传数据库
-                //initUrlData();
+            case R.id.syssetting_dd_queryback_btn_submit:// 上传问题反馈
+                // 上传问题反馈
+                toUpQueryback();
                 break;
 
             default:
                 break;
+        }
+    }
+
+    // 上传问题反馈
+    private void toUpQueryback() {
+        String queryback = et_queryback.getText().toString();//
+        String ephone = et_phone.getText().toString();//
+
+        // 判断密码是否合法
+        changeQueryback(queryback,ephone);
+    }
+
+    /**
+     * 问题反馈
+     *
+     * @param queryback
+     * @return
+     */
+    public void changeQueryback(final String queryback,final String ephone) {
+        int msg = -1;
+        if (CheckUtil.isBlankOrNull(queryback)) {
+            msg = R.string.sys_queryback_fail;// 用户密码不能为空
+        }
+        // 弹出提示信息
+        if (msg != -1) {
+            Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+        } else {
+            // 发送请求
+            initUrlData(queryback,ephone);
+            supportFragmentManager.popBackStack();
         }
     }
 
@@ -193,15 +242,15 @@ public class DdAboutFragment extends BaseFragmentSupport implements View.OnClick
     public static class MyHandler extends Handler {
 
         // 软引用
-        SoftReference<DdAboutFragment> fragmentRef;
+        SoftReference<QueryBackFragment> fragmentRef;
 
-        public MyHandler(DdAboutFragment fragment) {
-            fragmentRef = new SoftReference<DdAboutFragment>(fragment);
+        public MyHandler(QueryBackFragment fragment) {
+            fragmentRef = new SoftReference<QueryBackFragment>(fragment);
         }
 
         @Override
         public void handleMessage(Message msg) {
-            DdAboutFragment fragment = fragmentRef.get();
+            QueryBackFragment fragment = fragmentRef.get();
             if (fragment == null) {
                 return;
             }
@@ -220,7 +269,6 @@ public class DdAboutFragment extends BaseFragmentSupport implements View.OnClick
 
     // 上传未通过 或已通过
     private void upRepair(int i) {
-
 
     }
 

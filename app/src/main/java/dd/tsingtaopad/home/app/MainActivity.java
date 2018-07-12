@@ -12,7 +12,7 @@ import java.lang.ref.SoftReference;
 import dd.tsingtaopad.R;
 import dd.tsingtaopad.base.BaseActivity;
 import dd.tsingtaopad.base.BaseFragmentSupport;
-import dd.tsingtaopad.business.system.DownApkFragment;
+import dd.tsingtaopad.business.system.version.DownApkFragment;
 import dd.tsingtaopad.business.system.version.VersionService;
 import dd.tsingtaopad.core.util.dbtutil.ConstValues;
 import dd.tsingtaopad.core.util.dbtutil.PrefUtils;

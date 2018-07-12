@@ -1,8 +1,6 @@
 package dd.tsingtaopad.home.homefragment;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -13,7 +11,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,12 +18,8 @@ import dd.tsingtaopad.R;
 import dd.tsingtaopad.base.BaseFragmentSupport;
 import dd.tsingtaopad.business.first.FirstFragment;
 import dd.tsingtaopad.business.operation.OperationFragment;
-import dd.tsingtaopad.business.system.DownApkFragment;
 import dd.tsingtaopad.business.system.SystemFragment;
-import dd.tsingtaopad.business.system.version.VersionService;
 import dd.tsingtaopad.business.visit.VisitFragment;
-import dd.tsingtaopad.core.util.dbtutil.ConstValues;
-import dd.tsingtaopad.core.util.dbtutil.PrefUtils;
 import dd.tsingtaopad.core.util.dbtutil.logutil.DbtLog;
 import dd.tsingtaopad.home.initadapter.MyFragmentPagerAdapter;
 

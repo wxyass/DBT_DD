@@ -139,6 +139,8 @@ public class ZsWjVieAmendFragment extends BaseFragmentSupport implements View.On
             zdzs_chatvie_wj_amend_rl_con2.setText("否");
         }
 
+        zdzs_chatvie_wj_amend_dd_et_report.setText(mitValcmpotherMTemp.getValiscmpremark());
+
     }
 
     @Override

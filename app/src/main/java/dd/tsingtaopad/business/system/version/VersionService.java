@@ -1,20 +1,13 @@
 package dd.tsingtaopad.business.system.version;
 
-import android.app.Dialog;
 import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
-import android.util.Log;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import dd.tsingtaopad.business.system.DownApkFragment;
-import dd.tsingtaopad.business.system.repwd.ApkStc;
-import dd.tsingtaopad.business.visit.VisitFragment;
+import dd.tsingtaopad.business.system.repwd.domain.ApkStc;
 import dd.tsingtaopad.core.net.HttpUrl;
 import dd.tsingtaopad.core.net.RestClient;
 import dd.tsingtaopad.core.net.callback.IError;
@@ -25,10 +18,8 @@ import dd.tsingtaopad.core.net.domain.RequestStructBean;
 import dd.tsingtaopad.core.net.domain.ResponseStructBean;
 import dd.tsingtaopad.core.util.dbtutil.ConstValues;
 import dd.tsingtaopad.core.util.dbtutil.JsonUtil;
-import dd.tsingtaopad.core.util.dbtutil.PrefUtils;
 import dd.tsingtaopad.core.util.dbtutil.PropertiesUtil;
 import dd.tsingtaopad.core.util.dbtutil.logutil.DbtLog;
-import dd.tsingtaopad.home.initadapter.GlobalValues;
 import dd.tsingtaopad.http.HttpParseJson;
 import dd.tsingtaopad.util.requestHeadUtil;
 

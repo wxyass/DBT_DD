@@ -1,4 +1,4 @@
-package dd.tsingtaopad.business.system.repwd;
+package dd.tsingtaopad.business.system.repwd.domain;
 
 import java.io.Serializable;
 

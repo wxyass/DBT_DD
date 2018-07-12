@@ -46,62 +46,85 @@
             android:layout_weight="1"
             android:textSize="@dimen/font_size2"/>
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <Button
-                android:id="@+id/xtbf_termspecial_mine"
-                style="@style/xtbf_btn_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/width_height_size08"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/bg_select_green"
-                android:text="我品"
-                android:textSize="@dimen/font_size4"
-                />
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <Button
-                android:id="@+id/xtbf_termspecial_vie"
-                style="@style/xtbf_btn_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/width_height_size08"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/bg_select_green"
-                android:text="竞品"
-                android:textSize="@dimen/font_size4"
-                />
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <CheckBox
-                android:id="@+id/xtbf_termspecial_agree"
-                style="@style/xtbf_btn_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/width_height_size08"
-                android:layout_centerHorizontal="true"
-                android:text="协议店"
-                android:textColor="@color/prompt_bkr"
-                android:textSize="@dimen/font_size4"
-                />
-        </RelativeLayout>
     </LinearLayout>
+
+
 
     <!--我品 竞品 协议店 搜索-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:gravity="center_vertical">
 
+        <!-- 我品：  -->
+        <RelativeLayout
+            android:id="@+id/xtbf_termspecial_mine"
+            style="@style/xtbf_sayhi_rl_all"
+            android:visibility="visible">
+
+            <!--标题-->
+            <TextView
+                style="@style/zdzs_sayhi_title"
+                android:text="我品"/>
+
+            <!--内容1-->
+            <TextView
+                android:id="@+id/xtbf_termspecial_mine_con1"
+                style="@style/zdzs_sayhi_content1"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="请选择"/>
+
+            <!--内容2-->
+            <TextView
+                style="@style/zdzs_sayhi_content2"
+                android:text=""/>
+
+            <!--未稽查-->
+            <TextView
+                android:id="@+id/meeting_dd_rl_startdate_statue"
+                style="@style/zdzs_sayhi_statue"
+                />
+
+            <ImageView
+                style="@style/xtbf_sayhi_third_tv"
+                android:visibility="visible"/>
+        </RelativeLayout>
+        <!-- 竞品：  -->
+        <RelativeLayout
+            android:id="@+id/xtbf_termspecial_vie"
+            style="@style/xtbf_sayhi_rl_all"
+            android:visibility="visible">
+
+            <!--标题-->
+            <TextView
+                style="@style/zdzs_sayhi_title"
+                android:text="竞品"/>
+
+            <!--内容1-->
+            <TextView
+                android:id="@+id/xtbf_termspecial_vie_con1"
+                style="@style/zdzs_sayhi_content1"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="请选择"/>
+
+            <!--内容2-->
+            <TextView
+                style="@style/zdzs_sayhi_content2"
+                android:text=""/>
+
+            <!--未稽查-->
+            <TextView
+                android:id="@+id/meeting_dd_rl_enddate_statue"
+                style="@style/zdzs_sayhi_statue"
+                android:text=""/>
+
+            <ImageView
+                style="@style/xtbf_sayhi_third_tv"
+                android:visibility="visible"/>
+        </RelativeLayout>
 
 
     </LinearLayout>
@@ -124,7 +147,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="@dimen/width_height_size08"
-            android:layout_weight="7"
+            android:layout_weight="6"
             android:background="@drawable/bg_visit_record"
             android:orientation="horizontal"
             >
@@ -135,7 +158,7 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/width_height_size08"
                 android:layout_gravity="center"
-                android:layout_weight="6"
+                android:layout_weight="5"
                 android:background="@null"
                 android:ems="14"
                 android:hint="@string/termlist_search_hit"
@@ -201,12 +224,31 @@
                 android:textSize="@dimen/font_size4"
                 />
         </RelativeLayout>
+
+        <!--是否协议店-->
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2">
+
+            <CheckBox
+                android:id="@+id/xtbf_termspecial_agree"
+                style="@style/xtbf_btn_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/width_height_size08"
+                android:layout_centerHorizontal="true"
+                android:text="协议店"
+                android:textColor="@color/prompt_bkr"
+                android:textSize="@dimen/font_size4"
+                />
+        </RelativeLayout>
+
         <!-- 全部添加 -->
         <RelativeLayout
             android:id="@+id/xtbf_termspecial_Rl_search"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="3">
+            android:layout_weight="2">
 
             <Button
                 android:id="@+id/xtbf_termspecial_search"

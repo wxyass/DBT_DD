@@ -214,7 +214,7 @@ public class ZsChatVieAmendFragment extends BaseFragmentSupport implements View.
         }
 
 
-        zdzs_chatvie_amend_dd_et_vieagency.setText(valsupplyMTemp.getValcmpagency());// 经销商名称
+        zdzs_chatvie_amend_dd_et_vieagency.setText(valsupplyMTemp.getValcmpagencyval());// 经销商名称// Valcmpagencyval
 
         zdzs_chatvie_amend_rl_dd_con1_qd.setText(valsupplyMTemp.getValcmpjdj());// 渠道价
         zdzs_chatvie_amend_rl_con2_qd.setText(valsupplyMTemp.getValcmpjdjval());// 渠道价

@@ -165,9 +165,8 @@ public class ZsChatvieAdapter extends
         }
 
         // 经销商名称
-        holder.agencyTv.setHint("业代未输入经销商名称");
+        holder.agencyTv.setHint("未输入经销商名称");
         holder.agencyTv.setText(item.getValcmpagency());
-
 
         // 渠道价
         if (ConstValues.FLAG_0.equals(item.getValcmpjdj())) {

@@ -8,8 +8,8 @@ android {
         applicationId "dd.tsingtaopad"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
-        versionCode 56
-        versionName "2.4.3.6.8"
+        versionCode 60
+        versionName "2.4.3.7.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -23,6 +23,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {

@@ -16,7 +16,7 @@ public class MstCollectionexerecordInfo implements java.io.Serializable {
 	// Fields
 
 	@DatabaseField(canBeNull = false, id = true)
-	private String colrecordkey;
+	private String colrecordkey;// Colrecordkey
 	@DatabaseField
 	private String visitkey;
 	@DatabaseField

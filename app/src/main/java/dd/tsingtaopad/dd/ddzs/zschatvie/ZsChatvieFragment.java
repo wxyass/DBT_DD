@@ -137,7 +137,7 @@ public class ZsChatvieFragment extends XtBaseVisitFragment implements View.OnCli
     //List<XtChatVieStc> dataLst;
     List<MitValcmpMTemp> dataLst;
     ZsChatVieService zsChatVieService;
-    private MstVisitMTemp visitMTemp;
+    // private MstVisitMTemp visitMTemp;
     MitValcmpMTemp valsupplyMTemp;
 
     // 初始化数据
@@ -147,7 +147,7 @@ public class ZsChatvieFragment extends XtBaseVisitFragment implements View.OnCli
         //dataLst = xtChatVieService.queryVieProTemp(visitId);
         dataLst = zsChatVieService.queryValVieSupplyTemp(mitValterMTempKey);
 
-        visitMTemp = zsChatVieService.findVisitTempById(visitId);// 拜访临时表记录
+        /*visitMTemp = zsChatVieService.findVisitTempById(visitId);// 拜访临时表记录
 
         if (visitMTemp != null) {
             // 是否瓦解竞品  0:未瓦解  1:瓦解
@@ -156,7 +156,7 @@ public class ZsChatvieFragment extends XtBaseVisitFragment implements View.OnCli
             } else {
                 zdzs_chatvie_rl_clearvie_con1.setText("否");
             }
-        }
+        }*/
 
         // 竞品信息
         zsChatvieAdapter = new ZsChatvieAdapter(getActivity(), dataLst,new IClick(){
@@ -176,6 +176,14 @@ public class ZsChatvieFragment extends XtBaseVisitFragment implements View.OnCli
 
         // 瓦解竞品
         mitValcmpotherMTemp = zsChatVieService.findMitValcmpotherMTempById(mitValterMTempKey);
+        if (mitValcmpotherMTemp != null) {
+            // 是否瓦解竞品  0:未瓦解  1:瓦解
+            if (ConstValues.FLAG_1.equals(mitValcmpotherMTemp.getValistruecmpval()) ) {
+                zdzs_chatvie_rl_clearvie_con1.setText("是");
+            } else {
+                zdzs_chatvie_rl_clearvie_con1.setText("否");
+            }
+        }
         // 设置瓦解竞品稽查
         setWjFalg();
 
@@ -188,11 +196,15 @@ public class ZsChatvieFragment extends XtBaseVisitFragment implements View.OnCli
         // 未稽查
         if("N".equals(mitValcmpotherMTemp.getValistrueflag())){// 达成组数正确与否
             zdzs_chatvie_rl_clearvie_statue.setText("错误");
+            zdzs_chatvie_rl_clearvie_statue.setTextColor(getResources().getColor(R.color.zdzs_dd_error));
         }else if("Y".equals(mitValcmpotherMTemp.getValistrueflag())){
             zdzs_chatvie_rl_clearvie_statue.setText("正确");
+            zdzs_chatvie_rl_clearvie_statue.setTextColor(getResources().getColor(R.color.zdzs_dd_yes));
         }else{
             zdzs_chatvie_rl_clearvie_statue.setText("未稽查");
+            zdzs_chatvie_rl_clearvie_statue.setTextColor(getResources().getColor(R.color.gray_color_666666));
         }
+
     }
 
     @Override

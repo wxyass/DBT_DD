@@ -74,7 +74,6 @@ public class MitValcmpMTemp implements java.io.Serializable {
     private String valvisitremark;// 拜访记录
     @DatabaseField
     private String valcmpagencyval;// 竞品经销商正确值
-
     @DatabaseField
     private String creuser ;//varchar2(128) null,
     @DatabaseField

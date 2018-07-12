@@ -8,43 +8,27 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.lang.ref.SoftReference;
-import java.text.DecimalFormat;
 
 import dd.tsingtaopad.R;
 import dd.tsingtaopad.base.BaseFragmentSupport;
-import dd.tsingtaopad.business.system.repwd.ApkStc;
+import dd.tsingtaopad.business.system.about.DdAboutFragment;
+import dd.tsingtaopad.business.system.question.QueryBackFragment;
+import dd.tsingtaopad.business.system.repwd.RePwdFragment;
+import dd.tsingtaopad.business.system.version.DownApkFragment;
 import dd.tsingtaopad.business.system.version.VersionService;
-import dd.tsingtaopad.core.net.HttpUrl;
-import dd.tsingtaopad.core.net.RestClient;
-import dd.tsingtaopad.core.net.callback.IError;
-import dd.tsingtaopad.core.net.callback.IFailure;
-import dd.tsingtaopad.core.net.callback.ISuccess;
-import dd.tsingtaopad.core.net.callback.OnDownLoadProgress;
-import dd.tsingtaopad.core.net.domain.RequestHeadStc;
-import dd.tsingtaopad.core.net.domain.RequestStructBean;
-import dd.tsingtaopad.core.net.domain.ResponseStructBean;
 import dd.tsingtaopad.core.ui.loader.LatteLoader;
 import dd.tsingtaopad.core.util.dbtutil.ConstValues;
-import dd.tsingtaopad.core.util.dbtutil.JsonUtil;
 import dd.tsingtaopad.core.util.dbtutil.NetStatusUtil;
 import dd.tsingtaopad.core.util.dbtutil.PrefUtils;
-import dd.tsingtaopad.core.util.dbtutil.PropertiesUtil;
-import dd.tsingtaopad.core.util.dbtutil.logutil.DbtLog;
 import dd.tsingtaopad.dd.ddxt.updata.XtUploadService;
-import dd.tsingtaopad.dd.ddzs.zsinvoicing.ZsInvocingAmendFragment;
 import dd.tsingtaopad.home.initadapter.GlobalValues;
-import dd.tsingtaopad.http.HttpParseJson;
-import dd.tsingtaopad.util.requestHeadUtil;
 
 /**
  * Created by yangwenmin on 2018/3/12.
