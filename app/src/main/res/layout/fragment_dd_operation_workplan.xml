@@ -72,7 +72,7 @@
             </RelativeLayout>
 
             <!-- 工作计划 -->
-            <dd.tsingtaopad.view.NoScrollListView
+            <et.tsingtaopad.view.NoScrollListView
                 android:id="@+id/operation_workplan_monthplan_lv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

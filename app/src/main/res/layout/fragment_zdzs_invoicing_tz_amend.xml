@@ -27,7 +27,7 @@
             android:text="终端进货台账"/>
     </LinearLayout>
 
-    <dd.tsingtaopad.view.NoScrollListView
+    <et.tsingtaopad.view.NoScrollListView
         android:id="@+id/zs_invoicing_tz_amend_lv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

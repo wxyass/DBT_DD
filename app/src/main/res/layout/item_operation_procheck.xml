@@ -99,7 +99,7 @@
             android:layout_height="1dp"
             android:background="@color/bg_app"/>
 
-        <dd.tsingtaopad.view.NoScrollListView
+        <et.tsingtaopad.view.NoScrollListView
             android:id="@+id/item_operation_procheck_lv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

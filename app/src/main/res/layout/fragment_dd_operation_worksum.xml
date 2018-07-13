@@ -72,7 +72,7 @@
             </RelativeLayout>
 
             <!-- 追溯终端数量 -->
-            <dd.tsingtaopad.view.NoScrollListView
+            <et.tsingtaopad.view.NoScrollListView
                 android:id="@+id/operation_worksum_termnum_lv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -114,7 +114,7 @@
             </RelativeLayout>
 
             <!-- 追溯协议店数量Lv -->
-            <dd.tsingtaopad.view.NoScrollListView
+            <et.tsingtaopad.view.NoScrollListView
                 android:id="@+id/operation_worksum_agree_lv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -155,7 +155,7 @@
             </RelativeLayout>
 
             <!-- 锁定率Lv -->
-            <dd.tsingtaopad.view.NoScrollListView
+            <et.tsingtaopad.view.NoScrollListView
                 android:id="@+id/operation_worksum_sdlv_lv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

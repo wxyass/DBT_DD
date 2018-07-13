@@ -126,14 +126,14 @@
                 android:visibility="visible"
                 android:padding="1dp">
 
-                <dd.tsingtaopad.view.NoScrollListView
+                <et.tsingtaopad.view.NoScrollListView
                     android:id="@+id/agency_check_lv_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:cacheColorHint="@color/bg_lv_item"
                     android:divider="@color/list_line"
                     android:dividerHeight="5dp">
-                </dd.tsingtaopad.view.NoScrollListView>
+                </et.tsingtaopad.view.NoScrollListView>
             </LinearLayout>
 
             <View

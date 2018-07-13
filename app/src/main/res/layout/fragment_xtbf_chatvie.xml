@@ -138,7 +138,7 @@
                     android:layout_marginLeft="20dp"
                     android:text="@string/chatvie_clearvie"/>
 
-                <dd.tsingtaopad.view.DdSlideSwitch
+                <et.tsingtaopad.view.DdSlideSwitch
                     android:id="@+id/xtbf_chatvie_sw_clearvie"
                     style="@style/page_label_small"
                     android:layout_width="wrap_content"

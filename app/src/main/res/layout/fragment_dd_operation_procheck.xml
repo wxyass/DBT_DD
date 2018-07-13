@@ -72,7 +72,7 @@
             </RelativeLayout>
 
             <!-- 我品铺货数据 -->
-            <dd.tsingtaopad.view.NoScrollListView
+            <et.tsingtaopad.view.NoScrollListView
                 android:id="@+id/operation_procheck_procheck_lv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

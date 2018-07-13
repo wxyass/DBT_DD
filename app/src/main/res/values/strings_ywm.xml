@@ -69,6 +69,7 @@
     <string name="default_week_title_info">本周计划完成目标汇总：</string>
     <string name="default_week_title_info2">本周计划完成目标汇总</string>
     <string name="default_input">请输入</string>
+    <string name="default_select">请选择</string>
     <string name="default_input_vieagencyname">请输入竞品经销商名称</string>
     <string name="point">点</string>
 
@@ -634,5 +635,13 @@
 
     <!--同步数据-->
     <string name="sync_data">基础信息不完整,需先下载数据</string>
+
+    <!--晨会录入-->
+    <string name="operation_meetingrecord_fail">会议记录不能为空</string>
+    <string name="operation_participant_fail">参会人不能为空</string>
+    <string name="operation_compere_fail">主持人不能为空</string>
+    <string name="operation_startdate_fail">开始时间不能为空</string>
+    <string name="operation_enddate_fail">结束时间不能为空</string>
+    <string name="operation_back_fail">后台成功接收,但返回的数据为null</string>
 
 </resources>

@@ -74,7 +74,7 @@
             </RelativeLayout>
 
             <!-- 追溯竞品数据 -->
-            <dd.tsingtaopad.view.NoScrollListView
+            <et.tsingtaopad.view.NoScrollListView
                 android:id="@+id/operation_cmppro_monthplan_lv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="dd.tsingtaopad">
+          package="et.tsingtaopad">
 
     <application
-        android:name="dd.tsingtaopad.home.app.MyApplication"
+        android:name="et.tsingtaopad.home.app.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -14,7 +14,7 @@
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="dd.tsingtaopad.provider"
+            android:authorities="et.tsingtaopad.fileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -29,7 +29,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>-->
-        <activity android:name="dd.tsingtaopad.login.LoginActivity"
+        <activity android:name="et.tsingtaopad.login.LoginActivity"
                   android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -39,25 +39,25 @@
         </activity>
 
         <!--协同终端 主Activity-->
-        <activity android:name="dd.tsingtaopad.home.app.MainActivity"
+        <activity android:name="et.tsingtaopad.home.app.MainActivity"
                   android:windowSoftInputMode="adjustPan"
                   android:screenOrientation="portrait"/>
 
         <!--协同终端 主Activity-->
-        <activity android:name="dd.tsingtaopad.dd.ddxt.shopvisit.XtVisitShopActivity"
+        <activity android:name="et.tsingtaopad.dd.ddxt.shopvisit.XtVisitShopActivity"
                   android:screenOrientation="portrait"/>
         <!--追溯终端 主Activity-->
-        <activity android:name="dd.tsingtaopad.dd.ddzs.zsshopvisit.ZsVisitShopActivity"
+        <activity android:name="et.tsingtaopad.dd.ddzs.zsshopvisit.ZsVisitShopActivity"
                   android:screenOrientation="portrait"/>
         <!--拍照图片预览-->
-        <activity android:name="dd.tsingtaopad.dd.ddxt.camera.XtShowPicActivity"
+        <activity android:name="et.tsingtaopad.dd.ddxt.camera.XtShowPicActivity"
                   android:screenOrientation="portrait"/>
         <!--签到-->
-        <activity android:name="dd.tsingtaopad.sign.DdSignActivity"
+        <activity android:name="et.tsingtaopad.sign.DdSignActivity"
                   android:screenOrientation="portrait"/>
 
         <!-- 启动应用的时候开启servic 主要负责监听网络变化 执行上传功能 -->
-        <service android:name="dd.tsingtaopad.home.app.AutoUpService" />
+        <service android:name="et.tsingtaopad.home.app.AutoUpService" />
 
         <meta-data
             android:name="designwidth"

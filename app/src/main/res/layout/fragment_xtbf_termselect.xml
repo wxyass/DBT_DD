@@ -15,7 +15,7 @@
         android:background="@color/white"
         android:gravity="center_vertical">
 
-        <dd.tsingtaopad.core.view.dropdownmenu.DropdownButton
+        <et.tsingtaopad.core.view.dropdownmenu.DropdownButton
             android:id="@+id/xtbf_termselect_area"
             android:layout_width="0px"
             android:layout_height="45dp"
@@ -27,7 +27,7 @@
             android:layout_height="30dp"
             android:background="#dfdfdf"/>
 
-        <dd.tsingtaopad.core.view.dropdownmenu.DropdownButton
+        <et.tsingtaopad.core.view.dropdownmenu.DropdownButton
             android:id="@+id/xtbf_termselect_grid"
             android:layout_width="0px"
             android:layout_height="45dp"
@@ -39,7 +39,7 @@
             android:layout_height="30dp"
             android:background="#dfdfdf"/>
 
-        <dd.tsingtaopad.core.view.dropdownmenu.DropdownButton
+        <et.tsingtaopad.core.view.dropdownmenu.DropdownButton
             android:id="@+id/xtbf_termselect_route"
             android:layout_width="0px"
             android:layout_height="45dp"

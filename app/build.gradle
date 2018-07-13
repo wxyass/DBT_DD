@@ -5,13 +5,14 @@ android {
     compileSdkVersion rootProject.compileSdkVersion
     buildToolsVersion rootProject.buildToolsVersion
     defaultConfig {
-        applicationId "dd.tsingtaopad"
+        applicationId "et.tsingtaopad"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
-        versionCode 60
-        versionName "2.4.3.7.2"
+        versionCode 61
+        versionName "2.4.3.7.3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
 
     dexOptions {
         jumboMode true

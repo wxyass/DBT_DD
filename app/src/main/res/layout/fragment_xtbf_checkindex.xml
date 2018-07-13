@@ -95,7 +95,7 @@
             </LinearLayout>
 
             <!-- 促销活动列表 -->
-            <dd.tsingtaopad.view.NoScrollListView
+            <et.tsingtaopad.view.NoScrollListView
                 android:id="@+id/xtbf_checkindex_lv_promotion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -154,7 +154,7 @@
                         android:layout_marginLeft="20dp"
                         android:text="产品组合是否达标"/>
 
-                    <dd.tsingtaopad.view.DdSlideSwitch
+                    <et.tsingtaopad.view.DdSlideSwitch
                         android:id="@+id/xtbf_noproindex_sw_prostatus"
                         style="@style/page_label_small"
                         android:layout_width="wrap_content"
@@ -190,7 +190,7 @@
                         android:layout_marginLeft="20dp"
                         android:text="@string/checkindex_tv_hz"/>
 
-                    <dd.tsingtaopad.view.DdSlideSwitch
+                    <et.tsingtaopad.view.DdSlideSwitch
                         android:id="@+id/xtbf_noproindex_sw_hezuo"
                         style="@style/page_label_small"
                         android:layout_width="wrap_content"
@@ -226,7 +226,7 @@
                         android:layout_marginLeft="20dp"
                         android:text="@string/checkindex_tv_ps"/>
 
-                    <dd.tsingtaopad.view.DdSlideSwitch
+                    <et.tsingtaopad.view.DdSlideSwitch
                         android:id="@+id/xtbf_noproindex_sw_peisong"
                         style="@style/page_label_small"
                         android:layout_width="wrap_content"

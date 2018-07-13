@@ -34,7 +34,7 @@
                     android:layout_marginLeft="20dp"
                     android:text="@string/sayhi_termstatus"/>
 
-                <dd.tsingtaopad.view.DdSlideSwitch
+                <et.tsingtaopad.view.DdSlideSwitch
                     android:id="@+id/xt_sayhi_sw_termstatus"
                     style="@style/page_label_small"
                     android:layout_width="wrap_content"
@@ -67,7 +67,7 @@
                     android:layout_marginLeft="20dp"
                     android:text="@string/sayhi_visitstatus"/>
 
-                <dd.tsingtaopad.view.DdSlideSwitch
+                <et.tsingtaopad.view.DdSlideSwitch
                     android:id="@+id/xt_sayhi_sw_visitstatus"
                     style="@style/page_label_small"
                     android:layout_width="wrap_content"
@@ -131,7 +131,7 @@
                     android:textSize="@dimen/font_size3"
                     android:visibility="gone"/>
 
-                <dd.tsingtaopad.view.DdSlideSwitch
+                <et.tsingtaopad.view.DdSlideSwitch
                     android:id="@+id/xt_sayhi_sw_wopindianzhao"
                     style="@style/page_label_small"
                     android:layout_width="wrap_content"

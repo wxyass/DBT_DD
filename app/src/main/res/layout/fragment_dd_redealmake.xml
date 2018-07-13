@@ -248,7 +248,7 @@
                 android:background="@color/list_line"
                 />
 
-            <dd.tsingtaopad.view.NoScrollListView
+            <et.tsingtaopad.view.NoScrollListView
                 android:id="@+id/zgjh_remake_lv_altime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

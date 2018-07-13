@@ -108,7 +108,7 @@
 
             android:orientation="horizontal">
 
-            <dd.tsingtaopad.view.NoScrollListView
+            <et.tsingtaopad.view.NoScrollListView
                 android:id="@+id/first_lv_sign"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

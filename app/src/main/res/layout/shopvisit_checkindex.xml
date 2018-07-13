@@ -257,7 +257,7 @@
 
             <!-- 促销活动列表 -->
 
-            <dd.tsingtaopad.view.NoScrollListView
+            <et.tsingtaopad.view.NoScrollListView
                 android:id="@+id/checkindex_lv_promotion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -299,7 +299,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/checkindex_tv_pro"/>
 
-                    <dd.tsingtaopad.view.SlideSwitch
+                    <et.tsingtaopad.view.SlideSwitch
                         android:id="@+id/noproindex_sw_prostatus"
                         style="@style/page_label_small"
                         android:layout_width="wrap_content"
@@ -314,7 +314,7 @@
 
                 <!-- 是否高质量配送三大指标 -->
 
-                <dd.tsingtaopad.view.NoScrollListView
+                <et.tsingtaopad.view.NoScrollListView
                     android:id="@+id/checkindex_lv_noproindex"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -353,7 +353,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/checkindex_tv_hz"/>
 
-                    <dd.tsingtaopad.view.SlideSwitch
+                    <et.tsingtaopad.view.SlideSwitch
                         android:id="@+id/noproindex_sw_hezuo"
                         style="@style/page_label_small"
                         android:layout_width="wrap_content"
@@ -416,7 +416,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/checkindex_tv_ps"/>
 
-                    <dd.tsingtaopad.view.SlideSwitch
+                    <et.tsingtaopad.view.SlideSwitch
                         android:id="@+id/noproindex_sw_peisong"
                         style="@style/page_label_small"
                         android:layout_width="wrap_content"

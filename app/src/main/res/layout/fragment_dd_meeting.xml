@@ -61,7 +61,8 @@
                 <TextView
                     android:id="@+id/meeting_dd_rl_startdate_con1"
                     style="@style/zdzs_sayhi_content1"
-                    android:text="请选择"/>
+                    android:hint="@string/default_select"
+                    />
 
                 <!--内容2-->
                 <TextView
@@ -93,7 +94,7 @@
                 <TextView
                     android:id="@+id/meeting_dd_rl_enddate_con1"
                     style="@style/zdzs_sayhi_content1"
-                    android:text="请选择"/>
+                    android:hint="@string/default_select"/>
 
                 <!--内容2-->
                 <TextView
@@ -270,6 +271,10 @@
                     android:text="提交"
                     />
             </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="150dp"/>
 
         </LinearLayout>
     </ScrollView>

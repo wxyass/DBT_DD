@@ -141,7 +141,7 @@
                 android:layout_height="@dimen/width_height_size08"
                 android:layout_weight="2">
 
-                <dd.tsingtaopad.view.DdSlideSwitch
+                <et.tsingtaopad.view.DdSlideSwitch
                     android:id="@+id/item_xt_checkindex_sw_isacomplish"
                     style="@style/page_label_small"
                     android:layout_width="wrap_content"

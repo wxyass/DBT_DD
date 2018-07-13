@@ -78,7 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="2" >
 
-        <dd.tsingtaopad.view.SlideSwitch
+        <et.tsingtaopad.view.SlideSwitch
             android:id="@+id/promotion_sw_status"
             style="@style/page_label_small"
             android:layout_width="wrap_content"

@@ -13,7 +13,7 @@
         android:orientation="horizontal" >
     </LinearLayout>
 
-    <dd.tsingtaopad.main.operation.orders.vhtable.HListViewScrollView
+    <et.tsingtaopad.main.operation.orders.vhtable.HListViewScrollView
         android:id="@+id/chs_datagroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,6 +27,6 @@
             android:gravity="center"
             android:orientation="horizontal" >
         </LinearLayout>
-    </dd.tsingtaopad.main.operation.orders.vhtable.HListViewScrollView>
+    </et.tsingtaopad.main.operation.orders.vhtable.HListViewScrollView>
 
 </LinearLayout>

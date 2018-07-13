@@ -73,7 +73,7 @@
             </RelativeLayout>
 
             <!-- 促销活动数据 -->
-            <dd.tsingtaopad.view.NoScrollListView
+            <et.tsingtaopad.view.NoScrollListView
                 android:id="@+id/operation_promotion_monthplan_lv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

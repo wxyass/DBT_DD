@@ -63,7 +63,7 @@
 
             <!--指标采集列表-->
 
-            <dd.tsingtaopad.view.NoScrollListView
+            <et.tsingtaopad.view.NoScrollListView
                 android:id="@+id/zdzs_checkindex_lv_calculate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
             </LinearLayout>
 
             <!-- 促销活动列表 -->
-            <dd.tsingtaopad.view.NoScrollListView
+            <et.tsingtaopad.view.NoScrollListView
                 android:id="@+id/zdzs_checkindex_lv_promotion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

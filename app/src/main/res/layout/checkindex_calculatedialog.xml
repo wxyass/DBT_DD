@@ -116,7 +116,7 @@
                     android:layout_height="match_parent"
                     android:background="@color/listview_line" />
 
-                <dd.tsingtaopad.view.NoScrollListView
+                <et.tsingtaopad.view.NoScrollListView
                     android:id="@+id/calculatedialog_lv_pro"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
