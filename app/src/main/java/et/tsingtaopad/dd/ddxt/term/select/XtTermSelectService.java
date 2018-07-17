@@ -16,6 +16,7 @@ import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.stmt.Where;
 
 import et.tsingtaopad.R;
+import et.tsingtaopad.core.util.dbtutil.CheckUtil;
 import et.tsingtaopad.core.util.dbtutil.FunUtil;
 import et.tsingtaopad.core.util.dbtutil.ViewUtil;
 import et.tsingtaopad.core.util.dbtutil.logutil.DbtLog;
@@ -25,6 +26,8 @@ import et.tsingtaopad.db.dao.MstTerminalinfoMDao;
 import et.tsingtaopad.db.table.MitRepairM;
 import et.tsingtaopad.db.table.MitRepaircheckM;
 import et.tsingtaopad.db.table.MitRepairterM;
+import et.tsingtaopad.db.table.MitValcheckterM;
+import et.tsingtaopad.db.table.MitValsupplyMTemp;
 import et.tsingtaopad.db.table.MstGridM;
 import et.tsingtaopad.db.table.MstMarketareaM;
 import et.tsingtaopad.db.table.MstRouteM;
@@ -753,6 +756,30 @@ public class XtTermSelectService extends XtTermService{
                 connection.rollback(null);
             } catch (SQLException e1) {
                 Log.e(TAG, "回滚整顿计划主表发生异常", e1);
+            }
+        }
+    }
+
+    /**
+     * 保存追溯 督导模板
+     *
+     * @param mitValcheckterM       督导模板
+     */
+    public void saveZsTemplate(MitValcheckterM mitValcheckterM) {
+        AndroidDatabaseConnection connection = null;
+        try {
+            DatabaseHelper helper = DatabaseHelper.getHelper(context);
+            Dao<MitValcheckterM, String> supplyDao = helper.getDao(MitValcheckterM.class);
+            connection = new AndroidDatabaseConnection(helper.getWritableDatabase(), true);
+            connection.setAutoCommit(false);
+            supplyDao.createOrUpdate(mitValcheckterM);
+            connection.commit(null);
+        } catch (Exception e) {
+            Log.e(TAG, "保存督导模板发生异常", e);
+            try {
+                connection.rollback(null);
+            } catch (SQLException e1) {
+                Log.e(TAG, "回滚督导模板发生异常", e1);
             }
         }
     }

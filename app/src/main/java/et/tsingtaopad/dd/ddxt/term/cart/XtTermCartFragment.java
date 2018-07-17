@@ -39,6 +39,7 @@ import et.tsingtaopad.core.util.dbtutil.JsonUtil;
 import et.tsingtaopad.core.util.dbtutil.NetStatusUtil;
 import et.tsingtaopad.core.util.dbtutil.PrefUtils;
 import et.tsingtaopad.core.util.dbtutil.PropertiesUtil;
+import et.tsingtaopad.core.util.dbtutil.ViewUtil;
 import et.tsingtaopad.core.util.dbtutil.logutil.DbtLog;
 import et.tsingtaopad.core.view.alertview.AlertView;
 import et.tsingtaopad.core.view.alertview.OnDismissListener;
@@ -48,9 +49,11 @@ import et.tsingtaopad.dd.ddxt.shopvisit.XtVisitShopActivity;
 import et.tsingtaopad.dd.ddxt.term.cart.adapter.XtTermCartAdapter;
 import et.tsingtaopad.dd.ddxt.term.select.domain.XtTermSelectMStc;
 import et.tsingtaopad.dd.ddxt.updata.XtUploadService;
+import et.tsingtaopad.dd.ddzs.zsterm.zscart.DdTermCartAdapter;
 import et.tsingtaopad.home.app.MainService;
 import et.tsingtaopad.home.initadapter.GlobalValues;
 import et.tsingtaopad.http.HttpParseJson;
+import et.tsingtaopad.listviewintf.IClick;
 import et.tsingtaopad.main.visit.shopvisit.term.domain.TermSequence;
 import et.tsingtaopad.util.requestHeadUtil;
 
@@ -80,7 +83,7 @@ public class XtTermCartFragment extends BaseFragmentSupport implements View.OnCl
     private XtTermCartService cartService;
     private List<XtTermSelectMStc> termList= new ArrayList<XtTermSelectMStc>();
     private List<XtTermSelectMStc> termAllList= new ArrayList<XtTermSelectMStc>();
-    private XtTermCartAdapter termCartAdapter;
+    private DdTermCartAdapter termCartAdapter;
     private List<XtTermSelectMStc> seqTermList;
 
     private XtTermSelectMStc termStc;
@@ -182,13 +185,13 @@ public class XtTermCartFragment extends BaseFragmentSupport implements View.OnCl
                 break;
             case R.id.top_navigation_rl_confirm:
 
-                if (hasPermission(GlobalValues.LOCAL_PERMISSION)) {
+                /*if (hasPermission(GlobalValues.LOCAL_PERMISSION)) {
                     // 拥有了此权限,那么直接执行业务逻辑
                     confirmVisit();// 去拜访
                 } else {
                     // 还没有对一个权限(请求码,权限数组)这两个参数都事先定义好
                     requestPermission(GlobalValues.LOCAL_CODE, GlobalValues.LOCAL_PERMISSION);
-                }
+                }*/
 
                 break;
             case R.id.xtbf_termcart_bt_search:
@@ -231,7 +234,7 @@ public class XtTermCartFragment extends BaseFragmentSupport implements View.OnCl
         // 购物车是否已经同步数据  false:没有  true:已同步
         boolean issync = PrefUtils.getBoolean(getActivity(),GlobalValues.XT_CART_SYNC,false);
         if(issync){// 已同步
-            termStc = (XtTermSelectMStc)confirmBtn.getTag();
+            // termStc = (XtTermSelectMStc)confirmBtn.getTag();
             // 该终端协同数据是否全部上传
             List<MitVisitM> terminalList = cartService.getXtMitValterM(termStc.getTerminalkey());
             if(terminalList.size()>0){// 未上传
@@ -279,7 +282,24 @@ public class XtTermCartFragment extends BaseFragmentSupport implements View.OnCl
         }
 
         // 设置适配器
-        termCartAdapter = new XtTermCartAdapter(getActivity(), seqTermList, tempLst, confirmBtn, termId,"1");
+        // termCartAdapter = new XtTermCartAdapter(getActivity(), seqTermList, tempLst, confirmBtn, termId,"1");
+        termCartAdapter = new DdTermCartAdapter(getActivity(), seqTermList, tempLst, confirmBtn, termId,"2",new IClick() {
+            @Override
+            public void listViewItemClick(int position, View v) {
+
+                if (ViewUtil.isDoubleClick(v.getId(),position, 1000)){
+
+                    if (hasPermission(GlobalValues.LOCAL_PERMISSION)) {
+                        // 拥有了此权限,那么直接执行业务逻辑
+                        termStc = termList.get(position);
+                        confirmVisit();// 去拜访
+                    } else {
+                        // 还没有对一个权限(请求码,权限数组)这两个参数都事先定义好
+                        requestPermission(GlobalValues.LOCAL_CODE, GlobalValues.LOCAL_PERMISSION);
+                    }
+                }
+            }
+        });// 1协同  2追溯
         termCartLv.setAdapter(termCartAdapter);
 
         // 若巡店拜访页面销毁了,根据下面判断 拜访按钮是否出现

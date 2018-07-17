@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 
 import et.tsingtaopad.R;
 import et.tsingtaopad.base.BaseFragmentSupport;
+import et.tsingtaopad.core.util.dbtutil.PrefUtils;
 import et.tsingtaopad.db.table.MitValagreeMTemp;
 
 /**
@@ -131,6 +132,11 @@ public class ZsAgreeAmendFragment extends BaseFragmentSupport implements View.On
             mitValagreeMTemp.setNotesremark(report);
             mitValagreeMTemp.setNotesflag("N");
         }
+
+        // 当稽查选择错误时
+        int count = PrefUtils.getInt(getActivity(),"valterErrorCount",0);
+        count++;
+        PrefUtils.putInt(getActivity(),"valterErrorCount",count);
 
         handler.sendEmptyMessage(ZsAgreeFragment.AGREE_AMEND_SUC);
 

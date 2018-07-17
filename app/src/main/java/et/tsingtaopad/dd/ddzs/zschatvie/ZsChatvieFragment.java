@@ -30,6 +30,7 @@ import et.tsingtaopad.R;
 import et.tsingtaopad.core.util.dbtutil.CheckUtil;
 import et.tsingtaopad.core.util.dbtutil.ConstValues;
 import et.tsingtaopad.core.util.dbtutil.FunUtil;
+import et.tsingtaopad.core.util.dbtutil.PrefUtils;
 import et.tsingtaopad.core.util.dbtutil.ViewUtil;
 import et.tsingtaopad.core.util.dbtutil.logutil.DbtLog;
 import et.tsingtaopad.core.view.alertview.AlertView;
@@ -62,9 +63,9 @@ public class ZsChatvieFragment extends XtBaseVisitFragment implements View.OnCli
     private RelativeLayout zdzs_chatvie_rl_clearvie;
     private TextView zdzs_chatvie_rl_clearvie_con1;
     private TextView zdzs_chatvie_rl_clearvie_statue;
-    private LinearLayout zdzs_chatvie_ll_visitreport_title;
+    /*private LinearLayout zdzs_chatvie_ll_visitreport_title;
     private LinearLayout zdzs_chatvie_ll_visitreport;
-    private EditText zdzs_chatvie_et_visitreport;
+    private EditText zdzs_chatvie_et_visitreport;*/
 
     ZsChatvieAdapter zsChatvieAdapter;
 
@@ -93,9 +94,9 @@ public class ZsChatvieFragment extends XtBaseVisitFragment implements View.OnCli
         zdzs_chatvie_rl_clearvie = (RelativeLayout) view.findViewById(R.id.zdzs_chatvie_rl_clearvie);
         zdzs_chatvie_rl_clearvie_con1 = (TextView) view.findViewById(R.id.zdzs_chatvie_rl_clearvie_con1);
         zdzs_chatvie_rl_clearvie_statue = (TextView) view.findViewById(R.id.zdzs_chatvie_rl_clearvie_statue);
-        zdzs_chatvie_ll_visitreport_title = (LinearLayout) view.findViewById(R.id.zdzs_chatvie_ll_visitreport_title);
+        /*zdzs_chatvie_ll_visitreport_title = (LinearLayout) view.findViewById(R.id.zdzs_chatvie_ll_visitreport_title);
         zdzs_chatvie_ll_visitreport = (LinearLayout) view.findViewById(R.id.zdzs_chatvie_ll_visitreport);
-        zdzs_chatvie_et_visitreport = (EditText) view.findViewById(R.id.zdzs_chatvie_et_visitreport);
+        zdzs_chatvie_et_visitreport = (EditText) view.findViewById(R.id.zdzs_chatvie_et_visitreport);*/
 
 
         zdzs_chatvie_bt_addrelation.setOnClickListener(this);
@@ -126,11 +127,7 @@ public class ZsChatvieFragment extends XtBaseVisitFragment implements View.OnCli
             zdzs_chatvie_rl_clearvie.setVisibility(View.VISIBLE);
             zdzs_chatvie_ll_clearvie.setVisibility(View.VISIBLE);
         }
-        // 拜访记录
-        if("Y".equals(mitValcheckterM.getVisinote())){
-            zdzs_chatvie_ll_visitreport_title.setVisibility(View.VISIBLE);
-            zdzs_chatvie_ll_visitreport.setVisibility(View.VISIBLE);
-        }
+
     }
 
     //List<XtChatVieStc> dataLst;
@@ -165,7 +162,7 @@ public class ZsChatvieFragment extends XtBaseVisitFragment implements View.OnCli
                 if("Y".equals(dataLst.get(position).getValaddagencysupply())){// 督导新增的供货关系
                     alertShow4(position);
                     //Toast.makeText(getActivity(),dataLst.get(position).getValproname(),Toast.LENGTH_SHORT).show();
-                }else{// 处理业代新增的供货关系
+                }else{// 处理业代的供货关系
                     alertShow3(position);
                 }
             }
@@ -187,7 +184,7 @@ public class ZsChatvieFragment extends XtBaseVisitFragment implements View.OnCli
         setWjFalg();
 
         // 拜访记录
-        zdzs_chatvie_et_visitreport.setText(mitValcmpotherMTemp.getValvisitremark());
+        // zdzs_chatvie_et_visitreport.setText(mitValcmpotherMTemp.getValvisitremark());
     }
 
     // 设置瓦解竞品稽查
@@ -406,6 +403,14 @@ public class ZsChatvieFragment extends XtBaseVisitFragment implements View.OnCli
                 }
 
                 if (right_rb.isChecked()) {
+
+                    // 当稽查错误,又改正确时
+                    if("N".equals(valsupplyMTemp.getValagencysupplyflag())){
+                        int count = PrefUtils.getInt(getActivity(),"valterErrorCount",0);
+                        count--;
+                        PrefUtils.putInt(getActivity(),"valterErrorCount",count);
+                    }
+
                     valsupplyMTemp.setValagencysupplyflag("Y");// 供货关系正确与否
                     valsupplyMTemp.setValproerror("N");// 品项有误
                     valsupplyMTemp.setValagencyerror("N");// 经销商有误
@@ -505,7 +510,7 @@ public class ZsChatvieFragment extends XtBaseVisitFragment implements View.OnCli
         if (ConstValues.FLAG_1.equals(seeFlag)) return;
 
         // 拜访记录
-        mitValcmpotherMTemp.setValvisitremark(zdzs_chatvie_et_visitreport.getText().toString());
+        // mitValcmpotherMTemp.setValvisitremark(zdzs_chatvie_et_visitreport.getText().toString());
 
         // 保存追溯聊竞品页面数据到临时表
         zsChatVieService.saveZsVie(dataLst, mitValcmpotherMTemp);
@@ -699,6 +704,14 @@ public class ZsChatvieFragment extends XtBaseVisitFragment implements View.OnCli
                     public void onItemClick(Object o, int position) {
                         // Toast.makeText(getActivity(), "点击了第" + position + "个", Toast.LENGTH_SHORT).show();
                         if (0 == position) {// 正确
+
+                            // 当稽查错误,又改正确时
+                            if("N".equals(mitValcmpotherMTemp.getValistrueflag())){
+                                int count = PrefUtils.getInt(getActivity(),"valterErrorCount",0);
+                                count--;
+                                PrefUtils.putInt(getActivity(),"valterErrorCount",count);
+                            }
+
                             mitValcmpotherMTemp.setValistrueflag("Y");
                             handler.sendEmptyMessage(ZsChatvieFragment.INIT_WJ_AMEND);
                         } else if (1 == position) {// 跳转数据录入

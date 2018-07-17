@@ -28,6 +28,7 @@ import java.util.List;
 import et.tsingtaopad.R;
 import et.tsingtaopad.core.util.dbtutil.CheckUtil;
 import et.tsingtaopad.core.util.dbtutil.FunUtil;
+import et.tsingtaopad.core.util.dbtutil.PrefUtils;
 import et.tsingtaopad.core.util.dbtutil.ViewUtil;
 import et.tsingtaopad.core.util.dbtutil.logutil.DbtLog;
 import et.tsingtaopad.core.view.alertview.AlertView;
@@ -145,7 +146,7 @@ public class ZsInvoicingFragment extends XtBaseVisitFragment implements View.OnC
                 if ("Y".equals(dataLst.get(position).getValaddagencysupply())) {// 督导新增的供货关系
                     alertShow4(position);
                     //Toast.makeText(getActivity(),dataLst.get(position).getValproname(),Toast.LENGTH_SHORT).show();
-                } else {// 处理业代新增的供货关系
+                } else {// 处理业代供货关系
                     alertShow3(position);
                 }
 
@@ -456,6 +457,14 @@ public class ZsInvoicingFragment extends XtBaseVisitFragment implements View.OnC
                 }
 
                 if (right_rb.isChecked()) {
+
+                    // 当稽查错误,又改正确时
+                    if("N".equals(valsupplyMTemp.getValagencysupplyflag())){
+                        int count = PrefUtils.getInt(getActivity(),"valterErrorCount",0);
+                        count--;
+                        PrefUtils.putInt(getActivity(),"valterErrorCount",count);
+                    }
+
                     valsupplyMTemp.setValagencysupplyflag("Y");// 供货关系正确与否
                     valsupplyMTemp.setValproerror("N");// 品项有误
                     valsupplyMTemp.setValagencyerror("N");// 经销商有误
@@ -603,6 +612,14 @@ public class ZsInvoicingFragment extends XtBaseVisitFragment implements View.OnC
                     public void onItemClick(Object o, int position) {
                         // Toast.makeText(getActivity(), "点击了第" + position + "个", Toast.LENGTH_SHORT).show();
                         if (0 == position) {// 正确
+
+                            // 当稽查错误,又改正确时
+                            if("N".equals(termLedgerInfos.get(posi).getValprostatus())){
+                                int count = PrefUtils.getInt(getActivity(),"valterErrorCount",0);
+                                count--;
+                                PrefUtils.putInt(getActivity(),"valterErrorCount",count);
+                            }
+
                             termLedgerInfos.get(posi).setValprostatus("Y");
                             List<MitValaddaccountproMTemp>  mTemps = termLedgerInfos.get(posi).getIndexValueLst();
                             for(MitValaddaccountproMTemp temp : mTemps){

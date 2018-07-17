@@ -6,6 +6,24 @@
 
     <include layout="@layout/top_navigation"/>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/result_tv_right"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:text="正确"
+            android:textColor="@color/gray_color_333333"
+            android:textSize="@dimen/font_size3"
+            android:visibility="visible"/>
+    </RelativeLayout>
+
+
     <RadioGroup
         android:id="@+id/result_right_rg"
         android:layout_width="match_parent"
@@ -20,8 +38,9 @@
             android:layout_height="50dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:textSize="@dimen/font_size3"
-            android:text="正确"/>
+            android:text="正确"
+            android:textColor="@color/gray_color_666666"
+            android:textSize="@dimen/font_size3"/>
 
     </RadioGroup>
 
@@ -33,6 +52,22 @@
         android:background="@color/bgColor_overlay"
         />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/result_tv_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:text="错误"
+            android:textColor="@color/gray_color_333333"
+            android:textSize="@dimen/font_size3"
+            android:visibility="visible"/>
+    </RelativeLayout>
 
     <CheckBox
         android:id="@+id/result_cb1"
@@ -40,8 +75,9 @@
         android:layout_height="50dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
+        android:text="无此品项"
+        android:textColor="@color/gray_color_666666"
         android:textSize="@dimen/font_size3"
-        android:text="品项有误"
         android:visibility="gone"/>
 
     <CheckBox
@@ -50,8 +86,9 @@
         android:layout_height="50dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:textSize="@dimen/font_size3"
         android:text="经销商有误"
+        android:textColor="@color/gray_color_666666"
+        android:textSize="@dimen/font_size3"
         android:visibility="gone"/>
 
     <CheckBox
@@ -60,8 +97,9 @@
         android:layout_height="50dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:textSize="@dimen/font_size3"
         android:text="数据有误"
+        android:textColor="@color/gray_color_666666"
+        android:textSize="@dimen/font_size3"
         android:visibility="gone"/>
 
     <CheckBox
@@ -70,8 +108,9 @@
         android:layout_height="50dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:textSize="@dimen/font_size3"
         android:text="窜货"
+        android:textColor="@color/gray_color_666666"
+        android:textSize="@dimen/font_size3"
         android:visibility="gone"/>
 
 

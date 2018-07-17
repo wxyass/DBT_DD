@@ -1,0 +1,988 @@
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerlayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app">
+
+
+    <!--中间布局-->
+
+    <LinearLayout
+        android:id="@+id/fragment_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_app"
+        android:orientation="vertical">
+
+        <include layout="@layout/top_navigation"/>
+        <!-- 3个下拉菜单 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical">
+
+            <et.tsingtaopad.core.view.dropdownmenu.DropdownButton
+                android:id="@+id/xtbf_termcheck_area"
+                android:layout_width="0px"
+                android:layout_height="45dp"
+                android:layout_weight="3"
+                android:textSize="@dimen/font_size2"/>
+
+            <View
+                android:layout_width="2px"
+                android:layout_height="30dp"
+                android:background="#dfdfdf"/>
+
+            <et.tsingtaopad.core.view.dropdownmenu.DropdownButton
+                android:id="@+id/xtbf_termcheck_grid"
+                android:layout_width="0px"
+                android:layout_height="45dp"
+                android:layout_weight="3"
+                android:textSize="@dimen/font_size2"/>
+
+            <View
+                android:layout_width="2px"
+                android:layout_height="30dp"
+                android:background="#dfdfdf"/>
+
+            <et.tsingtaopad.core.view.dropdownmenu.DropdownButton
+                android:id="@+id/xtbf_termcheck_route"
+                android:layout_width="0px"
+                android:layout_height="45dp"
+                android:layout_weight="3"
+                android:textSize="@dimen/font_size2"/>
+
+            <View
+                android:layout_width="2px"
+                android:layout_height="30dp"
+                android:background="#dfdfdf"/>
+
+            <RelativeLayout
+                android:id="@+id/xtbf_termcheck_lou"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_weight="4">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="筛选"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="#dfdfdf"/>
+
+        <!--搜索一行-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/width_height_size08"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/width_height_size08"
+                android:layout_weight="7"
+                android:background="@drawable/bg_visit_record"
+                android:orientation="horizontal"
+                >
+
+                <!-- 搜索终端 -->
+                <EditText
+                    android:id="@+id/xtbf_termcheck_et_search"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/width_height_size08"
+                    android:layout_gravity="center"
+                    android:layout_weight="6"
+                    android:background="@null"
+                    android:ems="14"
+                    android:hint="@string/termlist_search_hit"
+                    android:paddingLeft="5dp"
+                    android:singleLine="true"
+                    android:textColor="@color/gray_color_666666"
+                    android:textColorHint="@color/gray_color_cccccc"
+                    android:textSize="@dimen/font_size3">
+
+                    <requestFocus/>
+                </EditText>
+
+                <!-- 搜索按钮 -->
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:id="@+id/xtbf_termcheck_bt_search"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/img_selecttermina_search"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <!-- 排序按钮 -->
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:visibility="gone">
+
+                <Button
+                    android:id="@+id/xtbf_termcheck_bt_update"
+                    style="@style/xtbf_btn_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/width_height_size08"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/bg_select_green"
+                    android:text="排序"
+                    android:textSize="@dimen/font_size4"
+                    />
+            </RelativeLayout>
+
+            <!-- 全部添加 -->
+            <RelativeLayout
+                android:id="@+id/xtbf_termcheck_Rl_add"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3">
+
+                <Button
+                    android:id="@+id/xtbf_termcheck_bt_add"
+                    style="@style/xtbf_btn_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/width_height_size08"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/bg_select_green"
+                    android:text="全部添加"
+                    android:textSize="@dimen/font_size4"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <!--终端列表-->
+        <LinearLayout
+            android:id="@+id/xtbf_termcheck_ll_lv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/listview_line"
+            android:orientation="vertical"
+            android:padding="1dp"
+            android:visibility="invisible">
+
+            <ListView
+                android:id="@+id/xtbf_termcheck_lv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:cacheColorHint="@color/bg_lv_item"
+                android:divider="@color/gray_color_cccccc"
+                android:dividerHeight="1dp">
+            </ListView>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--右侧布局-->
+    <ScrollView
+        android:id="@+id/right"
+        android:layout_width="360dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:background="@color/bg_app">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <!--基础信息-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+
+                    android:layout_marginRight="10dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/zdzs_invoicing_point1"
+                        style="@style/point"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ico_point"/>
+
+                    <TextView
+                        android:id="@+id/zdzs_invocing_textview01"
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/zdzs_invoicing_point1"
+                        android:text="基础信息"/>
+
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="我品店招"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="销售我品"/>
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="销售竞品"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="我品合作"/>
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="竞品合作"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="1级终端"/>
+
+                    <CheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="2级终端"/>
+
+                    <CheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="3级终端"/>
+
+                    <CheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="4级终端"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="城区"/>
+
+                    <CheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="乡镇"/>
+
+                    <CheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="村级"/>
+
+                    <CheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="大店部"/>
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:enabled="false"
+                        android:gravity="right"
+                        />
+
+                    <EditText
+                        android:id="@+id/check_et_address"
+                        style="@style/formLabel_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:background="@android:color/transparent"
+                        android:hint="请输入终端地址"
+                        android:paddingBottom="8dp"
+                        android:singleLine="true"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:enabled="false"
+                        android:gravity="right"
+                        android:hint="@string/termadd_unit_cycle"/>
+
+                    <EditText
+                        android:id="@+id/sayhi_et_cycle"
+                        style="@style/formLabel_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:background="@android:color/transparent"
+                        android:hint="请输入拜访周期"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:paddingBottom="8dp"
+                        android:singleLine="true"/>
+                </RelativeLayout>
+
+
+                <!--终端容量-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/zdzs_invoicing_point2"
+                        style="@style/point"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ico_point"/>
+
+                    <TextView
+                        android:id="@+id/zdzs_invocing_textview02"
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/zdzs_invoicing_point2"
+                        android:text="终端容量"/>
+
+                    <TextView
+                        android:id="@+id/zdzs_invocing_get02"
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:text="收起"/>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/page_label_big"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="高档容量"/>
+
+                        <EditText
+                            style="@style/formLabel_value"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:background="@android:color/transparent"
+                            android:hint="最低值"
+                            android:inputType="number"
+                            android:maxLength="6"
+                            android:paddingBottom="8dp"
+                            android:singleLine="true"/>
+
+                        <EditText
+                            style="@style/formLabel_value"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:background="@android:color/transparent"
+                            android:hint="最高值"
+                            android:inputType="number"
+                            android:maxLength="6"
+                            android:paddingBottom="8dp"
+                            android:singleLine="true"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/page_label_big"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="中档容量"/>
+
+                        <EditText
+                            style="@style/formLabel_value"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:background="@android:color/transparent"
+                            android:hint="最低值"
+                            android:inputType="number"
+                            android:maxLength="6"
+                            android:paddingBottom="8dp"
+                            android:singleLine="true"/>
+
+                        <EditText
+                            style="@style/formLabel_value"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:background="@android:color/transparent"
+                            android:hint="最高值"
+                            android:inputType="number"
+                            android:maxLength="6"
+                            android:paddingBottom="8dp"
+                            android:singleLine="true"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/page_label_big"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="低档容量"/>
+
+                        <EditText
+                            style="@style/formLabel_value"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:background="@android:color/transparent"
+                            android:hint="最低值"
+                            android:inputType="number"
+                            android:maxLength="6"
+                            android:paddingBottom="8dp"
+                            android:singleLine="true"/>
+
+                        <EditText
+                            style="@style/formLabel_value"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:background="@android:color/transparent"
+                            android:hint="最高值"
+                            android:inputType="number"
+                            android:maxLength="6"
+                            android:paddingBottom="8dp"
+                            android:singleLine="true"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/page_label_big"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="中档容量"/>
+
+                        <EditText
+                            style="@style/formLabel_value"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:background="@android:color/transparent"
+                            android:hint="最低值"
+                            android:inputType="number"
+                            android:maxLength="6"
+                            android:paddingBottom="8dp"
+                            android:singleLine="true"/>
+
+                        <EditText
+                            style="@style/formLabel_value"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:background="@android:color/transparent"
+                            android:hint="最高值"
+                            android:inputType="number"
+                            android:maxLength="6"
+                            android:paddingBottom="8dp"
+                            android:singleLine="true"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--销售渠道-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/zdzs_invoicing_point3"
+                        style="@style/point"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ico_point"/>
+
+                    <TextView
+                        android:id="@+id/zdzs_invocing_textview03"
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/zdzs_invoicing_point3"
+                        android:text="销售渠道"/>
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="KA渠道"/>
+
+                    <CheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="S渠道"/>
+
+                    <CheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="NL渠道"/>
+
+                    <CheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="OP渠道"/>
+
+                    <CheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="SC渠道"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:orientation="vertical">
+
+                    <ListView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    </ListView>
+
+                </LinearLayout>
+
+
+                <!--指标信息-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/zdzs_invoicing_point4"
+                        style="@style/point"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ico_point"/>
+
+                    <TextView
+                        android:id="@+id/zdzs_invocing_textview04"
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/zdzs_invoicing_point4"
+                        android:text="指标信息"/>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="产品组合达标"/>
+
+                    <CheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="合作执行到位"/>
+
+                    <CheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="高质量配送"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/page_label_big"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="占有率"/>
+
+                    <EditText
+                        style="@style/formLabel_value"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:background="@android:color/transparent"
+                        android:hint="最低值"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:paddingBottom="8dp"
+                        android:singleLine="true"/>
+
+                    <EditText
+                        style="@style/formLabel_value"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:background="@android:color/transparent"
+                        android:hint="最高值"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:paddingBottom="8dp"
+                        android:singleLine="true"/>
+                </LinearLayout>
+
+
+                <!--产品信息-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/zdzs_invoicing_point5"
+                        style="@style/point"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ico_point"/>
+
+                    <TextView
+                        android:id="@+id/zdzs_invocing_textview05"
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/zdzs_invoicing_point5"
+                        android:text="产品信息"/>
+
+                </RelativeLayout>
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/sex_rg"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="铺货状态"
+                        android:checked="false"
+                        android:id="@+id/rb_check"/>
+                    <RadioButton
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="价格体系"
+                        android:checked="false"
+                        android:id="@+id/rb_price"/>
+                    <RadioButton
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="竞品信息"
+                        android:checked="false"
+                        android:id="@+id/rb_cmppro"/>
+                </RadioGroup>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/zdzs_invocing_textview06"
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="选择产品"/>
+
+                    <TextView
+                        android:id="@+id/zdzs_invocing_get06"
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:text="收起"/>
+
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:orientation="vertical">
+
+                    <ListView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    </ListView>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/page_label_big"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="渠道价"/>
+
+                    <EditText
+                        style="@style/formLabel_value"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:background="@android:color/transparent"
+                        android:hint="最低值"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:paddingBottom="8dp"
+                        android:singleLine="true"/>
+
+                    <EditText
+                        style="@style/formLabel_value"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:background="@android:color/transparent"
+                        android:hint="最高值"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:paddingBottom="8dp"
+                        android:singleLine="true"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/page_label_big"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="零售价"/>
+
+                    <EditText
+                        style="@style/formLabel_value"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:background="@android:color/transparent"
+                        android:hint="最低值"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:paddingBottom="8dp"
+                        android:singleLine="true"/>
+
+                    <EditText
+                        style="@style/formLabel_value"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:background="@android:color/transparent"
+                        android:hint="最高值"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:paddingBottom="8dp"
+                        android:singleLine="true"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:text="重置"/>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="40dp"
+                    android:background="@color/gray"/>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:text="确定"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</android.support.v4.widget.DrawerLayout>

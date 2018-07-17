@@ -20,6 +20,7 @@ import java.util.List;
 import et.tsingtaopad.R;
 import et.tsingtaopad.adapter.AlertKeyValueAdapter;
 import et.tsingtaopad.base.BaseFragmentSupport;
+import et.tsingtaopad.core.util.dbtutil.PrefUtils;
 import et.tsingtaopad.core.view.alertview.AlertView;
 import et.tsingtaopad.dd.ddxt.checking.XtCheckIndexService;
 import et.tsingtaopad.dd.ddxt.checking.domain.XtCheckIndexCalculateStc;
@@ -189,6 +190,12 @@ public class ZsCheckIndexAmendFragment extends BaseFragmentSupport implements Vi
         // 备注
         String report = zdzs_check_index_et_report.getText().toString();
         checkIndexCalculateStc.setDdremark(report);
+
+        // 当稽查选择错误时
+        int count = PrefUtils.getInt(getActivity(),"valterErrorCount",0);
+        count++;
+        PrefUtils.putInt(getActivity(),"valterErrorCount",count);
+
 
         handler.sendEmptyMessage(ZsCheckIndexFragment.INIT_HPZ_AMEND);
 

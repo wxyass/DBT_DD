@@ -20,7 +20,7 @@
             <!--进销存标题-->
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 >
 
                 <ImageView
@@ -40,30 +40,6 @@
                     android:layout_toRightOf="@id/zdzs_invoicing_point1"
                     android:text="进销存"/>
 
-
-                <!-- 新增供货关系 -->
-
-                <RelativeLayout
-                    android:id="@+id/zdzs_invoicing_rl_addrelation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:visibility="gone"
-                    android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@id/zdzs_invocing_textview01">
-
-                    <Button
-                        android:id="@+id/zdzs_invoicing_bt_addrelation"
-                        style="@style/xtbf_btn_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/width_height_size08"
-                        android:background="@drawable/bg_select_green"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:textSize="@dimen/font_size4"
-                        android:text="新增供货关系"
-                        />
-                </RelativeLayout>
             </RelativeLayout>
 
             <!--问货源列表-->
@@ -74,6 +50,31 @@
                 android:layout_marginTop="15dp"
                 android:divider="@null"
                 android:dividerHeight="10dp"/>
+
+            <!-- 新增供货关系 -->
+            <RelativeLayout
+                android:id="@+id/zdzs_invoicing_rl_addrelation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:visibility="gone"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="10dp"
+                android:layout_toRightOf="@id/zdzs_invocing_textview01">
+
+                <Button
+                    android:id="@+id/zdzs_invoicing_bt_addrelation"
+                    style="@style/xtbf_btn_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/width_height_size08"
+                    android:background="@drawable/bg_select_green"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textSize="@dimen/font_size4"
+                    android:drawableLeft="@drawable/icon_visit_add"
+                    android:text="新增供货关系"
+                    />
+            </RelativeLayout>
 
             <!--终端进货台账-->
             <RelativeLayout

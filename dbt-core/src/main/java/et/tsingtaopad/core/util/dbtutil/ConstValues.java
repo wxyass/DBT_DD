@@ -34,7 +34,11 @@ public class ConstValues implements Serializable{
     // 成功、失败消息字符串常量
     public static final String SUCCESS = "Y";
     public static final String ERROR = "N";
-    
+
+    //
+    public static final String Y = "Y";
+    public static final String N = "N";
+
     // handler wait
     public static final int WAIT0 = 0;
     public static final int WAIT1 = 1;

@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import et.tsingtaopad.R;
 import et.tsingtaopad.base.BaseFragmentSupport;
+import et.tsingtaopad.core.util.dbtutil.PrefUtils;
 import et.tsingtaopad.db.table.MitValgroupproMTemp;
 import et.tsingtaopad.dd.ddxt.checking.XtCheckIndexService;
 
@@ -158,6 +159,11 @@ public class ZsCheckIndexGroupproFragment extends BaseFragmentSupport implements
         // 备注
         String report = zdzs_check_index_et_report.getText().toString();
         mitValgroupproMTemp.setValgroupproremark(report);
+
+        // 当稽查选择错误时
+        int count = PrefUtils.getInt(getActivity(),"valterErrorCount",0);
+        count++;
+        PrefUtils.putInt(getActivity(),"valterErrorCount",count);
 
         handler.sendEmptyMessage(ZsCheckIndexFragment.INIT_GROUPPRO_AMEND);
 

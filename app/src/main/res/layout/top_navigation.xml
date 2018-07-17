@@ -49,6 +49,20 @@
                 android:textColor="@color/prompt_wt"
                 android:textSize="@dimen/font_size1"
                 />
+
+            <TextView
+                android:id="@+id/top_navigation_tv_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:visibility="invisible"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/prompt_wt"
+                android:textSize="@dimen/font_size3"
+                android:text="模板"/>
+
         </RelativeLayout>
 
         <!-- 确定 -->

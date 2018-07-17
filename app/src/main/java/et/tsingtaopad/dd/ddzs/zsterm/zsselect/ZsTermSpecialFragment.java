@@ -453,7 +453,7 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
                     breakNextLayout(TOFRAGMENT, selectedList);
                     PrefUtils.putString(getActivity(), GlobalValues.DDXTZS, "2");
                 } else {
-                    Toast.makeText(getActivity(), "请先联系文员,配置督导模板", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "请先配置督导模板", Toast.LENGTH_SHORT).show();
                 }
 
                 break;
@@ -786,7 +786,7 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
                 }
             }
         } else {
-            Toast.makeText(getActivity(), "请先联系文员,配置督导模板", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "请先配置督导模板", Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -23,6 +23,7 @@ import et.tsingtaopad.R;
 import et.tsingtaopad.core.ui.loader.LatteLoader;
 import et.tsingtaopad.core.util.dbtutil.ConstValues;
 import et.tsingtaopad.core.util.dbtutil.FunUtil;
+import et.tsingtaopad.core.util.dbtutil.PrefUtils;
 import et.tsingtaopad.core.util.dbtutil.PropertiesUtil;
 import et.tsingtaopad.core.util.dbtutil.ViewUtil;
 import et.tsingtaopad.core.util.dbtutil.logutil.DbtLog;
@@ -641,6 +642,14 @@ public class ZsCheckIndexFragment extends XtBaseVisitFragment implements View.On
                     public void onItemClick(Object o, int position) {
                         // Toast.makeText(getActivity(), "点击了第" + position + "个", Toast.LENGTH_SHORT).show();
                         if (0 == position) {// 正确
+
+                            // 当稽查错误,又改正确时
+                            if("N".equals(checkIndexCalculateStc.getValchecktypeflag())){
+                                int count = PrefUtils.getInt(getActivity(),"valterErrorCount",0);
+                                count--;
+                                PrefUtils.putInt(getActivity(),"valterErrorCount",count);
+                            }
+
                             checkIndexCalculateStc.setValchecktypeflag("Y"); // 达成组数正确与否
                             handler.sendEmptyMessage(ZsCheckIndexFragment.INIT_HPZ_AMEND);
                         } else if (1 == position) {// 跳转数据录入
@@ -682,7 +691,16 @@ public class ZsCheckIndexFragment extends XtBaseVisitFragment implements View.On
                     public void onItemClick(Object o, int position) {
                         // Toast.makeText(getActivity(), "点击了第" + position + "个", Toast.LENGTH_SHORT).show();
                         if (0 == position) {// 失效
+
                             CheckIndexPromotionStc promotionStc = promotionLst.get(posi);
+
+                            // 当稽查错误,又改正确时
+                            if("N".equals(promotionStc.getValistruenumflag())){
+                                int count = PrefUtils.getInt(getActivity(),"valterErrorCount",0);
+                                count--;
+                                PrefUtils.putInt(getActivity(),"valterErrorCount",count);
+                            }
+
                             promotionStc.setValistruenumflag("Y"); // 达成组数正确与否
                             handler.sendEmptyMessage(ZsCheckIndexFragment.INIT_AMEND);
                         } else if (1 == position) {// 跳转数据录入
@@ -722,6 +740,14 @@ public class ZsCheckIndexFragment extends XtBaseVisitFragment implements View.On
                     public void onItemClick(Object o, int position) {
                         // Toast.makeText(getActivity(), "点击了第" + position + "个", Toast.LENGTH_SHORT).show();
                         if (0 == position) {// 失效
+
+                            // 当稽查错误,又改正确时
+                            if("N".equals(mitValgroupproMTemp.getValgroupproflag())){
+                                int count = PrefUtils.getInt(getActivity(),"valterErrorCount",0);
+                                count--;
+                                PrefUtils.putInt(getActivity(),"valterErrorCount",count);
+                            }
+
                             mitValgroupproMTemp.setValgroupproflag("Y"); // 产品组合 正确与否
                             handler.sendEmptyMessage(ZsCheckIndexFragment.INIT_GROUPPRO_AMEND);
                         } else if (1 == position) {// 跳转数据录入

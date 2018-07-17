@@ -8,25 +8,29 @@
 
 
     <!--铺货状态-->
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="15dp"
-        android:gravity="center_vertical">
+        android:layout_height="40dp"
+        >
 
         <ImageView
+            android:id="@+id/zdzs_caculate_point1"
             style="@style/point"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:src="@drawable/ico_point"/>
 
         <TextView
-            style="@style/page_label_big"
             android:id="@+id/item_xt_caculate_tv_indexvalue"
+            style="@style/page_label_big"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="冰冻化"/>
-    </LinearLayout>
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/zdzs_caculate_point1"
+            android:text="铺货状态"/>
+
+    </RelativeLayout>
 
 
     <et.tsingtaopad.view.NoScrollListView
@@ -34,6 +38,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="@color/listview_line"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="14dp"
         android:dividerHeight="1dp" />
 
 

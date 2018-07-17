@@ -23,7 +23,8 @@ public class ViewUtil {
     // 以下两属性用于防快速重复单击
     private static int clickViewId;
     private static long prevClick;
-    
+    private static int prepositon;
+
     private static int clickPrevId;
     
     // ListView防行重复单击
@@ -166,6 +167,26 @@ public class ViewUtil {
         } else {
             clickViewId = viewId; 
             prevClick = currClick;
+            return false;
+        }
+    }
+
+    /**
+     * 防止按钮快速重复单击
+     *
+     * @param viewId  被单击组会的Id
+     * @param positon  被单击的条目位置
+     * @param interval 间隔多少毫秒
+     * @return
+     */
+    public static boolean isDoubleClick(int viewId,int positon, int interval) {
+        long currClick = System.currentTimeMillis();
+        if (clickViewId == viewId && prepositon == positon && currClick - prevClick < interval) {
+            return true;
+        } else {
+            clickViewId = viewId;
+            prevClick = currClick;
+            prepositon = positon;
             return false;
         }
     }

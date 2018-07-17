@@ -253,6 +253,30 @@ public class ZsChatVieService extends XtShopVisitService {
             }
         }
     }
+    /**
+     * 保存追溯原聊竞品页面中的拜访记录 ，MitValcmpMTemp,MitValcmpotherMTemp
+     *
+     * @param mitValcmpotherMTemp
+     */
+    public void saveZsVisitremark(MitValcmpotherMTemp mitValcmpotherMTemp) {
+
+        AndroidDatabaseConnection connection = null;
+        try {
+            DatabaseHelper helper = DatabaseHelper.getHelper(context);
+            Dao<MitValcmpotherMTemp, String> mitValcmpotherMTempDao = helper.getDao(MitValcmpotherMTemp.class);
+            connection = new AndroidDatabaseConnection(helper.getWritableDatabase(), true);
+            connection.setAutoCommit(false);
+            mitValcmpotherMTempDao.createOrUpdate(mitValcmpotherMTemp);
+            connection.commit(null);
+        } catch (Exception e) {
+            Log.e(TAG, "保存聊竞品数据发生异常", e);
+            try {
+                connection.rollback(null);
+            } catch (SQLException e1) {
+                Log.e(TAG, "回滚聊竞品数据发生异常", e1);
+            }
+        }
+    }
 
     /**
      * 删除经销商与终端的产品供应关系

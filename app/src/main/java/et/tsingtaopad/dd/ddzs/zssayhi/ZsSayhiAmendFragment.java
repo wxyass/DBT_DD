@@ -24,6 +24,7 @@ import et.tsingtaopad.adapter.AlertKeyValueAdapter;
 import et.tsingtaopad.base.BaseFragmentSupport;
 import et.tsingtaopad.core.util.dbtutil.ConstValues;
 import et.tsingtaopad.core.util.dbtutil.FunUtil;
+import et.tsingtaopad.core.util.dbtutil.PrefUtils;
 import et.tsingtaopad.core.view.alertview.AlertView;
 import et.tsingtaopad.db.table.MitValterMTemp;
 import et.tsingtaopad.db.table.MstRouteM;
@@ -545,6 +546,7 @@ public class ZsSayhiAmendFragment extends BaseFragmentSupport implements View.On
     // 确定保存
     private void saveValue() {
 
+
         // 保存督导终端名称
         if ("vidtername".equals(ydkey)) {
             String termName = zdzs_sayhi_amend_rl_dd_con1_et.getText().toString();
@@ -650,6 +652,11 @@ public class ZsSayhiAmendFragment extends BaseFragmentSupport implements View.On
         String remark = zdzs_sayhi_amend_dd_et_report.getText().toString();
         FunUtil.setFieldValue(mitValterMTemp, setDdFlag, "N");
         FunUtil.setFieldValue(mitValterMTemp, setDdRemark, remark);
+
+        // 当稽查选择错误时
+        int count = PrefUtils.getInt(getActivity(),"valterErrorCount",0);
+        count++;
+        PrefUtils.putInt(getActivity(),"valterErrorCount",count);
 
         handler.sendEmptyMessage(ZsSayhiFragment.INIT_DATA);
     }

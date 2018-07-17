@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:cuisw="http://schemas.android.com/apk/res-auto"
-              style="@style/content_margin"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/bg_page_color"
@@ -135,51 +134,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"/>
 
-            <!--拜访记录标题-->
-            <LinearLayout
-                android:id="@+id/zdzs_chatvie_ll_visitreport_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:visibility="gone">
-
-                <ImageView
-                    style="@style/point"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ico_point"/>
-
-                <TextView
-                    style="@style/page_label_big"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/chatvie_report"/>
-            </LinearLayout>
-
-            <!--拜访记录输入框-->
-            <LinearLayout
-                android:id="@+id/zdzs_chatvie_ll_visitreport"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginTop="15dp"
-                android:background="@color/white"
-                android:gravity="center_vertical"
-                android:visibility="gone">
-
-                <EditText
-                    android:id="@+id/zdzs_chatvie_et_visitreport"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/bg_visit_record"
-                    android:hint="请输入拜访记录"
-                    android:maxLength="150"
-                    android:textSize="@dimen/font_size3"
-                    android:inputType="textMultiLine"/>
-            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"

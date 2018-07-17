@@ -1,0 +1,703 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/bg_app"
+              android:orientation="vertical">
+
+    <include layout="@layout/top_navigation"/>
+
+
+    <ScrollView
+        android:id="@+id/template_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/template_ll_vaildter"
+                android:layout_marginTop="20dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="打招呼-是否有效终端"/>
+
+                <CheckBox
+                    android:id="@+id/template_cb_vaildter"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/template_ll_vaildvisit"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="打招呼-是否有效拜访"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_vaildvisit"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_ifmine"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="打招呼-是否我品店招"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_ifmine"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_salesarea"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="打招呼-销售产品范围"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_salesarea"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_terworkstatus"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="打招呼-终端合作状态"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_terworkstatus"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_tername"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="打招呼-终端名称"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_tername"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_terminalcode"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="打招呼-终端编码"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_terminalcode"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_terlevel"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="打招呼-终端等级"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_terlevel"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_routecode"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="打招呼-所属路线"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_routecode"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_province"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="打招呼-所属省"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_province"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_city"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="打招呼-所属市"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_city"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_country"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="打招呼-所属县"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_country"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_address"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="打招呼-地址"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_address"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_contact"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="打招呼-联系人"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_contact"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_mobile"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="打招呼-电话"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_mobile"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_cylie"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="打招呼-拜访周期"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_cylie"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_visitorder"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="打招呼-拜访顺序"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_visitorder"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_hvolume"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="打招呼-高档容量"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_hvolume"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_zvolume"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="打招呼-中档容量"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_zvolume"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_pvolume"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="打招呼-普档容量"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_pvolume"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_lvolume"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="打招呼-低档容量"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_lvolume"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/template_ll_areatype"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="打招呼-区域类型"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_areatype"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_sellchannel"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="打招呼-销售渠道"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_sellchannel"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_mainchannel"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="打招呼-主渠道"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_mainchannel"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_minorchannel"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="打招呼-次渠道"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_minorchannel"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_visituser"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="打招呼-拜访对象"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_visituser"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_addsupply"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="进销存-新增供货关系"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_addsupply"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_proerror"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="进销存-无此品项"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_proerror"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_agencyerror"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="进销存-经销商有误"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_agencyerror"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_dataerror"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="进销存-数据错误"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_dataerror"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_iffleeing"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="进销存-是否窜货"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_iffleeing"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/template_ll_distrbution"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="查指标-铺货状态"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_distrbution"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_goodsvivi"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="查指标-道具生动化"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_goodsvivi"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_provivi"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="查指标-产品生动化"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_provivi"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_icevivi"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="查指标-冰冻化"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_icevivi"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_salespromotion"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="查指标-促销活动"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_salespromotion"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_grouppro"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="查指标-产品组合是否达标"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_grouppro"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_cooperation"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="查指标-合作执行是否到位"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_cooperation"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_highps"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="查指标-是否高质量配送"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_highps"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_prooccupy"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="查指标-我品单店占有率"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_prooccupy"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_addcmp"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="聊竞品-添加竞品"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_addcmp"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_cmperror"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="聊竞品-无此品项"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_cmperror"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_cmpagencyerror"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="聊竞品-竞品经销商有误"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_cmpagencyerror"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_cmpdataerror"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="聊竞品-竞品数据有误"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_cmpdataerror"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_ifcmp"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="聊竞品-是否成功瓦解竞品"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_ifcmp"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/template_ll_visinote"
+                android:layout_marginTop="1dp"
+                style="@style/template_bg_item">
+
+                <TextView
+                    style="@style/template_tv_item"
+                    android:text="聊竞品-拜访记录"/>
+
+                <CheckBox
+                    android:id="@+id/common_multiple_cb_visinote"
+                    style="@style/template_cb_item"/>
+
+            </LinearLayout>
+
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <Button
+                    android:id="@+id/dd_template_bt_next"
+                    style="@style/xtbf_btn_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/width_height_size08"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/bg_select_green"
+                    android:text="保存"
+                    />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="80dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

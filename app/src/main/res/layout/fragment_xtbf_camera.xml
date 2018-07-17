@@ -17,11 +17,37 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!--核查终端拜访-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                >
+
+                <ImageView
+                    android:id="@+id/zdzs_camera_point1"
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ico_point"/>
+
+                <TextView
+                    android:id="@+id/zdzs_camera_textview01"
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/zdzs_camera_point1"
+                    android:text="拍照"/>
+
+            </RelativeLayout>
+
             <et.tsingtaopad.view.MyGridView
                 android:id="@+id/xtbf_camera_gv_camera"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="15dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="14dp"
                 android:numColumns="3"
                 android:scrollbars="none"
                 android:verticalSpacing="30dp">
@@ -32,11 +58,62 @@
                 android:id="@+id/xtbf_camera_tv_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="14dp"
                 android:gravity="center"
                 android:text=""
                 android:textColor="@color/home_sp"
                 android:visibility="gone"/>
+
+            <!--拜访记录标题-->
+            <LinearLayout
+                android:id="@+id/zdzs_camera_ll_visitreport_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <ImageView
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ico_point"/>
+
+                <TextView
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chatvie_report"/>
+            </LinearLayout>
+
+            <!--拜访记录输入框-->
+            <LinearLayout
+                android:id="@+id/zdzs_camera_ll_visitreport"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/zdzs_camera_et_visitreport"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/bg_visit_record"
+                    android:hint="请输入拜访记录"
+                    android:maxLength="150"
+                    android:textSize="@dimen/font_size3"
+                    android:inputType="textMultiLine"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"

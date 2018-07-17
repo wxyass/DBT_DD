@@ -194,6 +194,9 @@ public class ZsVisitShopActivity extends BaseActivity implements View.OnClickLis
     // 初始化数据
     private void initData() {
 
+        // 在进入终端时候,修改错误数为0 .
+        PrefUtils.putInt(ZsVisitShopActivity.this,"valterErrorCount",0);
+
         confirmTv.setText("确定");
 
         // 获取系统时间
@@ -362,6 +365,10 @@ public class ZsVisitShopActivity extends BaseActivity implements View.OnClickLis
                 this.backFinish();
                 break;
             case R.id.top_navigation_rl_confirm://
+
+                int count = PrefUtils.getInt(ZsVisitShopActivity.this,"valterErrorCount",0);
+                Toast.makeText(ZsVisitShopActivity.this,"错误数 "+count,Toast.LENGTH_SHORT).show();
+
                 if(checkTakeCamera()){// 必须拍照
                     confirmXtUplad();
                 }else{
@@ -704,6 +711,7 @@ public class ZsVisitShopActivity extends BaseActivity implements View.OnClickLis
 
     private void confirmXtUplad() {
         ZsVisitShopActivity.this.onPause();
+
         // 普通窗口
         mAlertViewExt = new AlertView("上传拜访数据?", null, "取消", new String[]{"确定"}, null, this, AlertView.Style.Alert,
                 new OnItemClickListener() {
@@ -749,6 +757,7 @@ public class ZsVisitShopActivity extends BaseActivity implements View.OnClickLis
                             ConstValues.handler.sendEmptyMessage(ConstValues.WAIT0);
 
                             ZsVisitShopActivity.this.finish();
+
                         }
 
                     }

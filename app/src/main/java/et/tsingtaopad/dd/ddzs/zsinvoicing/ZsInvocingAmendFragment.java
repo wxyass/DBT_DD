@@ -21,6 +21,7 @@ import et.tsingtaopad.R;
 import et.tsingtaopad.adapter.AlertKeyValueAdapter;
 import et.tsingtaopad.base.BaseFragmentSupport;
 import et.tsingtaopad.core.util.dbtutil.FunUtil;
+import et.tsingtaopad.core.util.dbtutil.PrefUtils;
 import et.tsingtaopad.core.view.alertview.AlertView;
 import et.tsingtaopad.db.table.MitValsupplyMTemp;
 import et.tsingtaopad.dd.ddxt.invoicing.addinvoicing.XtAddInvocingService;
@@ -258,6 +259,7 @@ public class ZsInvocingAmendFragment extends BaseFragmentSupport implements View
 
 
         valsupplyMTemp.setValagencysupplyflag("N");
+
         // 经销商显示
         if(valagencyerror){
             valsupplyMTemp.setValagencyerror("Y");
@@ -308,6 +310,11 @@ public class ZsInvocingAmendFragment extends BaseFragmentSupport implements View
         // 备注
         String report = zdzs_invoicing_amend_dd_et_report.getText().toString();
         valsupplyMTemp.setValagencysupplyremark(report);
+
+        // 当稽查选择错误时
+        int count = PrefUtils.getInt(getActivity(),"valterErrorCount",0);
+        count++;
+        PrefUtils.putInt(getActivity(),"valterErrorCount",count);
 
         handler.sendEmptyMessage(ZsInvoicingFragment.INIT_AMEND);
 

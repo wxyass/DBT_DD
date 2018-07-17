@@ -16,6 +16,7 @@ import java.util.List;
 
 import et.tsingtaopad.R;
 import et.tsingtaopad.base.BaseFragmentSupport;
+import et.tsingtaopad.core.util.dbtutil.PrefUtils;
 import et.tsingtaopad.main.visit.shopvisit.termvisit.checkindex.domain.CheckIndexPromotionStc;
 
 /**
@@ -149,6 +150,11 @@ public class ZsCheckPromoAmendFragment extends BaseFragmentSupport implements Vi
         // 备注
         String report = zdzs_check_promo_et_report.getText().toString();
         //checkIndexPromotionStc.setValagencysupplyremark(report);
+
+        // 当稽查选择错误时
+        int count = PrefUtils.getInt(getActivity(),"valterErrorCount",0);
+        count++;
+        PrefUtils.putInt(getActivity(),"valterErrorCount",count);
 
         handler.sendEmptyMessage(ZsCheckIndexFragment.INIT_AMEND);
 

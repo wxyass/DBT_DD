@@ -16,6 +16,7 @@ import java.lang.ref.SoftReference;
 import java.util.List;
 
 import et.tsingtaopad.R;
+import et.tsingtaopad.core.util.dbtutil.PrefUtils;
 import et.tsingtaopad.core.util.dbtutil.ViewUtil;
 import et.tsingtaopad.core.util.dbtutil.logutil.DbtLog;
 import et.tsingtaopad.core.view.alertview.AlertView;
@@ -249,6 +250,14 @@ public class ZsAgreeFragment extends XtBaseVisitFragment implements View.OnClick
                     public void onItemClick(Object o, int position) {
                         // Toast.makeText(getActivity(), "点击了第" + position + "个", Toast.LENGTH_SHORT).show();
                         if (0 == position) {// 正确
+
+                            // 当稽查错误,又改正确时
+                            if("N".equals(valagreedetailMTemps.get(posi).getAgreedetailflag())){
+                                int count = PrefUtils.getInt(getActivity(),"valterErrorCount",0);
+                                count--;
+                                PrefUtils.putInt(getActivity(),"valterErrorCount",count);
+                            }
+
                             valagreedetailMTemps.get(posi).setAgreedetailflag("Y");
                             handler.sendEmptyMessage(ZsAgreeFragment.AGREE_AMEND_DETAIL);
                         } else if (1 == position) {// 跳转数据录入
@@ -273,14 +282,26 @@ public class ZsAgreeFragment extends XtBaseVisitFragment implements View.OnClick
                     @Override
                     public void onItemClick(Object o, int position) {
                         if (0 == position) {// 正确
-                            // Toast.makeText(getActivity(), type + " 正确", Toast.LENGTH_SHORT).show();
+
+                            String flag = "";
                             if (type == AGREE_STARTDATE) {// 开始时间
+                                flag = mitValagreeMTemp.getStartdateflag();
                                 mitValagreeMTemp.setStartdateflag("Y");
                             } else if (type == AGREE_ENDDATE) {//结束时间
+                                flag = mitValagreeMTemp.getEnddateflag();
                                 mitValagreeMTemp.setEnddateflag("Y");
                             } else if (type == AGREE_CONTENT) {// 主要协议
+                                flag = mitValagreeMTemp.getNotesflag();
                                 mitValagreeMTemp.setNotesflag("Y");
                             }
+
+                            // 当稽查错误,又改正确时
+                            if("N".equals(flag)){
+                                int count = PrefUtils.getInt(getActivity(),"valterErrorCount",0);
+                                count--;
+                                PrefUtils.putInt(getActivity(),"valterErrorCount",count);
+                            }
+
                             initViewStatus();
                         } else if (1 == position) {// 错误
                             Bundle bundle = new Bundle();

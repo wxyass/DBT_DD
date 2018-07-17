@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,12 +36,14 @@ import et.tsingtaopad.core.util.dbtutil.FileUtil;
 import et.tsingtaopad.core.util.dbtutil.FunUtil;
 import et.tsingtaopad.core.util.dbtutil.logutil.DbtLog;
 import et.tsingtaopad.core.util.file.FileTool;
+import et.tsingtaopad.db.table.MitValcmpotherMTemp;
 import et.tsingtaopad.db.table.MitValpicMTemp;
 import et.tsingtaopad.db.table.MstTerminalinfoMTemp;
 import et.tsingtaopad.db.table.MstTerminalinfoMZsCart;
 import et.tsingtaopad.dd.ddxt.base.XtBaseVisitFragment;
 import et.tsingtaopad.dd.ddxt.camera.XtCameraHandler;
 import et.tsingtaopad.dd.ddxt.camera.XtCameraService;
+import et.tsingtaopad.dd.ddzs.zschatvie.ZsChatVieService;
 import et.tsingtaopad.home.initadapter.GlobalValues;
 import et.tsingtaopad.main.visit.shopvisit.termvisit.sayhi.domain.MstTerminalInfoMStc;
 import et.tsingtaopad.view.MyGridView;
@@ -57,6 +61,9 @@ public class ZsCameraFragment extends XtBaseVisitFragment implements View.OnClic
     ScrollView descGv;
     private MyGridView picGv;
     private Button sureBtn;
+    private LinearLayout zdzs_camera_ll_visitreport_title ;//
+    private LinearLayout zdzs_camera_ll_visitreport ;//
+    private EditText zdzs_camera_et_visitreport ;//
 
     private XtCameraService xtCameraService;
 
@@ -101,6 +108,9 @@ public class ZsCameraFragment extends XtBaseVisitFragment implements View.OnClic
         descGv = (ScrollView) view.findViewById(R.id.xtbf_camera_sv_desc);
         picGv = (MyGridView) view.findViewById(R.id.xtbf_camera_gv_camera);
         descTv = (TextView) view.findViewById(R.id.xtbf_camera_tv_desc);
+        zdzs_camera_ll_visitreport_title = (LinearLayout) view.findViewById(R.id.zdzs_camera_ll_visitreport_title);
+        zdzs_camera_ll_visitreport = (LinearLayout) view.findViewById(R.id.zdzs_camera_ll_visitreport);
+        zdzs_camera_et_visitreport = (EditText) view.findViewById(R.id.zdzs_camera_et_visitreport);
         sureBtn = (Button) view.findViewById(R.id.xtbf_camera_bt_next);
         sureBtn.setOnClickListener(this);
     }
@@ -113,6 +123,9 @@ public class ZsCameraFragment extends XtBaseVisitFragment implements View.OnClic
         handler = new MyHandler(this);
         initData();
     }
+
+    ZsChatVieService zsChatVieService;
+    MitValcmpotherMTemp mitValcmpotherMTemp = null;
 
     // 初始化数据
     private void initData() {
@@ -131,6 +144,17 @@ public class ZsCameraFragment extends XtBaseVisitFragment implements View.OnClic
 
         // 设置条目点击事件
         setGridItemListener();
+
+
+        zsChatVieService = new ZsChatVieService(getActivity(), null);
+        // 瓦解竞品
+        mitValcmpotherMTemp = zsChatVieService.findMitValcmpotherMTempById(mitValterMTempKey);
+
+        // 拜访记录
+        if("Y".equals(mitValcheckterM.getVisinote())){
+            zdzs_camera_ll_visitreport_title.setVisibility(View.VISIBLE);
+            zdzs_camera_ll_visitreport.setVisibility(View.VISIBLE);
+        }
     }
 
 
@@ -378,6 +402,20 @@ public class ZsCameraFragment extends XtBaseVisitFragment implements View.OnClic
             dialog.dismiss();
         }
         gridAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        DbtLog.logUtils(TAG, "onPause()");
+        // 如果是查看操作，则不做数据校验及数据处理
+        if (ConstValues.FLAG_1.equals(seeFlag)) return;
+
+        // 拜访记录
+        mitValcmpotherMTemp.setValvisitremark(zdzs_camera_et_visitreport.getText().toString());
+
+        // 保存追溯聊竞品页面数据到临时表
+        zsChatVieService.saveZsVisitremark(mitValcmpotherMTemp);
     }
 
 

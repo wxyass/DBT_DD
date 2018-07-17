@@ -17,6 +17,7 @@ import java.util.List;
 
 import et.tsingtaopad.R;
 import et.tsingtaopad.base.BaseFragmentSupport;
+import et.tsingtaopad.core.util.dbtutil.PrefUtils;
 import et.tsingtaopad.db.table.MitValcmpMTemp;
 import et.tsingtaopad.dd.ddxt.invoicing.addinvoicing.XtAddInvocingService;
 import et.tsingtaopad.dd.ddzs.zsinvoicing.ZsInvoicingService;
@@ -285,6 +286,11 @@ public class ZsChatVieAmendFragment extends BaseFragmentSupport implements View.
         // 备注
         String report = zdzs_chatvie_amend_dd_et_report.getText().toString();
         valsupplyMTemp.setValcmpsupremark(report);
+
+        // 当稽查选择错误时
+        int count = PrefUtils.getInt(getActivity(),"valterErrorCount",0);
+        count++;
+        PrefUtils.putInt(getActivity(),"valterErrorCount",count);
 
         handler.sendEmptyMessage(ZsChatvieFragment.INIT_AMEND);
 

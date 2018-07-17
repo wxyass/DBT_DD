@@ -175,6 +175,26 @@
         <item name="android:minHeight">50dp</item>
         <item name="android:gravity">center_vertical</item>
     </style>
+    <!-- 督导模板上每个item的背景色 -->
+    <style name="template_bg_item">
+        <item name="android:background">@color/bg_lv_item</item>
+        <item name="android:minHeight">50dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+    <!-- 督导模板 选中样式 -->
+    <style name="template_cb_item">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:checked">false</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
 
     <!-- ListView上标题中的文字(最大) -->
     <style name="listview_tv_title" parent="@style/font_size6">
@@ -281,6 +301,15 @@
     <!-- dialog上每个item中的文字 -->
     <style name="dialog_tv_item" parent="@style/font_size4">
         <item name="android:textColor">#000000</item>
+    </style>
+
+    <!-- 督导模板 文字1  -->
+    <style name="template_tv_item" parent="@style/font_size4">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:textColor">#333333</item>
+        <item name="android:layout_weight">1</item>
     </style>
 
     <!-- dialog上item列表的上的提示文字 -->

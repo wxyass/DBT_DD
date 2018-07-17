@@ -20,6 +20,7 @@ import java.util.List;
 import et.tsingtaopad.R;
 import et.tsingtaopad.base.BaseFragmentSupport;
 import et.tsingtaopad.core.ui.loader.LatteLoader;
+import et.tsingtaopad.core.util.dbtutil.PrefUtils;
 import et.tsingtaopad.core.util.dbtutil.ViewUtil;
 import et.tsingtaopad.dd.ddxt.checking.domain.XtProIndexValue;
 import et.tsingtaopad.dd.ddxt.checking.domain.XtProItem;
@@ -156,6 +157,18 @@ public class ZsCaculateAmendFragment extends BaseFragmentSupport implements View
             bundle.putString("proId", item.getProId());
             bundle.putString("indexId", xtProIndexValue.getIndexId());
         }
+
+        // 计算稽查错误数
+        if("N".equals(xtProIndexValue.getValchecktypeflag())&&"Y".equals(valchecktypeflag)){// 上次是N,这次是Y
+            int count = PrefUtils.getInt(getActivity(),"valterErrorCount",0);
+            count--;
+            PrefUtils.putInt(getActivity(),"valterErrorCount",count);
+        }else if((!"N".equals(xtProIndexValue.getValchecktypeflag()))&&"N".equals(valchecktypeflag)){// 上次不是N,这次是N
+            int count = PrefUtils.getInt(getActivity(),"valterErrorCount",0);
+            count++;
+            PrefUtils.putInt(getActivity(),"valterErrorCount",count);
+        }
+
 
         // 修改对错
         xtProIndexValue.setValchecktypeflag(valchecktypeflag);

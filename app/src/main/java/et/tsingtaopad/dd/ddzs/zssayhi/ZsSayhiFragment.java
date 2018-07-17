@@ -955,6 +955,7 @@ public class ZsSayhiFragment extends XtBaseVisitFragment implements View.OnClick
         PrefUtils.putBoolean(getActivity(), GlobalValues.SAYHIREADY, true);
     }
 
+    String flag = "";
 
     @Override
     public void onClick(View v) {
@@ -965,39 +966,46 @@ public class ZsSayhiFragment extends XtBaseVisitFragment implements View.OnClick
                 break;
 
             case R.id.zdzs_sayhi_rl_termstatus:
+                flag = mitValterMTemp.getVidterflag();
                 alertShow3(mitValterMTemp, "是否有效终端", "vidter", "",
                         "", "setVidterflag", "setVidterremaek");
                 break;
             case R.id.zdzs_sayhi_rl_visitstatus:
+                flag = mitValterMTemp.getVidvisitflag();
                 alertShow3(mitValterMTemp, "是否有效拜访", "vidvisit", "",
                         "", "setVidvisitflag", "setVidvisitremark");
                 break;
             //
             case R.id.zdzs_sayhi_rl_wopindianzhao:
+                flag = mitValterMTemp.getVidifmineflag();
                 alertShow3(mitValterMTemp, "是否我品店招", "vidifmine", "",
                         "", "setVidifmineflag", "setVidifminermark");
                 break;
 
             // 是否我品销售范围
             case R.id.zdzs_sayhi_rl_selfstatus:
+                flag = mitValterMTemp.getVidisselfflag();
                 alertShow3(mitValterMTemp, "是否我品销售范围", "vidisself", "",
                         "", "setVidisselfflag", "setVidisselfremark");
                 break;
 
             // 是否竞品销售范围
             case R.id.zdzs_sayhi_rl_cmpstatus:
+                flag = mitValterMTemp.getVidiscmpflag();
                 alertShow3(mitValterMTemp, "是否竞品销售范围", "vidiscmp", "",
                         "", "setVidiscmpflag", "setVidiscmpremark");
                 break;
 
             // 是否我品终端合作
             case R.id.zdzs_sayhi_rl_selfprotocol:
+                flag = mitValterMTemp.getVidselftreatyflag();
                 alertShow3(mitValterMTemp, "是否我品终端合作", "vidselftreaty", "",
                         "", "setVidselftreatyflag", "setVidselftreatyremark");
                 break;
 
             // 是否竞品终端合作
             case R.id.zdzs_sayhi_rl_cmpprotocol:
+                flag = mitValterMTemp.getVidcmptreatyflag();
                 alertShow3(mitValterMTemp, "是否竞品终端合作", "vidcmptreaty", "",
                         "", "setVidcmptreatyflag", "setVidcmptreatyremark");
                 break;
@@ -1005,76 +1013,93 @@ public class ZsSayhiFragment extends XtBaseVisitFragment implements View.OnClick
 
             // 终端名称
             case R.id.zdzs_sayhi_rl_termname:
+                flag = mitValterMTemp.getVidternameflag();
                 alertShow3(mitValterMTemp, "终端名称", "vidtername", "vidternameval",
                         "setVidternameval", "setVidternameflag", "setVidternameremark");
                 break;
             case R.id.zdzs_sayhi_rl_termcode:
+                flag = mitValterMTemp.getVidtercodeflag();
                 alertShow3(mitValterMTemp, "终端编码", "vidterminalcode", "vidtercodeval",
                         "setVidtercodeval", "setVidtercodeflag", "setVidtercoderemark");
                 break;
             case R.id.zdzs_sayhi_rl_address:
+                flag = mitValterMTemp.getVidaddressflag();
                 alertShow3(mitValterMTemp, "地址", "vidaddress", "vidaddressval",
                         "setVidaddressval", "setVidaddressflag", "setVidaddressremark");
                 break;
             case R.id.zdzs_sayhi_rl_person:
+                flag = mitValterMTemp.getVidcontactflag();
                 alertShow3(mitValterMTemp, "联系人", "vidcontact", "vidcontactval",
                         "setVidcontactval", "setVidcontactflag", "setVidcontactremark");
                 break;
             case R.id.zdzs_sayhi_rl_tel:
+                flag = mitValterMTemp.getVidmobileflag();
                 alertShow3(mitValterMTemp, "电话", "vidmobile", "vidmobileval",
                         "setVidmobileval", "setVidmobileflag", "setVidmobileremark");
                 break;
             case R.id.zdzs_sayhi_rl_sequence:
+                flag = mitValterMTemp.getVidsequenceflag();
                 alertShow3(mitValterMTemp, "拜访顺序", "vidsequence", "vidsequenceval",
                         "setVidsequenceval", "setVidsequenceflag", "setVidvidsequenceremark");
                 break;
 
 
             case R.id.zdzs_sayhi_rl_cycle:
+                flag = mitValterMTemp.getVidcycleflag();
                 alertShow3(mitValterMTemp, "拜访周期", "vidcycle", "vidcycleval",
                         "setVidcycleval", "setVidcycleflag", "setVidcycleremark2");
                 break;
             case R.id.zdzs_sayhi_rl_hvolume:
+                flag = mitValterMTemp.getVidhvolumeflag();
                 alertShow3(mitValterMTemp, "高档容量", "vidhvolume", "vidhvolumeval",
                         "setVidhvolumeval", "setVidhvolumeflag", "setVidhvolumeremark");
                 break;
             case R.id.zdzs_sayhi_rl_mvolume:
+                flag = mitValterMTemp.getVidzvolumeflag();
                 alertShow3(mitValterMTemp, "中档容量", "vidzvolume", "vidzvolumeval",
                         "setVidzvolumeval", "setVidzvolumeflag", "setVidxvolumeremark");
                 break;
             case R.id.zdzs_sayhi_rl_pvolume:
+                flag = mitValterMTemp.getVidpvolumeflag();
                 alertShow3(mitValterMTemp, "普档容量", "vidpvolume", "vidpvolumeval",
                         "setVidpvolumeval", "setVidpvolumeflag", "setVidpvolumeremark");
                 break;
             case R.id.zdzs_sayhi_rl_lvolume:
+                flag = mitValterMTemp.getVidlvolumeflag();
                 alertShow3(mitValterMTemp, "低档容量", "vidlvolume", "vidlvolumeval",
                         "setVidlvolumeval", "setVidlvolumeflag", "setVidlvolumeremark");
                 break;
 
 
             case R.id.zdzs_sayhi_rl_belongline:
+                flag = mitValterMTemp.getVidrtekeyflag();
                 alertShow3(mitValterMTemp, "所属路线", "vidroutekey", "vidrtekeyval",
                         "setVidrtekeyval", "setVidrtekeyflag", "setVidroutremark");
                 break;
             case R.id.zdzs_sayhi_rl_level:
+                flag = mitValterMTemp.getVidtervidterlevelflag();
                 alertShow3(mitValterMTemp, "终端等级", "vidterlevel", "vidtervidterlevelval",
                         "setVidtervidterlevelval", "setVidtervidterlevelflag", "setidtervidterlevelremark");
                 break;
             case R.id.zdzs_sayhi_rl_country:
+                flag = mitValterMTemp.getVidcountryflag();
                 alertShow4(mitValterMTemp, "县", "vidcountry", "vidcountryval",
                         termInfoTemp.getCity(),
                         "setVidcountryval", "setVidcountryflag", "setVidcountryremark");
                 break;
             case R.id.zdzs_sayhi_rl_areatype:
+                flag = mitValterMTemp.getVidareatypeflag();
                 alertShow3(mitValterMTemp, "区域类型", "vidareatype", "vidareatypeval",
                         "setVidareatypeval", "setVidareatypeflag", "setVidareatyperemark");
                 break;
             case R.id.zdzs_sayhi_rl_minorchannel:
+                flag = mitValterMTemp.getVidminchannelflag();
                 alertShow4(mitValterMTemp, "次渠道", "vidminchannel", "vidminchannelval",
                         termInfoTemp.getMainchannel(),
                         "setVidminchannelval", "setVidminchannelflag", "setVidminchannelremark");
                 break;
             case R.id.zdzs_sayhi_rl_visitperson:
+                flag = mitValterMTemp.getVidvisituserflag();
                 alertShow3(mitValterMTemp, "拜访对象", "vidvisituser", "vidvisituserval",
                         "setVidvisituserval", "setVidvisituserflag", "setVidvisituserremark");
                 break;
@@ -1105,8 +1130,15 @@ public class ZsSayhiFragment extends XtBaseVisitFragment implements View.OnClick
                 new OnItemClickListener() {
                     @Override
                     public void onItemClick(Object o, int position) {
-                        // Toast.makeText(getActivity(), "点击了第" + position + "个", Toast.LENGTH_SHORT).show();
                         if (0 == position) {// 正确
+
+                            // 当稽查错误,又改正确时
+                            if("N".equals(flag)){
+                                int count = PrefUtils.getInt(getActivity(),"valterErrorCount",0);
+                                count--;
+                                PrefUtils.putInt(getActivity(),"valterErrorCount",count);
+                            }
+
                             FunUtil.setFieldValue(mitValterMTemp, ddflag, "Y");
                             handler.sendEmptyMessage(ZsSayhiFragment.INIT_DATA);
                         } else if (1 == position) {// 跳转数据录入

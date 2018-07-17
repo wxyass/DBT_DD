@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import et.tsingtaopad.R;
 import et.tsingtaopad.base.BaseFragmentSupport;
+import et.tsingtaopad.core.util.dbtutil.PrefUtils;
 import et.tsingtaopad.db.table.MitValagreedetailMTemp;
 
 /**
@@ -161,6 +162,11 @@ public class ZsAgreeDetailAmendFragment extends BaseFragmentSupport implements V
             mitValagreedetailMTemp.setTruemoney(price);
             mitValagreedetailMTemp.setTruenum(num);
             mitValagreedetailMTemp.setRemarks(report);
+
+            // 当稽查选择错误时
+            int count = PrefUtils.getInt(getActivity(),"valterErrorCount",0);
+            count++;
+            PrefUtils.putInt(getActivity(),"valterErrorCount",count);
 
             handler.sendEmptyMessage(ZsAgreeFragment.AGREE_AMEND_DETAIL);
 

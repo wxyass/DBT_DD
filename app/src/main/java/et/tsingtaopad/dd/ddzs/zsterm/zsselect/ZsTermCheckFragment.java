@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.AppCompatTextView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.lang.ref.SoftReference;
@@ -65,22 +68,25 @@ import et.tsingtaopad.http.HttpParseJson;
 import et.tsingtaopad.util.requestHeadUtil;
 
 /**
+ * 督导筛选终端
  * Created by yangwenmin on 2018/3/12.
  */
 
-public class ZsTermSelectFragment extends BaseFragmentSupport implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class ZsTermCheckFragment extends BaseFragmentSupport implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     private final String TAG = "ZsTermSelectFragment";
 
     private RelativeLayout backBtn;
     private RelativeLayout confirmBtn;
     private AppCompatTextView confirmTv;
+    private TextView checkTv;
     private AppCompatTextView backTv;
     private AppCompatTextView titleTv;
 
     private DropdownButton areaBtn;
     private DropdownButton gridBtn;
     private DropdownButton routeBtn;
+    private RelativeLayout termcheck_lou;
     private List<DropBean> areaList;
     private List<DropBean> gridList;
     private List<DropBean> routeList;
@@ -91,6 +97,7 @@ public class ZsTermSelectFragment extends BaseFragmentSupport implements View.On
     private ListView termRouteLv;
     private Button searchBtn;
     private Button addAllTermBtn;
+    private DrawerLayout mDrawerLayout;
 
     private XtTermSelectMStc xtTermSelectMStc;
     private List<MitValcheckterM> mitValcheckterMs;
@@ -111,7 +118,7 @@ public class ZsTermSelectFragment extends BaseFragmentSupport implements View.On
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_xtbf_termselect, container, false);
+        View view = inflater.inflate(R.layout.fragment_xtbf_termcheck, container, false);
         initView(view);
         return view;
     }
@@ -120,22 +127,29 @@ public class ZsTermSelectFragment extends BaseFragmentSupport implements View.On
     private void initView(View view) {
         backBtn = (RelativeLayout) view.findViewById(R.id.top_navigation_rl_back);
         confirmBtn = (RelativeLayout) view.findViewById(R.id.top_navigation_rl_confirm);
+        checkTv = (TextView) view.findViewById(R.id.top_navigation_tv_check);
         confirmTv = (AppCompatTextView) view.findViewById(R.id.top_navigation_bt_confirm);
         backTv = (AppCompatTextView) view.findViewById(R.id.top_navigation_bt_back);
         titleTv = (AppCompatTextView) view.findViewById(R.id.top_navigation_tv_title);
         confirmBtn.setVisibility(View.VISIBLE);
+        checkTv.setVisibility(View.VISIBLE);
         confirmBtn.setOnClickListener(this);
         backBtn.setOnClickListener(this);
+        checkTv.setOnClickListener(this);
 
-        areaBtn = (DropdownButton) view.findViewById(R.id.xtbf_termselect_area);
-        gridBtn = (DropdownButton) view.findViewById(R.id.xtbf_termselect_grid);
-        routeBtn = (DropdownButton) view.findViewById(R.id.xtbf_termselect_route);
-        searchBtn = (Button) view.findViewById(R.id.xtbf_termselect_bt_search);
-        addAllTermBtn = (Button) view.findViewById(R.id.xtbf_termselect_bt_add);
-        termRouteLl = (LinearLayout) view.findViewById(R.id.xtbf_termselect_ll_lv);
-        termRouteLv = (ListView) view.findViewById(R.id.xtbf_termselect_lv);
+        areaBtn = (DropdownButton) view.findViewById(R.id.xtbf_termcheck_area);
+        gridBtn = (DropdownButton) view.findViewById(R.id.xtbf_termcheck_grid);
+        routeBtn = (DropdownButton) view.findViewById(R.id.xtbf_termcheck_route);
+        termcheck_lou = (RelativeLayout) view.findViewById(R.id.xtbf_termcheck_lou);
+        searchBtn = (Button) view.findViewById(R.id.xtbf_termcheck_bt_search);
+        addAllTermBtn = (Button) view.findViewById(R.id.xtbf_termcheck_bt_add);
+        termRouteLl = (LinearLayout) view.findViewById(R.id.xtbf_termcheck_ll_lv);
+        termRouteLv = (ListView) view.findViewById(R.id.xtbf_termcheck_lv);
         addAllTermBtn.setOnClickListener(this);
         searchBtn.setOnClickListener(this);
+        termcheck_lou.setOnClickListener(this);
+
+         mDrawerLayout = (DrawerLayout) view.findViewById(R.id.drawerlayout);
     }
 
     @Override
@@ -330,6 +344,13 @@ public class ZsTermSelectFragment extends BaseFragmentSupport implements View.On
             // 返回
             case R.id.top_navigation_rl_back:
                 supportFragmentManager.popBackStack();
+                break;
+            case R.id.top_navigation_tv_check:// 配置模板
+                changeHomeFragment(new ZsTemplateFragment(), "xttermcartfragment");
+                break;
+            case R.id.xtbf_termcheck_lou:// 筛选终端
+                Toast.makeText(getActivity(),"请筛选终端",Toast.LENGTH_SHORT).show();
+                mDrawerLayout.openDrawer(Gravity.RIGHT);
                 break;
             case R.id.top_navigation_rl_confirm:// 确定
                 if (mitValcheckterMs.size() > 0) {// 配置了督导模板
@@ -653,15 +674,15 @@ public class ZsTermSelectFragment extends BaseFragmentSupport implements View.On
     public static class MyHandler extends Handler {
 
         // 软引用
-        SoftReference<ZsTermSelectFragment> fragmentRef;
+        SoftReference<ZsTermCheckFragment> fragmentRef;
 
-        public MyHandler(ZsTermSelectFragment fragment) {
-            fragmentRef = new SoftReference<ZsTermSelectFragment>(fragment);
+        public MyHandler(ZsTermCheckFragment fragment) {
+            fragmentRef = new SoftReference<ZsTermCheckFragment>(fragment);
         }
 
         @Override
         public void handleMessage(Message msg) {
-            ZsTermSelectFragment fragment = fragmentRef.get();
+            ZsTermCheckFragment fragment = fragmentRef.get();
             if (fragment == null) {
                 return;
             }

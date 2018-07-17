@@ -16,6 +16,7 @@ import java.util.List;
 import et.tsingtaopad.R;
 import et.tsingtaopad.base.BaseFragmentSupport;
 import et.tsingtaopad.core.util.dbtutil.FunUtil;
+import et.tsingtaopad.core.util.dbtutil.PrefUtils;
 import et.tsingtaopad.db.table.MitValaddaccountproMTemp;
 import et.tsingtaopad.dd.ddzs.zsinvoicing.ZsInvoicingFragment;
 import et.tsingtaopad.dd.ddzs.zsinvoicing.zsinvocingtz.domain.ZsTzItemIndex;
@@ -140,6 +141,13 @@ public class ZsInvoicingTzAmendFragment extends BaseFragmentSupport implements V
 
         //
         zstzitemindex.setValprostatus("N");
+
+        // 当稽查选择错误时
+        int count = PrefUtils.getInt(getActivity(),"valterErrorCount",0);
+        count++;
+        PrefUtils.putInt(getActivity(),"valterErrorCount",count);
+
+
         handler.sendEmptyMessage(ZsInvoicingFragment.MAKE_RIGHT_TZ);
 
     }

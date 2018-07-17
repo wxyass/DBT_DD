@@ -15,6 +15,7 @@ import android.widget.TextView;
 import et.tsingtaopad.R;
 import et.tsingtaopad.base.BaseFragmentSupport;
 import et.tsingtaopad.core.util.dbtutil.ConstValues;
+import et.tsingtaopad.core.util.dbtutil.PrefUtils;
 import et.tsingtaopad.db.table.MitValcmpotherMTemp;
 
 /**
@@ -171,6 +172,11 @@ public class ZsWjVieAmendFragment extends BaseFragmentSupport implements View.On
         // 保存是否正确,备注内容
         String remark = zdzs_chatvie_wj_amend_dd_et_report.getText().toString();
         mitValcmpotherMTemp.setValiscmpremark(remark);
+
+        // 当稽查选择错误时
+        int count = PrefUtils.getInt(getActivity(),"valterErrorCount",0);
+        count++;
+        PrefUtils.putInt(getActivity(),"valterErrorCount",count);
 
         handler.sendEmptyMessage(ZsChatvieFragment.INIT_WJ_AMEND);
 
