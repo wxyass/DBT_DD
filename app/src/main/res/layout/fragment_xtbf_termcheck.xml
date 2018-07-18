@@ -197,10 +197,10 @@
     <!--右侧布局-->
     <ScrollView
         android:id="@+id/right"
-        android:layout_width="360dp"
+        android:layout_width="400dp"
         android:layout_height="match_parent"
         android:layout_gravity="right"
-        android:background="@color/bg_app">
+        android:background="@color/white">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -214,11 +214,265 @@
                 android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
+
+
+                <!--产品信息-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/zdzs_invoicing_point5"
+                        style="@style/point"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ico_point"/>
+
+                    <TextView
+                        android:id="@+id/zdzs_termcheck_textview05"
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/zdzs_invoicing_point5"
+                        android:text="产品信息"/>
+
+                </RelativeLayout>
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/sex_rg"
+                    android:orientation="horizontal">
+
+
+                    <RadioButton
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="铺货状态"
+                        android:checked="false"
+                        android:id="@+id/rb_check"/>
+                    <RadioButton
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="价格体系"
+                        android:checked="false"
+                        android:id="@+id/rb_price"/>
+                    <RadioButton
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="竞品信息"
+                        android:checked="false"
+                        android:id="@+id/rb_cmppro"/>
+                </RadioGroup>
+
+
+                <LinearLayout
+                    android:id="@+id/zdzs_termcheck_checkid"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1">
+                        <CheckBox
+                            android:id="@+id/zdzs_termcheck_black"
+                            style="@style/checkterm_cb_style"
+                            android:text="空白"/>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1">
+                        <CheckBox
+                            android:id="@+id/zdzs_termcheck_puhuo"
+                            style="@style/checkterm_cb_style"
+                            android:text="铺货"/>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1">
+                        <CheckBox
+                            android:id="@+id/zdzs_termcheck_youxiao"
+                            style="@style/checkterm_cb_style"
+                            android:text="有效铺货"/>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1">
+                        <CheckBox
+                            android:id="@+id/zdzs_termcheck_xiaoshou"
+                            style="@style/checkterm_cb_style"
+                            android:text="有效销售"/>
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/zdzs_termcheck_textview06"
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="选择产品"/>
+
+                    <TextView
+                        android:id="@+id/zdzs_termcheck_proname"
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/zdzs_termcheck_textview06"
+                        android:layout_toLeftOf="@id/zdzs_termcheck_get06"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_centerVertical="true"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        />
+
+                    <TextView
+                        android:id="@+id/zdzs_termcheck_get06"
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:text="收起"/>
+
+                </RelativeLayout>
+
+
+                <!--产品列表-->
+                <LinearLayout
+                    android:id="@+id/zdzs_termcheck_ll_prolv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+                    <ListView
+                        android:id="@+id/zdzs_termcheck_pro"
+                        android:layout_width="match_parent"
+                        android:divider="@color/bg_app"
+                        android:dividerHeight="1dp"
+                        android:layout_height="wrap_content">
+
+                    </ListView>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/zdzs_termcheck_ll_proprice1"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/page_label_big"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="渠道价"/>
+
+                    <EditText
+                        android:id="@+id/zdzs_termcheck_qdjlow"
+                        style="@style/formLabel_value"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:background="@android:color/transparent"
+                        android:hint="最低值"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:paddingBottom="8dp"
+                        android:singleLine="true"/>
+
+                    <EditText
+                        android:id="@+id/zdzs_termcheck_qdjnum"
+                        style="@style/formLabel_value"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:background="@android:color/transparent"
+                        android:hint="最高值"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:paddingBottom="8dp"
+                        android:singleLine="true"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/zdzs_termcheck_ll_proprice2"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/page_label_big"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="零售价"/>
+
+                    <EditText
+                        android:id="@+id/zdzs_termcheck_lsjlow"
+                        style="@style/formLabel_value"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:background="@android:color/transparent"
+                        android:hint="最低值"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:paddingBottom="8dp"
+                        android:singleLine="true"/>
+
+                    <EditText
+                        android:id="@+id/zdzs_termcheck_lsjnum"
+                        style="@style/formLabel_value"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:background="@android:color/transparent"
+                        android:hint="最高值"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:paddingBottom="8dp"
+                        android:singleLine="true"/>
+                </LinearLayout>
+
+
+
                 <!--基础信息-->
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-
                     android:layout_marginRight="10dp"
                     >
 
@@ -231,7 +485,7 @@
                         android:src="@drawable/ico_point"/>
 
                     <TextView
-                        android:id="@+id/zdzs_invocing_textview01"
+                        android:id="@+id/zdzs_termcheck_textview01"
                         style="@style/page_label_big"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -245,11 +499,12 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
+                        android:id="@+id/zdzs_termcheck_mineshop"
+                        style="@style/checkterm_cb_style"
                         android:text="我品店招"/>
                 </LinearLayout>
 
@@ -259,13 +514,14 @@
                     android:orientation="horizontal">
 
                     <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
+                        android:id="@+id/zdzs_termcheck_minearea"
+                        style="@style/checkterm_cb_style"
                         android:text="销售我品"/>
 
                     <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
+                        android:id="@+id/zdzs_termcheck_cmparea"
+                        style="@style/checkterm_cb_style"
+                        android:layout_marginLeft="10dp"
                         android:text="销售竞品"/>
                 </LinearLayout>
 
@@ -275,13 +531,14 @@
                     android:orientation="horizontal">
 
                     <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
+                        android:id="@+id/zdzs_termcheck_minetreaty"
+                        style="@style/checkterm_cb_style"
                         android:text="我品合作"/>
 
                     <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
+                        android:id="@+id/zdzs_termcheck_cmptreaty"
+                        style="@style/checkterm_cb_style"
+                        android:layout_marginLeft="10dp"
                         android:text="竞品合作"/>
                 </LinearLayout>
 
@@ -290,29 +547,45 @@
                     android:layout_height="40dp"
                     android:orientation="horizontal">
 
-                    <CheckBox
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:text="1级终端"/>
+                        android:layout_weight="1">
+                        <CheckBox
+                            android:id="@+id/zdzs_termcheck_termone"
+                            style="@style/checkterm_cb_style"
+                            android:text="1级终端"/>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1">
+                        <CheckBox
+                            android:id="@+id/zdzs_termcheck_termtwo"
+                            style="@style/checkterm_cb_style"
+                            android:text="2级终端"/>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1">
+                        <CheckBox
+                            android:id="@+id/zdzs_termcheck_termthree"
+                            style="@style/checkterm_cb_style"
+                            android:text="3级终端"/>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1">
+                        <CheckBox
+                            android:id="@+id/zdzs_termcheck_termfour"
+                            style="@style/checkterm_cb_style"
+                            android:text="4级终端"/>
+                    </RelativeLayout>
 
-                    <CheckBox
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:text="2级终端"/>
 
-                    <CheckBox
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:text="3级终端"/>
 
-                    <CheckBox
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:text="4级终端"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -320,29 +593,43 @@
                     android:layout_height="40dp"
                     android:orientation="horizontal">
 
-                    <CheckBox
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:text="城区"/>
+                        android:layout_weight="1">
+                        <CheckBox
+                            android:id="@+id/zdzs_termcheck_termcq"
+                            style="@style/checkterm_cb_style"
+                            android:text="城区"/>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1">
+                        <CheckBox
+                            android:id="@+id/zdzs_termcheck_termxz"
+                            style="@style/checkterm_cb_style"
+                            android:text="乡镇"/>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1">
+                        <CheckBox
+                            android:id="@+id/zdzs_termcheck_termcj"
+                            style="@style/checkterm_cb_style"
+                            android:text="村级"/>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1">
+                        <CheckBox
+                            android:id="@+id/zdzs_termcheck_termddb"
+                            style="@style/checkterm_cb_style"
+                            android:text="大店部"/>
+                    </RelativeLayout>
 
-                    <CheckBox
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:text="乡镇"/>
-
-                    <CheckBox
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:text="村级"/>
-
-                    <CheckBox
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:text="大店部"/>
                 </LinearLayout>
 
                 <RelativeLayout
@@ -350,6 +637,7 @@
                     android:layout_height="50dp">
 
                     <EditText
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -358,7 +646,8 @@
                         />
 
                     <EditText
-                        android:id="@+id/check_et_address"
+                        android:id="@+id/zdzs_termcheck_termaddress"
+
                         style="@style/formLabel_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -382,7 +671,7 @@
                         android:hint="@string/termadd_unit_cycle"/>
 
                     <EditText
-                        android:id="@+id/sayhi_et_cycle"
+                        android:id="@+id/zdzs_termcheck_termcycle"
                         style="@style/formLabel_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -412,7 +701,7 @@
                         android:src="@drawable/ico_point"/>
 
                     <TextView
-                        android:id="@+id/zdzs_invocing_textview02"
+                        android:id="@+id/zdzs_termcheck_textview02"
                         style="@style/page_label_big"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -421,7 +710,7 @@
                         android:text="终端容量"/>
 
                     <TextView
-                        android:id="@+id/zdzs_invocing_get02"
+                        android:id="@+id/zdzs_termcheck_get02"
                         style="@style/page_label_big"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -433,6 +722,7 @@
                 </RelativeLayout>
 
                 <LinearLayout
+                    android:id="@+id/zdzs_termcheck_ll_termnum"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -450,6 +740,7 @@
                             android:text="高档容量"/>
 
                         <EditText
+                            android:id="@+id/zdzs_termcheck_hlow"
                             style="@style/formLabel_value"
                             android:layout_width="80dp"
                             android:layout_height="wrap_content"
@@ -463,6 +754,7 @@
                             android:singleLine="true"/>
 
                         <EditText
+                            android:id="@+id/zdzs_termcheck_hnum"
                             style="@style/formLabel_value"
                             android:layout_width="80dp"
                             android:layout_height="wrap_content"
@@ -489,6 +781,7 @@
                             android:text="中档容量"/>
 
                         <EditText
+                            android:id="@+id/zdzs_termcheck_zlow"
                             style="@style/formLabel_value"
                             android:layout_width="80dp"
                             android:layout_height="wrap_content"
@@ -502,6 +795,7 @@
                             android:singleLine="true"/>
 
                         <EditText
+                            android:id="@+id/zdzs_termcheck_znum"
                             style="@style/formLabel_value"
                             android:layout_width="80dp"
                             android:layout_height="wrap_content"
@@ -528,6 +822,7 @@
                             android:text="低档容量"/>
 
                         <EditText
+                            android:id="@+id/zdzs_termcheck_plow"
                             style="@style/formLabel_value"
                             android:layout_width="80dp"
                             android:layout_height="wrap_content"
@@ -541,6 +836,7 @@
                             android:singleLine="true"/>
 
                         <EditText
+                            android:id="@+id/zdzs_termcheck_pnum"
                             style="@style/formLabel_value"
                             android:layout_width="80dp"
                             android:layout_height="wrap_content"
@@ -564,9 +860,10 @@
                             android:layout_width="80dp"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:text="中档容量"/>
+                            android:text="低档容量"/>
 
                         <EditText
+                            android:id="@+id/zdzs_termcheck_llow"
                             style="@style/formLabel_value"
                             android:layout_width="80dp"
                             android:layout_height="wrap_content"
@@ -580,6 +877,7 @@
                             android:singleLine="true"/>
 
                         <EditText
+                            android:id="@+id/zdzs_termcheck_lnum"
                             style="@style/formLabel_value"
                             android:layout_width="80dp"
                             android:layout_height="wrap_content"
@@ -610,7 +908,7 @@
                         android:src="@drawable/ico_point"/>
 
                     <TextView
-                        android:id="@+id/zdzs_invocing_textview03"
+                        android:id="@+id/zdzs_termcheck_textview03"
                         style="@style/page_label_big"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -623,33 +921,39 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     android:orientation="horizontal">
 
                     <CheckBox
+                        android:id="@+id/zdzs_termcheck_cb_ka"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_weight="1"
                         android:text="KA渠道"/>
 
                     <CheckBox
+                        android:id="@+id/zdzs_termcheck_cb_s"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_weight="1"
                         android:text="S渠道"/>
 
                     <CheckBox
+                        android:id="@+id/zdzs_termcheck_cb_nl"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_weight="1"
                         android:text="NL渠道"/>
 
                     <CheckBox
+                        android:id="@+id/zdzs_termcheck_cb_op"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_weight="1"
                         android:text="OP渠道"/>
 
                     <CheckBox
+                        android:id="@+id/zdzs_termcheck_cb_sc"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_weight="1"
@@ -658,8 +962,16 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
+
+                    <et.tsingtaopad.view.TagLayout
+                        android:id="@+id/flower_tags"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+
+                    </et.tsingtaopad.view.TagLayout>
 
                     <ListView
                         android:layout_width="match_parent"
@@ -686,7 +998,7 @@
                         android:src="@drawable/ico_point"/>
 
                     <TextView
-                        android:id="@+id/zdzs_invocing_textview04"
+                        android:id="@+id/zdzs_termcheck_textview04"
                         style="@style/page_label_big"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -701,23 +1013,33 @@
                     android:layout_height="40dp"
                     android:orientation="horizontal">
 
-                    <CheckBox
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:text="产品组合达标"/>
-
-                    <CheckBox
+                        android:layout_weight="1">
+                        <CheckBox
+                            android:id="@+id/zdzs_termcheck_checkzh"
+                            style="@style/checkterm_cb_style"
+                            android:text="产品组合达标"/>
+                    </RelativeLayout>
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:text="合作执行到位"/>
-
-                    <CheckBox
+                        android:layout_weight="1">
+                        <CheckBox
+                            android:id="@+id/zdzs_termcheck_checkhz"
+                            style="@style/checkterm_cb_style"
+                            android:text="合作执行到位"/>
+                    </RelativeLayout>
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:text="高质量配送"/>
+                        android:layout_weight="1">
+                        <CheckBox
+                            android:id="@+id/zdzs_termcheck_checkgao"
+                            style="@style/checkterm_cb_style"
+                            android:text="高质量配送"/>
+                    </RelativeLayout>
 
                 </LinearLayout>
 
@@ -734,6 +1056,7 @@
                         android:text="占有率"/>
 
                     <EditText
+                        android:id="@+id/zdzs_termcheck_zyllow"
                         style="@style/formLabel_value"
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
@@ -747,6 +1070,7 @@
                         android:singleLine="true"/>
 
                     <EditText
+                        android:id="@+id/zdzs_termcheck_zylnum"
                         style="@style/formLabel_value"
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
@@ -761,179 +1085,8 @@
                 </LinearLayout>
 
 
-                <!--产品信息-->
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="10dp"
-                    >
-
-                    <ImageView
-                        android:id="@+id/zdzs_invoicing_point5"
-                        style="@style/point"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/ico_point"/>
-
-                    <TextView
-                        android:id="@+id/zdzs_invocing_textview05"
-                        style="@style/page_label_big"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_toRightOf="@id/zdzs_invoicing_point5"
-                        android:text="产品信息"/>
-
-                </RelativeLayout>
-
-                <RadioGroup
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/sex_rg"
-                    android:orientation="horizontal">
-                    <RadioButton
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="铺货状态"
-                        android:checked="false"
-                        android:id="@+id/rb_check"/>
-                    <RadioButton
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="价格体系"
-                        android:checked="false"
-                        android:id="@+id/rb_price"/>
-                    <RadioButton
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="竞品信息"
-                        android:checked="false"
-                        android:id="@+id/rb_cmppro"/>
-                </RadioGroup>
 
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="10dp"
-                    >
-
-                    <TextView
-                        android:id="@+id/zdzs_invocing_textview06"
-                        style="@style/page_label_big"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="选择产品"/>
-
-                    <TextView
-                        android:id="@+id/zdzs_invocing_get06"
-                        style="@style/page_label_big"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="10dp"
-                        android:text="收起"/>
-
-                </RelativeLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:orientation="vertical">
-
-                    <ListView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                    </ListView>
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/page_label_big"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="渠道价"/>
-
-                    <EditText
-                        style="@style/formLabel_value"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dp"
-                        android:background="@android:color/transparent"
-                        android:hint="最低值"
-                        android:inputType="number"
-                        android:maxLength="6"
-                        android:paddingBottom="8dp"
-                        android:singleLine="true"/>
-
-                    <EditText
-                        style="@style/formLabel_value"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dp"
-                        android:background="@android:color/transparent"
-                        android:hint="最高值"
-                        android:inputType="number"
-                        android:maxLength="6"
-                        android:paddingBottom="8dp"
-                        android:singleLine="true"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/page_label_big"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="零售价"/>
-
-                    <EditText
-                        style="@style/formLabel_value"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dp"
-                        android:background="@android:color/transparent"
-                        android:hint="最低值"
-                        android:inputType="number"
-                        android:maxLength="6"
-                        android:paddingBottom="8dp"
-                        android:singleLine="true"/>
-
-                    <EditText
-                        style="@style/formLabel_value"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dp"
-                        android:background="@android:color/transparent"
-                        android:hint="最高值"
-                        android:inputType="number"
-                        android:maxLength="6"
-                        android:paddingBottom="8dp"
-                        android:singleLine="true"/>
-                </LinearLayout>
 
             </LinearLayout>
 
@@ -967,6 +1120,7 @@
                     android:background="@color/gray"/>
 
                 <RelativeLayout
+                    android:id="@+id/zdzs_termcheck_rl_sure"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_weight="1">

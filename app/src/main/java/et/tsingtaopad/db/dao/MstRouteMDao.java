@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import et.tsingtaopad.db.table.MstRouteM;
+import et.tsingtaopad.initconstvalues.domain.KvStc;
 import et.tsingtaopad.main.visit.shopvisit.line.domain.MstRouteMStc;
 
 
@@ -41,5 +42,13 @@ public interface MstRouteMDao extends Dao<MstRouteM, String> {
      * @return
      */
     public int queryForTermNum(SQLiteOpenHelper helper, String lineId);
+
+
+    /**
+     * 获取次渠道集合
+     * @param helper
+     * @return
+     */
+    public List<KvStc> querySecondSell(SQLiteOpenHelper helper);
 
 }

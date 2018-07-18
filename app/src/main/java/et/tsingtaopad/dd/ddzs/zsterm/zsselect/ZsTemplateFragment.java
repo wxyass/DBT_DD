@@ -17,7 +17,6 @@ import android.widget.ScrollView;
 import android.widget.Toast;
 
 import java.lang.ref.SoftReference;
-import java.util.ArrayList;
 import java.util.List;
 
 import et.tsingtaopad.R;
@@ -27,7 +26,6 @@ import et.tsingtaopad.core.util.dbtutil.FunUtil;
 import et.tsingtaopad.core.util.dbtutil.PrefUtils;
 import et.tsingtaopad.db.table.MitValcheckterM;
 import et.tsingtaopad.dd.ddxt.term.select.XtTermSelectService;
-import et.tsingtaopad.initconstvalues.domain.KvStc;
 
 /**
  * 督导模板

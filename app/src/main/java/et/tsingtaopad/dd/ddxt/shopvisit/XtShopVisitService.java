@@ -2133,7 +2133,8 @@ public class XtShopVisitService {
             collectionQB.orderBy("updatetime", false);
             List<MstCollectionexerecordInfo> collectionList = collectionQB.query();
 
-            if (!CheckUtil.IsEmpty(collectionList)) {
+            //if (!CheckUtil.IsEmpty(collectionList)) {
+            if (collectionList.size()>0) {
                 //数据库查询
                 //根据渠道查询拜访指标执行采集项记录表,按采集项+产品放入map
                 QueryBuilder<PadCheckaccomplishInfo, String> valueQb = padCheckaccomplishInfoDao.queryBuilder();

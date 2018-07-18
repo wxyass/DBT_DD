@@ -1079,7 +1079,7 @@ public class ZsSayhiFragment extends XtBaseVisitFragment implements View.OnClick
             case R.id.zdzs_sayhi_rl_level:
                 flag = mitValterMTemp.getVidtervidterlevelflag();
                 alertShow3(mitValterMTemp, "终端等级", "vidterlevel", "vidtervidterlevelval",
-                        "setVidtervidterlevelval", "setVidtervidterlevelflag", "setidtervidterlevelremark");
+                        "setVidtervidterlevelval", "setVidtervidterlevelflag", "setVidtervidterlevelremark");
                 break;
             case R.id.zdzs_sayhi_rl_country:
                 flag = mitValterMTemp.getVidcountryflag();

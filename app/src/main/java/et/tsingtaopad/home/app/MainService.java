@@ -741,8 +741,7 @@ public class MainService extends XtShopVisitService {
         createOrUpdateTable(MST_PROMOTERM_INFO, "MST_PROMOTERM_INFO", MstPromotermInfo.class,0);
         createOrUpdateTable(MST_VISIT_M, "MST_VISIT_M", MstVisitM.class,0);
         createOrUpdateTable(MST_VISTPRODUCT_INFO, "MST_VISTPRODUCT_INFO", MstVistproductInfo.class,0);
-        createOrUpdateTable(MST_AGENCYACCOUNT_M, "MST_TERMLEDGER_INFO", MstTermLedgerInfo.class,0);
-
+        createOrUpdateTable(MST_AGENCYACCOUNT_M, "MST_TERMLEDGER_INFO", MstTermLedgerInfo.class,1); // 删除上次数据
         createOrUpdateTable(MST_AGREE_TMP, "MST_AGREE_TMP", MstAgreeTmp.class,0);
         createOrUpdateTable(MST_AGREE_DETAIL_TMP, "MST_AGREE_DETAIL_TMP", MstAgreeDetailTmp.class,0);
     }

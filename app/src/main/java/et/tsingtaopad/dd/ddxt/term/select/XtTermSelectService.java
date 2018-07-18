@@ -17,11 +17,13 @@ import com.j256.ormlite.stmt.Where;
 
 import et.tsingtaopad.R;
 import et.tsingtaopad.core.util.dbtutil.CheckUtil;
+import et.tsingtaopad.core.util.dbtutil.ConstValues;
 import et.tsingtaopad.core.util.dbtutil.FunUtil;
 import et.tsingtaopad.core.util.dbtutil.ViewUtil;
 import et.tsingtaopad.core.util.dbtutil.logutil.DbtLog;
 import et.tsingtaopad.db.DatabaseHelper;
 import et.tsingtaopad.db.dao.MitRepairterMDao;
+import et.tsingtaopad.db.dao.MstRouteMDao;
 import et.tsingtaopad.db.dao.MstTerminalinfoMDao;
 import et.tsingtaopad.db.table.MitRepairM;
 import et.tsingtaopad.db.table.MitRepaircheckM;
@@ -39,6 +41,7 @@ import et.tsingtaopad.dd.dddealplan.make.domain.DealPlanMakeStc;
 import et.tsingtaopad.dd.dddealplan.remake.domain.ReCheckTimeStc;
 import et.tsingtaopad.dd.ddxt.term.XtTermService;
 import et.tsingtaopad.dd.ddxt.term.select.domain.XtTermSelectMStc;
+import et.tsingtaopad.initconstvalues.domain.KvStc;
 
 
 /**
@@ -785,6 +788,25 @@ public class XtTermSelectService extends XtTermService{
     }
 
 
+    // 初始化次渠道
+    public List<KvStc>  initSecondSell(){
+        List<KvStc> dataDicLst = new ArrayList<KvStc>();
+        AndroidDatabaseConnection connection = null;
+        try {
+            DatabaseHelper helper = DatabaseHelper.getHelper(context);
+            MstRouteMDao dao = helper.getDao(MstRouteM.class);
+
+            connection = new AndroidDatabaseConnection(helper.getWritableDatabase(), true);
+            connection.setAutoCommit(false);
+            dataDicLst = dao.querySecondSell(helper);
+
+            connection.commit(null);
+        } catch (SQLException e) {
+            Log.e(TAG, "获取拜访产品-我品竞品表DAO对象失败", e);
+        }
+        return dataDicLst;
+
+    }
 
 
 }

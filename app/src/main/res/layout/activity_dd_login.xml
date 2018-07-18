@@ -35,7 +35,7 @@
                 android:layout_toRightOf="@id/login_dd_tv_uid"
                 android:background="@drawable/bg_login_pwd"
                 android:hint="@string/login_uid_hint"
-                android:text=""
+                android:text="2023317"
                 android:maxLength="128"
                 android:singleLine="true"
                 android:textColor="#092102"
@@ -66,7 +66,7 @@
                 android:inputType="textPassword"
                 android:maxLength="128"
                 android:singleLine="true"
-                android:text=""
+                android:text="Y1234567"
                 android:textColor="#092102"
                 android:textSize="16sp" />
         </RelativeLayout>

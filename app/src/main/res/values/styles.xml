@@ -747,6 +747,16 @@
         <item name="android:layout_marginBottom">14dp</item>
         <item name="android:textColor">@color/gray_color_333333</item>
     </style>
+    <!-- 筛选终端 CheckBox  -->
+    <style name="checkterm_cb_style" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:background">@drawable/bg_shape_green</item>
+        <item name="android:textColor">@color/selector_text_color</item>
+        <item name="android:paddingLeft">18dp</item>
+        <item name="android:paddingRight">18dp</item>
+        <item name="android:button">@null</item>
+    </style>
 
 
 </resources>

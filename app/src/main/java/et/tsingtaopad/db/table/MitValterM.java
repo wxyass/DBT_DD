@@ -238,6 +238,8 @@ public class MitValterM implements java.io.Serializable {
     private String lon;//经度
     @DatabaseField
     private String lat;//维度
+    @DatabaseField
+    private String iserror;//有稽查项是选择错误的
 
     // Constructors
 
@@ -1204,5 +1206,13 @@ public class MitValterM implements java.io.Serializable {
 
     public void setLat(String lat) {
         this.lat = lat;
+    }
+
+    public String getIserror() {
+        return iserror;
+    }
+
+    public void setIserror(String iserror) {
+        this.iserror = iserror;
     }
 }

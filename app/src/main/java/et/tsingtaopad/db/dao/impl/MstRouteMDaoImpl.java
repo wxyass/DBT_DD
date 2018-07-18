@@ -18,6 +18,7 @@ import et.tsingtaopad.core.util.dbtutil.CheckUtil;
 import et.tsingtaopad.core.util.dbtutil.DateUtil;
 import et.tsingtaopad.db.dao.MstRouteMDao;
 import et.tsingtaopad.db.table.MstRouteM;
+import et.tsingtaopad.initconstvalues.domain.KvStc;
 import et.tsingtaopad.main.visit.shopvisit.line.domain.MstRouteMStc;
 
 /**
@@ -146,5 +147,30 @@ public class MstRouteMDaoImpl extends
         Cursor cursor = db.rawQuery(buffer.toString(), args.toArray(new String[]{}));
         cursor.moveToNext();
         return cursor.getInt(0);
+    }
+
+    // 获取次渠道集合
+    @Override
+    public List<KvStc> querySecondSell(SQLiteOpenHelper helper) {
+        List<KvStc> dataDicLst = new ArrayList<KvStc>();
+
+        StringBuffer buffer = new StringBuffer();
+        buffer.append("select c.dicname,c.diccode,c.parentcode from CMM_DATADIC_M a ");
+        buffer.append(" inner join  CMM_DATADIC_M b   ");
+        buffer.append(" on  b.parentcode  = a.diccode  ");
+        buffer.append(" inner join  CMM_DATADIC_M c  ");
+        buffer.append(" on  c.parentcode  = b.diccode ");
+        buffer.append(" where a.parentcode = ?  ");
+        Cursor cursor = helper.getReadableDatabase().rawQuery(buffer.toString(), new String[] { "ce4be953-2a89-4c48-b416-7a7adc808690" });
+        KvStc item;
+        while (cursor.moveToNext()) {
+            item = new KvStc();
+            item.setValue(cursor.getString(cursor.getColumnIndex("dicname")));
+            item.setKey(cursor.getString(cursor.getColumnIndex("diccode")));
+            item.setParentKey(cursor.getString(cursor.getColumnIndex("parentcode")));
+            dataDicLst.add(item);
+        }
+        return dataDicLst;
+
     }
 }

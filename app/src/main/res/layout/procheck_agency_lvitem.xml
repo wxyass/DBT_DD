@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+
+
+    <RelativeLayout
+        android:id="@+id/checkterm_ll_item"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <TextView
+            android:id="@+id/checkterm_agency_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/gray_color_333333"
+            android:textSize="17dp"/>
+    </RelativeLayout>
+
+    <!--产品列表-->
+    <LinearLayout
+        android:id="@+id/zdzs_termcheck_ll_agency_prolv_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/zdzs_termcheck_agency_item"
+            android:divider="@color/bg_app"
+            android:layout_width="match_parent"
+            android:dividerHeight="1dp"
+            android:layout_height="wrap_content">
+
+        </ListView>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
