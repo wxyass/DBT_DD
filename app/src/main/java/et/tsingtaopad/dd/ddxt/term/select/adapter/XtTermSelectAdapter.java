@@ -97,6 +97,7 @@ public class XtTermSelectAdapter extends BaseAdapter implements OnClickListener 
 
             holder.updateIv = (ImageView) convertView.findViewById(R.id.item_termselect_iv_update);// 上传成功标识
             holder.updateFailIv = (ImageView) convertView.findViewById(R.id.item_termselect_iv_update_fail);// 上传成功标识
+            holder.iserrorIv =  (ImageView) convertView.findViewById(R.id.item_termcart_iv_xt_iserror);// 错误
 
             holder.mineIv = (ImageView) convertView.findViewById(R.id.item_termselect_iv_mime);
             holder.mineProtocolIv = (ImageView) convertView.findViewById(R.id.item_termselect_iv_mineprotocol);
@@ -195,6 +196,12 @@ public class XtTermSelectAdapter extends BaseAdapter implements OnClickListener 
             holder.updateFailIv.setVisibility(View.GONE);
         }
 
+        if ("1".equals(item.getIserror())) {
+            holder.iserrorIv.setVisibility(View.VISIBLE);
+        } else {
+            holder.iserrorIv.setVisibility(View.GONE);
+        }
+
         /*if (ConstValues.FLAG_1.equals(item.getSyncFlag())) {
             holder.terminalNameTv.setTextColor(Color.RED);
             holder.updateIv.setVisibility(View.VISIBLE);
@@ -287,6 +294,7 @@ public class XtTermSelectAdapter extends BaseAdapter implements OnClickListener 
         private TextView terminalTypeTv;
         private ImageView updateIv;
         private ImageView updateFailIv;
+        private ImageView iserrorIv;
         private ImageView mineIv;
         private ImageView mineProtocolIv;
         private ImageView vieIv;

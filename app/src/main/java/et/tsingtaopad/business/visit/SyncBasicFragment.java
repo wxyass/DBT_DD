@@ -173,7 +173,7 @@ public class SyncBasicFragment extends BaseFragmentSupport {
         tablenames.add("MST_PICTYPE_M");
         tablenames.add("MST_PRODUCT_M");
         tablenames.add("MST_AGENCYINFO_M");
-        tablenames.add("MIT_VALCHECKTER_M");
+        // tablenames.add("MIT_VALCHECKTER_M"); 督导模板
         tablenames.add("MST_CMPCOMPANY_M");
         tablenames.add("MST_CMPBRANDS_M");
         tablenames.add("MST_CMPRODUCTINFO_M");

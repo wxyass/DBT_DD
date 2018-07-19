@@ -366,8 +366,8 @@ public class ZsVisitShopActivity extends BaseActivity implements View.OnClickLis
                 break;
             case R.id.top_navigation_rl_confirm://
 
-                int count = PrefUtils.getInt(ZsVisitShopActivity.this,"valterErrorCount",0);
-                Toast.makeText(ZsVisitShopActivity.this,"错误数 "+count,Toast.LENGTH_SHORT).show();
+                /*int count = PrefUtils.getInt(ZsVisitShopActivity.this,"valterErrorCount",0);
+                Toast.makeText(ZsVisitShopActivity.this,"错误数 "+count,Toast.LENGTH_SHORT).show();*/
 
                 if(checkTakeCamera()){// 必须拍照
                     confirmXtUplad();

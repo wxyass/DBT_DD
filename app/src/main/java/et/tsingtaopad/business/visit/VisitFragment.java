@@ -244,7 +244,8 @@ public class VisitFragment extends BaseFragmentSupport implements View.OnClickLi
                             if (0 == position) {// 取消
 
                             }else if(1 == position){// 确定
-                                changeHomeFragment(new ZsTermSelectFragment(), "zstermselectfragment");
+                                // changeHomeFragment(new ZsTermSelectFragment(), "zstermselectfragment");
+                                changeHomeFragment(new ZsTermCheckFragment(), "zstermselectfragment");
                             }
                         }
                     })

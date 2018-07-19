@@ -40,6 +40,7 @@ import et.tsingtaopad.dd.dddaysummary.DdDaySummaryFragment;
 import et.tsingtaopad.dd.dddealplan.DdDealPlanFragment;
 import et.tsingtaopad.dd.ddweekplan.DdWeekPlanFragment;
 import et.tsingtaopad.dd.ddxt.term.select.XtTermSelectFragment;
+import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTermCheckFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTermSelectFragment;
 import et.tsingtaopad.home.initadapter.GlobalValues;
 import et.tsingtaopad.http.HttpParseJson;
@@ -273,7 +274,8 @@ public class FirstFragment extends BaseFragmentSupport implements View.OnClickLi
                 break;
             case R.id.first_rl_zdzs:// 终端追溯
                 if (getCmmAreaMCount() > 0) {
-                    changeHomeFragment(new ZsTermSelectFragment(), "zstermselectfragment");
+                    // changeHomeFragment(new ZsTermSelectFragment(), "zstermselectfragment");
+                    changeHomeFragment(new ZsTermCheckFragment(), "zstermcheckfragment");
                 } else {
                     Toast.makeText(getActivity(), R.string.sync_data, Toast.LENGTH_SHORT).show();
                     changeHomeFragment(new SyncBasicFragment(), "syncbasicfragment");

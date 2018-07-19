@@ -52,8 +52,8 @@
 
             <TextView
                 android:id="@+id/top_navigation_tv_check"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:visibility="invisible"
@@ -61,7 +61,8 @@
                 android:layout_marginRight="10dp"
                 android:textColor="@color/prompt_wt"
                 android:textSize="@dimen/font_size3"
-                android:text="模板"/>
+                android:background="@drawable/bg_dd_moban"
+                />
 
         </RelativeLayout>
 
@@ -82,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:background="@drawable/icon_visit_btn_bg"
+
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:lines="1"

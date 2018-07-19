@@ -242,6 +242,9 @@ public class MitValterMTemp implements java.io.Serializable {
 	@DatabaseField
 	private String iserror;// 有稽查项是选择错误的
 
+	@DatabaseField
+	private String visitremark;// 拜访记录
+
 	// Constructors
 
 	/** default constructor */
@@ -1213,5 +1216,13 @@ public class MitValterMTemp implements java.io.Serializable {
 
 	public void setIserror(String iserror) {
 		this.iserror = iserror;
+	}
+
+	public String getVisitremark() {
+		return visitremark;
+	}
+
+	public void setVisitremark(String visitremark) {
+		this.visitremark = visitremark;
 	}
 }

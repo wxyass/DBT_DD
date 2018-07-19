@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.lang.ref.SoftReference;
@@ -34,7 +35,6 @@ import et.tsingtaopad.util.requestHeadUtil;
  * 关于系统
  * Created by yangwenmin on 2018/3/12.
  */
-
 public class DdAboutFragment extends BaseFragmentSupport implements View.OnClickListener {
 
     private final String TAG = "DdAboutFragment";
@@ -44,6 +44,7 @@ public class DdAboutFragment extends BaseFragmentSupport implements View.OnClick
     private AppCompatTextView confirmTv;
     private AppCompatTextView backTv;
     private AppCompatTextView titleTv;
+    private TextView updateVersion;
 
     //
     public static final int DEALPLAN_UP_SUC = 3301;
@@ -72,6 +73,8 @@ public class DdAboutFragment extends BaseFragmentSupport implements View.OnClick
         //confirmBtn.setOnClickListener(this);
         backBtn.setOnClickListener(this);
 
+         updateVersion = (TextView) view.findViewById(R.id.syssetting_dd_tv_update);
+
     }
 
     @Override
@@ -86,6 +89,7 @@ public class DdAboutFragment extends BaseFragmentSupport implements View.OnClick
     // 初始化数据
     private void initData() {
         titleTv.setText("关于系统");
+        updateVersion.setText("1.0");
     }
 
     // 修改密码json

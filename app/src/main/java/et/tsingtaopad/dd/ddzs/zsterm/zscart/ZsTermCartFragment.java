@@ -112,7 +112,7 @@ public class ZsTermCartFragment extends BaseFragmentSupport implements View.OnCl
         confirmTv = (AppCompatTextView) view.findViewById(R.id.top_navigation_bt_confirm);
         backTv = (AppCompatTextView) view.findViewById(R.id.top_navigation_bt_back);
         titleTv = (AppCompatTextView) view.findViewById(R.id.top_navigation_tv_title);
-        confirmBtn.setVisibility(View.VISIBLE);
+        // confirmBtn.setVisibility(View.VISIBLE);
         confirmBtn.setOnClickListener(this);
         backBtn.setOnClickListener(this);
 
@@ -327,12 +327,12 @@ public class ZsTermCartFragment extends BaseFragmentSupport implements View.OnCl
             termId = "";
         } else {
             termId = termStc.getTerminalkey();
-            if (confirmBtn.getTag() != null) {
+            /*if (confirmBtn.getTag() != null) {
                 XtTermSelectMStc termStc2 = (XtTermSelectMStc) confirmBtn.getTag();
                 if (termStc2.getTerminalkey().equals(termStc.getTerminalkey())) {
                     confirmBtn.setTag(termStc);
                 }
-            }
+            }*/
         }
 
         // 根据搜索,查找终端列表
@@ -364,13 +364,13 @@ public class ZsTermCartFragment extends BaseFragmentSupport implements View.OnCl
         termCartLv.setAdapter(termCartAdapter);
 
         // 若巡店拜访页面销毁了,根据下面判断 拜访按钮是否出现
-        List<String> termIdLst = FunUtil.getPropertyByName(tempLst, "terminalkey", String.class);
+        /*List<String> termIdLst = FunUtil.getPropertyByName(tempLst, "terminalkey", String.class);
         if (termStc != null && termIdLst.contains(termId)) {
             confirmBtn.setVisibility(View.VISIBLE);
             confirmBtn.setTag(termStc);
         } else {
             confirmBtn.setVisibility(View.INVISIBLE);
-        }
+        }*/
     }
 
 
@@ -387,6 +387,7 @@ public class ZsTermCartFragment extends BaseFragmentSupport implements View.OnCl
                 item_new.setTerminalkey(item.getTerminalkey());
                 item_new.setTerminalcode(item.getTerminalcode());
                 item_new.setTerminalname(item.getTerminalname());
+                item_new.setIserror(item.getIserror());
                 item_new.setStatus(item.getStatus());
                 item_new.setSequence(item.getSequence());
                 item_new.setMineFlag(item.getMineFlag());

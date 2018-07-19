@@ -278,7 +278,7 @@
                     android:background="@color/white"
                     android:gravity="center_vertical">
 
-                    <EditText
+                    <et.tsingtaopad.view.ContainsEmojiEditText
                         android:id="@+id/zdzs_invoicing_amend_dd_et_cuanhuo"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
@@ -323,7 +323,7 @@
                 android:background="@color/white"
                 android:gravity="center_vertical">
 
-                <EditText
+                <et.tsingtaopad.view.ContainsEmojiEditText
                     android:id="@+id/zdzs_invoicing_amend_dd_et_report"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"

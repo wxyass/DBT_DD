@@ -70,7 +70,7 @@
                         android:text="@string/sys_version" />
 
                     <TextView
-                        android:id="@+id/syssetting_tv_update"
+                        android:id="@+id/syssetting_dd_tv_update"
                         style="@style/page_label_small"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -87,6 +87,7 @@
                     android:layout_marginTop="15dp"
                     android:background="@drawable/ico_line" />
 
+                <!--终端追溯轻松查-->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -99,7 +100,7 @@
                         style="@style/page_label_big"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/sys_versionproperties" />
+                        android:text="终端追溯轻松查：" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -118,27 +119,7 @@
                             style="@style/listview_tv_item_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/syssetting_tv_text1" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:orientation="horizontal" >
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginTop="10dp"
-                            android:src="@drawable/ico_item" />
-
-                        <TextView
-                            style="@style/listview_tv_item_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/syssetting_tv_text2" />
+                            android:text="工作前可添加好目标终端群，拜访过程更方便" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -158,125 +139,184 @@
                             style="@style/listview_tv_item_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/syssetting_tv_text3" />
+                            android:text="目的更明确，查我品、查竞品、查指标目标终端一键添加" />
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:orientation="horizontal" >
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginTop="10dp"
-                            android:src="@drawable/ico_item" />
-
-                        <TextView
-                            style="@style/listview_tv_item_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/syssetting_tv_text4" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:orientation="horizontal" >
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginTop="10dp"
-                            android:src="@drawable/ico_item" />
-
-                        <TextView
-                            style="@style/listview_tv_item_text"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/syssetting_tv_text5" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:orientation="horizontal" >
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginTop="10dp"
-                            android:src="@drawable/ico_item" />
-
-                        <TextView
-                            style="@style/listview_tv_item_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="top"
-                            android:lineSpacingExtra="3dp"
-                            android:text="@string/syssetting_tv_text6" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:visibility="gone"
-                        android:orientation="horizontal" >
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginTop="10dp"
-                            android:src="@drawable/ico_item" />
-
-                        <TextView
-                            style="@style/listview_tv_item_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="top"
-                            android:lineSpacingExtra="3dp"
-                            android:text="@string/syssetting_tv_text7" />
-                    </LinearLayout>
                 </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="80dp"
-                    android:layout_marginRight="80dp"
-                    android:layout_marginTop="15dp"
-                    android:background="@drawable/ico_line" />
-
+                <!--追溯项目随意配-->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="80dp"
                     android:layout_marginRight="80dp"
                     android:layout_marginTop="15dp"
-                    android:orientation="vertical"
-                    android:visibility="gone">
+                    android:orientation="vertical" >
 
                     <TextView
                         style="@style/page_label_big"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/sys_copyright_information" />
+                        android:text="追溯项目随意配：" />
 
-                    <TextView
-                        style="@style/page_label_small"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:lineSpacingExtra="3dp"
-                        android:text="@string/sys_copyright_information_detailed" />
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal" >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="10dp"
+                            android:src="@drawable/ico_item" />
+
+                        <TextView
+                            style="@style/listview_tv_item_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="拜访前可以对拜访的目标终端稽查的项目随意配置，想查哪些配哪些" />
+                    </LinearLayout>
+
+
                 </LinearLayout>
+                <!--工作考勤有排名-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="80dp"
+                    android:layout_marginRight="80dp"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="工作考勤有排名：" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal" >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="10dp"
+                            android:src="@drawable/ico_item" />
+
+                        <TextView
+                            style="@style/listview_tv_item_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="考勤打卡，工作内容都会在大区维度进行排名" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal" >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="10dp"
+                            android:src="@drawable/ico_item" />
+
+                        <TextView
+                            style="@style/listview_tv_item_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="设置三个冠军榜：稽查冠军、走访冠军、库存盘点冠军" />
+                    </LinearLayout>
+
+                </LinearLayout>
+                <!--整改计划有提醒-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="80dp"
+                    android:layout_marginRight="80dp"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="整改计划有提醒：" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal" >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="10dp"
+                            android:src="@drawable/ico_item" />
+
+                        <TextView
+                            style="@style/listview_tv_item_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="时刻提醒今七日待复查的计划，同时提示上一个计划是否复查通过" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+                <!--工作记录更清晰-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="80dp"
+                    android:layout_marginRight="80dp"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="工作记录更清晰：" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal" >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="10dp"
+                            android:src="@drawable/ico_item" />
+
+                        <TextView
+                            style="@style/listview_tv_item_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="工作记录分为：工作计划、工作汇总、基础数据群、我品铺货数据群、我品价格数据群、促销活动数据群、追溯竞品数据群、经销商库存" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                     />
+
+
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

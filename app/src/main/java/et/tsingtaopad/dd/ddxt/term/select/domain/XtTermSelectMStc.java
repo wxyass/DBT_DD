@@ -47,6 +47,9 @@ public class XtTermSelectMStc extends MstTerminalinfoM
     //是否选中加入了购物车   0:未加入  1:已加入
     private String terminalStatus;
 
+    //是否有错
+    private String iserror;
+
     public String getRoutename()
     {
         return routename;
@@ -178,5 +181,13 @@ public class XtTermSelectMStc extends MstTerminalinfoM
 
     public void setIsSelectToCart(String isSelectToCart) {
         this.isSelectToCart = isSelectToCart;
+    }
+
+    public String getIserror() {
+        return iserror;
+    }
+
+    public void setIserror(String iserror) {
+        this.iserror = iserror;
     }
 }

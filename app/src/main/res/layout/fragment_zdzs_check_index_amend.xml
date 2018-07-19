@@ -160,7 +160,7 @@
                 android:background="@color/white"
                 android:gravity="center_vertical">
 
-                <EditText
+                <et.tsingtaopad.view.ContainsEmojiEditText
                     android:id="@+id/zdzs_check_index_et_report"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"

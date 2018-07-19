@@ -106,6 +106,7 @@ public class DdTermCartAdapter extends BaseAdapter implements View.OnLongClickLi
 
             holder.updateIv = (ImageView) convertView.findViewById(R.id.item_termcart_iv_update);// 上传成功标识
             holder.updateFailIv = (ImageView) convertView.findViewById(R.id.item_termcart_iv_update_fail);// 上传失败标识
+            holder.iserrorIv = (ImageView) convertView.findViewById(R.id.item_termcart_iv_iserror);// 错误
 
             holder.mineIv = (ImageView) convertView.findViewById(R.id.item_termcart_iv_mime);
             holder.mineProtocolIv = (ImageView) convertView.findViewById(R.id.item_termcart_iv_mineprotocol);
@@ -167,6 +168,11 @@ public class DdTermCartAdapter extends BaseAdapter implements View.OnLongClickLi
             holder.visitDateTv.setText(item.getVisitTime());
         } else {
             holder.visitDateTv.setVisibility(View.GONE);
+        }
+        if ("1".equals(item.getIserror())) {
+            holder.iserrorIv.setVisibility(View.VISIBLE);
+        } else {
+            holder.iserrorIv.setVisibility(View.GONE);
         }
 
         // 上传标记
@@ -234,7 +240,8 @@ public class DdTermCartAdapter extends BaseAdapter implements View.OnLongClickLi
         // 整体的字变色
         if (position == selectItem) {
             // 将选中的条目,变成灰色
-            holder.itermLayout.setBackgroundColor(context.getResources().getColor(R.color.bg_content_color_gray));
+            // holder.itermLayout.setBackgroundColor(context.getResources().getColor(R.color.bg_content_color_gray));
+            holder.itermLayout.setBackgroundColor(Color.WHITE);
             // holder.terminalRb.setChecked(true);
             holder.terminalNameTv.setTextColor(context.getResources().getColor(R.color.font_color_green));
             holder.terminalTypeTv.setTextColor(context.getResources().getColor(R.color.font_color_green));
@@ -281,6 +288,7 @@ public class DdTermCartAdapter extends BaseAdapter implements View.OnLongClickLi
         private TextView terminalTypeTv;
         private ImageView updateIv;
         private ImageView updateFailIv;
+        private ImageView iserrorIv;
         private ImageView mineIv;
         private ImageView mineProtocolIv;
         private ImageView vieIv;

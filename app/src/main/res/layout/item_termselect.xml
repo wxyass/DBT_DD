@@ -55,7 +55,7 @@
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:layout_weight="14"
+                android:layout_weight="12"
                 >
                 <!-- 终端名称 -->
 
@@ -89,6 +89,22 @@
 
             </RelativeLayout>
 
+
+            <!-- 是否有错 -->
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_weight="2">
+
+                <ImageView
+                    android:id="@+id/item_termcart_iv_xt_iserror"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/icon_visit_list_error"
+                    android:visibility="gone"/>
+            </RelativeLayout>
 
             <!-- 上传成功标识 1-->
 

@@ -88,6 +88,7 @@ import et.tsingtaopad.db.table.MstVisitM;
 import et.tsingtaopad.db.table.MstVisitMTemp;
 import et.tsingtaopad.db.table.MstVistproductInfo;
 import et.tsingtaopad.db.table.MstVistproductInfoTemp;
+import et.tsingtaopad.dd.ddzs.zsshopvisit.ZsVisitShopActivity;
 
 
 /**
@@ -2112,9 +2113,17 @@ public class XtShopCopyService {
                 mitValterM.setVidvisitotherval(valterMTemp.getVidvisitotherval());//拜访对象原值value
                 mitValterM.setVidvisitottrueval(valterMTemp.getVidvisitottrueval());// 拜访对象其他VALUE正确值
                 mitValterM.setPadisconsistent("0");// 是否已上传 0:未上传 1:已上传
+                mitValterM.setVisitremark(valterMTemp.getVisitremark());// 拜访记录
 
                 mitValterM.setLon(valterMTemp.getLon());// 经度
                 mitValterM.setLat(valterMTemp.getLat());// 纬度
+
+                int count = PrefUtils.getInt(context,"valterErrorCount",0);
+                if(count>0){
+                    mitValterM.setIserror("1");// 是否有错
+                }else{
+                    mitValterM.setIserror("0");// 是否有错
+                }
 
                 mitValterM.setCredate(new Date());
                 mitValterM.setUpdatedate(new Date());

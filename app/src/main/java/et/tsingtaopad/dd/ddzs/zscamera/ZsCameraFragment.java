@@ -38,12 +38,14 @@ import et.tsingtaopad.core.util.dbtutil.logutil.DbtLog;
 import et.tsingtaopad.core.util.file.FileTool;
 import et.tsingtaopad.db.table.MitValcmpotherMTemp;
 import et.tsingtaopad.db.table.MitValpicMTemp;
+import et.tsingtaopad.db.table.MitValterMTemp;
 import et.tsingtaopad.db.table.MstTerminalinfoMTemp;
 import et.tsingtaopad.db.table.MstTerminalinfoMZsCart;
 import et.tsingtaopad.dd.ddxt.base.XtBaseVisitFragment;
 import et.tsingtaopad.dd.ddxt.camera.XtCameraHandler;
 import et.tsingtaopad.dd.ddxt.camera.XtCameraService;
 import et.tsingtaopad.dd.ddzs.zschatvie.ZsChatVieService;
+import et.tsingtaopad.dd.ddzs.zssayhi.ZsSayhiService;
 import et.tsingtaopad.home.initadapter.GlobalValues;
 import et.tsingtaopad.main.visit.shopvisit.termvisit.sayhi.domain.MstTerminalInfoMStc;
 import et.tsingtaopad.view.MyGridView;
@@ -124,8 +126,10 @@ public class ZsCameraFragment extends XtBaseVisitFragment implements View.OnClic
         initData();
     }
 
-    ZsChatVieService zsChatVieService;
-    MitValcmpotherMTemp mitValcmpotherMTemp = null;
+    //ZsChatVieService zsChatVieService;
+    private ZsSayhiService zsSayhiService;
+    private MitValterMTemp mitValterMTemp;
+    // MitValcmpotherMTemp mitValcmpotherMTemp = null;
 
     // 初始化数据
     private void initData() {
@@ -146,14 +150,18 @@ public class ZsCameraFragment extends XtBaseVisitFragment implements View.OnClic
         setGridItemListener();
 
 
-        zsChatVieService = new ZsChatVieService(getActivity(), null);
+        // zsChatVieService = new ZsChatVieService(getActivity(), null);
+
+        zsSayhiService = new ZsSayhiService(getActivity(), null);
+        mitValterMTemp = zsSayhiService.findMitValterMTempById(mitValterMTempKey);// 追溯临时表记录
         // 瓦解竞品
-        mitValcmpotherMTemp = zsChatVieService.findMitValcmpotherMTempById(mitValterMTempKey);
+        //mitValcmpotherMTemp = zsChatVieService.findMitValcmpotherMTempById(mitValterMTempKey);
 
         // 拜访记录
         if("Y".equals(mitValcheckterM.getVisinote())){
             zdzs_camera_ll_visitreport_title.setVisibility(View.VISIBLE);
             zdzs_camera_ll_visitreport.setVisibility(View.VISIBLE);
+            zdzs_camera_et_visitreport.setText(mitValterMTemp.getVisitremark());
         }
     }
 
@@ -412,10 +420,13 @@ public class ZsCameraFragment extends XtBaseVisitFragment implements View.OnClic
         if (ConstValues.FLAG_1.equals(seeFlag)) return;
 
         // 拜访记录
-        mitValcmpotherMTemp.setValvisitremark(zdzs_camera_et_visitreport.getText().toString());
+        // mitValcmpotherMTemp.setValvisitremark(zdzs_camera_et_visitreport.getText().toString());
+        mitValterMTemp.setVisitremark(zdzs_camera_et_visitreport.getText().toString());
 
         // 保存追溯聊竞品页面数据到临时表
-        zsChatVieService.saveZsVisitremark(mitValcmpotherMTemp);
+        //zsChatVieService.saveZsVisitremark(mitValcmpotherMTemp);
+        // 将追溯数据 保存到追溯主表临时表中
+        zsSayhiService.updateMitValterMTemp(mitValterMTemp);
     }
 
 

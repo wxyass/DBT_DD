@@ -32,6 +32,7 @@ import et.tsingtaopad.core.util.dbtutil.FunUtil;
 import et.tsingtaopad.core.util.dbtutil.JsonUtil;
 import et.tsingtaopad.core.util.dbtutil.PrefUtils;
 import et.tsingtaopad.core.util.dbtutil.PropertiesUtil;
+import et.tsingtaopad.home.app.MyApplication;
 import et.tsingtaopad.http.HttpParseJson;
 import et.tsingtaopad.util.requestHeadUtil;
 
@@ -177,7 +178,7 @@ public class QueryBackFragment extends BaseFragmentSupport implements View.OnCli
 
     // 解析数据
     private void parseTableJson(String formjson) {
-        Toast.makeText(getActivity(),"问题已反馈",Toast.LENGTH_SHORT).show();
+        Toast.makeText(MyApplication.getAppContext(),"问题已反馈",Toast.LENGTH_SHORT).show();
     }
 
 

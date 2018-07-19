@@ -32,6 +32,7 @@ import et.tsingtaopad.core.util.dbtutil.JsonUtil;
 import et.tsingtaopad.core.util.dbtutil.NetStatusUtil;
 import et.tsingtaopad.core.util.dbtutil.PrefUtils;
 import et.tsingtaopad.core.util.dbtutil.PropertiesUtil;
+import et.tsingtaopad.home.app.MyApplication;
 import et.tsingtaopad.http.HttpParseJson;
 import et.tsingtaopad.util.requestHeadUtil;
 
@@ -183,7 +184,7 @@ public class RePwdFragment extends BaseFragmentSupport implements View.OnClickLi
         PrefUtils.putString(getActivity(), "userid", userStc.getUserid());// 19b1ded5-f853-48ab-aa2b-b12e963c8f9b
         PrefUtils.putString(getActivity(), "userPwd", userStc.getPassword());//a1234567
 
-        Toast.makeText(getActivity(),"修改成功",Toast.LENGTH_SHORT).show();
+        Toast.makeText(MyApplication.getAppContext(),"修改成功",Toast.LENGTH_SHORT).show();
     }
 
     // 点击事件

@@ -292,16 +292,16 @@ public class MeetingFragment extends BaseFragmentSupport implements View.OnClick
      * @return
      */
     public void checkMeetingback(String id, String meetingrecord, final String participant, String compere, String startdate, String enddate, String currentdate) {
-        if (CheckUtil.isBlankOrNull(meetingrecord)) {// 会议纪要
-            Toast.makeText(getActivity(), getString(R.string.operation_meetingrecord_fail), Toast.LENGTH_SHORT).show();
+        if (startdate.length()<5) {// 开始时间
+            Toast.makeText(getActivity(), getString(R.string.operation_startdate_fail), Toast.LENGTH_SHORT).show();
+        } else if (enddate.length()<5) {// 结束时间
+            Toast.makeText(getActivity(), getString(R.string.operation_enddate_fail), Toast.LENGTH_SHORT).show();
         } else if (CheckUtil.isBlankOrNull(participant)) {// 参会人
             Toast.makeText(getActivity(), getString(R.string.operation_participant_fail), Toast.LENGTH_SHORT).show();
         } else if (CheckUtil.isBlankOrNull(compere)) {// 主持人
             Toast.makeText(getActivity(), getString(R.string.operation_compere_fail), Toast.LENGTH_SHORT).show();
-        } else if (CheckUtil.isBlankOrNull(startdate)) {// 开始时间
-            Toast.makeText(getActivity(), getString(R.string.operation_startdate_fail), Toast.LENGTH_SHORT).show();
-        } else if (CheckUtil.isBlankOrNull(enddate)) {// 结束时间
-            Toast.makeText(getActivity(), getString(R.string.operation_enddate_fail), Toast.LENGTH_SHORT).show();
+        } else if (CheckUtil.isBlankOrNull(meetingrecord)) {// 会议纪要
+            Toast.makeText(getActivity(), getString(R.string.operation_meetingrecord_fail), Toast.LENGTH_SHORT).show();
         }
         else {
             // 发送请求

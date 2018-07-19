@@ -742,7 +742,7 @@ public class XtCheckIndexService extends XtShopVisitService {
                 infoTemp.setId(item.getRecordKey());// 终端追溯促销活动表 主键
                 infoTemp.setValterid(vlaterid);
 
-                //infoTemp.setValistrue(item.);// 是否达成原值
+                infoTemp.setValistrue(item.getIsAccomplish());// 是否达成原值
                 //infoTemp.setValistruefalg(item.get);// 是否达成正确与否
                 //infoTemp.setValistrueval(item.get);//是否达成正确值
 
