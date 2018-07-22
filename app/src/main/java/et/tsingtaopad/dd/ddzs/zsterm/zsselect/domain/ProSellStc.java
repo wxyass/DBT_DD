@@ -21,7 +21,7 @@ public class ProSellStc implements Serializable {
 
     private String isDefault; // 该对象是否 是默认对象
 
-    private List<ProSellStc> childLst = new ArrayList<ProSellStc>(); // 子类对象集合
+    // private List<ProSellStc> childLst = new ArrayList<ProSellStc>(); // 子类对象集合
 
 
     private String qudaonum; // 渠道最高值
@@ -73,14 +73,6 @@ public class ProSellStc implements Serializable {
 
     public void setParentKey(String parentKey) {
         this.parentKey = parentKey;
-    }
-
-    public List<ProSellStc> getChildLst() {
-        return childLst;
-    }
-
-    public void setChildLst(List<ProSellStc> childLst) {
-        this.childLst = childLst;
     }
 
     public String getIsDefault() {

@@ -29,6 +29,7 @@ import android.widget.Toast;
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import et.tsingtaopad.R;
@@ -804,7 +805,14 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
 
                     puhuoLv.add("301");
                 }else{
-                    puhuoLv.remove("301");
+                    // puhuoLv.remove("301");
+                    Iterator<String> it = puhuoLv.iterator();
+                    while(it.hasNext()){
+                        String x = it.next();
+                        if(x.equals("301")){
+                            it.remove();
+                        }
+                    }
                 }
                 break;
             case R.id.zdzs_termcheck_puhuo:// 铺货
@@ -815,7 +823,14 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
 
                     puhuoLv.add("302");
                 }else{
-                    puhuoLv.remove("302");
+                    // puhuoLv.remove("302");
+                    Iterator<String> it = puhuoLv.iterator();
+                    while(it.hasNext()){
+                        String x = it.next();
+                        if(x.equals("302")){
+                            it.remove();
+                        }
+                    }
                 }
                 break;
             case R.id.zdzs_termcheck_youxiao:// 有效铺货
@@ -826,7 +841,14 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
 
                     puhuoLv.add("303");
                 }else{
-                    puhuoLv.remove("303");
+                    // puhuoLv.remove("303");
+                    Iterator<String> it = puhuoLv.iterator();
+                    while(it.hasNext()){
+                        String x = it.next();
+                        if(x.equals("303")){
+                            it.remove();
+                        }
+                    }
                 }
                 break;
             case R.id.zdzs_termcheck_xiaoshou:// 有效销售
@@ -837,63 +859,123 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
 
                     puhuoLv.add("304");
                 }else{
-                    puhuoLv.remove("304");
+                    // puhuoLv.remove("304");
+                    Iterator<String> it = puhuoLv.iterator();
+                    while(it.hasNext()){
+                        String x = it.next();
+                        if(x.equals("304")){
+                            it.remove();
+                        }
+                    }
                 }
                 break;
             case R.id.zdzs_termcheck_termone:// 一级终端//
                 if (isChecked) {
                     termlv.add("1");
                 }else{
-                    termlv.remove("1");
+                    Iterator<String> it = termlv.iterator();
+                    while(it.hasNext()){
+                        String x = it.next();
+                        if(x.equals("1")){
+                            it.remove();
+                        }
+                    }
                 }
                 break;
             case R.id.zdzs_termcheck_termtwo:// 二级终端//
                 if (isChecked) {
                     termlv.add("2");
                 }else{
-                    termlv.remove("2");
+                    Iterator<String> it = termlv.iterator();
+                    while(it.hasNext()){
+                        String x = it.next();
+                        if(x.equals("2")){
+                            it.remove();
+                        }
+                    }
                 }
                 break;
             case R.id.zdzs_termcheck_termthree:// 三级终端//
                 if (isChecked) {
                     termlv.add("3");
                 }else{
-                    termlv.remove("3");
+                    Iterator<String> it = termlv.iterator();
+                    while(it.hasNext()){
+                        String x = it.next();
+                        if(x.equals("3")){
+                            it.remove();
+                        }
+                    }
                 }
                 break;
             case R.id.zdzs_termcheck_termfour:// 四级终端//
                 if (isChecked) {
                     termlv.add("4");
                 }else{
-                    termlv.remove("4");
+                    //termlv.remove("4");
+                    Iterator<String> it = termlv.iterator();
+                    while(it.hasNext()){
+                        String x = it.next();
+                        if(x.equals("4")){
+                            it.remove();
+                        }
+                    }
                 }
                 break;
             case R.id.zdzs_termcheck_termcq:// 城区//
                 if (isChecked) {
                     areaLv.add("85C3678B44FA42B794F8BABD2846E6D1");
                 }else{
-                    areaLv.remove("85C3678B44FA42B794F8BABD2846E6D1");
+                    //areaLv.remove("85C3678B44FA42B794F8BABD2846E6D1");
+                    Iterator<String> it = areaLv.iterator();
+                    while(it.hasNext()){
+                        String x = it.next();
+                        if(x.equals("85C3678B44FA42B794F8BABD2846E6D1")){
+                            it.remove();
+                        }
+                    }
                 }
                 break;
             case R.id.zdzs_termcheck_termxz:// 乡镇//
                 if (isChecked) {
                     areaLv.add("4C37979BC4424890BEA016EE7DED02CE");
                 }else{
-                    areaLv.remove("4C37979BC4424890BEA016EE7DED02CE");
+                    // areaLv.remove("4C37979BC4424890BEA016EE7DED02CE");
+                    Iterator<String> it = areaLv.iterator();
+                    while(it.hasNext()){
+                        String x = it.next();
+                        if(x.equals("4C37979BC4424890BEA016EE7DED02CE")){
+                            it.remove();
+                        }
+                    }
                 }
                 break;
             case R.id.zdzs_termcheck_termcj:// 村级//
                 if (isChecked) {
                     areaLv.add("5FA07909011F447AB3C142C52CD54DD4");
                 }else{
-                    areaLv.remove("5FA07909011F447AB3C142C52CD54DD4");
+                    // areaLv.remove("5FA07909011F447AB3C142C52CD54DD4");
+                    Iterator<String> it = areaLv.iterator();
+                    while(it.hasNext()){
+                        String x = it.next();
+                        if(x.equals("5FA07909011F447AB3C142C52CD54DD4")){
+                            it.remove();
+                        }
+                    }
                 }
                 break;
             case R.id.zdzs_termcheck_termddb:// 大店部//
                 if (isChecked) {
                     areaLv.add("29BC5F0C31A4D59DE050A8C0D6006510");
                 }else{
-                    areaLv.remove("29BC5F0C31A4D59DE050A8C0D6006510");
+                    // areaLv.remove("29BC5F0C31A4D59DE050A8C0D6006510");
+                    Iterator<String> it = areaLv.iterator();
+                    while(it.hasNext()){
+                        String x = it.next();
+                        if(x.equals("29BC5F0C31A4D59DE050A8C0D6006510")){
+                            it.remove();
+                        }
+                    }
                 }
                 break;
 
@@ -955,10 +1037,17 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
                                 // checkSelectLst.remove((KvStc)proLst.get(posi));;
                                 proname_lv.setTag(((String) proname_lv.getTag()).replace(checkkey, ""));
                                 ((KvStc) proLst.get(posi)).setIsDefault("0");
-                                for (ProSellStc kvStc : checkSelectLst) {
+                                /*for (ProSellStc kvStc : checkSelectLst) {
                                     if (itemTv.getHint().equals(kvStc.getKey())) {
                                         checkSelectLst.remove(kvStc);
                                         break;
+                                    }
+                                }*/
+                                Iterator<ProSellStc> it = checkSelectLst.iterator();
+                                while(it.hasNext()){
+                                    ProSellStc x = it.next();
+                                    if(itemTv.getHint().equals(x.getKey())){
+                                        it.remove();
                                     }
                                 }
                             }
