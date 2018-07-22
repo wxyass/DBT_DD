@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="80dp"
+              android:background="@color/bg_lv_item"
+              android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <TextView
+            android:id="@+id/checkterm_proselect_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="6dp"
+            android:textColor="@color/darkgreen"
+            android:textSize="17dp"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:visibility="visible">
+
+        <TextView
+            style="@style/page_label_big"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="6dp"
+            android:text="渠道价"/>
+
+        <EditText
+            android:id="@+id/zdzs_proselect_qdjlow"
+            style="@style/formLabel_value"
+            android:layout_width="50dp"
+            android:layout_height="34dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/shap_selector_gray"
+            android:gravity="center_horizontal|center_vertical"
+            android:hint="最低值"
+            android:inputType="number"
+            android:maxLength="6"
+            android:singleLine="true"/>
+
+        <EditText
+            android:id="@+id/zdzs_proselect_qdjnum"
+            style="@style/formLabel_value"
+            android:layout_width="50dp"
+            android:layout_height="34dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/shap_selector_gray"
+            android:gravity="center_horizontal|center_vertical"
+            android:hint="最高值"
+            android:inputType="number"
+            android:maxLength="6"
+            android:singleLine="true"/>
+
+
+        <TextView
+            style="@style/page_label_big"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="零售价"/>
+
+        <EditText
+            android:id="@+id/zdzs_proselect_lsjlow"
+            style="@style/formLabel_value"
+            android:layout_width="50dp"
+            android:layout_height="34dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/shap_selector_gray"
+            android:gravity="center_horizontal|center_vertical"
+            android:hint="最低值"
+            android:inputType="number"
+            android:maxLength="6"
+            android:singleLine="true"/>
+
+        <EditText
+            android:id="@+id/zdzs_proselect_lsjnum"
+            style="@style/formLabel_value"
+            android:layout_width="50dp"
+            android:layout_height="34dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/shap_selector_gray"
+            android:gravity="center_horizontal|center_vertical"
+            android:hint="最高值"
+            android:inputType="number"
+            android:maxLength="6"
+            android:singleLine="true"/>
+    </LinearLayout>
+
+
+</LinearLayout>

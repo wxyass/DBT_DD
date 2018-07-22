@@ -22,14 +22,39 @@
             android:focusableInTouchMode="true"
             android:orientation="vertical">
 
+            <!--打招呼-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                >
+
+                <ImageView
+                    android:id="@+id/zdzs_invoicing_point5"
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ico_point"/>
+
+                <TextView
+                    android:id="@+id/zdzs_termcheck_textview05"
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/zdzs_invoicing_point5"
+                    android:text="打招呼"/>
+
+            </RelativeLayout>
+
             <LinearLayout
                 android:id="@+id/template_ll_vaildter"
-                android:layout_marginTop="20dp"
                 style="@style/template_bg_item">
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="打招呼-是否有效终端"/>
+                    android:text="是否有效终端"/>
 
                 <CheckBox
                     android:id="@+id/template_cb_vaildter"
@@ -44,7 +69,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="打招呼-是否有效拜访"/>
+                    android:text="是否有效拜访"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_vaildvisit"
@@ -58,7 +83,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="打招呼-是否我品店招"/>
+                    android:text="是否我品店招"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_ifmine"
@@ -72,7 +97,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="打招呼-销售产品范围"/>
+                    android:text="销售产品范围"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_salesarea"
@@ -86,7 +111,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="打招呼-终端合作状态"/>
+                    android:text="终端合作状态"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_terworkstatus"
@@ -100,7 +125,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="打招呼-终端名称"/>
+                    android:text="终端名称"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_tername"
@@ -114,7 +139,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="打招呼-终端编码"/>
+                    android:text="终端编码"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_terminalcode"
@@ -128,7 +153,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="打招呼-终端等级"/>
+                    android:text="终端等级"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_terlevel"
@@ -142,7 +167,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="打招呼-所属路线"/>
+                    android:text="所属路线"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_routecode"
@@ -156,7 +181,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="打招呼-所属省"/>
+                    android:text="所属省"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_province"
@@ -170,7 +195,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="打招呼-所属市"/>
+                    android:text="所属市"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_city"
@@ -184,7 +209,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="打招呼-所属县"/>
+                    android:text="所属县"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_country"
@@ -198,7 +223,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="打招呼-地址"/>
+                    android:text="地址"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_address"
@@ -212,7 +237,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="打招呼-联系人"/>
+                    android:text="联系人"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_contact"
@@ -226,7 +251,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="打招呼-电话"/>
+                    android:text="电话"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_mobile"
@@ -240,7 +265,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="打招呼-拜访周期"/>
+                    android:text="拜访周期"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_cylie"
@@ -254,7 +279,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="打招呼-拜访顺序"/>
+                    android:text="拜访顺序"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_visitorder"
@@ -268,7 +293,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="打招呼-高档容量"/>
+                    android:text="高档容量"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_hvolume"
@@ -282,7 +307,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="打招呼-中档容量"/>
+                    android:text="中档容量"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_zvolume"
@@ -296,7 +321,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="打招呼-普档容量"/>
+                    android:text="普档容量"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_pvolume"
@@ -310,7 +335,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="打招呼-低档容量"/>
+                    android:text="低档容量"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_lvolume"
@@ -325,7 +350,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="打招呼-区域类型"/>
+                    android:text="区域类型"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_areatype"
@@ -339,7 +364,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="打招呼-销售渠道"/>
+                    android:text="销售渠道"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_sellchannel"
@@ -353,7 +378,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="打招呼-主渠道"/>
+                    android:text="主渠道"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_mainchannel"
@@ -367,7 +392,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="打招呼-次渠道"/>
+                    android:text="次渠道"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_minorchannel"
@@ -381,13 +406,40 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="打招呼-拜访对象"/>
+                    android:text="拜访对象"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_visituser"
                     style="@style/template_cb_item"/>
 
             </LinearLayout>
+
+            <!--进销存-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                >
+
+                <ImageView
+                    android:id="@+id/zdzs_invoicing_point6"
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ico_point"/>
+
+                <TextView
+                    android:id="@+id/zdzs_termcheck_textview06"
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/zdzs_invoicing_point6"
+                    android:text="进销存"/>
+
+            </RelativeLayout>
+
             <LinearLayout
                 android:id="@+id/template_ll_addsupply"
                 android:layout_marginTop="1dp"
@@ -395,7 +447,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="进销存-新增供货关系"/>
+                    android:text="新增供货关系"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_addsupply"
@@ -409,7 +461,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="进销存-无此品项"/>
+                    android:text="无此品项"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_proerror"
@@ -423,7 +475,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="进销存-经销商有误"/>
+                    android:text="经销商有误"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_agencyerror"
@@ -437,7 +489,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="进销存-数据错误"/>
+                    android:text="数据错误"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_dataerror"
@@ -451,13 +503,39 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="进销存-是否窜货"/>
+                    android:text="是否窜货"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_iffleeing"
                     style="@style/template_cb_item"/>
 
             </LinearLayout>
+
+            <!--查指标-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                >
+
+                <ImageView
+                    android:id="@+id/zdzs_invoicing_point7"
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ico_point"/>
+
+                <TextView
+                    android:id="@+id/zdzs_termcheck_textview07"
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/zdzs_invoicing_point7"
+                    android:text="查指标"/>
+
+            </RelativeLayout>
 
             <LinearLayout
                 android:id="@+id/template_ll_distrbution"
@@ -466,7 +544,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="查指标-铺货状态"/>
+                    android:text="铺货状态"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_distrbution"
@@ -480,7 +558,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="查指标-道具生动化"/>
+                    android:text="道具生动化"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_goodsvivi"
@@ -494,7 +572,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="查指标-产品生动化"/>
+                    android:text="产品生动化"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_provivi"
@@ -508,7 +586,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="查指标-冰冻化"/>
+                    android:text="冰冻化"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_icevivi"
@@ -522,7 +600,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="查指标-促销活动"/>
+                    android:text="促销活动"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_salespromotion"
@@ -536,7 +614,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="查指标-产品组合是否达标"/>
+                    android:text="产品组合是否达标"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_grouppro"
@@ -550,7 +628,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="查指标-合作执行是否到位"/>
+                    android:text="合作执行是否到位"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_cooperation"
@@ -564,7 +642,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="查指标-是否高质量配送"/>
+                    android:text="是否高质量配送"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_highps"
@@ -578,13 +656,40 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="查指标-我品单店占有率"/>
+                    android:text="我品单店占有率"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_prooccupy"
                     style="@style/template_cb_item"/>
 
             </LinearLayout>
+
+            <!--聊竞品-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                >
+
+                <ImageView
+                    android:id="@+id/zdzs_invoicing_point8"
+                    style="@style/point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ico_point"/>
+
+                <TextView
+                    android:id="@+id/zdzs_termcheck_textview08"
+                    style="@style/page_label_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/zdzs_invoicing_point8"
+                    android:text="聊竞品"/>
+
+            </RelativeLayout>
+
             <LinearLayout
                 android:id="@+id/template_ll_addcmp"
                 android:layout_marginTop="1dp"
@@ -592,7 +697,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="聊竞品-添加竞品"/>
+                    android:text="添加竞品"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_addcmp"
@@ -606,7 +711,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="聊竞品-无此品项"/>
+                    android:text="无此品项"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_cmperror"
@@ -620,7 +725,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="聊竞品-竞品经销商有误"/>
+                    android:text="竞品经销商有误"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_cmpagencyerror"
@@ -634,7 +739,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="聊竞品-竞品数据有误"/>
+                    android:text="竞品数据有误"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_cmpdataerror"
@@ -648,7 +753,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="聊竞品-是否成功瓦解竞品"/>
+                    android:text="是否成功瓦解竞品"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_ifcmp"
@@ -662,7 +767,7 @@
 
                 <TextView
                     style="@style/template_tv_item"
-                    android:text="聊竞品-拜访记录"/>
+                    android:text="拜访记录"/>
 
                 <CheckBox
                     android:id="@+id/common_multiple_cb_visinote"

@@ -104,6 +104,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private Dao<MstCollectionexerecordInfo, String> mstCollectionexerecordInfoDao = null;
     private Dao<MstCollectionexerecordInfoTemp, String> mstCollectionexerecordInfoTempDao = null;
     private Dao<MitCollectionexerecordInfo, String> mitCollectionexerecordInfoDao = null;
+    private Dao<MstTerminalinfoMDown, String> mstTerminalinfoMDownDao = null;
     private Dao<MstPlanforuserM, String> mstPlanforuserMDao = null;
     private Dao<PadChecktypeM, String> padChecktypeMDao = null;
     private Dao<PadCheckaccomplishInfo, String> padCheckaccomplishInfoDao = null;
@@ -355,6 +356,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.createTable(connectionSource, MitValagreedetailM.class);// 终端追溯协议对付信息表
             TableUtils.createTable(connectionSource, MitValagreedetailMTemp.class);// 终端追溯协议对付信息表 临时表
             TableUtils.createTable(connectionSource, MitMorningmeetingM.class);// 晨会录入
+            TableUtils.createTable(connectionSource, MstTerminalinfoMDown.class);// 用于筛选 下载终端
 
 
             this.initView(db);
@@ -1240,6 +1242,10 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
                 String MIT_MORNINGMEETING_M = " create table MIT_MORNINGMEETING_M ( id varchar2(36) not null, areaid  varchar2(15), compere varchar2(20), participant varchar2(120), meetingrecord varchar2(500), startdate   varchar2(36), enddate varchar2(36), credate varchar2(36), updateuser  varchar2(36), updatedate  varchar2(36), creuser varchar2(36)  uploadflag  varchar2(1), padisconsistent  varchar2(1), currentdate  varchar2(36), creuser varchar2(36) )";
                 db.execSQL(MIT_MORNINGMEETING_M);
 
+                // 终端表临时表
+                String termdown = "create table MST_TERMINALINFO_M_DOWN (terminalkey varchar,routekey varchar,terminalcode varchar,terminalname varchar,province varchar,city varchar,county varchar,address varchar,contact varchar,mobile varchar,tlevel varchar,sequence varchar, cycle varchar,hvolume varchar,mvolume varchar,lvolume varchar,status varchar,sellchannel varchar,mainchannel varchar,minorchannel varchar,areatype varchar,sisconsistent varchar,scondate date ,padisconsistent varchar,padcondate date ,comid varchar,remarks varchar,orderbyno varchar,deleteflag varchar,version integer ,credate date ,creuser varchar,updatetime date ,updateuser varchar ,pvolume varchar ,selftreaty varchar ,cmpselftreaty varchar ,ifminedate varchar ,ifmine varchar )";
+                db.execSQL(termdown);
+
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -1981,6 +1987,14 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             mitCollectionexerecordInfoDao = getDao(MitCollectionexerecordInfo.class);
         }
         return mitCollectionexerecordInfoDao;
+    }
+
+    public Dao<MstTerminalinfoMDown, String> getMstTerminalinfoMDownDao() throws SQLException {
+
+        if (mstTerminalinfoMDownDao == null) {
+            mstTerminalinfoMDownDao = getDao(MstTerminalinfoMDown.class);
+        }
+        return mstTerminalinfoMDownDao;
     }
 
     public Dao<MstPlanforuserM, String> getMstPlanforuserMDao() throws SQLException {

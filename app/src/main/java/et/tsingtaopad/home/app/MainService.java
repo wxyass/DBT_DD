@@ -85,6 +85,7 @@ import et.tsingtaopad.db.table.MstSynckvM;
 import et.tsingtaopad.db.table.MstTermLedgerInfo;
 import et.tsingtaopad.db.table.MstTerminalinfoM;
 import et.tsingtaopad.db.table.MstTerminalinfoMCart;
+import et.tsingtaopad.db.table.MstTerminalinfoMDown;
 import et.tsingtaopad.db.table.MstTerminalinfoMZsCart;
 import et.tsingtaopad.db.table.MstVisitM;
 import et.tsingtaopad.db.table.MstVisitauthorizeInfo;
@@ -116,6 +117,7 @@ public class MainService extends XtShopVisitService {
     private Dao<MstQuestionsanswersInfo, String> mstQuestionsanswersInfoDao = null;
     private Dao<MstWorksummaryInfo, String> mstWorksummaryInfoDao = null;
     private Dao<MstTerminalinfoM, String> mstTerminalinfoMDao = null;
+    private Dao<MstTerminalinfoMDown, String> mstTerminalinfoMDownDao = null;
     private Dao<MstInvoicingInfo, String> mstInvoicingInfoDao = null;
     private Dao<MstAgencytransferInfo, String> mstAgencytransferInfoDao = null;
     private Dao<MstVistproductInfo, String> mstVistproductInfoDao = null;
@@ -195,6 +197,7 @@ public class MainService extends XtShopVisitService {
             mstVisitMDao = helper.getMstVisitMDao();
             mstWorksummaryInfoDao = helper.getMstWorksummaryInfoDao();
             mstTerminalinfoMDao = helper.getMstTerminalinfoMDao();
+            mstTerminalinfoMDownDao = helper.getMstTerminalinfoMDownDao();
             mstInvoicingInfoDao = helper.getMstInvoicingInfoDao();
             mstAgencytransferInfoDao = helper.getMstAgencytransferInfoDao();
             mstVistproductInfoDao = helper.getMstVistproductInfoDao();
@@ -287,6 +290,7 @@ public class MainService extends XtShopVisitService {
     List<MstCmpbrandsM> mstCmpbrandsMs = null;
     List<MstCmproductinfoM> mstCmproductinfoMs = null;
     List<MstTerminalinfoM> mstTerminalinfoMs = null;
+    List<MstTerminalinfoMDown> mstTerminalinfoMDowns = null;
 
     List<MstAgencygridInfo> mstAgencygridInfos = null;
     List<MstAgencyinfoM> mstAgencyinfoMs = null;
@@ -424,10 +428,15 @@ public class MainService extends XtShopVisitService {
                 mstCmproductinfoMs= (List<MstCmproductinfoM>) JsonUtil.parseList(json, cls);
                 updateData(mstCmproductinfoMDao, mstCmproductinfoMs);
             }
+            else if(mClass.contains("MstTerminalinfoMDown")){
+                mstTerminalinfoMDowns= (List<MstTerminalinfoMDown>) JsonUtil.parseList(json, cls);
+                updateData(mstTerminalinfoMDownDao, mstTerminalinfoMDowns);
+            }
             else if(mClass.contains("MstTerminalinfoM")){
                 mstTerminalinfoMs= (List<MstTerminalinfoM>) JsonUtil.parseList(json, cls);
                 updateData(mstTerminalinfoMDao, mstTerminalinfoMs);
             }
+
             else if(mClass.contains("PadCheckstatusInfo")){
                 padCheckstatusInfos= (List<PadCheckstatusInfo>) JsonUtil.parseList(json, cls);
                 updateData(padCheckstatusInfoDao, padCheckstatusInfos);

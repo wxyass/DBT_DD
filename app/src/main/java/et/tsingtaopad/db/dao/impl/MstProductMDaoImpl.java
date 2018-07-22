@@ -13,6 +13,7 @@ import java.util.List;
 import et.tsingtaopad.db.DatabaseHelper;
 import et.tsingtaopad.db.dao.MstProductMDao;
 import et.tsingtaopad.db.table.MstProductM;
+import et.tsingtaopad.dd.ddzs.zsterm.zsselect.domain.ProSellStc;
 import et.tsingtaopad.initconstvalues.domain.KvStc;
 
 
@@ -68,6 +69,27 @@ public class MstProductMDaoImpl extends BaseDaoImpl<MstProductM, String> impleme
 		Cursor cursor = db.rawQuery(buffer.toString(), null);
 		while (cursor.moveToNext()) {
 			KvStc pro = new KvStc();
+			pro.setKey(cursor.getString(cursor.getColumnIndex("productkey")));
+			pro.setValue(cursor.getString(cursor.getColumnIndex("proname")));
+			proLst.add(pro);
+		}
+		return proLst;
+	}
+	/**
+	 * 查询常用我品 添加渠道价 零售价
+	 *
+	 * @param helper
+	 * @return
+	 */
+	@Override
+	public List<ProSellStc> getAllProductData(DatabaseHelper helper) {
+		List<ProSellStc> proLst = new ArrayList<ProSellStc>();
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("select mpm.[productkey],mpm.[procode],mpm.[proname] from MST_PRODUCT_M mpm ");
+		SQLiteDatabase db = helper.getReadableDatabase();
+		Cursor cursor = db.rawQuery(buffer.toString(), null);
+		while (cursor.moveToNext()) {
+			ProSellStc pro = new ProSellStc();
 			pro.setKey(cursor.getString(cursor.getColumnIndex("productkey")));
 			pro.setValue(cursor.getString(cursor.getColumnIndex("proname")));
 			proLst.add(pro);

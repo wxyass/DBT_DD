@@ -40,28 +40,7 @@
                     android:layout_toRightOf="@id/zdzs_chatvie_point1"
                     android:text="@string/chatvie_viesource"/>
 
-                <!-- 新增竞品 -->
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@id/zdzs_chatvie_textview01"
-                    >
 
-                    <Button
-                        android:id="@+id/zdzs_chatvie_bt_addrelation"
-                        style="@style/xtbf_btn_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/width_height_size08"
-                        android:background="@drawable/bg_select_green"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:text="添加竞品"
-                        android:textSize="@dimen/font_size4"
-                        android:visibility="gone"
-                        />
-                </RelativeLayout>
             </RelativeLayout>
 
             <!--竞品供货列表-->
@@ -73,6 +52,30 @@
                 android:divider="@null"
                 android:dividerHeight="10dp"
                 />
+
+            <!-- 新增竞品 -->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/zdzs_chatvie_textview01"
+                >
+
+                <Button
+                    android:id="@+id/zdzs_chatvie_bt_addrelation"
+                    style="@style/xtbf_btn_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/width_height_size08"
+                    android:background="@drawable/bg_select_green"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:drawableLeft="@drawable/icon_pro_add"
+                    android:text="添加竞品"
+                    android:textSize="@dimen/font_size4"
+                    android:visibility="gone"
+                    />
+            </RelativeLayout>
 
             <!--WJ竞品-->
             <LinearLayout

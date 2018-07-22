@@ -173,4 +173,25 @@ public class MstRouteMDaoImpl extends
         return dataDicLst;
 
     }
+    // 获取次渠道集合
+    @Override
+    public List<KvStc> querySecondSingSell(SQLiteOpenHelper helper,String con) {
+        List<KvStc> dataDicLst = new ArrayList<KvStc>();
+
+        StringBuffer buffer = new StringBuffer();
+        buffer.append("select a.dicname,a.diccode,a.parentcode from CMM_DATADIC_M a   ");
+        buffer.append(" where a.parentcode IN   ");
+        buffer.append(con);
+        Cursor cursor = helper.getReadableDatabase().rawQuery(buffer.toString(), null);
+        KvStc item;
+        while (cursor.moveToNext()) {
+            item = new KvStc();
+            item.setValue(cursor.getString(cursor.getColumnIndex("dicname")));
+            item.setKey(cursor.getString(cursor.getColumnIndex("diccode")));
+            item.setParentKey(cursor.getString(cursor.getColumnIndex("parentcode")));
+            dataDicLst.add(item);
+        }
+        return dataDicLst;
+
+    }
 }

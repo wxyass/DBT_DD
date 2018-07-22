@@ -19,28 +19,62 @@ import et.tsingtaopad.R;
 import et.tsingtaopad.core.util.dbtutil.CheckUtil;
 import et.tsingtaopad.core.util.dbtutil.ConstValues;
 import et.tsingtaopad.core.util.dbtutil.FunUtil;
+import et.tsingtaopad.core.util.dbtutil.JsonUtil;
+import et.tsingtaopad.core.util.dbtutil.PrefUtils;
 import et.tsingtaopad.core.util.dbtutil.ViewUtil;
 import et.tsingtaopad.core.util.dbtutil.logutil.DbtLog;
 import et.tsingtaopad.db.DatabaseHelper;
 import et.tsingtaopad.db.dao.MitRepairterMDao;
 import et.tsingtaopad.db.dao.MstRouteMDao;
 import et.tsingtaopad.db.dao.MstTerminalinfoMDao;
+import et.tsingtaopad.db.table.CmmAreaM;
+import et.tsingtaopad.db.table.CmmDatadicM;
+import et.tsingtaopad.db.table.MitPlandayM;
+import et.tsingtaopad.db.table.MitPlandaydetailM;
+import et.tsingtaopad.db.table.MitPlandayvalM;
+import et.tsingtaopad.db.table.MitPlanweekM;
 import et.tsingtaopad.db.table.MitRepairM;
 import et.tsingtaopad.db.table.MitRepaircheckM;
 import et.tsingtaopad.db.table.MitRepairterM;
 import et.tsingtaopad.db.table.MitValcheckterM;
 import et.tsingtaopad.db.table.MitValsupplyMTemp;
+import et.tsingtaopad.db.table.MstAgencyKFM;
+import et.tsingtaopad.db.table.MstAgencygridInfo;
+import et.tsingtaopad.db.table.MstAgencyinfoM;
+import et.tsingtaopad.db.table.MstAgencysupplyInfo;
+import et.tsingtaopad.db.table.MstAgencyvisitM;
+import et.tsingtaopad.db.table.MstAgreeDetailTmp;
+import et.tsingtaopad.db.table.MstAgreeTmp;
+import et.tsingtaopad.db.table.MstCheckexerecordInfo;
+import et.tsingtaopad.db.table.MstCmpbrandsM;
+import et.tsingtaopad.db.table.MstCmpcompanyM;
+import et.tsingtaopad.db.table.MstCmproductinfoM;
+import et.tsingtaopad.db.table.MstCmpsupplyInfo;
+import et.tsingtaopad.db.table.MstCollectionexerecordInfo;
 import et.tsingtaopad.db.table.MstGridM;
+import et.tsingtaopad.db.table.MstGroupproductM;
+import et.tsingtaopad.db.table.MstInvoicingInfo;
 import et.tsingtaopad.db.table.MstMarketareaM;
+import et.tsingtaopad.db.table.MstPictypeM;
+import et.tsingtaopad.db.table.MstProductM;
+import et.tsingtaopad.db.table.MstPromoproductInfo;
+import et.tsingtaopad.db.table.MstPromotermInfo;
+import et.tsingtaopad.db.table.MstPromotionsM;
 import et.tsingtaopad.db.table.MstRouteM;
+import et.tsingtaopad.db.table.MstTermLedgerInfo;
 import et.tsingtaopad.db.table.MstTerminalinfoM;
 import et.tsingtaopad.db.table.MstTerminalinfoMCart;
 import et.tsingtaopad.db.table.MstTerminalinfoMTemp;
 import et.tsingtaopad.db.table.MstTerminalinfoMZsCart;
+import et.tsingtaopad.db.table.MstVisitM;
+import et.tsingtaopad.db.table.MstVisitauthorizeInfo;
+import et.tsingtaopad.db.table.MstVistproductInfo;
+import et.tsingtaopad.db.table.PadCheckstatusInfo;
 import et.tsingtaopad.dd.dddealplan.make.domain.DealPlanMakeStc;
 import et.tsingtaopad.dd.dddealplan.remake.domain.ReCheckTimeStc;
 import et.tsingtaopad.dd.ddxt.term.XtTermService;
 import et.tsingtaopad.dd.ddxt.term.select.domain.XtTermSelectMStc;
+import et.tsingtaopad.home.initadapter.GlobalValues;
 import et.tsingtaopad.initconstvalues.domain.KvStc;
 
 
@@ -119,6 +153,25 @@ public class XtTermSelectService extends XtTermService{
             DatabaseHelper helper = DatabaseHelper.getHelper(context);
             MstTerminalinfoMDao dao = helper.getDao(MstTerminalinfoM.class);
             List<XtTermSelectMStc> termlst = dao.queryZsTestLineTermLst(helper);
+            terminalList.addAll(termlst);
+        } catch (SQLException e) {
+            Log.e(TAG, "获取线路表DAO对象失败", e);
+        }
+        return terminalList;
+    }
+
+    /**
+     * 获取终端筛选 下载的终端
+     *
+     * @return
+     */
+    public List<XtTermSelectMStc> queryShaixuanTerminal() {
+
+        List<XtTermSelectMStc> terminalList = new ArrayList<XtTermSelectMStc>();
+        try {
+            DatabaseHelper helper = DatabaseHelper.getHelper(context);
+            MstTerminalinfoMDao dao = helper.getDao(MstTerminalinfoM.class);
+            List<XtTermSelectMStc> termlst = dao.queryShaixuanTermLst(helper);
             terminalList.addAll(termlst);
         } catch (SQLException e) {
             Log.e(TAG, "获取线路表DAO对象失败", e);
@@ -807,6 +860,55 @@ public class XtTermSelectService extends XtTermService{
         return dataDicLst;
 
     }
+    // 初始化次渠道
+    public List<KvStc>  initSecondSellLos(String lson){
+        List<KvStc> dataDicLst = new ArrayList<KvStc>();
+        AndroidDatabaseConnection connection = null;
+        try {
+            DatabaseHelper helper = DatabaseHelper.getHelper(context);
+            MstRouteMDao dao = helper.getDao(MstRouteM.class);
+
+            connection = new AndroidDatabaseConnection(helper.getWritableDatabase(), true);
+            connection.setAutoCommit(false);
+            dataDicLst = dao.querySecondSingSell(helper,lson);
+
+            connection.commit(null);
+        } catch (SQLException e) {
+            Log.e(TAG, "获取拜访产品-我品竞品表DAO对象失败", e);
+        }
+        return dataDicLst;
+
+    }
 
 
+    // 第一次删选前,先删除终端表数据
+    public void deleteMst_terminal_m() {
+        Log.e(TAG, "createOrUpdateTable");
+        AndroidDatabaseConnection connection = null;
+        try {
+            DatabaseHelper helper = DatabaseHelper.getHelper(context);
+            SQLiteDatabase database = helper.getWritableDatabase();
+            connection = new AndroidDatabaseConnection(database, true);
+            connection.setAutoCommit(false);
+            Log.e(TAG, "createOrUpdateTable 1 transation");
+
+            String table = "MST_TERMINALINFO_M";
+            StringBuffer buffer = new StringBuffer();
+            buffer.append("DELETE FROM "+table);
+            database.execSQL(buffer.toString());
+
+
+            connection.commit(null);
+            Log.e(TAG, "createOrUpdateTable 2 transation");
+
+        } catch (SQLException e) {
+            try {
+                connection.rollback(null);
+                Log.e(TAG, "createOrUpdateTable 3 transation", e);
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            throw new RuntimeException(" 更新表出错" + e.toString());
+        }
+    }
 }

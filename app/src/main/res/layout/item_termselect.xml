@@ -99,10 +99,11 @@
 
                 <ImageView
                     android:id="@+id/item_termcart_iv_xt_iserror"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/icon_visit_list_error"
+                    android:layout_alignParentLeft="true"
+                    android:src="@drawable/icon_visit_gai"
                     android:visibility="gone"/>
             </RelativeLayout>
 

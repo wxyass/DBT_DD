@@ -455,4 +455,7 @@ public class DdReDealMakeFragment extends BaseFragmentSupport implements View.On
         }
         return listToString;
     }
+
+
+
 }

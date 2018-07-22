@@ -203,7 +203,7 @@
                     android:textSize="@dimen/font_size3"/>
             </LinearLayout>
 
-            <!--会议记录-->
+            <!--会议内容-->
             <LinearLayout
                 android:id="@+id/meeting_dd_visitreport_title"
                 android:layout_width="match_parent"
@@ -223,7 +223,7 @@
                     style="@style/page_label_big"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="会议记录"/>
+                    android:text="会议内容"/>
             </LinearLayout>
 
             <!--会议记录输入框-->
@@ -242,7 +242,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:background="@drawable/bg_visit_record"
-                    android:hint="请输入会议记录"
+                    android:hint="请输入会议内容"
                     android:inputType="textMultiLine"
                     android:textColorHint="@color/gray_color_cccccc"
                     android:maxLength="1000"

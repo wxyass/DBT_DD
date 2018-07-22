@@ -50,5 +50,11 @@ public interface MstRouteMDao extends Dao<MstRouteM, String> {
      * @return
      */
     public List<KvStc> querySecondSell(SQLiteOpenHelper helper);
+    /**
+     * 获取次渠道集合
+     * @param helper
+     * @return
+     */
+    public List<KvStc> querySecondSingSell(SQLiteOpenHelper helper,String con);
 
 }

@@ -71,7 +71,7 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:textSize="@dimen/font_size4"
-                    android:drawableLeft="@drawable/icon_visit_add"
+                    android:drawableLeft="@drawable/icon_pro_add"
                     android:text="新增供货关系"
                     />
             </RelativeLayout>

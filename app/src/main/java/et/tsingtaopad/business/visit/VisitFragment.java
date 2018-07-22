@@ -30,6 +30,7 @@ import et.tsingtaopad.dd.ddxt.term.cart.XtTermCartFragment;
 import et.tsingtaopad.dd.ddxt.term.select.XtTermSelectFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zscart.ZsTermCartFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTermCheckFragment;
+import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTermGetFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTermSelectFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTermSpecialFragment;
 import et.tsingtaopad.home.app.MainService;
@@ -176,7 +177,8 @@ public class VisitFragment extends BaseFragmentSupport implements View.OnClickLi
                 if (getCmmAreaMCount() > 0) {
                     // changeHomeFragment(new ZsTermSelectFragment(), "zstermselectfragment");// 常规追溯
                     // changeHomeFragment(new ZsTermSpecialFragment(), "zstermselectfragment");// 专项追溯
-                    changeHomeFragment(new ZsTermCheckFragment(), "zstermcheckfragment");// 专项追溯
+                    // changeHomeFragment(new ZsTermCheckFragment(), "zstermcheckfragment");// 专项追溯
+                    changeHomeFragment(new ZsTermGetFragment(), "zstermcheckfragment");// 专项追溯
                 } else {
                     Toast.makeText(getActivity(), R.string.sync_data, Toast.LENGTH_SHORT).show();
                     changeHomeFragment(new SyncBasicFragment(), "syncbasicfragment");
@@ -245,7 +247,8 @@ public class VisitFragment extends BaseFragmentSupport implements View.OnClickLi
 
                             }else if(1 == position){// 确定
                                 // changeHomeFragment(new ZsTermSelectFragment(), "zstermselectfragment");
-                                changeHomeFragment(new ZsTermCheckFragment(), "zstermselectfragment");
+                                // changeHomeFragment(new ZsTermCheckFragment(), "zstermselectfragment");
+                                changeHomeFragment(new ZsTermGetFragment(), "zstermgetfragment");
                             }
                         }
                     })

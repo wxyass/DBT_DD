@@ -66,7 +66,7 @@
                 android:inputType="textPassword"
                 android:maxLength="128"
                 android:singleLine="true"
-                android:text=""
+                android:text="Y1234567"
                 android:textColor="#092102"
                 android:textSize="16sp" />
         </RelativeLayout>

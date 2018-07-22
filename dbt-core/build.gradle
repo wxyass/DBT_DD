@@ -87,4 +87,7 @@ dependencies {
     // 上拉加载下拉舒心
     compile 'in.srain.cube:ultra-ptr:1.0.11'
 
+    // 动态标签加载
+    compile 'com.nex3z:flow-layout:1.2.2'
+
 }

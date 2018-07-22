@@ -1,47 +1,53 @@
 package et.tsingtaopad.dd.ddzs.zsterm.zsselect.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import et.tsingtaopad.R;
+import et.tsingtaopad.adapter.DayDetailSelectKeyValueAdapter;
+import et.tsingtaopad.core.util.dbtutil.FunUtil;
 import et.tsingtaopad.core.util.dbtutil.ViewUtil;
+import et.tsingtaopad.dd.ddzs.zsterm.zsselect.domain.ProSellStc;
 import et.tsingtaopad.initconstvalues.domain.KvStc;
 
 /**
  * Created by yangwenmin on 2018/7/18.
  */
 
-public class AgengcyLvAdapter extends BaseAdapter {
+public class AgencyCmpLvAdapter extends BaseAdapter {
 
     private LayoutInflater mInflater;
     private List<KvStc> mDatas;
-    private Context mContext;
+    private Activity mContext;
     private ListView mlv;
     private TextView mProlv_tv;
     private LinearLayout mProlv_ll;
-    private LinearLayout mll_proprice1;
-    private LinearLayout mll_proprice2;
+    //private LinearLayout mll_proprice1;
+    //private LinearLayout mll_proprice2;
     private TextView mProname_lv;
 
     //MyAdapter需要一个Context，通过Context获得Layout.inflater，然后通过inflater加载item的布局
-    public AgengcyLvAdapter(Context context, List<KvStc> datas,
-                            ListView termcheck_pro_lv,// 展示产品的listView
-                            TextView prolv_tv,// 收起俩字
-                            LinearLayout prolv_ll,// 用于包含LV的LL
-                            TextView proname_lv,// 铺货状态 的产品key 用于字符串拼接
-                            LinearLayout ll_proprice1,// 渠道价
-                            LinearLayout ll_proprice2) {// 零售价
+    public AgencyCmpLvAdapter(Activity context, List<KvStc> datas,
+                              ListView termcheck_pro_lv,// 展示产品的listView
+                              TextView prolv_tv,// 收起俩字
+                              LinearLayout prolv_ll,// 用于包含LV的LL
+                              TextView proname_lv// 铺货状态 的产品key 用于字符串拼接
+                              ) {
 
         mInflater = LayoutInflater.from(context);
         mDatas = datas;
@@ -50,8 +56,6 @@ public class AgengcyLvAdapter extends BaseAdapter {
         mProlv_tv = prolv_tv;
         mProlv_ll = prolv_ll;
         mProname_lv = proname_lv;
-        mll_proprice1 = ll_proprice1;
-        mll_proprice2 = ll_proprice2;
     }
 
     //返回数据集的长度
@@ -91,8 +95,30 @@ public class AgengcyLvAdapter extends BaseAdapter {
         final KvStc bean = mDatas.get(position);
         holder.titleTv.setText(bean.getValue());
         final List<KvStc> dateLst =  bean.getChildLst();
-        ProLvAdapter proLvAdapter = new ProLvAdapter(mContext,bean.getChildLst());
-        holder.pro_Lv.setAdapter(proLvAdapter);
+
+
+        // 获取已选中的集合
+        List<String>  selectedId = new ArrayList<String>();
+        String selectpro = (String)mProname_lv.getTag();// 已经选中的产品key
+        if(!TextUtils.isEmpty(selectpro)){
+            selectedId = Arrays.asList(selectpro.split(","));
+        }
+
+        // 标记选中状态
+        for (KvStc kvstc : dateLst) {
+            for (String itemselect : selectedId) {
+                if (kvstc.getKey().equals(itemselect)) {
+                    kvstc.setIsDefault("1");// 0:没选中 1已选中
+                }
+            }
+        }
+
+
+
+        final DayDetailSelectKeyValueAdapter sadapter = new DayDetailSelectKeyValueAdapter(mContext,dateLst,
+                new String[]{"key","value"}, null);
+        holder.pro_Lv.setAdapter(sadapter);
+
 
         holder.checkterm_ll_item.setOnClickListener(new MyOnClickListener(holder) {
             @Override
@@ -118,9 +144,8 @@ public class AgengcyLvAdapter extends BaseAdapter {
         holder.pro_Lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               // Toast.makeText(mContext,"选中"+dateLst.get(position).getValue(),Toast.LENGTH_SHORT).show() ;
 
-                mProname_lv.setText(dateLst.get(position).getValue());
+                /*mProname_lv.setText(dateLst.get(position).getValue());
                 mProname_lv.setTag(dateLst.get(position).getKey());
                 String pro = mProlv_tv.getText().toString();
                 if ("收起".equals(pro)) {
@@ -129,10 +154,36 @@ public class AgengcyLvAdapter extends BaseAdapter {
                 } else {
                     mProlv_tv.setText("收起");
                     mProlv_ll.setVisibility(View.VISIBLE);
-                }
+                }*/
 
-                mll_proprice1.setVisibility(View.VISIBLE);
-                mll_proprice2.setVisibility(View.VISIBLE);
+                CheckBox itemCB = (CheckBox) view.findViewById(R.id.common_multiple_cb_lvitem);
+                TextView itemTv = (TextView) view.findViewById(R.id.common_multiple_tv_lvitem);
+                itemCB.toggle();//点击整行可以显示效果
+
+                String checkkey = FunUtil.isBlankOrNullTo(itemTv.getHint(), " ") + ",";
+                String checkname = FunUtil.isBlankOrNullTo(itemTv.getText().toString(), " ") + ",";
+
+                if (itemCB.isChecked()) {
+                    mProname_lv.setTag(((String)mProname_lv.getTag())  + checkkey);
+                    ((KvStc)dateLst.get(position)).setIsDefault("1");
+                    KvStc stc = (KvStc)dateLst.get(position);
+                    ProSellStc proSellStc = new ProSellStc();
+                    proSellStc.setKey(stc.getKey());
+                    proSellStc.setValue(stc.getValue());
+                    //checkSelectLst.add(proSellStc);
+                } else {
+                    // checkSelectLst.remove((KvStc)proLst.get(posi));;
+                    mProname_lv.setTag(((String)mProname_lv.getTag()) .replace(checkkey, ""));
+                    ((KvStc)dateLst.get(position)).setIsDefault("0");
+                    /*for (ProSellStc kvStc : checkSelectLst){
+                        if(itemTv.getHint().equals(kvStc.getKey())){
+                            checkSelectLst.remove(kvStc);
+                            break;
+                        }
+                    }*/
+                }
+                sadapter.notifyDataSetChanged();
+
             }
         });
 

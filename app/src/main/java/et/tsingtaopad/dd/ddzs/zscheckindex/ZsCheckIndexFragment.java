@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -55,6 +56,7 @@ public class ZsCheckIndexFragment extends XtBaseVisitFragment implements View.On
     private AppCompatButton mXtvisit_btn_pro;
 
     private ListView calculateLv;
+    private LinearLayout promotionLl;
     private ListView promotionLv;
     private Button quickCollectBt;
 
@@ -108,7 +110,9 @@ public class ZsCheckIndexFragment extends XtBaseVisitFragment implements View.On
         //采项分集listView
         calculateLv = (ListView) view.findViewById(R.id.zdzs_checkindex_lv_calculate);
         quickCollectBt = (Button) view.findViewById(R.id.zdzs_checkindex_bt_quickcollect);
+         promotionLl = (LinearLayout) view.findViewById(R.id.zdzs_checkindex_ll_promotion_title);
         promotionLv = (ListView) view.findViewById(R.id.zdzs_checkindex_lv_promotion);
+
 
         zdzs_sayhi_rl_prostatus = (RelativeLayout) view.findViewById(R.id.zdzs_sayhi_rl_prostatus);
         zdzs_sayhi_tv_prostatus_con1 = (TextView) view.findViewById(R.id.zdzs_sayhi_tv_prostatus_con1);
@@ -271,6 +275,7 @@ public class ZsCheckIndexFragment extends XtBaseVisitFragment implements View.On
         // 促销活动
         if ("Y".equals(mitValcheckterM.getSalespromotion())) {
             promotionLv.setVisibility(View.VISIBLE);
+            promotionLl.setVisibility(View.VISIBLE);
         }
         // 产品组合是否达标
         if ("Y".equals(mitValcheckterM.getGrouppro())) {

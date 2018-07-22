@@ -250,7 +250,7 @@
                     android:layout_height="60dp"
                     android:orientation="horizontal">
 
-                    <!--计划制定-->
+                    <!--会议记录-->
                     <RelativeLayout
                         android:id="@+id/first_rl_jhzd"
                         android:layout_width="0dp"
@@ -261,7 +261,7 @@
 
                         <TextView
                             style="@style/first_statue"
-                            android:text="计划制定"/>
+                            android:text="会议记录"/>
 
                         <ImageView
                             style="@style/first_statue_img"

@@ -187,6 +187,24 @@
                     android:textSize="@dimen/font_size4"
                     />
             </RelativeLayout>
+            <!-- 全部删除 -->
+            <RelativeLayout
+                android:id="@+id/xtbf_termcheck_Rl_remove"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3">
+
+                <Button
+                    android:id="@+id/xtbf_termcheck_bt_remove"
+                    style="@style/xtbf_btn_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/width_height_size08"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/bg_select_green"
+                    android:text="全部删除"
+                    android:textSize="@dimen/font_size4"
+                    />
+            </RelativeLayout>
         </LinearLayout>
 
         <!--终端列表-->
@@ -268,199 +286,320 @@
 
                 </RelativeLayout>
 
+                <!-- 选择 铺货状态 价格体系 竞品信息 -->
                 <RadioGroup
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
-
 
                     <RadioButton
                         android:id="@+id/rb_check"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        style="@style/checkterm_cb_style"
                         android:checked="false"
                         android:text="铺货状态"/>
 
                     <RadioButton
                         android:id="@+id/rb_price"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        style="@style/checkterm_cb_style"
+                        android:layout_marginLeft="20dp"
                         android:checked="false"
                         android:text="价格体系"/>
 
                     <RadioButton
                         android:id="@+id/rb_cmppro"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        style="@style/checkterm_cb_style"
+                        android:layout_marginLeft="20dp"
                         android:checked="false"
                         android:text="竞品信息"/>
                 </RadioGroup>
 
-                <!-- 选择 铺货状态 价格体系 竞品信息 -->
+
+                <!--铺货状态-->
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:orientation="horizontal"
-                    >
-
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1">
-
-                        <CheckBox
-                            android:id="@+id/zdzs_termcheck_check"
-                            style="@style/checkterm_cb_style"
-                            android:text="铺货状态"/>
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1">
-
-                        <CheckBox
-                            android:id="@+id/zdzs_termcheck_price"
-                            style="@style/checkterm_cb_style"
-                            android:text="价格体系"/>
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1">
-
-                        <CheckBox
-                            android:id="@+id/zdzs_termcheck_cmppro"
-                            style="@style/checkterm_cb_style"
-                            android:text="竞品信息"/>
-                    </RelativeLayout>
-
-                </LinearLayout>
-
-                <!--空白,铺货,有效铺货,有效销售-->
-                <LinearLayout
-                    android:id="@+id/zdzs_termcheck_checkid"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-
-                    android:orientation="horizontal"
-                    android:visibility="gone">
-
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1">
-
-                        <CheckBox
-                            android:id="@+id/zdzs_termcheck_black"
-                            style="@style/checkterm_cb_style"
-                            android:text="空白"/>
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1">
-
-                        <CheckBox
-                            android:id="@+id/zdzs_termcheck_puhuo"
-                            style="@style/checkterm_cb_style"
-                            android:text="铺货"/>
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1">
-
-                        <CheckBox
-                            android:id="@+id/zdzs_termcheck_youxiao"
-                            style="@style/checkterm_cb_style"
-                            android:text="有效铺货"/>
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1">
-
-                        <CheckBox
-                            android:id="@+id/zdzs_termcheck_xiaoshou"
-                            style="@style/checkterm_cb_style"
-                            android:text="有效销售"/>
-                    </RelativeLayout>
-
-                </LinearLayout>
-
-                <!--选择产品-->
-                <RelativeLayout
-                    android:id="@+id/zdzs_termcheck_rl_proselect"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="10dp"
-                    android:visibility="gone"
-                    >
-
-                    <TextView
-                        android:id="@+id/zdzs_termcheck_textview06"
-                        style="@style/page_label_big"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="选择产品"/>
-
-                    <TextView
-                        android:id="@+id/zdzs_termcheck_proname"
-                        style="@style/page_label_big"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_toLeftOf="@id/zdzs_termcheck_get06"
-                        android:layout_toRightOf="@id/zdzs_termcheck_textview06"
-                        android:ellipsize="end"
-                        android:singleLine="true"
-                        />
-
-                    <TextView
-                        android:id="@+id/zdzs_termcheck_get06"
-                        style="@style/page_label_big"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="10dp"
-                        android:text="收起"/>
-
-                </RelativeLayout>
-
-                <!--产品列表 Lv-->
-                <LinearLayout
-                    android:id="@+id/zdzs_termcheck_ll_prolv"
+                    android:id="@+id/zdzs_termcheck_ll_procheck"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone">
+                    android:layout_marginTop="10dp"
+                    android:visibility="gone"
+                    android:orientation="vertical">
 
-                    <ListView
-                        android:id="@+id/zdzs_termcheck_pro"
+                    <!--铺货状态 选择产品-->
+                    <RelativeLayout
+                        android:id="@+id/zdzs_termcheck_rl_proselect"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="#f0f0f0"
+                        android:visibility="gone"
+                        >
+
+                        <TextView
+                            android:id="@+id/zdzs_termcheck_textview06"
+                            style="@style/page_label_big"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="4dp"
+                            android:text="选择产品"/>
+
+                        <TextView
+                            android:id="@+id/zdzs_termcheck_proname"
+                            style="@style/page_label_big"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_toLeftOf="@id/zdzs_termcheck_get06"
+                            android:layout_toRightOf="@id/zdzs_termcheck_textview06"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            />
+
+                        <TextView
+                            android:id="@+id/zdzs_termcheck_get06"
+                            style="@style/page_label_big"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:text="收起"/>
+
+                    </RelativeLayout>
+
+                    <!--铺货状态 产品列表 Lv-->
+                    <LinearLayout
+                        android:id="@+id/zdzs_termcheck_ll_prolv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:divider="@color/bg_app"
-                        android:dividerHeight="1dp">
+                        android:orientation="vertical"
+                        android:visibility="gone">
 
-                    </ListView>
+                        <!--空白,铺货,有效铺货,有效销售-->
+                        <LinearLayout
+                            android:id="@+id/zdzs_termcheck_checkid"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@color/bg_lv_item"
+                            android:orientation="horizontal"
+                            android:visibility="visible">
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:layout_marginLeft="10dp"
+                                >
+                                <CheckBox
+                                    android:id="@+id/zdzs_termcheck_black"
+                                    style="@style/checkterm_cb_style"
+                                    android:layout_centerVertical="true"
+                                    android:text="空白"/>
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_height="40dp">
+
+                                <CheckBox
+                                    android:id="@+id/zdzs_termcheck_puhuo"
+                                    style="@style/checkterm_cb_style"
+                                    android:layout_centerVertical="true"
+                                    android:text="铺货"/>
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_height="40dp">
+
+                                <CheckBox
+                                    android:id="@+id/zdzs_termcheck_youxiao"
+                                    style="@style/checkterm_cb_style"
+                                    android:layout_centerVertical="true"
+                                    android:text="有效铺货"/>
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_height="40dp">
+
+                                <CheckBox
+                                    android:id="@+id/zdzs_termcheck_xiaoshou"
+                                    style="@style/checkterm_cb_style"
+                                    android:layout_centerVertical="true"
+                                    android:text="有效销售"/>
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                        <ListView
+                            android:id="@+id/zdzs_termcheck_pro"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:divider="@color/bg_app"
+                            android:dividerHeight="1dp">
+                        </ListView>
+                    </LinearLayout>
 
                 </LinearLayout>
 
-                <!--产品渠道价-->
+                <!--价格体系-->
+                <LinearLayout
+                    android:id="@+id/zdzs_termcheck_ll_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+                    <!--选择产品-->
+                    <RelativeLayout
+                        android:id="@+id/zdzs_termcheck_rl_proprice"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="#f0f0f0"
+                        android:visibility="gone"
+                        >
+
+                        <TextView
+                            android:id="@+id/zdzs_termcheck_proprice"
+                            style="@style/page_label_big"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="4dp"
+                            android:text="选择产品"/>
+
+                        <TextView
+                            android:id="@+id/zdzs_termcheck_pronameprice"
+                            style="@style/page_label_big"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_toLeftOf="@id/zdzs_termcheck_proprice"
+                            android:layout_toRightOf="@id/zdzs_termcheck_priceget"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            />
+
+                        <TextView
+                            android:id="@+id/zdzs_termcheck_priceget"
+                            style="@style/page_label_big"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:text="收起"/>
+
+                    </RelativeLayout>
+
+                    <!--产品列表 Lv-->
+                    <LinearLayout
+                        android:id="@+id/zdzs_termcheck_ll_proprice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <ListView
+                            android:id="@+id/zdzs_termcheck_lv_proprice"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:divider="@color/white"
+                            android:dividerHeight="1dp">
+
+                        </ListView>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!--竞品信息-->
+                <LinearLayout
+                    android:id="@+id/zdzs_termcheck_ll_top_cmppro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+                    <!--选择产品-->
+                    <RelativeLayout
+                        android:id="@+id/zdzs_termcheck_rl_cmppro"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="#f0f0f0"
+                        android:visibility="gone"
+                        >
+
+                        <TextView
+                            android:id="@+id/zdzs_termcheck_cmppro06"
+                            style="@style/page_label_big"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="4dp"
+                            android:text="选择产品"/>
+
+                        <TextView
+                            android:id="@+id/zdzs_termcheck_tv_cmppro"
+                            style="@style/page_label_big"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_toLeftOf="@id/zdzs_termcheck_cmppro06"
+                            android:layout_toRightOf="@id/zdzs_termcheck_cmpproget06"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            />
+
+                        <TextView
+                            android:id="@+id/zdzs_termcheck_cmpproget06"
+                            style="@style/page_label_big"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:text="收起"/>
+
+                    </RelativeLayout>
+
+                    <!--产品列表 Lv-->
+                    <LinearLayout
+                        android:id="@+id/zdzs_termcheck_ll_cmppro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <ListView
+                            android:id="@+id/zdzs_termcheck_lv_cmppro"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:divider="@color/bg_app"
+                            android:dividerHeight="1dp">
+
+                        </ListView>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+
+
+
+                <!--产品渠道价 砍掉-->
                 <LinearLayout
                     android:id="@+id/zdzs_termcheck_ll_proprice1"
                     android:layout_width="match_parent"
@@ -506,7 +645,7 @@
                         android:singleLine="true"/>
                 </LinearLayout>
 
-                <!--产品零售价-->
+                <!--产品零售价 砍掉-->
                 <LinearLayout
                     android:id="@+id/zdzs_termcheck_ll_proprice2"
                     android:layout_width="match_parent"
@@ -1294,6 +1433,7 @@
                 android:orientation="horizontal">
 
                 <RelativeLayout
+                    android:id="@+id/zdzs_termcheck_rl_reset"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_weight="1">

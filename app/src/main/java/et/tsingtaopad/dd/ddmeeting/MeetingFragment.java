@@ -132,7 +132,7 @@ public class MeetingFragment extends BaseFragmentSupport implements View.OnClick
 
     // 初始化数据
     private void initData() {
-        titleTv.setText("晨会录入");
+        titleTv.setText("会议记录");
     }
 
     private void initUrlData(String id,

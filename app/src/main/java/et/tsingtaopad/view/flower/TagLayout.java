@@ -1,4 +1,4 @@
-package et.tsingtaopad.view;
+package et.tsingtaopad.view.flower;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -9,6 +9,9 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 通过代码手动添加 控件 (已经废弃了,不好用)
+ */
 public class TagLayout extends ViewGroup {
     private List<int[]> children;
 

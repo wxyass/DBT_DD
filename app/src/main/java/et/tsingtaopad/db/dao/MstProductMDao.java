@@ -6,6 +6,7 @@ import java.util.List;
 
 import et.tsingtaopad.db.DatabaseHelper;
 import et.tsingtaopad.db.table.MstProductM;
+import et.tsingtaopad.dd.ddzs.zsterm.zsselect.domain.ProSellStc;
 import et.tsingtaopad.initconstvalues.domain.KvStc;
 
 
@@ -30,6 +31,13 @@ public interface MstProductMDao extends Dao<MstProductM, String> {
      * @return
      */
     public List<KvStc> getProductData(DatabaseHelper helper);
+    /**
+     * 查询常用我品 添加渠道价 零售价
+     * @param helper
+     * @param //gridkey 定格主键
+     * @return
+     */
+    public List<ProSellStc> getAllProductData(DatabaseHelper helper);
     /**
      * 获取竞品列表
      * @param helper
