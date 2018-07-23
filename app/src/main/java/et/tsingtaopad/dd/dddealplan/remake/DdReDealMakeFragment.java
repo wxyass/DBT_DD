@@ -183,10 +183,10 @@ public class DdReDealMakeFragment extends BaseFragmentSupport implements View.On
 
         termname.setText(dealStc.getTerminalname());//
         grid.setText(dealStc.getGridname());//
-        grid.setTag(dealStc.getGridkey());//
+        grid.setTag(FunUtil.isBlankOrNullTo(dealStc.getGridkey(), ""));//
         routename.setText(dealStc.getRoutename());//
         ydname.setText(dealStc.getUsername());//
-        ydname.setTag(dealStc.getUserid());//
+        ydname.setTag(FunUtil.isBlankOrNullTo(dealStc.getUserid(), ""));//
         question.setText(dealStc.getContent());//
         amendplan.setText(dealStc.getRepairremark());//
         measure.setText(dealStc.getCheckcontent());//

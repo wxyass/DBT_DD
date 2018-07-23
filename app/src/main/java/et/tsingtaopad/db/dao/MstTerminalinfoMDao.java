@@ -42,6 +42,17 @@ public interface MstTerminalinfoMDao extends Dao<MstTerminalinfoM, String> {
      */
     public List<XtTermSelectMStc> queryLineTermLst(SQLiteOpenHelper helper, String lineId);
     /**
+     * 获取某线路下的终端列表(协同拜访,某条路线)
+     * <p>
+     * 用于：巡店拜访  -- 终端选择(2018年3月21日16:50:54 新加 )
+     *
+     * 搜索终端主表的全部终端 (2018年7月23日20:38:09)
+     *
+     * @param helper
+     * @return
+     */
+    public List<XtTermSelectMStc> queryXtTestLineTermLst(SQLiteOpenHelper helper);
+    /**
      *  (终端追溯,某条路线) 选择终端界面
      * <p>
      * 用于：终端追溯  -- 终端选择  (2018年5月2日新加 )

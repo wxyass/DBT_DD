@@ -154,7 +154,7 @@ public class ZsTemplateFragment extends BaseFragmentSupport implements View.OnCl
         View view = inflater.inflate(R.layout.fragment_dd_template, container, false);
         initView(view);
         // 初始化数据
-        initData();
+        // initData();
         return view;
     }
 
@@ -165,8 +165,9 @@ public class ZsTemplateFragment extends BaseFragmentSupport implements View.OnCl
         confirmTv = (AppCompatTextView) view.findViewById(R.id.top_navigation_bt_confirm);
         backTv = (AppCompatTextView) view.findViewById(R.id.top_navigation_bt_back);
         titleTv = (AppCompatTextView) view.findViewById(R.id.top_navigation_tv_title);
-        confirmBtn.setVisibility(View.INVISIBLE);
+        confirmBtn.setVisibility(View.VISIBLE);
         backBtn.setOnClickListener(this);
+        confirmBtn.setOnClickListener(this);
 
 
         template_scrollview = (ScrollView) view.findViewById(R.id.template_scrollview);
@@ -324,12 +325,13 @@ public class ZsTemplateFragment extends BaseFragmentSupport implements View.OnCl
         handler = new MyHandler(this);
 
         // 初始化数据
-        // initData();
+        initData();
 
     }
 
     private void initData() {
         titleTv.setText("配置稽查项");
+        confirmTv.setText("保存");
 
         xtSelectService = new XtTermSelectService(getActivity());
 
@@ -596,6 +598,7 @@ public class ZsTemplateFragment extends BaseFragmentSupport implements View.OnCl
                 break;
 
 
+            case R.id.top_navigation_rl_confirm:// 保存
             case R.id.dd_template_bt_next:// 保存
                 saveValue();
                 break;

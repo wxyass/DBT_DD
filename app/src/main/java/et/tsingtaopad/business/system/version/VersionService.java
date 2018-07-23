@@ -42,12 +42,13 @@ public class VersionService {
     }
 
     // 获取是否需要升级
-    public void getUrlData( String departmentid, String userid) {
+    public void getUrlData( String departmentid, String userid,String usercode) {  // "usercode:'" + usercode + "'" +
 
 
         String content = "{" +
                 "areaid:'" + departmentid + "'," +
                 "softversion:'" + DbtLog.getVersion() + "'," +
+                "usercode:'" + usercode + "'," +
                 "creuser:'" + userid + "'" +
                 "}";
 

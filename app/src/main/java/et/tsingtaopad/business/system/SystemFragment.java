@@ -246,7 +246,8 @@ public class SystemFragment extends BaseFragmentSupport implements View.OnClickL
         //getVersionData();
         String departmentid = PrefUtils.getString(getActivity(), "departmentid", "");
         String userid = PrefUtils.getString(getActivity(), "userid", "");
-        versionService.getUrlData(departmentid,userid);
+        String usercode = PrefUtils.getString(getActivity(), "usercode", "");
+        versionService.getUrlData(departmentid,userid,usercode);
     }
 
     /*private void getVersionData() {

@@ -118,6 +118,25 @@ public class XtTermSelectService extends XtTermService{
         }
         return terminalList;
     }
+    /**
+     * 根据路线获取终端 获取相应的数据列表数据(协同)
+     *
+     * @param lineKeys 线路表主键  这个参数没用了   搜索终端主表的全部终端  (2018年7月23日20:38:09)
+     * @return
+     */
+    public List<XtTermSelectMStc> queryXtTestTerminal(List<String> lineKeys) {
+
+        List<XtTermSelectMStc> terminalList = new ArrayList<XtTermSelectMStc>();
+        try {
+            DatabaseHelper helper = DatabaseHelper.getHelper(context);
+            MstTerminalinfoMDao dao = helper.getDao(MstTerminalinfoM.class);
+            List<XtTermSelectMStc> termlst = dao.queryXtTestLineTermLst(helper);// 新盖的
+            terminalList.addAll(termlst);
+        } catch (SQLException e) {
+            Log.e(TAG, "获取线路表DAO对象失败", e);
+        }
+        return terminalList;
+    }
 
     /**
      * 根据路线获取终端 获取相应的数据列表数据(追溯)

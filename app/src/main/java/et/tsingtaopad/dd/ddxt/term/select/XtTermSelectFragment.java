@@ -268,8 +268,8 @@ public class XtTermSelectFragment extends BaseFragmentSupport implements View.On
         List<String> routes = new ArrayList<String>();
         routes.add(routekey);// 不同路线
         termList.clear();
-        // termList = xtSelectService.queryTerminal(routes);
-        termList = xtSelectService.queryZsTerminal(routes);
+        termList = xtSelectService.queryXtTestTerminal(routes);
+        // termList = xtSelectService.queryZsTerminal(routes);sdf错误的
     }
 
     XtTermSelectAdapter selectAdapter;

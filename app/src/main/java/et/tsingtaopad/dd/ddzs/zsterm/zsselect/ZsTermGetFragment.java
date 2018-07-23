@@ -168,8 +168,8 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
     private RadioButton rb_check;
     private RadioButton rb_price;
     private RadioButton rb_cmppro;
-    private RadioButton rb_mineshop;
-    private RadioButton rb_notmineshop;
+    private CheckBox rb_mineshop;
+    private CheckBox rb_notmineshop;
     private ListView termcheck_pro_lv;
     private TextView proname_lv;// 铺货状态 的产品key
     private TextView cmpproname_lv;// 竞品信息 的产品key
@@ -233,12 +233,12 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
     private LinearLayout ll_procheck;//
     private RelativeLayout rl_proselect;//
 
-    private RadioButton rb_checkzh;//
-    private RadioButton rb_notcheckzh;//
-    private RadioButton rb_checkhz;//
-    private RadioButton rb_notcheckhz;//
-    private RadioButton rb_checkgao;//
-    private RadioButton rb_notcheckgao;//
+    private CheckBox rb_checkzh;//
+    private CheckBox rb_notcheckzh;//
+    private CheckBox rb_checkhz;//
+    private CheckBox rb_notcheckhz;//
+    private CheckBox rb_checkgao;//
+    private CheckBox rb_notcheckgao;//
 
     private LinearLayout zdzs_termcheck_ll_price;
     private RelativeLayout zdzs_termcheck_rl_proprice;
@@ -363,8 +363,8 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
 
 
         // 基本信息
-        rb_mineshop = (RadioButton) view.findViewById(R.id.zdzs_termcheck_rb_mineshop);
-        rb_notmineshop = (RadioButton) view.findViewById(R.id.zdzs_termcheck_rb_notmineshop);
+        rb_mineshop = (CheckBox) view.findViewById(R.id.zdzs_termcheck_rb_mineshop);
+        rb_notmineshop = (CheckBox) view.findViewById(R.id.zdzs_termcheck_rb_notmineshop);
         mZdzs_termcheck_minearea = (CheckBox) view.findViewById(R.id.zdzs_termcheck_minearea);
         mZdzs_termcheck_cmparea = (CheckBox) view.findViewById(R.id.zdzs_termcheck_cmparea);
         mZdzs_termcheck_minetreaty = (CheckBox) view.findViewById(R.id.zdzs_termcheck_minetreaty);
@@ -405,12 +405,18 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
         cb_sc.setOnCheckedChangeListener(this);
 
         // 指标信息  产品组合是否达标 合作执行是否到位 是否高质量配送
-        rb_checkzh = (RadioButton) view.findViewById(R.id.zdzs_termcheck_rb_checkzh);
-        rb_notcheckzh = (RadioButton) view.findViewById(R.id.zdzs_termcheck_rb_notcheckzh);
-        rb_checkhz = (RadioButton) view.findViewById(R.id.zdzs_termcheck_rb_checkhz);
-        rb_notcheckhz = (RadioButton) view.findViewById(R.id.zdzs_termcheck_rb_notcheckhz);
-        rb_checkgao = (RadioButton) view.findViewById(R.id.zdzs_termcheck_rb_checkgao);
-        rb_notcheckgao = (RadioButton) view.findViewById(R.id.zdzs_termcheck_rb_notcheckgao);
+        rb_checkzh = (CheckBox) view.findViewById(R.id.zdzs_termcheck_rb_checkzh);
+        rb_notcheckzh = (CheckBox) view.findViewById(R.id.zdzs_termcheck_rb_notcheckzh);
+        rb_checkhz = (CheckBox) view.findViewById(R.id.zdzs_termcheck_rb_checkhz);
+        rb_notcheckhz = (CheckBox) view.findViewById(R.id.zdzs_termcheck_rb_notcheckhz);
+        rb_checkgao = (CheckBox) view.findViewById(R.id.zdzs_termcheck_rb_checkgao);
+        rb_notcheckgao = (CheckBox) view.findViewById(R.id.zdzs_termcheck_rb_notcheckgao);
+        rb_checkzh.setOnCheckedChangeListener(this);
+        rb_notcheckzh.setOnCheckedChangeListener(this);
+        rb_checkhz.setOnCheckedChangeListener(this);
+        rb_notcheckhz.setOnCheckedChangeListener(this);
+        rb_checkgao.setOnCheckedChangeListener(this);
+        rb_notcheckgao.setOnCheckedChangeListener(this);
 
 
         // 终端容量 标题及内容 收起 (砍掉)
@@ -871,12 +877,12 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
                 break;
             case R.id.zdzs_termcheck_termone:// 一级终端//
                 if (isChecked) {
-                    termlv.add("1");
+                    termlv.add("81B1A7272795498FBBE8EBDFB065F9FE");
                 }else{
                     Iterator<String> it = termlv.iterator();
                     while(it.hasNext()){
                         String x = it.next();
-                        if(x.equals("1")){
+                        if(x.equals("81B1A7272795498FBBE8EBDFB065F9FE")){
                             it.remove();
                         }
                     }
@@ -884,12 +890,12 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
                 break;
             case R.id.zdzs_termcheck_termtwo:// 二级终端//
                 if (isChecked) {
-                    termlv.add("2");
+                    termlv.add("20E51C0398E34AC8A09375470B5D9DFE");
                 }else{
                     Iterator<String> it = termlv.iterator();
                     while(it.hasNext()){
                         String x = it.next();
-                        if(x.equals("2")){
+                        if(x.equals("20E51C0398E34AC8A09375470B5D9DFE")){
                             it.remove();
                         }
                     }
@@ -897,12 +903,12 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
                 break;
             case R.id.zdzs_termcheck_termthree:// 三级终端//
                 if (isChecked) {
-                    termlv.add("3");
+                    termlv.add("3B86CC33732C454291509E1745FF315E");
                 }else{
                     Iterator<String> it = termlv.iterator();
                     while(it.hasNext()){
                         String x = it.next();
-                        if(x.equals("3")){
+                        if(x.equals("3B86CC33732C454291509E1745FF315E")){
                             it.remove();
                         }
                     }
@@ -910,13 +916,13 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
                 break;
             case R.id.zdzs_termcheck_termfour:// 四级终端//
                 if (isChecked) {
-                    termlv.add("4");
+                    termlv.add("4D49F29894CA4C71B4DA56629CEED17F");
                 }else{
                     //termlv.remove("4");
                     Iterator<String> it = termlv.iterator();
                     while(it.hasNext()){
                         String x = it.next();
-                        if(x.equals("4")){
+                        if(x.equals("4D49F29894CA4C71B4DA56629CEED17F")){
                             it.remove();
                         }
                     }
@@ -978,6 +984,75 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
                     }
                 }
                 break;
+
+            case R.id.zdzs_termcheck_rb_mineshop:// 我品店招//
+                if (isChecked) {
+                    rb_mineshop.setChecked(true);
+                    rb_notmineshop.setChecked(false);
+                }else{
+                    rb_mineshop.setChecked(false);
+
+                }
+                break;
+            case R.id.zdzs_termcheck_rb_notmineshop:// 非我品店招//
+                if (isChecked) {
+                    rb_notmineshop.setChecked(true);
+                    rb_mineshop.setChecked(false);
+                }else{
+                    rb_notmineshop.setChecked(false);
+                }
+                break;
+            case R.id.zdzs_termcheck_rb_checkzh:// 产品组合达标//
+                if (isChecked) {
+                    rb_checkzh.setChecked(true);
+                    rb_notcheckzh.setChecked(false);
+                }else{
+                    rb_checkzh.setChecked(false);
+
+                }
+                break;
+            case R.id.zdzs_termcheck_rb_notcheckzh:// 产品组合未达标//
+                if (isChecked) {
+                    rb_notcheckzh.setChecked(true);
+                    rb_checkzh.setChecked(false);
+                }else{
+                    rb_notcheckzh.setChecked(false);
+                }
+                break;
+            case R.id.zdzs_termcheck_rb_checkhz:// 合作执行到位//
+                if (isChecked) {
+                    rb_checkhz.setChecked(true);
+                    rb_notcheckhz.setChecked(false);
+                }else{
+                    rb_checkhz.setChecked(false);
+                }
+                break;
+            case R.id.zdzs_termcheck_rb_notcheckhz:// 合作执行未到位//
+                if (isChecked) {
+                    rb_notcheckhz.setChecked(true);
+                    rb_checkhz.setChecked(false);
+                }else{
+                    rb_notcheckhz.setChecked(false);
+                }
+                break;
+            case R.id.zdzs_termcheck_rb_checkgao:// 高质量配送//
+                if (isChecked) {
+                    rb_checkgao.setChecked(true);
+                    rb_notcheckgao.setChecked(false);
+                }else{
+                    rb_checkgao.setChecked(false);
+                }
+                break;
+            case R.id.zdzs_termcheck_rb_notcheckgao:// 非高质量配送//
+                if (isChecked) {
+                    rb_notcheckgao.setChecked(true);
+                    rb_checkgao.setChecked(false);
+                }else{
+                    rb_notcheckgao.setChecked(false);
+                }
+                break;
+
+
 
             case R.id.rb_check:// 铺货状态
                 if (isChecked) {
@@ -1224,9 +1299,9 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
                 selectAdapter.notifyDataSetChanged();
                 confirmTv.setText("确定" + "(" + selectedList.size() + ")");
                 break;
-            case R.id.xtbf_termselect_bt_search:// 查询
+            /*case R.id.xtbf_termselect_bt_search:// 查询
                 Toast.makeText(getActivity(), "未查到终端,请到相关路线下寻找", Toast.LENGTH_SHORT).show();
-                break;
+                break;*/
             default:
                 break;
         }
@@ -1385,7 +1460,7 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
         } else {
 
 
-            if (rb_mineshop.isChecked()) {// 我品店招/
+            if (rb_mineshop.isChecked()) {// 我品店招
                 checkStc.setMineshop("1");
             } else if (rb_notmineshop.isChecked()) {
                 checkStc.setMineshop("0");

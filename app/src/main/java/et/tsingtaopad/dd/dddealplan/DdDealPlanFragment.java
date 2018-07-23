@@ -273,8 +273,9 @@ public class DdDealPlanFragment extends BaseFragmentSupport implements View.OnCl
      * 参数8: 条目点击监听  √
      */
     DealStc stc ;
+    private AlertView mAlertViewExt;//窗口拓展例子
     public void alertShow6(final int posi) {
-        new AlertView("请选择复查结果", null, "取消", null,
+        mAlertViewExt = new AlertView("请选择复查结果", null, "取消", null,
                 new String[]{"未通过","已通过"},
                 getActivity(), AlertView.Style.ActionSheet,
                 new OnItemClickListener() {
@@ -295,7 +296,8 @@ public class DdDealPlanFragment extends BaseFragmentSupport implements View.OnCl
                         }
 
                     }
-                }).setCancelable(true).show();
+                });
+        mAlertViewExt.setCancelable(true).show();
     }
 
 
@@ -457,6 +459,17 @@ public class DdDealPlanFragment extends BaseFragmentSupport implements View.OnCl
         monthplan_lv.setAdapter(dealPlanAdapter);
         ViewUtil.setListViewHeight(monthplan_lv);
 
+    }
+
+    // 监听返回键
+    @Override
+    public boolean onBackPressed() {
+        if (mAlertViewExt != null && mAlertViewExt.isShowing()) {
+            mAlertViewExt.dismiss();
+            return true;
+        } else {
+            return super.onBackPressed();
+        }
     }
 
 }

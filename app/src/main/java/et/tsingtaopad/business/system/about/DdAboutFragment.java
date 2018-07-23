@@ -25,9 +25,11 @@ import et.tsingtaopad.core.net.domain.RequestHeadStc;
 import et.tsingtaopad.core.net.domain.RequestStructBean;
 import et.tsingtaopad.core.net.domain.ResponseStructBean;
 import et.tsingtaopad.core.util.dbtutil.ConstValues;
+import et.tsingtaopad.core.util.dbtutil.DbtUtils;
 import et.tsingtaopad.core.util.dbtutil.JsonUtil;
 import et.tsingtaopad.core.util.dbtutil.PrefUtils;
 import et.tsingtaopad.core.util.dbtutil.PropertiesUtil;
+import et.tsingtaopad.core.util.dbtutil.logutil.DbtLog;
 import et.tsingtaopad.http.HttpParseJson;
 import et.tsingtaopad.util.requestHeadUtil;
 
@@ -89,7 +91,7 @@ public class DdAboutFragment extends BaseFragmentSupport implements View.OnClick
     // 初始化数据
     private void initData() {
         titleTv.setText("关于系统");
-        updateVersion.setText("1.0");
+        updateVersion.setText(DbtLog.getVersion());
     }
 
     // 修改密码json

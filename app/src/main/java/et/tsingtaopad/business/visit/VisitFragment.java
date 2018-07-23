@@ -29,7 +29,6 @@ import et.tsingtaopad.dd.ddagencyres.DdAgencySelectFragment;
 import et.tsingtaopad.dd.ddxt.term.cart.XtTermCartFragment;
 import et.tsingtaopad.dd.ddxt.term.select.XtTermSelectFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zscart.ZsTermCartFragment;
-import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTermCheckFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTermGetFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTermSelectFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTermSpecialFragment;

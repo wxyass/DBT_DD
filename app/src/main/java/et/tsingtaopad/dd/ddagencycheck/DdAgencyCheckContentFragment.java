@@ -86,8 +86,8 @@ public class DdAgencyCheckContentFragment extends BaseFragmentSupport implements
         confirmTv = (AppCompatTextView) view.findViewById(R.id.top_navigation_bt_confirm);
         backTv = (AppCompatTextView) view.findViewById(R.id.top_navigation_bt_back);
         titleTv = (AppCompatTextView) view.findViewById(R.id.top_navigation_tv_title);
-        confirmBtn.setVisibility(View.INVISIBLE);
-        //confirmBtn.setOnClickListener(this);
+        confirmBtn.setVisibility(View.VISIBLE);
+        confirmBtn.setOnClickListener(this);
         backBtn.setOnClickListener(this);
 
         agencycodeTv = (TextView) view.findViewById(R.id.agency_check_tv_agencycode);
@@ -113,6 +113,7 @@ public class DdAgencyCheckContentFragment extends BaseFragmentSupport implements
 
     private void initData() {
 
+        confirmTv.setText("保存");
 
 
         service = new CheckService(getActivity());
@@ -147,12 +148,14 @@ public class DdAgencyCheckContentFragment extends BaseFragmentSupport implements
             ll_check.setVisibility(View.VISIBLE);
             proList.setVisibility(View.VISIBLE);
             saveBtn.setVisibility(View.VISIBLE);
+            confirmBtn.setVisibility(View.VISIBLE);
             DdAgencyCheckContentAdapter adapter = new DdAgencyCheckContentAdapter(getActivity(), zsInOutSaveStcs);
             proList.setAdapter(adapter);
         }else{
             ll_check.setVisibility(View.GONE);
             proList.setVisibility(View.GONE);
             saveBtn.setVisibility(View.GONE);
+            confirmBtn.setVisibility(View.GONE);
         }
 
     }
@@ -166,10 +169,8 @@ public class DdAgencyCheckContentFragment extends BaseFragmentSupport implements
             case R.id.top_navigation_rl_back:
                 supportFragmentManager.popBackStack();
                 break;
-            case R.id.top_navigation_rl_confirm:// 确定
-
-                break;
             case R.id.dd_agencychenck_bt_next:// 保存
+            case R.id.top_navigation_rl_confirm:// 保存
                 saveValue();
                 supportFragmentManager.popBackStack();
                 break;

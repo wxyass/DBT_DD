@@ -27,7 +27,8 @@ public class MainActivity extends BaseActivity {
     String downPath = "dbt";// apk的存放位置*/
     private VersionService versionService;
     private String departmentid;// 大区id
-    private String userid;// 用户id
+    private String userid;// 用户id  19b1ded5-f853-48ab-aa2b-b12e963c8f9b
+    private String usercode;// 用户code 20000
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +75,8 @@ public class MainActivity extends BaseActivity {
         versionService = new VersionService(this, handler);
         departmentid = PrefUtils.getString(this, "departmentid", "");
         userid = PrefUtils.getString(this, "userid", "");
-        versionService.getUrlData(departmentid, userid);
+        usercode = PrefUtils.getString(this, "usercode", "");
+        versionService.getUrlData(departmentid, userid,usercode);
     }
 
 

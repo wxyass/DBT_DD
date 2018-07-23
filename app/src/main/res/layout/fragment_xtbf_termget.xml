@@ -321,8 +321,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:visibility="gone"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <!--铺货状态 选择产品-->
                     <RelativeLayout
@@ -390,6 +390,7 @@
                                 android:layout_height="40dp"
                                 android:layout_marginLeft="10dp"
                                 >
+
                                 <CheckBox
                                     android:id="@+id/zdzs_termcheck_black"
                                     style="@style/checkterm_cb_style"
@@ -399,8 +400,8 @@
 
                             <RelativeLayout
                                 android:layout_width="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:layout_height="40dp">
+                                android:layout_height="40dp"
+                                android:layout_marginLeft="10dp">
 
                                 <CheckBox
                                     android:id="@+id/zdzs_termcheck_puhuo"
@@ -411,8 +412,8 @@
 
                             <RelativeLayout
                                 android:layout_width="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:layout_height="40dp">
+                                android:layout_height="40dp"
+                                android:layout_marginLeft="10dp">
 
                                 <CheckBox
                                     android:id="@+id/zdzs_termcheck_youxiao"
@@ -423,8 +424,8 @@
 
                             <RelativeLayout
                                 android:layout_width="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:layout_height="40dp">
+                                android:layout_height="40dp"
+                                android:layout_marginLeft="10dp">
 
                                 <CheckBox
                                     android:id="@+id/zdzs_termcheck_xiaoshou"
@@ -452,8 +453,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:visibility="gone"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <!--选择产品-->
                     <RelativeLayout
@@ -526,8 +527,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:visibility="gone"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <!--选择产品-->
                     <RelativeLayout
@@ -593,10 +594,6 @@
                     </LinearLayout>
 
                 </LinearLayout>
-
-
-
-
 
 
                 <!--产品渠道价 砍掉-->
@@ -725,27 +722,32 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <RadioGroup
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        >
 
-                        <RadioButton
+                        <CheckBox
                             android:id="@+id/zdzs_termcheck_rb_mineshop"
                             style="@style/checkterm_cb_style"
-                            android:checked="false"
-                            android:text="我品店招"
-                            />
+                            android:layout_centerVertical="true"
+                            android:text="我品店招"/>
+                    </RelativeLayout>
 
-                        <RadioButton
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        >
+
+                        <CheckBox
                             android:id="@+id/zdzs_termcheck_rb_notmineshop"
                             style="@style/checkterm_cb_style"
-                            android:layout_marginLeft="10dp"
-                            android:checked="false"
-                            android:text="非我品店招"
-                            />
+                            android:layout_centerVertical="true"
+                            android:text="非我品店招"/>
+                    </RelativeLayout>
 
-                    </RadioGroup>
                 </LinearLayout>
 
                 <!--销售范围-->
@@ -1291,27 +1293,32 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <RadioGroup
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        >
 
-                        <RadioButton
+                        <CheckBox
                             android:id="@+id/zdzs_termcheck_rb_checkzh"
                             style="@style/checkterm_cb_style"
-                            android:checked="false"
-                            android:text="产品组合达标"
-                            />
+                            android:layout_centerVertical="true"
+                            android:text="产品组合达标"/>
+                    </RelativeLayout>
 
-                        <RadioButton
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        >
+
+                        <CheckBox
                             android:id="@+id/zdzs_termcheck_rb_notcheckzh"
                             style="@style/checkterm_cb_style"
-                            android:layout_marginLeft="10dp"
-                            android:checked="false"
-                            android:text="产品组合未达标"
-                            />
+                            android:layout_centerVertical="true"
+                            android:text="产品组合未达标"/>
+                    </RelativeLayout>
 
-                    </RadioGroup>
                 </LinearLayout>
 
                 <!--合作执行到位-->
@@ -1321,27 +1328,32 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <RadioGroup
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        >
 
-                        <RadioButton
+                        <CheckBox
                             android:id="@+id/zdzs_termcheck_rb_checkhz"
                             style="@style/checkterm_cb_style"
-                            android:checked="false"
-                            android:text="合作执行到位"
-                            />
+                            android:layout_centerVertical="true"
+                            android:text="合作执行到位"/>
+                    </RelativeLayout>
 
-                        <RadioButton
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        >
+
+                        <CheckBox
                             android:id="@+id/zdzs_termcheck_rb_notcheckhz"
                             style="@style/checkterm_cb_style"
-                            android:layout_marginLeft="10dp"
-                            android:checked="false"
-                            android:text="合作执行未到位"
-                            />
+                            android:layout_centerVertical="true"
+                            android:text="合作执行未到位"/>
+                    </RelativeLayout>
 
-                    </RadioGroup>
                 </LinearLayout>
 
                 <!--高质量配送-->
@@ -1351,27 +1363,31 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <RadioGroup
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        >
 
-                        <RadioButton
+                        <CheckBox
                             android:id="@+id/zdzs_termcheck_rb_checkgao"
                             style="@style/checkterm_cb_style"
-                            android:checked="false"
-                            android:text="高质量配送"
-                            />
+                            android:layout_centerVertical="true"
+                            android:text="高质量配送"/>
+                    </RelativeLayout>
 
-                        <RadioButton
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        >
+
+                        <CheckBox
                             android:id="@+id/zdzs_termcheck_rb_notcheckgao"
                             style="@style/checkterm_cb_style"
-                            android:layout_marginLeft="10dp"
-                            android:checked="false"
-                            android:text="非高质量配送"
-                            />
-
-                    </RadioGroup>
+                            android:layout_centerVertical="true"
+                            android:text="非高质量配送"/>
+                    </RelativeLayout>
                 </LinearLayout>
 
                 <!--占有率 砍掉-->

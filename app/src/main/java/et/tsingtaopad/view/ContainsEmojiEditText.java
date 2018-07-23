@@ -54,6 +54,9 @@ public class ContainsEmojiEditText extends android.support.v7.widget.AppCompatEd
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (!resetText) {
+                    if(before != 0){
+                        return;
+                    }
                     if (count >= 2) {//表情符号的字符长度最小为2
                         CharSequence input = s.subSequence(cursorPos, cursorPos + count);
                         if (containsEmoji(input.toString())) {

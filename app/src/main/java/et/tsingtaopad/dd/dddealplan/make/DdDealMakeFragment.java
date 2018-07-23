@@ -118,11 +118,13 @@ public class DdDealMakeFragment extends BaseFragmentSupport implements View.OnCl
 
         rl_grid = (RelativeLayout) view.findViewById(R.id.zgjh_make_rl_grid);
         grid = (TextView) view.findViewById(R.id.zgjh_make_grid);
+        grid.setTag("");
         rl_route = (RelativeLayout) view.findViewById(R.id.zgjh_make_rl_route);
         routename = (TextView) view.findViewById(R.id.zgjh_make_route);
 
         rl_ydname = (RelativeLayout) view.findViewById(R.id.zgjh_make_rl_ydname);
         ydname = (TextView) view.findViewById(R.id.zgjh_make_ydname);
+        ydname.setTag("");
 
         rl_question = (RelativeLayout) view.findViewById(R.id.zgjh_make_rl_question);
         question = (EditText) view.findViewById(R.id.zgjh_make_question);
@@ -308,7 +310,23 @@ public class DdDealMakeFragment extends BaseFragmentSupport implements View.OnCl
             // 校验复查时间不能小于当前时间
             ishaveName = false;
             Toast.makeText(getActivity(),"复查时间不能小于当前时间",Toast.LENGTH_SHORT).show();
+        } else if("".equals(routename.getText().toString())||TextUtils.isEmpty(routename.getText().toString())){
+            ishaveName = false;
+            Toast.makeText(getActivity(),"请至少选择一条路线",Toast.LENGTH_SHORT).show();
         }
+        else if("".equals(question.getText().toString())||TextUtils.isEmpty(question.getText().toString())){
+            ishaveName = false;
+            Toast.makeText(getActivity(),"请填写问题描述",Toast.LENGTH_SHORT).show();
+        }
+        else if("".equals(amendplan.getText().toString())||TextUtils.isEmpty(amendplan.getText().toString())){
+            ishaveName = false;
+            Toast.makeText(getActivity(),"请填写改进计划",Toast.LENGTH_SHORT).show();
+        }
+        else if("".equals(measure.getText().toString())||TextUtils.isEmpty(measure.getText().toString())){
+            ishaveName = false;
+            Toast.makeText(getActivity(),"请填写考核措施",Toast.LENGTH_SHORT).show();
+        }
+
         return ishaveName;
     }
 

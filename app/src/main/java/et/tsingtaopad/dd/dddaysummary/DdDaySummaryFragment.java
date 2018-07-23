@@ -132,7 +132,7 @@ public class DdDaySummaryFragment extends BaseFragmentSupport implements View.On
         CmpProFragment cmpProFragment = new CmpProFragment();
         AgencyStoreFragment agencyStoreFragment = new AgencyStoreFragment();
         alFragment.clear();
-        alFragment.add(workPlanFragment);
+        // alFragment.add(workPlanFragment);
         alFragment.add(workSumFragment);
         alFragment.add(baseDataFragment);
         alFragment.add(proCheckFragment);
@@ -288,7 +288,7 @@ public class DdDaySummaryFragment extends BaseFragmentSupport implements View.On
 
     private void addData() {
         tabList.clear();
-        tabList.add("工作计划");
+        // tabList.add("工作计划");
         tabList.add("工作汇总");
         tabList.add("基础数据群");
         tabList.add("我品铺货数据");
