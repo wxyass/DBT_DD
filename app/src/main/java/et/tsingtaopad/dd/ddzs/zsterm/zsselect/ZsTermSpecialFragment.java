@@ -131,9 +131,9 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
 
     private AlertView mAlertViewExt;//窗口拓展
 
-    private String areaKey ="";
-    private String gridKey="";
-    private String routeKey="";
+    private String areaKey = "";
+    private String gridKey = "";
+    private String routeKey = "";
 
     private int startrow = -1;// 开始行
     private int endrow = -1;// 结束行
@@ -162,7 +162,7 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
         gridBtn = (DropdownButton) view.findViewById(R.id.xtbf_termspecial_grid);
         routeBtn = (DropdownButton) view.findViewById(R.id.xtbf_termspecial_route);
         searchBtn = (Button) view.findViewById(R.id.xtbf_termspecial_bt_search);
-         termNameEt = (EditText) view.findViewById(R.id.xtbf_termspecial_et_search);
+        termNameEt = (EditText) view.findViewById(R.id.xtbf_termspecial_et_search);
 
         addAllTermBtn = (Button) view.findViewById(R.id.xtbf_termspecial_bt_add);
         termRouteLl = (LinearLayout) view.findViewById(R.id.xtbf_termspecial_ll_lv);
@@ -195,8 +195,8 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
         ConstValues.handler = handler;
 
         xtSelectService = new XtTermSelectService(getActivity());
-        addInvocingService = new XtAddInvocingService(getActivity(),null);
-         specialStc = new TermSpecialStc();
+        addInvocingService = new XtAddInvocingService(getActivity(), null);
+        specialStc = new TermSpecialStc();
 
         // 设置三个下拉按钮的假数据
         initSomeData();
@@ -214,7 +214,7 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
 
         // 终端夹隔天清零
         String addTime = PrefUtils.getString(getActivity(), GlobalValues.ZS_CART_TIME, DateUtil.getDateTimeStr(7));
-        if(!DateUtil.getDateTimeStr(7).equals(addTime)){
+        if (!DateUtil.getDateTimeStr(7).equals(addTime)) {
             selectedList.clear();
             // 终端夹隔天清零
             xtSelectService.deleteCartData("MST_TERMINALINFO_M_ZSCART", "2");
@@ -280,8 +280,9 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
 
 
                     }
-                },1000);
+                }, 1000);
             }
+
             // 下拉刷新
             @Override
             public void onRefresh() {
@@ -297,7 +298,7 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
                         stopResh();*/
                         termRouteLv.refreshComplete();
                     }
-                },1000);
+                }, 1000);
             }
         });
     }
@@ -454,6 +455,7 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
                     PrefUtils.putString(getActivity(), GlobalValues.DDXTZS, "2");
                 } else {
                     Toast.makeText(getActivity(), "请先配置督导模板", Toast.LENGTH_SHORT).show();
+                    changeHomeFragment(new ZsTemplateFragment(), "zstemplatefragment");
                 }
 
                 break;
@@ -470,7 +472,7 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
                 confirmTv.setText("确定" + "(" + selectedList.size() + ")");
                 break;
             case R.id.xtbf_termspecial_bt_search:// 查询
-                Toast.makeText(getActivity(),"未查到终端,请到相关路线下寻找",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "未查到终端,请到相关路线下寻找", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.xtbf_termspecial_mine:// 我品
                 alertZsShow3();
@@ -491,12 +493,12 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
     // 获取最新的终端数据
     private void getTermData() {
         // 判断是否需要发起请求
-        if(startrow == -1){
+        if (startrow == -1) {
 
-        }else{
-            if(agreeRb.isChecked()){
+        } else {
+            if (agreeRb.isChecked()) {
                 specialStc.setIsagree("1");
-            }else{
+            } else {
                 specialStc.setIsagree("0");
             }
             specialStc.setAreakey(areaKey);
@@ -507,8 +509,8 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
 
             specialStc.setStartrow(startrow);// 0  101
             specialStc.setEndrow(endrow);// 100  200
-            startrow = endrow +1;// 101  201
-            endrow = endrow+pagercount;// 200  300
+            startrow = endrow + 1;// 101  201
+            endrow = endrow + pagercount;// 200  300
 
             String json = JsonUtil.toJson(specialStc);
             getTermDataByUrl("opt_get_dates2", "MST_TERMINALINFO_M", json);
@@ -520,10 +522,10 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
     // 我品
     public void alertZsShow3() {
 
-        final List<KvStc> typeLst  = addInvocingService.getProList();
+        final List<KvStc> typeLst = addInvocingService.getProList();
 
         // 如果追溯项大于0,添加全选按钮
-        if(typeLst.size()>0){
+        if (typeLst.size() > 0) {
             typeLst.add(0, new KvStc("-1", "全选", "-1"));
         }
 
@@ -543,8 +545,8 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
 
 
         // 获取已选中的集合
-        List<String>  selectedId = new ArrayList<String>();
-        if(!TextUtils.isEmpty(specialStc.getMineprokey())){
+        List<String> selectedId = new ArrayList<String>();
+        if (!TextUtils.isEmpty(specialStc.getMineprokey())) {
             selectedId = Arrays.asList(specialStc.getMineprokey().split(","));
         }
 
@@ -557,8 +559,8 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
             }
         }
 
-        final DayDetailSelectKeyValueAdapter sadapter = new DayDetailSelectKeyValueAdapter(getActivity(),typeLst,
-                new String[]{"key","value"}, null);
+        final DayDetailSelectKeyValueAdapter sadapter = new DayDetailSelectKeyValueAdapter(getActivity(), typeLst,
+                new String[]{"key", "value"}, null);
         dataLv.setAdapter(sadapter);
         dataLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -570,12 +572,12 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
                 String checkkey = FunUtil.isBlankOrNullTo(itemTv.getHint(), " ") + ",";
                 String checkname = FunUtil.isBlankOrNullTo(itemTv.getText().toString(), " ") + ",";
 
-                if(0 == posi){// 全选
-                    if(itemCB.isChecked()){// 是选中状态
+                if (0 == posi) {// 全选
+                    if (itemCB.isChecked()) {// 是选中状态
                         StringBuffer key = new StringBuffer();
                         StringBuffer name = new StringBuffer();
-                        for (KvStc stc : typeLst){
-                            if(!"-1".equals(stc.getParentKey())){
+                        for (KvStc stc : typeLst) {
+                            if (!"-1".equals(stc.getParentKey())) {
                                 key.append(stc.getKey());
                                 key.append(",");
                                 name.append(stc.getValue());
@@ -585,23 +587,23 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
                         }
                         specialStc.setMineprokey(key.toString());
                         specialStc.setMineproname(name.toString());
-                    }else{// 是未选中状态
-                        for (KvStc stc : typeLst){
+                    } else {// 是未选中状态
+                        for (KvStc stc : typeLst) {
                             stc.setIsDefault("0");
                         }
                         specialStc.setMineprokey("");
                         specialStc.setMineproname("");
                     }
-                }else{
+                } else {
                     if (itemCB.isChecked()) {
-                        specialStc.setMineprokey(FunUtil.isBlankOrNullTo(specialStc.getMineprokey(),"")  + checkkey);
-                        specialStc.setMineproname(FunUtil.isBlankOrNullTo(specialStc.getMineproname(),"") + checkname);
-                        ((KvStc)typeLst.get(posi)).setIsDefault("1");
+                        specialStc.setMineprokey(FunUtil.isBlankOrNullTo(specialStc.getMineprokey(), "") + checkkey);
+                        specialStc.setMineproname(FunUtil.isBlankOrNullTo(specialStc.getMineproname(), "") + checkname);
+                        ((KvStc) typeLst.get(posi)).setIsDefault("1");
                     } else {
-                        specialStc.setMineprokey(FunUtil.isBlankOrNullTo(specialStc.getMineprokey(),"") .replace(checkkey, ""));
-                        specialStc.setMineproname(FunUtil.isBlankOrNullTo(specialStc.getMineproname(),"").replace(checkname, ""));
-                        ((KvStc)typeLst.get(posi)).setIsDefault("0");
-                        ((KvStc)typeLst.get(0)).setIsDefault("0");
+                        specialStc.setMineprokey(FunUtil.isBlankOrNullTo(specialStc.getMineprokey(), "").replace(checkkey, ""));
+                        specialStc.setMineproname(FunUtil.isBlankOrNullTo(specialStc.getMineproname(), "").replace(checkname, ""));
+                        ((KvStc) typeLst.get(posi)).setIsDefault("0");
+                        ((KvStc) typeLst.get(0)).setIsDefault("0");
                     }
                 }
 
@@ -637,13 +639,14 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
             }
         });
     }
+
     // 竞品
     public void alertZsShow4() {
 
-        final List<KvStc> typeLst  = addInvocingService.getVieProList();
+        final List<KvStc> typeLst = addInvocingService.getVieProList();
 
         // 如果追溯项大于0,添加全选按钮
-        if(typeLst.size()>0){
+        if (typeLst.size() > 0) {
             typeLst.add(0, new KvStc("-1", "全选", "-1"));
         }
 
@@ -663,8 +666,8 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
 
 
         // 获取已选中的集合
-        List<String>  selectedId = new ArrayList<String>();
-        if(!TextUtils.isEmpty(specialStc.getMineprokey())){
+        List<String> selectedId = new ArrayList<String>();
+        if (!TextUtils.isEmpty(specialStc.getMineprokey())) {
             selectedId = Arrays.asList(specialStc.getMineprokey().split(","));
         }
 
@@ -677,8 +680,8 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
             }
         }
 
-        final DayDetailSelectKeyValueAdapter sadapter = new DayDetailSelectKeyValueAdapter(getActivity(),typeLst,
-                new String[]{"key","value"}, null);
+        final DayDetailSelectKeyValueAdapter sadapter = new DayDetailSelectKeyValueAdapter(getActivity(), typeLst,
+                new String[]{"key", "value"}, null);
         dataLv.setAdapter(sadapter);
         dataLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -690,12 +693,12 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
                 String checkkey = FunUtil.isBlankOrNullTo(itemTv.getHint(), " ") + ",";
                 String checkname = FunUtil.isBlankOrNullTo(itemTv.getText().toString(), " ") + ",";
 
-                if(0 == posi){// 全选
-                    if(itemCB.isChecked()){// 是选中状态
+                if (0 == posi) {// 全选
+                    if (itemCB.isChecked()) {// 是选中状态
                         StringBuffer key = new StringBuffer();
                         StringBuffer name = new StringBuffer();
-                        for (KvStc stc : typeLst){
-                            if(!"-1".equals(stc.getParentKey())){
+                        for (KvStc stc : typeLst) {
+                            if (!"-1".equals(stc.getParentKey())) {
                                 key.append(stc.getKey());
                                 key.append(",");
                                 name.append(stc.getValue());
@@ -705,23 +708,23 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
                         }
                         specialStc.setVieprokey(key.toString());
                         specialStc.setVieproname(name.toString());
-                    }else{// 是未选中状态
-                        for (KvStc stc : typeLst){
+                    } else {// 是未选中状态
+                        for (KvStc stc : typeLst) {
                             stc.setIsDefault("0");
                         }
                         specialStc.setVieprokey("");
                         specialStc.setVieproname("");
                     }
-                }else{
+                } else {
                     if (itemCB.isChecked()) {
-                        specialStc.setVieprokey(FunUtil.isBlankOrNullTo(specialStc.getVieprokey(),"")  + checkkey);
-                        specialStc.setVieproname(FunUtil.isBlankOrNullTo(specialStc.getVieproname(),"") + checkname);
-                        ((KvStc)typeLst.get(posi)).setIsDefault("1");
+                        specialStc.setVieprokey(FunUtil.isBlankOrNullTo(specialStc.getVieprokey(), "") + checkkey);
+                        specialStc.setVieproname(FunUtil.isBlankOrNullTo(specialStc.getVieproname(), "") + checkname);
+                        ((KvStc) typeLst.get(posi)).setIsDefault("1");
                     } else {
-                        specialStc.setVieprokey(FunUtil.isBlankOrNullTo(specialStc.getVieprokey(),"") .replace(checkkey, ""));
-                        specialStc.setVieproname(FunUtil.isBlankOrNullTo(specialStc.getVieproname(),"").replace(checkname, ""));
-                        ((KvStc)typeLst.get(posi)).setIsDefault("0");
-                        ((KvStc)typeLst.get(0)).setIsDefault("0");
+                        specialStc.setVieprokey(FunUtil.isBlankOrNullTo(specialStc.getVieprokey(), "").replace(checkkey, ""));
+                        specialStc.setVieproname(FunUtil.isBlankOrNullTo(specialStc.getVieproname(), "").replace(checkname, ""));
+                        ((KvStc) typeLst.get(posi)).setIsDefault("0");
+                        ((KvStc) typeLst.get(0)).setIsDefault("0");
                     }
                 }
 
@@ -787,6 +790,7 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
             }
         } else {
             Toast.makeText(getActivity(), "请先配置督导模板", Toast.LENGTH_SHORT).show();
+            changeHomeFragment(new ZsTemplateFragment(), "zstemplatefragment");
         }
     }
 
@@ -843,7 +847,7 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
     // 查找终端,并复制到终端购物车
     public void copyMstTerminalinfoMZsCart(XtTermSelectMStc termSelectMStc) {
         MstTerminalinfoM term = xtSelectService.findTermByTerminalkey(termSelectMStc.getTerminalkey());
-        if(term!=null){
+        if (term != null) {
             xtSelectService.toCopyMstTerminalinfoMZsCartData(term, "2");
         }
     }
@@ -924,7 +928,7 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
                             DbtLog.logUtils(TAG, "前往拜访：上传");
                             // 如果网络可用
                             if (NetStatusUtil.isNetValid(getActivity())) {
-                                xtUploadService.upload_zs_visit(false, mitValterM.getId(), 1,0);
+                                xtUploadService.upload_zs_visit(false, mitValterM.getId(), 1, 0);
                             } else {
                                 // 提示修改网络
                                 Toast.makeText(getContext(), "网络异常,请先检查网络连接", Toast.LENGTH_SHORT).show();
@@ -1011,6 +1015,7 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
 
     /**
      * 根据条件请求终端
+     *
      * @param optcode
      * @param tableName
      * @param content
@@ -1040,7 +1045,7 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
                             // 请求路线下所有终端列表
                             if ("opt_get_dates2".equals(optcode) && "MST_TERMINALINFO_M".equals(tableName)) {
                                 String formjson = resObj.getResBody().getContent();
-                                parseTermListJson(formjson,0);// 0:不需要  1需要删除
+                                parseTermListJson(formjson, 0);// 0:不需要  1需要删除
                                 initTermListData("");
                                 setSelectTerm();// 设置已添加购物车的符号
                                 selectAdapter.notifyDataSetChanged();
@@ -1069,21 +1074,21 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
 
     // 解析路线key下的终端
     private void parseTermListJson(String json) {
-        parseTermListJson(json,1);// what 是否需要清除该表,再插入  0:不需要  1需要删除
+        parseTermListJson(json, 1);// what 是否需要清除该表,再插入  0:不需要  1需要删除
     }
 
     // 解析路线key下的终端 what 是否需要清除该表,再插入  0:不需要  1需要删除
-    private void parseTermListJson(String json,int what) {
+    private void parseTermListJson(String json, int what) {
         // 解析区域定格路线信息
         AreaGridRoute emp = JsonUtil.parseJson(json, AreaGridRoute.class);
         String MST_TERMINALINFO_M = emp.getMST_TERMINALINFO_M();
 
-        if("".equals(MST_TERMINALINFO_M)||TextUtils.isEmpty(MST_TERMINALINFO_M)){// 返回数据为空
+        if ("".equals(MST_TERMINALINFO_M) || TextUtils.isEmpty(MST_TERMINALINFO_M)) {// 返回数据为空
             startrow = -1;
             endrow = -1;
-        }else{
+        } else {
             MainService service = new MainService(getActivity(), null);
-            service.createOrUpdateTable(MST_TERMINALINFO_M, "MST_TERMINALINFO_M", MstTerminalinfoM.class,what);
+            service.createOrUpdateTable(MST_TERMINALINFO_M, "MST_TERMINALINFO_M", MstTerminalinfoM.class, what);
         }
 
 
@@ -1096,7 +1101,7 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
     // 跳转巡店拜访
     private void startXtVisitShopActivity() {
         List<MstVisitM> mstVisitMS = xtSelectService.getMstVisitMList(xtTermSelectMStc.getTerminalkey());
-        if(mstVisitMS.size()>0){
+        if (mstVisitMS.size() > 0) {
             Intent intent = new Intent(getActivity(), ZsVisitShopActivity.class);
             intent.putExtra("isFirstVisit", "1");// 非第一次拜访1
             intent.putExtra("termStc", xtTermSelectMStc);
@@ -1107,9 +1112,9 @@ public class ZsTermSpecialFragment extends BaseFragmentSupport implements View.O
             Toast.makeText(getActivity(), "该终端数据请求成功", Toast.LENGTH_SHORT).show();
 
             //PrefUtils.putBoolean(getActivity(),GlobalValues.ZS_CART_SYNC,false);// false 追溯购物车 需要同步
-        }else{
+        } else {
             //
-            Toast.makeText(getActivity(),"该终端从未拜访,不能追溯",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "该终端从未拜访,不能追溯", Toast.LENGTH_SHORT).show();
         }
 
     }

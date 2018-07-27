@@ -231,7 +231,7 @@ public class ZsInvocingAmendFragment extends BaseFragmentSupport implements View
                 supportFragmentManager.popBackStack();// 取消
                 break;
             case R.id.zdzs_invoicing_amend_rl_dd_sp_agency:// 经销商
-                agencyLst = addInvocingService.getAgencyList(termId);
+                agencyLst = addInvocingService.getZsAgencyList(termId);
                 setSelectValueRight(agencyLst,valsupplyMTemp.getValtrueagency());
                 break;
 

@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import et.tsingtaopad.R;
@@ -282,7 +283,7 @@ public class XtTermSelectFragment extends BaseFragmentSupport implements View.On
                 ImageView imageView = (ImageView) v;
                 XtTermSelectMStc item = termList.get(position);
                 //MstTerminalinfoM term = xtSelectService.findTermByTerminalkey(item.getTerminalkey());
-                if (selectedList.contains(item)) {
+                /*if (selectedList.contains(item)) {
                     selectedList.remove(item);
                     item.setIsSelectToCart("0");
                     imageView.setImageResource(R.drawable.icon_visit_add);
@@ -294,6 +295,25 @@ public class XtTermSelectFragment extends BaseFragmentSupport implements View.On
                     imageView.setImageResource(R.drawable.icon_select_minus);
                     confirmTv.setText("确定" + "(" + selectedList.size() + ")");
 
+                }*/
+
+                boolean isselect = false;
+                for (XtTermSelectMStc xtTermSelectMStc:selectedList){// 遍历终端文件夹 是否有这个终端
+                    if(xtTermSelectMStc.getTerminalkey().equals(item.getTerminalkey())){
+                        isselect =true;
+                        selectedList.remove(xtTermSelectMStc);
+                        item.setIsSelectToCart("0");
+                        imageView.setImageResource(R.drawable.icon_visit_add);
+                        confirmTv.setText("确定" + "(" + selectedList.size() + ")");
+                        break;
+                    }
+                }
+
+                if(!isselect){
+                    selectedList.add(item);
+                    item.setIsSelectToCart("1");
+                    imageView.setImageResource(R.drawable.icon_select_minus);
+                    confirmTv.setText("确定" + "(" + selectedList.size() + ")");
                 }
             }
         });
@@ -337,8 +357,20 @@ public class XtTermSelectFragment extends BaseFragmentSupport implements View.On
             case R.id.xtbf_termselect_bt_add:// 全部添加
                 for (XtTermSelectMStc selectMStc : termList) {
                     //MstTerminalinfoM term = xtSelectService.findTermByTerminalkey(selectMStc.getTerminalkey());
-                    if (selectedList.contains(selectMStc)) {
+                    /*if (selectedList.contains(selectMStc)) {
                         selectedList.remove(selectMStc);
+                    }*/
+                    /*for (XtTermSelectMStc xtTermSelectMStc : selectedList){// 先把已存在的删除
+                        if(xtTermSelectMStc.getTerminalkey().equals(selectMStc.getTerminalkey())){
+                            selectedList.remove(xtTermSelectMStc);
+                        }
+                    }*/
+                    Iterator<XtTermSelectMStc> it = selectedList.iterator();
+                    while(it.hasNext()){
+                        XtTermSelectMStc x = it.next();
+                        if(x.getTerminalkey().equals(selectMStc.getTerminalkey())){
+                            it.remove();
+                        }
                     }
                     selectMStc.setIsSelectToCart("1");
                 }
@@ -418,6 +450,7 @@ public class XtTermSelectFragment extends BaseFragmentSupport implements View.On
                     @Override
                     public void onError(int code, String msg) {
                         Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+
                     }
                 })
                 .failure(new IFailure() {
@@ -436,11 +469,19 @@ public class XtTermSelectFragment extends BaseFragmentSupport implements View.On
         AreaGridRoute emp = JsonUtil.parseJson(json, AreaGridRoute.class);
         String MST_TERMINALINFO_M = emp.getMST_TERMINALINFO_M();
 
-        MainService service = new MainService(getActivity(), null);
-        service.createOrUpdateTable(MST_TERMINALINFO_M, "MST_TERMINALINFO_M", MstTerminalinfoM.class,1);
-        initTermListData(routeKey);
-        setSelectTerm();// 设置已添加购物车的符号
-        setItemAdapterListener();
+        if ("[]".equals(MST_TERMINALINFO_M) || TextUtils.isEmpty(MST_TERMINALINFO_M)) {// 返回数据为空
+            Toast.makeText(getActivity(),"未搜索到任何终端",Toast.LENGTH_SHORT).show();
+            termList.clear();
+            selectAdapter.notifyDataSetChanged();
+        } else {
+            MainService service = new MainService(getActivity(), null);
+            service.createOrUpdateTable(MST_TERMINALINFO_M, "MST_TERMINALINFO_M", MstTerminalinfoM.class,1);
+            initTermListData(routeKey);
+            setSelectTerm();// 设置已添加购物车的符号
+            setItemAdapterListener();
+        }
+
+
     }
 
     // listview的条目点击事件  单独拜访
@@ -562,10 +603,12 @@ public class XtTermSelectFragment extends BaseFragmentSupport implements View.On
 
     // 查找终端,并复制到终端购物车
     public void copyMstTerminalinfoMCart(XtTermSelectMStc termSelectMStc) {
-        MstTerminalinfoM term = xtSelectService.findTermByTerminalkey(termSelectMStc.getTerminalkey());
+        /*MstTerminalinfoM term = xtSelectService.findTermByTerminalkey(termSelectMStc.getTerminalkey());
         if(term!=null){
             xtSelectService.toCopyMstTerminalinfoMCartData(term,"1");
-        }
+        }*/
+
+        xtSelectService.toMstTerminalinfoMCartData(termSelectMStc,"1");
     }
 
     // 条目点击 确定拜访一家终端
@@ -670,6 +713,10 @@ public class XtTermSelectFragment extends BaseFragmentSupport implements View.On
 
                         } else {
                             Toast.makeText(getActivity(), resObj.getResHead().getContent(), Toast.LENGTH_SHORT).show();
+                            termList.clear();
+                            selectAdapter.notifyDataSetChanged();
+
+
                         }
                     }
                 })
@@ -677,12 +724,16 @@ public class XtTermSelectFragment extends BaseFragmentSupport implements View.On
                     @Override
                     public void onError(int code, String msg) {
                         Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+                        termList.clear();
+                        selectAdapter.notifyDataSetChanged();
                     }
                 })
                 .failure(new IFailure() {
                     @Override
                     public void onFailure() {
                         Toast.makeText(getContext(), "请求失败", Toast.LENGTH_SHORT).show();
+                        termList.clear();
+                        selectAdapter.notifyDataSetChanged();
                     }
                 })
                 .builde()

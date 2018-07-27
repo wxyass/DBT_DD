@@ -35,14 +35,21 @@ import et.tsingtaopad.core.util.dbtutil.DateUtil;
 import et.tsingtaopad.core.util.dbtutil.JsonUtil;
 import et.tsingtaopad.core.util.dbtutil.PrefUtils;
 import et.tsingtaopad.core.util.dbtutil.PropertiesUtil;
+import et.tsingtaopad.core.view.alertview.AlertView;
+import et.tsingtaopad.core.view.alertview.OnItemClickListener;
+import et.tsingtaopad.db.table.MstTerminalinfoMCart;
+import et.tsingtaopad.db.table.MstTerminalinfoMZsCart;
 import et.tsingtaopad.dd.ddagencycheck.DdAgencyCheckSelectFragment;
 import et.tsingtaopad.dd.dddaysummary.DdDaySummaryFragment;
 import et.tsingtaopad.dd.dddealplan.DdDealPlanFragment;
 import et.tsingtaopad.dd.ddmeeting.MeetingFragment;
 import et.tsingtaopad.dd.ddweekplan.DdWeekPlanFragment;
+import et.tsingtaopad.dd.ddxt.term.cart.XtTermCartFragment;
 import et.tsingtaopad.dd.ddxt.term.select.XtTermSelectFragment;
+import et.tsingtaopad.dd.ddzs.zsterm.zscart.ZsTermCartFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTermGetFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTermSelectFragment;
+import et.tsingtaopad.home.app.MainService;
 import et.tsingtaopad.home.initadapter.GlobalValues;
 import et.tsingtaopad.http.HttpParseJson;
 import et.tsingtaopad.sign.DdSignActivity;
@@ -78,6 +85,8 @@ public class FirstFragment extends BaseFragmentSupport implements View.OnClickLi
     private RelativeLayout rl_zgjh;
     private RelativeLayout rl_jhzd;
     private RelativeLayout rl_gzzj;
+
+    MainService service;
 
 
     @Nullable
@@ -148,6 +157,7 @@ public class FirstFragment extends BaseFragmentSupport implements View.OnClickLi
             parseFirstJson(json);
         }
 
+        service = new MainService(getActivity(), null);
 
     }
 
@@ -264,20 +274,47 @@ public class FirstFragment extends BaseFragmentSupport implements View.OnClickLi
                 break;
 
             case R.id.first_rl_xtbf:// 协同拜访
-                if (getCmmAreaMCount() > 0) {
+                /*if (getCmmAreaMCount() > 0) {
                     changeHomeFragment(new XtTermSelectFragment(), "xttermlistfragment");
                 } else {
 
+                    Toast.makeText(getActivity(), R.string.sync_data, Toast.LENGTH_SHORT).show();
+                    changeHomeFragment(new SyncBasicFragment(), "syncbasicfragment");
+                }*/
+
+                if (getCmmAreaMCount() > 0) {
+                    // 终端夹隔天清零
+                    String addTime = PrefUtils.getString(getActivity(), GlobalValues.XT_CART_TIME, DateUtil.getDateTimeStr(7));
+                    if(!DateUtil.getDateTimeStr(7).equals(addTime)){
+                        // 隔天清空购物车表数据
+                        service.deleteCart("MST_TERMINALINFO_M_CART","1");
+                    }
+
+                    toXtTermCartFragment();
+                } else {
                     Toast.makeText(getActivity(), R.string.sync_data, Toast.LENGTH_SHORT).show();
                     changeHomeFragment(new SyncBasicFragment(), "syncbasicfragment");
                 }
 
                 break;
             case R.id.first_rl_zdzs:// 终端追溯
-                if (getCmmAreaMCount() > 0) {
+                /*if (getCmmAreaMCount() > 0) {
                     // changeHomeFragment(new ZsTermSelectFragment(), "zstermselectfragment");
                     //changeHomeFragment(new ZsTermCheckFragment(), "zstermcheckfragment");
                     changeHomeFragment(new ZsTermGetFragment(), "zstermgetfragment");
+                } else {
+                    Toast.makeText(getActivity(), R.string.sync_data, Toast.LENGTH_SHORT).show();
+                    changeHomeFragment(new SyncBasicFragment(), "syncbasicfragment");
+                }*/
+
+                if (getCmmAreaMCount() > 0) {
+                    // 终端夹隔天清零
+                    String addTime = PrefUtils.getString(getActivity(), GlobalValues.ZS_CART_TIME, DateUtil.getDateTimeStr(7));
+                    if (!DateUtil.getDateTimeStr(7).equals(addTime)) {
+                        // 终端夹隔天清零
+                        service.deleteCart("MST_TERMINALINFO_M_ZSCART", "2");
+                    }
+                    toZsTermCartFragment();
                 } else {
                     Toast.makeText(getActivity(), R.string.sync_data, Toast.LENGTH_SHORT).show();
                     changeHomeFragment(new SyncBasicFragment(), "syncbasicfragment");
@@ -322,6 +359,67 @@ public class FirstFragment extends BaseFragmentSupport implements View.OnClickLi
                 break;
             default:
                 break;
+        }
+    }
+
+    // 跳转协同终端文件夹
+    private void toXtTermCartFragment() {
+        List<MstTerminalinfoMCart> valueLst = service.getMstTerminalinfoMCartList();
+        if(valueLst.size()>0){
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("fromFragment", "VisitFragment");
+            XtTermCartFragment xtTermCartFragment = new XtTermCartFragment();
+            xtTermCartFragment.setArguments(bundle);
+            changeHomeFragment(xtTermCartFragment, "xttermcartfragment");
+        }else{
+            // Toast.makeText(getActivity(),"追溯终端夹暂无数据",Toast.LENGTH_SHORT).show();
+            new AlertView("终端夹暂无数据是否去添加", null, null, new String[]{"取消","确定"}, null, getActivity(), AlertView.Style.Alert,
+                    new OnItemClickListener() {
+                        @Override
+                        public void onItemClick(Object o, int position) {
+                            //Toast.makeText(getApplicationContext(), "点击了第" + position + "个", Toast.LENGTH_SHORT).show();
+                            if (0 == position) {// 取消
+
+                            }else if(1 == position){// 确定
+                                changeHomeFragment(new XtTermSelectFragment(), "xttermlistfragment");
+                            }
+                        }
+                    })
+                    .setCancelable(true)
+                    .setOnDismissListener(null)
+                    .show();
+        }
+    }
+
+    // 跳转追溯终端文件夹
+    private void toZsTermCartFragment() {
+        List<MstTerminalinfoMZsCart> valueLst = service.getMstTerminalinfoMZsCartList();
+        if(valueLst.size()>0){
+            Bundle zsBundle = new Bundle();
+            zsBundle.putSerializable("fromFragment", "VisitFragment");
+            ZsTermCartFragment zsTermCartFragment = new ZsTermCartFragment();
+            zsTermCartFragment.setArguments(zsBundle);
+            changeHomeFragment(zsTermCartFragment, "zstermcartfragment");
+        }else{
+            // Toast.makeText(getActivity(),"协同终端夹暂无数据",Toast.LENGTH_SHORT).show();
+
+            new AlertView("终端夹暂无数据是否去添加", null, null, new String[]{"取消","确定"}, null, getActivity(), AlertView.Style.Alert,
+                    new OnItemClickListener() {
+                        @Override
+                        public void onItemClick(Object o, int position) {
+                            //Toast.makeText(getApplicationContext(), "点击了第" + position + "个", Toast.LENGTH_SHORT).show();
+                            if (0 == position) {// 取消
+
+                            }else if(1 == position){// 确定
+                                // changeHomeFragment(new ZsTermSelectFragment(), "zstermselectfragment");
+                                // changeHomeFragment(new ZsTermCheckFragment(), "zstermselectfragment");
+                                changeHomeFragment(new ZsTermGetFragment(), "zstermgetfragment");
+                            }
+                        }
+                    })
+                    .setCancelable(true)
+                    .setOnDismissListener(null)
+                    .show();
         }
     }
 

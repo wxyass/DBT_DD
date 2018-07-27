@@ -179,7 +179,7 @@ public class ZsTemplateFragment extends BaseFragmentSupport implements View.OnCl
         common_multiple_cb_ifmine = (CheckBox) view.findViewById(R.id.common_multiple_cb_ifmine);
         template_ll_salesarea = (LinearLayout)view. findViewById(R.id.template_ll_salesarea);
         common_multiple_cb_salesarea = (CheckBox)view. findViewById(R.id.common_multiple_cb_salesarea);
-        template_ll_terworkstatus = (LinearLayout)view. findViewById(R.id.template_ll_terworkstatus);
+        template_ll_terworkstatus = (LinearLayout)view. findViewById(R.id.template_ll_terworkstatus);// 终端合作状态
         common_multiple_cb_terworkstatus = (CheckBox) view.findViewById(R.id.common_multiple_cb_terworkstatus);
         template_ll_tername = (LinearLayout) view.findViewById(R.id.template_ll_tername);
         common_multiple_cb_tername = (CheckBox) view.findViewById(R.id.common_multiple_cb_tername);
@@ -470,7 +470,7 @@ public class ZsTemplateFragment extends BaseFragmentSupport implements View.OnCl
             case R.id.template_ll_salesarea://
                 checkAbc(common_multiple_cb_salesarea);
                 break;
-            case R.id.template_ll_terworkstatus://
+            case R.id.template_ll_terworkstatus:// 终端合作状态
                 checkAbc(common_multiple_cb_terworkstatus);
                 break;
             case R.id.template_ll_tername:// //
@@ -551,8 +551,8 @@ public class ZsTemplateFragment extends BaseFragmentSupport implements View.OnCl
             case R.id.template_ll_iffleeing://
                 checkAbc(common_multiple_cb_iffleeing);
                 break;
-            case R.id.template_ll_distrbution://
-                checkAbc(common_multiple_cb_terworkstatus);
+            case R.id.template_ll_distrbution:// 铺货状态
+                checkAbc(common_multiple_cb_distrbution);
                 break;
             case R.id.template_ll_goodsvivi://
                 checkAbc(common_multiple_cb_goodsvivi);
@@ -689,9 +689,13 @@ public class ZsTemplateFragment extends BaseFragmentSupport implements View.OnCl
         mitValcheckterM.setProvivi(common_multiple_cb_provivi.isChecked() ? ConstValues.Y : ConstValues.N);
         mitValcheckterM.setIcevivi(common_multiple_cb_icevivi.isChecked() ? ConstValues.Y : ConstValues.N);
         mitValcheckterM.setSalespromotion(common_multiple_cb_salespromotion.isChecked() ? ConstValues.Y : ConstValues.N);
+        // // 产品组合是否达标
         mitValcheckterM.setGrouppro(common_multiple_cb_grouppro.isChecked() ? ConstValues.Y : ConstValues.N);
+        // 合作执行是否到位
         mitValcheckterM.setCooperation(common_multiple_cb_cooperation.isChecked() ? ConstValues.Y : ConstValues.N);
+        // 高质量配送
         mitValcheckterM.setHighps(common_multiple_cb_highps.isChecked() ? ConstValues.Y : ConstValues.N);
+        // 我品单店占有率
         mitValcheckterM.setProoccupy(common_multiple_cb_prooccupy.isChecked() ? ConstValues.Y : ConstValues.N);
         mitValcheckterM.setAddcmp(common_multiple_cb_addcmp.isChecked() ? ConstValues.Y : ConstValues.N);
         // mitValcheckterM.setLosecmp(common_multiple_cb_cmperror.isChecked() ? ConstValues.Y : ConstValues.N);

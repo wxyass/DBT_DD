@@ -17,11 +17,13 @@ import java.lang.ref.SoftReference;
 
 import et.tsingtaopad.R;
 import et.tsingtaopad.base.BaseFragmentSupport;
+import et.tsingtaopad.core.util.dbtutil.FunUtil;
 import et.tsingtaopad.core.view.alertview.AlertView;
 import et.tsingtaopad.core.view.alertview.OnItemClickListener;
 import et.tsingtaopad.db.table.MitValagencykfM;
 import et.tsingtaopad.db.table.MstAgencyKFM;
 import et.tsingtaopad.dd.ddxt.updata.XtUploadService;
+import et.tsingtaopad.dd.ddzs.zssayhi.ZsSayhiFragment;
 
 /**
  * 经销商资料库 经销商未稽查判断
@@ -476,6 +478,56 @@ public class DdAgencyContentFragment extends BaseFragmentSupport implements View
             valagencykfM.setSupplytermsflag(RIGHT);
         }
     }
+    // 设置未稽查
+    public void setMstAgencyKFMFlagNull(MitValagencykfM valagencykfM, String type) {
+        if (DdAgencyContentFragment.AGENCYNAME.equals(type)) {// 经销商名称
+
+            valagencykfM.setAgencynameflag("");
+
+        } else if (DdAgencyContentFragment.CONTACT.equals(type)) {// 法定人
+            valagencykfM.setContactflag("");
+
+        } else if (DdAgencyContentFragment.MOBILE.equals(type)) {// 电话
+            valagencykfM.setMobileflag("");
+
+        } else if (DdAgencyContentFragment.ADDRESS.equals(type)) {// 仓库地址
+            valagencykfM.setAddressflag("");
+
+        } else if (DdAgencyContentFragment.AREA.equals(type)) {// 仓库面积
+            valagencykfM.setAreaflag("");
+
+        } else if (DdAgencyContentFragment.MONEY.equals(type)) {// 资金
+            valagencykfM.setMoneyflag("");
+
+        } else if (DdAgencyContentFragment.PERSION.equals(type)) {// 人员
+            valagencykfM.setPersionflag("");
+
+        } else if (DdAgencyContentFragment.CARNUM.equals(type)) {// 车辆
+            valagencykfM.setCarnumflag("");
+
+        } else if (DdAgencyContentFragment.ISONE.equals(type)) {// 是否数一数二经销商
+            // valagencykfM.setIsone(dd_et);
+            valagencykfM.setStatusflag("");
+
+        } else if (DdAgencyContentFragment.KFDATA.equals(type)) {// 开发时间
+            valagencykfM.setKfdateflag("");
+
+        } else if (DdAgencyContentFragment.PASSDATA.equals(type)) {// 达成时间
+            valagencykfM.setPassdateflag("");
+
+        } else if (DdAgencyContentFragment.PRODUCTNAME.equals(type)) {// 销售产品
+            valagencykfM.setProductnameflag("");
+
+        } else if (DdAgencyContentFragment.BUSINESS.equals(type)) {// 经营状况
+            valagencykfM.setBusinessflag("");
+
+        } else if (DdAgencyContentFragment.COVERTERMS.equals(type)) {// 覆盖终端
+            valagencykfM.setCovertermflag("");
+
+        } else if (DdAgencyContentFragment.SUPPLYTERMS.equals(type)) {// 直供终端
+            valagencykfM.setSupplytermsflag("");
+        }
+    }
 
     /**
      * 接收子线程消息的 Handler
@@ -521,7 +573,7 @@ public class DdAgencyContentFragment extends BaseFragmentSupport implements View
      */
     private AlertView mAlertViewExt;//窗口拓展例子
     public void alertShow3(final String type) {
-        new AlertView("请选择核查结果", null, "取消", null,
+        new AlertView("请选择核查结果", null, "未稽查", null,
                 new String[]{"正确", "错误"},
                 getActivity(), AlertView.Style.ActionSheet,
                 new OnItemClickListener() {
@@ -540,6 +592,10 @@ public class DdAgencyContentFragment extends BaseFragmentSupport implements View
                             agencyAmendFragment.setArguments(bundle);
                             // 跳转 经销商库存盘点 填充数据
                             changeHomeFragment(agencyAmendFragment, "DdAgencyAmendFragment");
+                        }
+                        else if (-1 == position) {// 跳转数据录入
+                            setMstAgencyKFMFlagNull(valagencykfM,type);
+                            handler.sendEmptyMessage(DdAgencyContentFragment.DD_AGENCY_CONTENT_SUC);
                         }
 
                     }

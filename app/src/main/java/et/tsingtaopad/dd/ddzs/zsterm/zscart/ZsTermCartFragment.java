@@ -53,6 +53,7 @@ import et.tsingtaopad.dd.ddxt.term.cart.adapter.XtTermCartAdapter;
 import et.tsingtaopad.dd.ddxt.term.select.domain.XtTermSelectMStc;
 import et.tsingtaopad.dd.ddxt.updata.XtUploadService;
 import et.tsingtaopad.dd.ddzs.zsshopvisit.ZsVisitShopActivity;
+import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTemplateFragment;
 import et.tsingtaopad.home.app.MainService;
 import et.tsingtaopad.home.app.MyApplication;
 import et.tsingtaopad.home.initadapter.GlobalValues;
@@ -85,8 +86,8 @@ public class ZsTermCartFragment extends BaseFragmentSupport implements View.OnCl
     private ListView termCartLv;
 
     private XtTermCartService cartService;
-    private List<XtTermSelectMStc> termList= new ArrayList<XtTermSelectMStc>();
-    private List<XtTermSelectMStc> termAllList= new ArrayList<XtTermSelectMStc>();
+    private List<XtTermSelectMStc> termList = new ArrayList<XtTermSelectMStc>();
+    private List<XtTermSelectMStc> termAllList = new ArrayList<XtTermSelectMStc>();
     private DdTermCartAdapter termCartAdapter;
     private List<XtTermSelectMStc> seqTermList;
 
@@ -95,7 +96,7 @@ public class ZsTermCartFragment extends BaseFragmentSupport implements View.OnCl
     private Map<String, String> termPinyinMap;
     private List<XtTermSelectMStc> tempLst;
     // protected MitValcheckterM mitValcheckterM;// 追溯模板
-    private List<MitValcheckterM>  mitValcheckterMs;
+    private List<MitValcheckterM> mitValcheckterMs;
 
     @Nullable
     @Override
@@ -183,7 +184,7 @@ public class ZsTermCartFragment extends BaseFragmentSupport implements View.OnCl
         searchTerm();
 
         // // 获取追溯模板 大区id
-        String areapid = PrefUtils.getString(getActivity(),"departmentid","");
+        String areapid = PrefUtils.getString(getActivity(), "departmentid", "");
         mitValcheckterMs = cartService.getValCheckterMList(areapid);
         // mitValcheckterM = mitValcheckterMs.get(0);
 
@@ -219,7 +220,7 @@ public class ZsTermCartFragment extends BaseFragmentSupport implements View.OnCl
                     updateBtn.setText("排序");
                     termCartAdapter.setUpdate(false);
                     searchTerm();
-                    Toast.makeText(getActivity(),"排序保存成功",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "排序保存成功", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.xtbf_termcart_bt_add:// 更新数据
@@ -240,21 +241,21 @@ public class ZsTermCartFragment extends BaseFragmentSupport implements View.OnCl
     }
 
     // 删除或拜访
-    private void confirmVisit(){
+    private void confirmVisit() {
         // 购物车是否已经同步数据  false:没有  true:已同步
-        boolean issync = PrefUtils.getBoolean(getActivity(),GlobalValues.ZS_CART_SYNC,false);
-        if(issync){// 同步过
+        boolean issync = PrefUtils.getBoolean(getActivity(), GlobalValues.ZS_CART_SYNC, false);
+        if (issync) {// 同步过
             // termStc = (XtTermSelectMStc)confirmBtn.getTag();
             // 检测条数是否已上传  // 该终端追溯数据是否全部上传
             List<MitValterM> terminalList = cartService.getZsMitValterM(termStc.getTerminalkey());
-            if(terminalList.size()>0){// 未上传
+            if (terminalList.size() > 0) {// 未上传
                 deleteOrXtUpladCart(terminalList.get(0));
-            }else{// 已上传
-                if(mitValcheckterMs.size()>0){// 配置了督导模板
+            } else {// 已上传
+                if (mitValcheckterMs.size() > 0) {// 配置了督导模板
 
                     // 判断拜访表中 是否有该终端的拜访记录
                     List<MstVisitM> mstVisitMS = cartService.getMstVisitMList(termStc.getTerminalkey());
-                    if(mstVisitMS.size()>0){
+                    if (mstVisitMS.size() > 0) {
                         LatteLoader.showLoading(getActivity());// 处理数据中 ,在ZsVisitShopActivity的initVIew中关闭
                         Intent intent = new Intent(getActivity(), ZsVisitShopActivity.class);
                         intent.putExtra("isFirstVisit", "1");// 非第一次拜访1
@@ -262,28 +263,30 @@ public class ZsTermCartFragment extends BaseFragmentSupport implements View.OnCl
                         intent.putExtra("mitValcheckterM", mitValcheckterMs.get(0));
                         intent.putExtra("seeFlag", "0"); // 0拜访 1查看标识
                         startActivity(intent);
-                    }else{
+                    } else {
                         //
-                        Toast.makeText(getActivity(),"该终端从未拜访,不能追溯",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "该终端从未拜访,不能追溯", Toast.LENGTH_SHORT).show();
                     }
 
 
+                } else {// 未配置督导模板
 
-                }else{// 未配置督导模板
-                    Toast.makeText(getActivity(),"请先配置督导模板",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "请先配置督导模板", Toast.LENGTH_SHORT).show();
+                    changeHomeFragment(new ZsTemplateFragment(), "zstemplatefragment");
                 }
             }
-        }else{// 未同步
-            Toast.makeText(getActivity(),"请先点击下载",Toast.LENGTH_SHORT).show();
+        } else {// 未同步
+            Toast.makeText(getActivity(), "请先点击下载", Toast.LENGTH_SHORT).show();
         }
     }
 
     AlertView mAlertViewExt;
+
     // 条目点击 是否删除/上传这家记录
     private void deleteOrXtUpladCart(final MitValterM mitValterM) {
-        final XtUploadService xtUploadService = new XtUploadService(getActivity(),null);
+        final XtUploadService xtUploadService = new XtUploadService(getActivity(), null);
         // 普通窗口
-        mAlertViewExt = new AlertView("检测到这家终端上次数据未上传", null, null, new String[]{"删除","上传"}, null, getActivity(), AlertView.Style.Alert,
+        mAlertViewExt = new AlertView("检测到这家终端上次数据未上传", null, null, new String[]{"删除", "上传"}, null, getActivity(), AlertView.Style.Alert,
                 new OnItemClickListener() {
                     @Override
                     public void onItemClick(Object o, int position) {
@@ -291,13 +294,13 @@ public class ZsTermCartFragment extends BaseFragmentSupport implements View.OnCl
                         if (0 == position) {// 确定按钮:0   取消按钮:-1
                             //if (ViewUtil.isDoubleClick(v.getId(), 2500)) return;
                             DbtLog.logUtils(TAG, "前往拜访：删除");
-                            xtUploadService.deleteZs(mitValterM.getId(),mitValterM.getTerminalkey(),1);
+                            xtUploadService.deleteZs(mitValterM.getId(), mitValterM.getTerminalkey(), 1);
                             initData();
-                        }else if(1 == position){
+                        } else if (1 == position) {
                             DbtLog.logUtils(TAG, "前往拜访：上传");
                             // 如果网络可用
                             if (NetStatusUtil.isNetValid(getActivity())) {
-                                xtUploadService.upload_zs_visit(false,mitValterM.getId(),1,0);
+                                xtUploadService.upload_zs_visit(false, mitValterM.getId(), 1, 0);
                             } else {
                                 // 提示修改网络
                                 Toast.makeText(getContext(), "网络异常,请先检查网络连接", Toast.LENGTH_SHORT).show();
@@ -344,11 +347,11 @@ public class ZsTermCartFragment extends BaseFragmentSupport implements View.OnCl
 
         // 设置适配器
         // termCartAdapter = new ZsTermCartAdapter(getActivity(), seqTermList, tempLst, confirmBtn, termId,"2");// 1协同  2追溯
-        termCartAdapter = new DdTermCartAdapter(getActivity(), seqTermList, tempLst, confirmBtn, termId,"2",new IClick() {
+        termCartAdapter = new DdTermCartAdapter(getActivity(), seqTermList, tempLst, confirmBtn, termId, "2", new IClick() {
             @Override
             public void listViewItemClick(int position, View v) {
 
-                if (ViewUtil.isDoubleClick(v.getId(),position, 1000)){
+                /*if (ViewUtil.isDoubleClick(v.getId(),position, 1000)){
 
                     if (hasPermission(GlobalValues.LOCAL_PERMISSION)) {
                         // 拥有了此权限,那么直接执行业务逻辑
@@ -358,7 +361,9 @@ public class ZsTermCartFragment extends BaseFragmentSupport implements View.OnCl
                         // 还没有对一个权限(请求码,权限数组)这两个参数都事先定义好
                         requestPermission(GlobalValues.LOCAL_CODE, GlobalValues.LOCAL_PERMISSION);
                     }
-                }
+                }*/
+                // Toast.makeText(getActivity(),"点击了"+position,Toast.LENGTH_SHORT).show();
+                confirmXtUplad(position, v);
             }
         });// 1协同  2追溯
         termCartLv.setAdapter(termCartAdapter);
@@ -371,6 +376,38 @@ public class ZsTermCartFragment extends BaseFragmentSupport implements View.OnCl
         } else {
             confirmBtn.setVisibility(View.INVISIBLE);
         }*/
+    }
+
+
+    // 条目点击 确定拜访一家终端
+    private void confirmXtUplad(final int posi, View v) {
+        String termName = termList.get(posi).getTerminalname();
+        // 普通窗口
+        mAlertViewExt = new AlertView("追溯:" + termName, null, "取消", new String[]{"确定"}, null, getActivity(), AlertView.Style.Alert,
+                new OnItemClickListener() {
+                    @Override
+                    public void onItemClick(Object o, int position) {
+                        //Toast.makeText(getApplicationContext(), "点击了第" + position + "个", Toast.LENGTH_SHORT).show();
+                        if (0 == position) {// 确定按钮:0   取消按钮:-1
+                            if (hasPermission(GlobalValues.LOCAL_PERMISSION)) {
+                                // 拥有了此权限,那么直接执行业务逻辑
+                                termStc = termList.get(posi);
+                                confirmVisit();// 去拜访
+                            } else {
+                                // 还没有对一个权限(请求码,权限数组)这两个参数都事先定义好
+                                requestPermission(GlobalValues.LOCAL_CODE, GlobalValues.LOCAL_PERMISSION);
+                            }
+                        }
+                    }
+                })
+                .setCancelable(true)
+                .setOnDismissListener(new OnDismissListener() {
+                    @Override
+                    public void onDismiss(Object o) {
+                        DbtLog.logUtils(TAG, "前往拜访：否");
+                    }
+                });
+        mAlertViewExt.show();
     }
 
 
@@ -399,6 +436,7 @@ public class ZsTermCartFragment extends BaseFragmentSupport implements View.OnCl
                 item_new.setMinorchannel(item.getMinorchannel());
                 item_new.setTerminalType(item.getTerminalType());
                 item_new.setVisitTime(item.getVisitTime());
+                item_new.setEndDate(item.getEndDate());
                 termList_new.add(item_new);
             }
         }
@@ -429,20 +467,20 @@ public class ZsTermCartFragment extends BaseFragmentSupport implements View.OnCl
     // 组建json  请求终端上次拜访详情
     private void buildJson() {
         List<String> termKeyLst = new ArrayList<String>();
-        for (XtTermSelectMStc xtTermSelectMStc:termAllList) {
+        for (XtTermSelectMStc xtTermSelectMStc : termAllList) {
             termKeyLst.add(xtTermSelectMStc.getTerminalkey());
         }
         String json = JsonUtil.toJson(termKeyLst);// ["1-AW46W7","1-B6FF9Z","1-84RFW5","1-DIOQDH","1-AX2BVT"]
 
-        String content  = "{"+
-                "terminalkeys:'"+json+"'," +
-                "tablename:'"+"MST_VISITDATA_M"+"'" +
+        String content = "{" +
+                "terminalkeys:'" + json + "'," +
+                "tablename:'" + "MST_VISITDATA_M" + "'" +
                 "}";
-        getTermData("opt_get_dates2","MST_VISITDATA_M",content);
+        getTermData("opt_get_dates2", "MST_VISITDATA_M", content);
     }
 
     // 发送全部更新请求  请求终端上次拜访详情
-    void getTermData(final String optcode, final String tableName,String content) {
+    void getTermData(final String optcode, final String tableName, String content) {
 
         // 组建请求Json
         // 组建请求Json
@@ -465,19 +503,19 @@ public class ZsTermCartFragment extends BaseFragmentSupport implements View.OnCl
                         resObj = JsonUtil.parseJson(json, ResponseStructBean.class);
                         //Toast.makeText(getActivity(), resObj.getResBody().getContent()+""+resObj.getResHead().getContent(), Toast.LENGTH_SHORT).show();
                         // 保存登录信息
-                        if(ConstValues.SUCCESS.equals(resObj.getResHead().getStatus())){
+                        if (ConstValues.SUCCESS.equals(resObj.getResHead().getStatus())) {
                             // 保存信息
-                            if("opt_get_dates2".equals(optcode)&&"MST_VISITDATA_M".equals(tableName)){
+                            if ("opt_get_dates2".equals(optcode) && "MST_VISITDATA_M".equals(tableName)) {
                                 String formjson = resObj.getResBody().getContent();
                                 MainService mainService = new MainService(getActivity(), null);
                                 mainService.parseTermDetailInfoJson(formjson);
                                 // 购物车是否已经同步数据  false:没有  true:已同步
-                                PrefUtils.putBoolean(getActivity(),GlobalValues.ZS_CART_SYNC,true);
+                                PrefUtils.putBoolean(getActivity(), GlobalValues.ZS_CART_SYNC, true);
                                 Toast.makeText(getActivity(), "该列表终端数据请求成功", Toast.LENGTH_SHORT).show();
 
                                 initData();// 初始化数据
                             }
-                        }else{
+                        } else {
                             Toast.makeText(getActivity(), resObj.getResHead().getContent(), Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -499,6 +537,7 @@ public class ZsTermCartFragment extends BaseFragmentSupport implements View.OnCl
     }
 
     MyHandler handler;
+
 
     /**
      * 接收子线程消息的 Handler
@@ -536,10 +575,10 @@ public class ZsTermCartFragment extends BaseFragmentSupport implements View.OnCl
 
     // 结束上传  刷新页面  0:确定上传  1上传成功  2上传失败
     private void shuaxinXtTermCart(int upType) {
-        if(1==upType){
-            Toast.makeText(MyApplication.getAppContext(),"上传成功",Toast.LENGTH_SHORT).show();
-        }else if(2==upType){
-            Toast.makeText(MyApplication.getAppContext(),"上传失败",Toast.LENGTH_SHORT).show();
+        if (1 == upType) {
+            Toast.makeText(MyApplication.getAppContext(), "上传成功", Toast.LENGTH_SHORT).show();
+        } else if (2 == upType) {
+            Toast.makeText(MyApplication.getAppContext(), "上传失败", Toast.LENGTH_SHORT).show();
         }
         initData();
     }

@@ -44,6 +44,38 @@ public class XtAddInvocingService extends XtShopVisitService {
         }
         return agencyList;
     }
+
+    /**
+     * 查询该终端的供货经销商
+     */
+    public List<KvStc> getXtAgencyList(String terminalkey) {
+        List<KvStc> agencyList=new ArrayList<KvStc>();
+        try {
+            DatabaseHelper helper = DatabaseHelper.getHelper(context);
+            MstAgencyinfoMDao dao = helper.getDao(MstAgencyinfoM.class);
+            agencyList= dao.agencyXtTermQuery(helper,terminalkey);
+        } catch (SQLException e) {
+            Log.e(TAG, "获取拜访指标失败", e);
+            e.printStackTrace();
+        }
+        return agencyList;
+    }
+
+    /**
+     * 查询 追溯时终端的供货经销商
+     */
+    public List<KvStc> getZsAgencyList(String terminalkey) {
+        List<KvStc> agencyList=new ArrayList<KvStc>();
+        try {
+            DatabaseHelper helper = DatabaseHelper.getHelper(context);
+            MstAgencyinfoMDao dao = helper.getDao(MstAgencyinfoM.class);
+            agencyList= dao.agencyZsTermQuery(helper,terminalkey);
+        } catch (SQLException e) {
+            Log.e(TAG, "获取拜访指标失败", e);
+            e.printStackTrace();
+        }
+        return agencyList;
+    }
     /**
      * 查询常用我品
      */

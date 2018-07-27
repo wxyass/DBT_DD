@@ -165,7 +165,7 @@ public class ZsSayhiService extends XtShopVisitService {
      * @return
      */
     @SuppressWarnings("unchecked")
-    public List<MstRouteM> initXtMstRoute(String termid) {
+    /*public List<MstRouteM> initXtMstRoute(String termid) {
 
         List<MstRouteM> mstRouteList = new ArrayList<MstRouteM>();
         try {
@@ -200,7 +200,7 @@ public class ZsSayhiService extends XtShopVisitService {
             Log.e(TAG, "获取线路信息失败", e);
         }
         return mstRouteList;
-    }
+    }*/
 
     /**
      * 初始化终端等级

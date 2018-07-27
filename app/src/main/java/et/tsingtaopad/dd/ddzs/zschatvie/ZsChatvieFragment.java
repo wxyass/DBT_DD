@@ -42,6 +42,7 @@ import et.tsingtaopad.dd.ddxt.base.XtBaseVisitFragment;
 import et.tsingtaopad.dd.ddxt.chatvie.XtChatVieService;
 import et.tsingtaopad.dd.ddxt.chatvie.domain.XtChatVieStc;
 import et.tsingtaopad.dd.ddzs.zschatvie.zsaddchatvie.ZsChatVieAddDataFragment;
+import et.tsingtaopad.dd.ddzs.zscheckindex.ZsCheckIndexFragment;
 import et.tsingtaopad.listviewintf.IClick;
 import et.tsingtaopad.dd.ddzs.zschatvie.zsaddchatvie.ZsAddChatVieFragment;
 import et.tsingtaopad.dd.ddzs.zsshopvisit.ZsVisitShopActivity;
@@ -303,6 +304,7 @@ public class ZsChatvieFragment extends XtBaseVisitFragment implements View.OnCli
                 valsupplyMTemp.setId(FunUtil.getUUID());
                 valsupplyMTemp.setValterid(mitValterMTempKey);// 终端追溯主表ID
                 valsupplyMTemp.setValaddagencysupply("Y");// 是否新增供货关系
+                valsupplyMTemp.setValagencysupplyflag("Y");// 供货关系正确与否
                 //valsupplyMTemp.setValagency(agency.getKey());// 经销商;
                 //valsupplyMTemp.setValagencyname(agency.getValue());// 经销商名称
                 valsupplyMTemp.setValcmpid(product.getKey());// 产品
@@ -696,7 +698,7 @@ public class ZsChatvieFragment extends XtBaseVisitFragment implements View.OnCli
         mAlertViewExt.show();*/
 
 
-        new AlertView("请选择核查结果", null, "取消", null,
+        new AlertView("请选择核查结果", null, "未稽查", null,
                 new String[]{"正确", "错误"},
                 getActivity(), AlertView.Style.ActionSheet,
                 new OnItemClickListener() {
@@ -728,6 +730,10 @@ public class ZsChatvieFragment extends XtBaseVisitFragment implements View.OnCli
 
                             ZsVisitShopActivity visitShopActivity = (ZsVisitShopActivity) getActivity();
                             visitShopActivity.changeXtvisitFragment(zsWjVieAmendFragment, "zswjvieamendfragment");
+                        }
+                        else if (-1 == position) {// 跳转数据录入
+                            mitValcmpotherMTemp.setValistrueflag("");
+                            handler.sendEmptyMessage(ZsChatvieFragment.INIT_WJ_AMEND);
                         }
 
                     }

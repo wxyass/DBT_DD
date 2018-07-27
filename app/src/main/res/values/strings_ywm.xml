@@ -20,7 +20,7 @@
     <string name="termlist_visitdatelabel2"> 距今</string>
     <string name="termlist_visitdingge">5号定格</string>
     <string name="termlist_visitdatelabel3">天</string>
-    <string name="termlist_search_hit">请输入终端名称或首字母</string>
+    <string name="termlist_search_hit">请输入终端名称</string>
     <string name="termlist_confirm_title">提示</string>
     <string name="termlist_confirm_msg">确定要重复拜访吗？</string>
     <string name="termlist_confirm_sure">确定</string>

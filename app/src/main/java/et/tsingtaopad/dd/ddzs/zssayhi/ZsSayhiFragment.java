@@ -29,6 +29,7 @@ import et.tsingtaopad.core.util.dbtutil.FunUtil;
 import et.tsingtaopad.core.util.dbtutil.PrefUtils;
 import et.tsingtaopad.core.util.dbtutil.logutil.DbtLog;
 import et.tsingtaopad.core.view.alertview.AlertView;
+import et.tsingtaopad.core.view.alertview.OnDismissListener;
 import et.tsingtaopad.core.view.alertview.OnItemClickListener;
 import et.tsingtaopad.db.table.MitValterMTemp;
 import et.tsingtaopad.db.table.MstRouteM;
@@ -1124,7 +1125,7 @@ public class ZsSayhiFragment extends XtBaseVisitFragment implements View.OnClick
                            final String ydkey, final String onlyddkey,
                            final String ddkey, final String ddflag,
                            final String ddremark) {
-        new AlertView("请选择核查结果", null, "取消", null,
+        new AlertView("请选择核查结果", null, "未稽查", null,
                 new String[]{"正确", "错误"},
                 getActivity(), AlertView.Style.ActionSheet,
                 new OnItemClickListener() {
@@ -1133,10 +1134,10 @@ public class ZsSayhiFragment extends XtBaseVisitFragment implements View.OnClick
                         if (0 == position) {// 正确
 
                             // 当稽查错误,又改正确时
-                            if("N".equals(flag)){
-                                int count = PrefUtils.getInt(getActivity(),"valterErrorCount",0);
+                            if ("N".equals(flag)) {
+                                int count = PrefUtils.getInt(getActivity(), "valterErrorCount", 0);
                                 count--;
-                                PrefUtils.putInt(getActivity(),"valterErrorCount",count);
+                                PrefUtils.putInt(getActivity(), "valterErrorCount", count);
                             }
 
                             FunUtil.setFieldValue(mitValterMTemp, ddflag, "Y");
@@ -1158,9 +1159,15 @@ public class ZsSayhiFragment extends XtBaseVisitFragment implements View.OnClick
                             ZsVisitShopActivity zsVisitShopActivity = (ZsVisitShopActivity) getActivity();
                             zsVisitShopActivity.changeXtvisitFragment(zsSayhiAmendFragment, "zssayhiamendfragment");
                         }
+                        else if (-1 == position) {// 跳转数据录入
+                            FunUtil.setFieldValue(mitValterMTemp, ddflag, "");
+                            handler.sendEmptyMessage(ZsSayhiFragment.INIT_DATA);
+                        }
 
                     }
-                }).setCancelable(true).show();
+                })
+                .setCancelable(true)
+                .show();
     }
 
 
@@ -1170,7 +1177,7 @@ public class ZsSayhiFragment extends XtBaseVisitFragment implements View.OnClick
                            final String ddkey, final String ddflag,
                            final String ddremark//,final String type
     ) {
-        new AlertView("请选择核查结果", null, "取消", null,
+        new AlertView("请选择核查结果", null, "未稽查", null,
                 new String[]{"正确", "错误"},
                 getActivity(), AlertView.Style.ActionSheet,
                 new OnItemClickListener() {
@@ -1197,6 +1204,10 @@ public class ZsSayhiFragment extends XtBaseVisitFragment implements View.OnClick
                             zsSayhiAmendFragment.setArguments(bundle);
                             ZsVisitShopActivity zsVisitShopActivity = (ZsVisitShopActivity) getActivity();
                             zsVisitShopActivity.changeXtvisitFragment(zsSayhiAmendFragment, "zsamendfragment");
+                        }
+                        else if (-1 == position) {// 跳转数据录入
+                            FunUtil.setFieldValue(mitValterMTemp, ddflag, "");
+                            handler.sendEmptyMessage(ZsSayhiFragment.INIT_DATA);
                         }
 
                     }

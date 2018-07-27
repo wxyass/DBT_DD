@@ -425,7 +425,7 @@ public class ZsSayhiAmendFragment extends BaseFragmentSupport implements View.On
             zdzs_sayhi_amend_rl_dd_sp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    setSelectRouteMRight(xtSayhiService.initXtMstRoute(termId),
+                    setSelectRouteMRight(xtSayhiService.initZsMstRoute(termId),
                             mitValterMTemp.getVidrtekeyval());
                 }
             });

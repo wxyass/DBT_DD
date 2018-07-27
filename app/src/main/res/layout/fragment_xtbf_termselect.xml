@@ -62,22 +62,19 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="@dimen/width_height_size08"
             android:layout_weight="7"
-            android:background="@drawable/bg_visit_record"
-            android:orientation="horizontal"
             >
 
             <!-- 搜索终端 -->
             <EditText
                 android:id="@+id/xtbf_termselect_et_search"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/width_height_size08"
                 android:layout_gravity="center"
-                android:layout_weight="6"
-                android:background="@null"
+                android:background="@drawable/bg_visit_record"
                 android:ems="14"
                 android:hint="@string/termlist_search_hit"
                 android:paddingLeft="5dp"
@@ -91,9 +88,10 @@
 
             <!-- 搜索按钮 -->
             <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/bg_select_green">
 
                 <Button
                     android:id="@+id/xtbf_termselect_bt_search"
@@ -102,7 +100,7 @@
                     android:layout_centerInParent="true"
                     android:background="@drawable/img_selecttermina_search"/>
             </RelativeLayout>
-        </LinearLayout>
+        </RelativeLayout>
 
         <!-- 排序按钮 -->
         <RelativeLayout

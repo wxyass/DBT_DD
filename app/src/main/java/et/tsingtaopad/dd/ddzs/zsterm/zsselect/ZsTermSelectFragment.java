@@ -165,7 +165,7 @@ public class ZsTermSelectFragment extends BaseFragmentSupport implements View.On
 
         // 终端夹隔天清零
         String addTime = PrefUtils.getString(getActivity(), GlobalValues.ZS_CART_TIME, DateUtil.getDateTimeStr(7));
-        if(!DateUtil.getDateTimeStr(7).equals(addTime)){
+        if (!DateUtil.getDateTimeStr(7).equals(addTime)) {
             selectedList.clear();
             // 终端夹隔天清零
             xtSelectService.deleteCartData("MST_TERMINALINFO_M_ZSCART", "2");
@@ -338,6 +338,7 @@ public class ZsTermSelectFragment extends BaseFragmentSupport implements View.On
                     PrefUtils.putString(getActivity(), GlobalValues.DDXTZS, "2");
                 } else {
                     Toast.makeText(getActivity(), "请先配置督导模板", Toast.LENGTH_SHORT).show();
+                    changeHomeFragment(new ZsTemplateFragment(), "zstemplatefragment");
                 }
 
                 break;
@@ -354,7 +355,7 @@ public class ZsTermSelectFragment extends BaseFragmentSupport implements View.On
                 confirmTv.setText("确定" + "(" + selectedList.size() + ")");
                 break;
             case R.id.xtbf_termselect_bt_search:// 查询
-                Toast.makeText(getActivity(),"未查到终端,请到相关路线下寻找",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "未查到终端,请到相关路线下寻找", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;
@@ -390,6 +391,7 @@ public class ZsTermSelectFragment extends BaseFragmentSupport implements View.On
             }
         } else {
             Toast.makeText(getActivity(), "请先配置督导模板", Toast.LENGTH_SHORT).show();
+            changeHomeFragment(new ZsTemplateFragment(), "zstemplatefragment");
         }
     }
 
@@ -446,7 +448,7 @@ public class ZsTermSelectFragment extends BaseFragmentSupport implements View.On
     // 查找终端,并复制到终端购物车
     public void copyMstTerminalinfoMZsCart(XtTermSelectMStc termSelectMStc) {
         MstTerminalinfoM term = xtSelectService.findTermByTerminalkey(termSelectMStc.getTerminalkey());
-        if(term!=null){
+        if (term != null) {
             xtSelectService.toCopyMstTerminalinfoMZsCartData(term, "2");
         }
     }
@@ -525,7 +527,7 @@ public class ZsTermSelectFragment extends BaseFragmentSupport implements View.On
                             DbtLog.logUtils(TAG, "前往拜访：上传");
                             // 如果网络可用
                             if (NetStatusUtil.isNetValid(getActivity())) {
-                                xtUploadService.upload_zs_visit(false, mitValterM.getId(), 1,0);
+                                xtUploadService.upload_zs_visit(false, mitValterM.getId(), 1, 0);
                             } else {
                                 // 提示修改网络
                                 Toast.makeText(getContext(), "网络异常,请先检查网络连接", Toast.LENGTH_SHORT).show();
@@ -627,7 +629,7 @@ public class ZsTermSelectFragment extends BaseFragmentSupport implements View.On
     // 跳转巡店拜访
     private void startXtVisitShopActivity() {
         List<MstVisitM> mstVisitMS = xtSelectService.getMstVisitMList(xtTermSelectMStc.getTerminalkey());
-        if(mstVisitMS.size()>0){
+        if (mstVisitMS.size() > 0) {
             Intent intent = new Intent(getActivity(), ZsVisitShopActivity.class);
             intent.putExtra("isFirstVisit", "1");// 非第一次拜访1
             intent.putExtra("termStc", xtTermSelectMStc);
@@ -638,9 +640,9 @@ public class ZsTermSelectFragment extends BaseFragmentSupport implements View.On
             Toast.makeText(getActivity(), "该终端数据请求成功", Toast.LENGTH_SHORT).show();
 
             //PrefUtils.putBoolean(getActivity(),GlobalValues.ZS_CART_SYNC,false);// false 追溯购物车 需要同步
-        }else{
+        } else {
             //
-            Toast.makeText(getActivity(),"该终端从未拜访,不能追溯",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "该终端从未拜访,不能追溯", Toast.LENGTH_SHORT).show();
         }
 
     }

@@ -44,6 +44,7 @@ import et.tsingtaopad.dd.ddzs.zsinvoicing.zsaddinvoicing.ZsInvocingAddDataFragme
 import et.tsingtaopad.dd.ddzs.zsinvoicing.zsinvocingtz.ZsInvoicingTzAmendFragment;
 import et.tsingtaopad.dd.ddzs.zsinvoicing.zsinvocingtz.ZsInvoicingTzAdapter;
 import et.tsingtaopad.dd.ddzs.zsinvoicing.zsinvocingtz.domain.ZsTzItemIndex;
+import et.tsingtaopad.dd.ddzs.zssayhi.ZsSayhiFragment;
 import et.tsingtaopad.dd.ddzs.zsshopvisit.ZsVisitShopActivity;
 import et.tsingtaopad.initconstvalues.domain.KvStc;
 import et.tsingtaopad.listviewintf.IClick;
@@ -277,6 +278,7 @@ public class ZsInvoicingFragment extends XtBaseVisitFragment implements View.OnC
                 valsupplyMTemp.setId(FunUtil.getUUID());
                 valsupplyMTemp.setValterid(mitValterMTempKey);// 终端追溯主表ID
                 valsupplyMTemp.setValaddagencysupply("Y");// 是否新增供货关系
+                valsupplyMTemp.setValagencysupplyflag("Y");// 供货关系正确与否
                 valsupplyMTemp.setValagency(agency.getKey());// 经销商;
                 valsupplyMTemp.setValagencyname(agency.getValue());// 经销商名称
                 valsupplyMTemp.setValpro(product.getKey());// 产品
@@ -634,6 +636,15 @@ public class ZsInvoicingFragment extends XtBaseVisitFragment implements View.OnC
                             tzFragment.setArguments(bundle);
                             ZsVisitShopActivity zsVisitShopActivity = (ZsVisitShopActivity) getActivity();
                             zsVisitShopActivity.changeXtvisitFragment(tzFragment, "zssayhiamendfragment");
+                        }
+
+                        else if (-1 == position) {// 跳转数据录入
+                            termLedgerInfos.get(posi).setValprostatus("");
+                            List<MitValaddaccountproMTemp>  mTemps = termLedgerInfos.get(posi).getIndexValueLst();
+                            for(MitValaddaccountproMTemp temp : mTemps){
+                                temp.setValpronumfalg("");
+                            }
+                            handler.sendEmptyMessage(ZsInvoicingFragment.MAKE_RIGHT_TZ);
                         }
 
                     }

@@ -962,4 +962,23 @@ public class MainService extends XtShopVisitService {
         return valueLst;
     }
 
+
+    /**
+     * 删除终端购物车表临时表数据
+     *
+     * @param tabname
+     * @param ddType  购物车表ddtype 1:协同  2:追溯
+     */
+    public void deleteCart(String tabname, String ddType) {
+
+        try {
+            DatabaseHelper helper = DatabaseHelper.getHelper(context);
+            String sql = "DELETE FROM " + tabname + " WHERE ddtype = '" + ddType + "' ;";
+            SQLiteDatabase db = helper.getWritableDatabase();
+            db.execSQL(sql);
+        } catch (Exception e) {
+            Log.e(TAG, "删除临时表数据失败", e);
+        }
+    }
+
 }

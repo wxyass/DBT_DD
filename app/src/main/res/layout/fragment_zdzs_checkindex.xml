@@ -147,7 +147,8 @@
                 <!-- 产品组合是否达标 -->
                 <RelativeLayout
                     android:id="@+id/zdzs_sayhi_rl_prostatus"
-                    style="@style/xtbf_sayhi_rl">
+                    style="@style/xtbf_sayhi_rl"
+                    android:visibility="gone">
 
                     <!--标题-->
                     <TextView
@@ -182,7 +183,8 @@
                 <!-- 合作是否执行到位 -->
                 <RelativeLayout
                     android:id="@+id/zdzs_sayhi_rl_hezuo"
-                    style="@style/xtbf_sayhi_rl">
+                    style="@style/xtbf_sayhi_rl"
+                    android:visibility="gone">
 
                     <!--标题-->
                     <TextView
@@ -217,7 +219,8 @@
                 <!-- 是否高质量配送 -->
                 <RelativeLayout
                     android:id="@+id/zdzs_sayhi_rl_peisong"
-                    style="@style/xtbf_sayhi_rl">
+                    style="@style/xtbf_sayhi_rl"
+                    android:visibility="gone">
 
                     <!--标题-->
                     <TextView
@@ -252,7 +255,8 @@
                 <!-- 我品单店占有率 -->
                 <RelativeLayout
                     android:id="@+id/zdzs_sayhi_rl_zhanyoulv"
-                    style="@style/xtbf_sayhi_rl">
+                    style="@style/xtbf_sayhi_rl"
+                    android:visibility="gone">
 
                     <!--标题-->
                     <TextView

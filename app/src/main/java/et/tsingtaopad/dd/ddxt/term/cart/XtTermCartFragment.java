@@ -287,7 +287,7 @@ public class XtTermCartFragment extends BaseFragmentSupport implements View.OnCl
             @Override
             public void listViewItemClick(int position, View v) {
 
-                if (ViewUtil.isDoubleClick(v.getId(),position, 1000)){
+                /*if (ViewUtil.isDoubleClick(v.getId(),position, 1000)){
 
                     if (hasPermission(GlobalValues.LOCAL_PERMISSION)) {
                         // 拥有了此权限,那么直接执行业务逻辑
@@ -297,7 +297,8 @@ public class XtTermCartFragment extends BaseFragmentSupport implements View.OnCl
                         // 还没有对一个权限(请求码,权限数组)这两个参数都事先定义好
                         requestPermission(GlobalValues.LOCAL_CODE, GlobalValues.LOCAL_PERMISSION);
                     }
-                }
+                }*/
+                confirmXtUplad(position,v);
             }
         });// 1协同  2追溯
         termCartLv.setAdapter(termCartAdapter);
@@ -310,6 +311,38 @@ public class XtTermCartFragment extends BaseFragmentSupport implements View.OnCl
         } else {
             confirmBtn.setVisibility(View.INVISIBLE);
         }
+    }
+
+    // 条目点击 确定拜访一家终端
+    private void confirmXtUplad(final int posi, View v) {
+        String termName = termList.get(posi).getTerminalname();
+        // 普通窗口
+        mAlertViewExt = new AlertView("追溯:" + termName, null, "取消", new String[]{"确定"}, null, getActivity(), AlertView.Style.Alert,
+                new OnItemClickListener() {
+                    @Override
+                    public void onItemClick(Object o, int position) {
+                        //Toast.makeText(getApplicationContext(), "点击了第" + position + "个", Toast.LENGTH_SHORT).show();
+
+                        if (0 == position) {// 确定按钮:0   取消按钮:-1
+                            if (hasPermission(GlobalValues.LOCAL_PERMISSION)) {
+                                // 拥有了此权限,那么直接执行业务逻辑
+                                termStc = termList.get(posi);
+                                confirmVisit();// 去拜访
+                            } else {
+                                // 还没有对一个权限(请求码,权限数组)这两个参数都事先定义好
+                                requestPermission(GlobalValues.LOCAL_CODE, GlobalValues.LOCAL_PERMISSION);
+                            }
+                        }
+                    }
+                })
+                .setCancelable(true)
+                .setOnDismissListener(new OnDismissListener() {
+                    @Override
+                    public void onDismiss(Object o) {
+                        DbtLog.logUtils(TAG, "前往拜访：否");
+                    }
+                });
+        mAlertViewExt.show();
     }
 
 
@@ -376,6 +409,7 @@ public class XtTermCartFragment extends BaseFragmentSupport implements View.OnCl
                 item_new.setMinorchannel(item.getMinorchannel());
                 item_new.setTerminalType(item.getTerminalType());
                 item_new.setVisitTime(item.getVisitTime());
+                item_new.setEndDate(item.getEndDate());
                 termList_new.add(item_new);
             }
         }

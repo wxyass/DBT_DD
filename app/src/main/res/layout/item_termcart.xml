@@ -53,18 +53,43 @@
                     android:focusable="false"/>
             </RelativeLayout>
             <!-- 终端名称 -->
-
-            <TextView
-                android:id="@+id/item_termcart_tv_name"
+            <!--终端名称 拜访时间汇总 5份-->
+            <RelativeLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_weight="6"
-                android:gravity="center_vertical|left"
-                android:paddingLeft="5dp"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:textColor="@color/gray_color_333333"
-                android:textSize="@dimen/font_size4"/>
+                >
+                <!-- 终端名称 -->
+
+                <TextView
+                    android:id="@+id/item_termcart_tv_name"
+                    style="@style/listview_tv_item_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_alignParentTop="true"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textColor="@color/gray_color_333333"
+                    android:textSize="@dimen/font_size4"/>
+
+                <!-- 拜访时间汇总 -->
+
+                <TextView
+                    android:id="@+id/item_termcart_tv_visittime"
+                    style="@style/listview_tv_item_text_xiao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="4dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textColor="@color/gray_color_cccccc"
+                    android:textSize="@dimen/font_size6"/>
+
+            </RelativeLayout>
 
 
             <!-- 是否有错 -->
@@ -164,25 +189,7 @@
             </RelativeLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
-            <!-- 拜访时间汇总 -->
-
-            <TextView
-                android:id="@+id/item_termcart_tv_visitdate"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="11"
-                android:visibility="gone"/>
-        </LinearLayout>
     </LinearLayout>
 
     <!-- 失效终端底色 -->

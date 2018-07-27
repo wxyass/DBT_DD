@@ -195,7 +195,14 @@ public class XtTermSelectAdapter extends BaseAdapter implements OnClickListener 
                 holder.updateFailIv.setVisibility(View.GONE);
             }
 
-            if ("1".equals(item.getIserror())) {
+            // 原先的显示整改图章
+            /*if ("1".equals(item.getIserror())) {
+                holder.iserrorIv.setVisibility(View.VISIBLE);
+            } else {
+                holder.iserrorIv.setVisibility(View.GONE);
+            }*/
+            // 修改成 现在的整改图章(从整改计划终端表 关联整改计划主表 获取status)
+            if ("1".equals(item.getIserror())||"0".equals(item.getIserror())) {
                 holder.iserrorIv.setVisibility(View.VISIBLE);
             } else {
                 holder.iserrorIv.setVisibility(View.GONE);

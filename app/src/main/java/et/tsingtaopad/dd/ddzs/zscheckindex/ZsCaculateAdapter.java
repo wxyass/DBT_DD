@@ -2,6 +2,7 @@ package et.tsingtaopad.dd.ddzs.zscheckindex;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,12 +20,14 @@ import java.util.List;
 import et.tsingtaopad.R;
 import et.tsingtaopad.core.util.dbtutil.CheckUtil;
 import et.tsingtaopad.core.util.dbtutil.DateUtil;
+import et.tsingtaopad.core.util.dbtutil.FunUtil;
 import et.tsingtaopad.core.view.alertview.AlertView;
 import et.tsingtaopad.core.view.alertview.OnItemClickListener;
 import et.tsingtaopad.dd.ddxt.checking.domain.XtProIndex;
 import et.tsingtaopad.dd.ddxt.checking.domain.XtProIndexValue;
 import et.tsingtaopad.dd.ddxt.checking.domain.XtProItem;
 import et.tsingtaopad.dd.ddzs.zscheckindex.zsnum.ZsCaculateAmendFragment;
+import et.tsingtaopad.dd.ddzs.zssayhi.ZsSayhiFragment;
 import et.tsingtaopad.dd.ddzs.zsshopvisit.ZsVisitShopActivity;
 import et.tsingtaopad.initconstvalues.domain.KvStc;
 
@@ -257,6 +260,13 @@ public class ZsCaculateAdapter extends BaseAdapter {
                             ZsCaculateAmendFragment xtCaculateFragment = new ZsCaculateAmendFragment(xtProIndexValue,handler);
                             xtCaculateFragment.setArguments(bundle);
                             xtVisitShopActivity.changeXtvisitFragment(xtCaculateFragment,"xtnuminputfragment");
+                        }
+                        else if (-1 == position) {// 跳转数据录入
+
+                            // 修改对错
+                            xtProIndexValue.setValchecktypeflag("");
+
+                            handler.sendEmptyMessage(ZsCheckIndexFragment.INIT_INDEX_AUTO_AMEND);
                         }
 
                     }

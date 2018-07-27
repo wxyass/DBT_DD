@@ -51,7 +51,7 @@
                     android:focusable="false"/>
             </RelativeLayout>
 
-            <!--终端名称 渠道 5份-->
+            <!--终端名称 拜访时间汇总 5份-->
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="50dp"
@@ -72,7 +72,7 @@
                     android:textColor="@color/gray_color_333333"
                     android:textSize="@dimen/font_size4"/>
 
-                <!-- 渠道 -->
+                <!-- 拜访时间汇总 -->
 
                 <TextView
                     android:id="@+id/item_termselect_tv_visitdate"
@@ -188,7 +188,7 @@
                         android:visibility="invisible"/>
                 </RelativeLayout>
 
-                <!--拜访时间-->
+                <!--渠道类型-->
                 <TextView
                     android:id="@+id/item_termselect_tv_type"
                     style="@style/listview_tv_item_text_xiao2"

@@ -39,6 +39,7 @@ import et.tsingtaopad.dd.ddxt.checking.domain.XtCheckIndexCalculateStc;
 import et.tsingtaopad.dd.ddxt.checking.domain.XtProIndex;
 import et.tsingtaopad.dd.ddxt.checking.domain.XtProItem;
 import et.tsingtaopad.dd.ddzs.zscheckindex.zsnum.ZsQuickCollectFragment;
+import et.tsingtaopad.dd.ddzs.zssayhi.ZsSayhiFragment;
 import et.tsingtaopad.dd.ddzs.zsshopvisit.ZsVisitShopActivity;
 import et.tsingtaopad.home.initadapter.GlobalValues;
 import et.tsingtaopad.initconstvalues.domain.KvStc;
@@ -671,6 +672,10 @@ public class ZsCheckIndexFragment extends XtBaseVisitFragment implements View.On
                             ZsVisitShopActivity zsVisitShopActivity = (ZsVisitShopActivity) getActivity();
                             zsVisitShopActivity.changeXtvisitFragment(zsInvocingAddDataFragment, "zscheckpromoamendfragment");
                         }
+                        else if (-1 == position) {// 跳转数据录入
+                            checkIndexCalculateStc.setValchecktypeflag(""); // 达成组数正确与否
+                            handler.sendEmptyMessage(ZsCheckIndexFragment.INIT_HPZ_AMEND);
+                        }
 
                     }
                 }).setCancelable(true).show();
@@ -718,6 +723,11 @@ public class ZsCheckIndexFragment extends XtBaseVisitFragment implements View.On
                             zsInvocingAddDataFragment.setArguments(bundle);
                             ZsVisitShopActivity zsVisitShopActivity = (ZsVisitShopActivity) getActivity();
                             zsVisitShopActivity.changeXtvisitFragment(zsInvocingAddDataFragment, "zscheckpromoamendfragment");
+                        }
+                        else if (-1 == position) {// 跳转数据录入
+                            CheckIndexPromotionStc promotionStc = promotionLst.get(posi);
+                            promotionStc.setValistruenumflag(""); // 达成组数正确与否
+                            handler.sendEmptyMessage(ZsCheckIndexFragment.INIT_AMEND);
                         }
 
                     }
@@ -769,6 +779,10 @@ public class ZsCheckIndexFragment extends XtBaseVisitFragment implements View.On
                             zsInvocingAddDataFragment.setArguments(bundle);
                             ZsVisitShopActivity zsVisitShopActivity = (ZsVisitShopActivity) getActivity();
                             zsVisitShopActivity.changeXtvisitFragment(zsInvocingAddDataFragment, "zscheckindexgroupprofragment");
+                        }
+                        else if (-1 == position) {// 跳转数据录入
+                            mitValgroupproMTemp.setValgroupproflag(""); // 产品组合 正确与否
+                            handler.sendEmptyMessage(ZsCheckIndexFragment.INIT_GROUPPRO_AMEND);
                         }
 
                     }

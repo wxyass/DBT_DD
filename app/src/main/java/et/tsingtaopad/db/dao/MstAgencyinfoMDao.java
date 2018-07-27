@@ -43,6 +43,22 @@ public interface MstAgencyinfoMDao extends Dao<MstAgencyinfoM, String> {
     public List<KvStc>  agencyTermQuery(SQLiteOpenHelper helper,String terminalkey);
 
     /**
+     * 根据终端key  查询 协同时终端的供货经销商
+     * @author wxyass
+     * @since    2013-12-17
+     * @return
+     */
+    public List<KvStc>  agencyXtTermQuery(SQLiteOpenHelper helper,String terminalkey);
+
+    /**
+     * 根据终端key  查询 追溯时终端的供货经销商
+     * @author wxyass
+     * @since    2013-12-17
+     * @return
+     */
+    public List<KvStc>  agencyZsTermQuery(SQLiteOpenHelper helper,String terminalkey);
+
+    /**
      * 获取可拜访经销商及产品列表
      * 
      * @param helper

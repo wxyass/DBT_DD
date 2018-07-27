@@ -156,7 +156,7 @@
 
                         <TextView
                             style="@style/first_statue"
-                            android:text="协同拜访"
+                            android:text="协同终端夹"
                             />
 
                         <ImageView
@@ -183,7 +183,7 @@
 
                         <TextView
                             style="@style/first_statue"
-                            android:text="终端追溯"/>
+                            android:text="追溯终端夹"/>
 
                         <ImageView
                             style="@style/first_statue_img"

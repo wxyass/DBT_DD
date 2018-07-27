@@ -24,6 +24,7 @@ import et.tsingtaopad.core.view.alertview.OnItemClickListener;
 import et.tsingtaopad.db.table.MitValagreeMTemp;
 import et.tsingtaopad.db.table.MitValagreedetailMTemp;
 import et.tsingtaopad.dd.ddxt.base.XtBaseVisitFragment;
+import et.tsingtaopad.dd.ddzs.zschatvie.ZsChatvieFragment;
 import et.tsingtaopad.dd.ddzs.zsshopvisit.ZsVisitShopActivity;
 import et.tsingtaopad.listviewintf.IClick;
 
@@ -242,7 +243,7 @@ public class ZsAgreeFragment extends XtBaseVisitFragment implements View.OnClick
                     }
                 }).setCancelable(true).show();*/
 
-        new AlertView("请选择核查结果", null, "取消", null,
+        new AlertView("请选择核查结果", null, "未稽查", null,
                 new String[]{"正确", "错误"},
                 getActivity(), AlertView.Style.ActionSheet,
                 new OnItemClickListener() {
@@ -268,6 +269,10 @@ public class ZsAgreeFragment extends XtBaseVisitFragment implements View.OnClick
                             xtaddinvoicingfragment.setArguments(bundle);
                             ZsVisitShopActivity xtVisitShopActivity = (ZsVisitShopActivity) getActivity();
                             xtVisitShopActivity.changeXtvisitFragment(xtaddinvoicingfragment, "zsagreedetailamendfragment");
+                        }
+                        else if (-1 == position) {// 跳转数据录入
+                            valagreedetailMTemps.get(posi).setAgreedetailflag("");
+                            handler.sendEmptyMessage(ZsAgreeFragment.AGREE_AMEND_DETAIL);
                         }
                     }
                 }).setCancelable(true).show();
@@ -311,6 +316,16 @@ public class ZsAgreeFragment extends XtBaseVisitFragment implements View.OnClick
                             xtaddinvoicingfragment.setArguments(bundle);
                             ZsVisitShopActivity xtVisitShopActivity = (ZsVisitShopActivity) getActivity();
                             xtVisitShopActivity.changeXtvisitFragment(xtaddinvoicingfragment, "zsagreeamendfragment");
+                        }
+                        else if (-1 == position) {// 跳转数据录入
+                            if (type == AGREE_STARTDATE) {// 开始时间
+                                mitValagreeMTemp.setStartdateflag("");
+                            } else if (type == AGREE_ENDDATE) {//结束时间
+                                mitValagreeMTemp.setEnddateflag("");
+                            } else if (type == AGREE_CONTENT) {// 主要协议
+                                mitValagreeMTemp.setNotesflag("");
+                            }
+                            initViewStatus();
                         }
 
                     }

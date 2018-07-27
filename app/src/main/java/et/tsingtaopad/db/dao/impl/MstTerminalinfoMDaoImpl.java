@@ -346,6 +346,12 @@ public class MstTerminalinfoMDaoImpl extends BaseDaoImpl<MstTerminalinfoM, Strin
         List<XtTermSelectMStc> lst = new ArrayList<XtTermSelectMStc>();
         StringBuffer buffer = new StringBuffer();
         buffer.append("select m.terminalkey, m.terminalcode,m.routekey, m.terminalname,m.status,m.sequence, ");
+
+        buffer.append("m.city, m.province,m.county,m.address,m.contact,m.mobile,m.tlevel, ");
+        buffer.append("m.cycle, m.hvolume,m.mvolume,m.pvolume,m.lvolume,m.sellchannel, ");
+        buffer.append("m.mainchannel, m.areatype,m.sisconsistent,m.comid,m.remarks,m.orderbyno,m.creuser, ");
+        buffer.append("m.cmpselftreaty, m.updateuser,m.deleteflag,m.ifminedate,m.ifmine,  ");
+
         //buffer.append("vm.isself, vm.iscmp, vm.selftreaty, vm.cmptreaty, ");
         buffer.append("vmn.isself, vmn.iscmp, m.selftreaty, vmn.cmptreaty, ");// 我品 竞品 我品协议店,竞品协议店
         buffer.append("vm.padisconsistent, vm.uploadFlag, m.minorchannel, ");// 销售渠道编码
@@ -395,6 +401,35 @@ public class MstTerminalinfoMDaoImpl extends BaseDaoImpl<MstTerminalinfoM, Strin
             item.setMinorchannel(FunUtil.isNullSetSpace(cursor.getString(cursor.getColumnIndex("minorchannel"))));
             item.setTerminalType(cursor.getString(cursor.getColumnIndex("terminalType")));
             // item.setRoutekey(lineId);
+
+
+            item.setProvince(cursor.getString(cursor.getColumnIndex("province")));
+            item.setCity(cursor.getString(cursor.getColumnIndex("city")));
+            item.setCounty(cursor.getString(cursor.getColumnIndex("county")));
+            item.setAddress(cursor.getString(cursor.getColumnIndex("address")));
+            item.setContact(cursor.getString(cursor.getColumnIndex("contact")));
+            item.setMobile(cursor.getString(cursor.getColumnIndex("mobile")));
+            item.setTlevel(cursor.getString(cursor.getColumnIndex("tlevel")));
+            item.setCycle(cursor.getString(cursor.getColumnIndex("cycle")));
+            item.setHvolume(cursor.getString(cursor.getColumnIndex("hvolume")));
+            item.setMvolume(cursor.getString(cursor.getColumnIndex("mvolume")));
+            item.setPvolume(cursor.getString(cursor.getColumnIndex("pvolume")));
+            item.setLvolume(cursor.getString(cursor.getColumnIndex("lvolume")));
+            item.setSellchannel(cursor.getString(cursor.getColumnIndex("sellchannel")));
+            item.setMainchannel(cursor.getString(cursor.getColumnIndex("mainchannel")));
+            item.setAreatype(cursor.getString(cursor.getColumnIndex("areatype")));
+            item.setSisconsistent(cursor.getString(cursor.getColumnIndex("sisconsistent")));
+            item.setComid(cursor.getString(cursor.getColumnIndex("comid")));
+            item.setRemarks(cursor.getString(cursor.getColumnIndex("remarks")));
+            item.setOrderbyno(cursor.getString(cursor.getColumnIndex("orderbyno")));
+            item.setCreuser(cursor.getString(cursor.getColumnIndex("creuser")));
+            item.setCmpselftreaty(cursor.getString(cursor.getColumnIndex("cmpselftreaty")));
+            item.setUpdateuser(cursor.getString(cursor.getColumnIndex("updateuser")));
+            item.setDeleteflag(cursor.getString(cursor.getColumnIndex("deleteflag")));
+            item.setIfminedate(cursor.getString(cursor.getColumnIndex("ifminedate")));
+            item.setIfmine(cursor.getString(cursor.getColumnIndex("ifmine")));
+
+
             String status = item.getStatus();
             if (!"2".equals(status)) {//有效终端
                 lst.add(item);
@@ -478,8 +513,15 @@ public class MstTerminalinfoMDaoImpl extends BaseDaoImpl<MstTerminalinfoM, Strin
         List<XtTermSelectMStc> lst = new ArrayList<XtTermSelectMStc>();
         StringBuffer buffer = new StringBuffer();
         buffer.append("select m.terminalkey, m.terminalcode, m.routekey, m.terminalname,m.status,m.sequence, ");
+
+        buffer.append("m.city,m.province, m.county,m.address,m.contact,m.mobile,m.tlevel, ");
+        buffer.append("m.cycle, m.hvolume,m.mvolume,m.pvolume,m.lvolume,m.sellchannel, ");
+        buffer.append("m.mainchannel, m.areatype,m.sisconsistent,m.comid,m.remarks,m.orderbyno,m.creuser, ");
+        buffer.append("m.cmpselftreaty, m.updateuser,m.deleteflag,m.ifminedate,m.ifmine,  ");
+
         //buffer.append("vm.isself, vm.iscmp, vm.selftreaty, vm.cmptreaty, ");
-        buffer.append("vmn.isself, vmn.iscmp, m.selftreaty, vmn.cmptreaty,vm.iserror, ");// 我品 竞品 我品协议店,竞品协议店
+        // buffer.append("vmn.isself, vmn.iscmp, m.selftreaty, vmn.cmptreaty,vm.iserror, ");// 我品 竞品 我品协议店,竞品协议店
+        buffer.append("vmn.isself, vmn.iscmp, m.selftreaty, vmn.cmptreaty,max(qwe.status) iserror, ");// 我品 竞品 我品协议店,竞品协议店
         buffer.append("vm.padisconsistent,  m.minorchannel, ");// 销售渠道编码
         buffer.append("dm.dicname terminalType, vm.visitdate,vm.videnddate ");// 终端渠道类型 拜访时间
         buffer.append("from mst_terminalinfo_m m ");
@@ -487,6 +529,14 @@ public class MstTerminalinfoMDaoImpl extends BaseDaoImpl<MstTerminalinfoM, Strin
         buffer.append("     and coalesce(dm.deleteflag,'0') != '1' ");
         buffer.append("left join v_mit_valter_m_newest vm on m.terminalkey = vm.terminalkey ");
         buffer.append("left join v_visit_m_newest vmn on m.terminalkey = vmn.terminalkey ");
+
+
+        buffer.append("left join MIT_REPAIRTER_M abc on m.terminalkey = abc.terminalkey   ");
+        buffer.append("left join MIT_REPAIR_M qwe on qwe.id = abc.repairid  and qwe.status in ('0','1') ");
+
+
+
+
         buffer.append("where coalesce(m.status,'0') != '2'  ");
         buffer.append(" and coalesce(m.deleteflag,'0') != '1' ");
         if (isSequence) {
@@ -494,6 +544,9 @@ public class MstTerminalinfoMDaoImpl extends BaseDaoImpl<MstTerminalinfoM, Strin
         } else {
             buffer.append(" and (m.sequence='' or m.sequence is null) ");// 终端排序为空的
         }
+
+        buffer.append("group by m.terminalkey, m.terminalcode, m.routekey, m.terminalname, m.status, m.sequence, m.city, m.province, m.county, m.address, m.contact, m.mobile, m.tlevel, m.cycle, m.hvolume, m.mvolume, m.pvolume, m.lvolume, m.sellchannel, m.mainchannel, m.areatype, m.sisconsistent, m.comid, m.remarks, m.orderbyno, m.creuser, m.cmpselftreaty, m.updateuser, m.deleteflag, m.ifminedate, m.ifmine, vmn.isself, vmn.iscmp, m.selftreaty, vmn.cmptreaty, vm.iserror, vm.padisconsistent, m.minorchannel, dm.dicname, vm.visitdate, vm.videnddate ");
+
         // buffer.append("order by m.sequence+0 asc, m.orderbyno, m.terminalname ");
         buffer.append("order by m.sequence asc, m.orderbyno, m.terminalname ");
 
@@ -528,6 +581,33 @@ public class MstTerminalinfoMDaoImpl extends BaseDaoImpl<MstTerminalinfoM, Strin
             }
             item.setMinorchannel(FunUtil.isNullSetSpace(cursor.getString(cursor.getColumnIndex("minorchannel"))));
             item.setTerminalType(cursor.getString(cursor.getColumnIndex("terminalType")));
+
+            item.setProvince(cursor.getString(cursor.getColumnIndex("province")));
+            item.setCity(cursor.getString(cursor.getColumnIndex("city")));
+            item.setCounty(cursor.getString(cursor.getColumnIndex("county")));
+            item.setAddress(cursor.getString(cursor.getColumnIndex("address")));
+            item.setContact(cursor.getString(cursor.getColumnIndex("contact")));
+            item.setMobile(cursor.getString(cursor.getColumnIndex("mobile")));
+            item.setTlevel(cursor.getString(cursor.getColumnIndex("tlevel")));
+            item.setCycle(cursor.getString(cursor.getColumnIndex("cycle")));
+            item.setHvolume(cursor.getString(cursor.getColumnIndex("hvolume")));
+            item.setMvolume(cursor.getString(cursor.getColumnIndex("mvolume")));
+            item.setPvolume(cursor.getString(cursor.getColumnIndex("pvolume")));
+            item.setLvolume(cursor.getString(cursor.getColumnIndex("lvolume")));
+            item.setSellchannel(cursor.getString(cursor.getColumnIndex("sellchannel")));
+            item.setMainchannel(cursor.getString(cursor.getColumnIndex("mainchannel")));
+            item.setAreatype(cursor.getString(cursor.getColumnIndex("areatype")));
+            item.setSisconsistent(cursor.getString(cursor.getColumnIndex("sisconsistent")));
+            item.setComid(cursor.getString(cursor.getColumnIndex("comid")));
+            item.setRemarks(cursor.getString(cursor.getColumnIndex("remarks")));
+            item.setOrderbyno(cursor.getString(cursor.getColumnIndex("orderbyno")));
+            item.setCreuser(cursor.getString(cursor.getColumnIndex("creuser")));
+            item.setCmpselftreaty(cursor.getString(cursor.getColumnIndex("cmpselftreaty")));
+            item.setUpdateuser(cursor.getString(cursor.getColumnIndex("updateuser")));
+            item.setDeleteflag(cursor.getString(cursor.getColumnIndex("deleteflag")));
+            item.setIfminedate(cursor.getString(cursor.getColumnIndex("ifminedate")));
+            item.setIfmine(cursor.getString(cursor.getColumnIndex("ifmine")));
+
             String status = item.getStatus();
             if (!"2".equals(status)) {//有效终端
                 lst.add(item);
@@ -615,7 +695,7 @@ public class MstTerminalinfoMDaoImpl extends BaseDaoImpl<MstTerminalinfoM, Strin
         //buffer.append("vm.isself, vm.iscmp, vm.selftreaty, vm.cmptreaty, ");
         buffer.append("vmn.isself, vmn.iscmp, m.selftreaty, vmn.cmptreaty, ");// 我品 竞品 我品协议店,竞品协议店
         buffer.append("vm.padisconsistent, vm.uploadFlag, m.minorchannel, ");// 销售渠道编码
-        buffer.append("dm.dicname terminalType, vm.visitdate ");// 终端渠道类型 拜访时间
+        buffer.append("dm.dicname terminalType, vm.visitdate,vm.enddate ");// 终端渠道类型 拜访时间
         buffer.append("from mst_terminalinfo_m_cart m ");
         buffer.append("left join cmm_datadic_m dm on m.minorchannel = dm.diccode ");
         buffer.append("     and coalesce(dm.deleteflag,'0') != '1' ");
@@ -649,8 +729,10 @@ public class MstTerminalinfoMDaoImpl extends BaseDaoImpl<MstTerminalinfoM, Strin
             item.setVieFlag(cursor.getString(cursor.getColumnIndex("iscmp")));
             item.setMineProtocolFlag(cursor.getString(cursor.getColumnIndex("selftreaty")));
             item.setVieProtocolFlag(cursor.getString(cursor.getColumnIndex("cmptreaty")));
+            item.setEndDate(cursor.getString(cursor.getColumnIndex("enddate")));
             visitDate = cursor.getString(cursor.getColumnIndex("visitdate"));
             if (visitDate != null && currDay.equals(visitDate.substring(0, 8))) {// 若果 记录是当天生成的
+                item.setVisitTime(visitDate);
                 item.setSyncFlag(cursor.getString(cursor.getColumnIndex("padisconsistent")));
                 item.setUploadFlag(cursor.getString(cursor.getColumnIndex("uploadFlag")));
             } else {
@@ -754,14 +836,18 @@ public class MstTerminalinfoMDaoImpl extends BaseDaoImpl<MstTerminalinfoM, Strin
         StringBuffer buffer = new StringBuffer();
         buffer.append("select m.terminalkey, m.terminalcode, m.terminalname,m.status,m.sequence, ");
         //buffer.append("vm.isself, vm.iscmp, vm.selftreaty, vm.cmptreaty, ");
-        buffer.append("vmn.isself, vmn.iscmp, m.selftreaty, vmn.cmptreaty,vm.iserror, ");// 我品 竞品 我品协议店,竞品协议店
+        buffer.append("vmn.isself, vmn.iscmp, m.selftreaty, vmn.cmptreaty,max(qwe.status) iserror, ");// 我品 竞品 我品协议店,竞品协议店
         buffer.append("vm.padisconsistent,  m.minorchannel, ");// 销售渠道编码
-        buffer.append("dm.dicname terminalType, vm.visitdate ");// 终端渠道类型 拜访时间
+        buffer.append("dm.dicname terminalType, vm.visitdate,vm.videnddate  ");// 终端渠道类型 拜访时间
         buffer.append("from mst_terminalinfo_m_zscart m ");
         buffer.append("left join cmm_datadic_m dm on m.minorchannel = dm.diccode ");
         buffer.append("     and coalesce(dm.deleteflag,'0') != '1' ");
         buffer.append("left join v_mit_valter_m_newest vm on m.terminalkey = vm.terminalkey ");
         buffer.append("left join v_visit_m_newest vmn on m.terminalkey = vmn.terminalkey ");
+
+        buffer.append("left join MIT_REPAIRTER_M abc on m.terminalkey = abc.terminalkey   ");
+        buffer.append("left join MIT_REPAIR_M qwe on qwe.id = abc.repairid  and qwe.status in ('0','1') ");
+
         buffer.append("where coalesce(m.status,'0') != '2' ");
         buffer.append(" and coalesce(m.deleteflag,'0') != '1' ");
         buffer.append(" and m.ddtype = '2' ");// 1:协同  2:追溯
@@ -770,6 +856,7 @@ public class MstTerminalinfoMDaoImpl extends BaseDaoImpl<MstTerminalinfoM, Strin
         } else {
             buffer.append(" and (m.sequence='' or m.sequence is null) ");// 终端排序为空的
         }
+        buffer.append(" group by m.terminalkey, m.terminalcode, m.terminalname, m.status, m.sequence, vmn.isself, vmn.iscmp, m.selftreaty, vmn.cmptreaty, vm.iserror, vm.padisconsistent, m.minorchannel, dm.dicname , vm.visitdate  ");
         buffer.append("order by m.sequence+0 asc, m.orderbyno, m.terminalname ");
 
         String visitDate = "";
@@ -791,8 +878,11 @@ public class MstTerminalinfoMDaoImpl extends BaseDaoImpl<MstTerminalinfoM, Strin
             item.setMineProtocolFlag(cursor.getString(cursor.getColumnIndex("selftreaty")));
             item.setVieProtocolFlag(cursor.getString(cursor.getColumnIndex("cmptreaty")));
             item.setIserror(cursor.getString(cursor.getColumnIndex("iserror")));
+
+            item.setEndDate(cursor.getString(cursor.getColumnIndex("videnddate")));
             visitDate = cursor.getString(cursor.getColumnIndex("visitdate"));
             if (visitDate != null && currDay.equals(visitDate.substring(0, 8))) {// 若果 记录是当天生成的
+                item.setVisitTime(visitDate);
                 item.setSyncFlag(cursor.getString(cursor.getColumnIndex("padisconsistent")));
                 item.setUploadFlag("1");
             } else {

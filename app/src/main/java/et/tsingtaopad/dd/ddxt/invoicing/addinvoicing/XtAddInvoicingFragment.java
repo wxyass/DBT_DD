@@ -124,7 +124,7 @@ public class XtAddInvoicingFragment extends BaseFragmentSupport implements View.
     // 初始化界面数据
     private void initData() {
         addInvocingService = new XtAddInvocingService(getActivity(), null);
-        agencyLst = addInvocingService.getAgencyList(termId);
+        agencyLst = addInvocingService.getXtAgencyList(termId);
         proLst = addInvocingService.getProList();
         products = new ArrayList<KvStc>();
 

@@ -234,7 +234,50 @@ public class XtShopVisitService {
             DatabaseHelper helper = DatabaseHelper.getHelper(context);
             SQLiteDatabase db = helper.getReadableDatabase();
 
-            String querySql = " select ro.* from mst_route_m ro join  (select r.gridkey from mst_terminalinfo_m t " +
+            String querySql = " select ro.* from mst_route_m ro join  (select r.gridkey from MST_TERMINALINFO_M_CART t " +
+                    "  left join mst_route_m r on r.routekey = t.routekey " +
+                    "  where t.terminalkey= ?) a on a.gridkey=ro.gridkey  " +
+                    "  where ro.routestatus=0 order by ro.routename asc";
+            Cursor cursor = db.rawQuery(querySql, new String[]{termid});
+            MstRouteM item;
+            while (cursor.moveToNext()) {
+                item = new MstRouteM();
+                item.setRoutekey(cursor.getString(cursor.getColumnIndex("routekey")));
+                item.setGridkey(cursor.getString(cursor.getColumnIndex("gridkey")));
+                item.setRoutecode(cursor.getString(cursor.getColumnIndex("routecode")));
+                item.setRoutename(cursor.getString(cursor.getColumnIndex("routename")));
+                item.setRoutedesc(cursor.getString(cursor.getColumnIndex("routedesc")));
+                item.setRoutestatus(cursor.getString(cursor.getColumnIndex("routestatus")));
+                item.setSisconsistent(cursor.getString(cursor.getColumnIndex("sisconsistent")));
+                item.setPadisconsistent(cursor.getString(cursor.getColumnIndex("padisconsistent")));
+                item.setComid(cursor.getString(cursor.getColumnIndex("comid")));
+                item.setRemarks(cursor.getString(cursor.getColumnIndex("remarks")));
+                item.setOrderbyno(cursor.getString(cursor.getColumnIndex("orderbyno")));
+                item.setUpdateuser(cursor.getString(cursor.getColumnIndex("updateuser")));
+                item.setDeleteflag(cursor.getString(cursor.getColumnIndex("deleteflag")));
+
+                mstRouteList.add(item);
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "获取线路信息失败", e);
+        }
+        return mstRouteList;
+    }
+
+    /**
+     * 获取并初始化拜访线路
+     *
+     * @return
+     */
+    @SuppressWarnings("unchecked")
+    public List<MstRouteM> initZsMstRoute(String termid) {
+
+        List<MstRouteM> mstRouteList = new ArrayList<MstRouteM>();
+        try {
+            DatabaseHelper helper = DatabaseHelper.getHelper(context);
+            SQLiteDatabase db = helper.getReadableDatabase();
+
+            String querySql = " select ro.* from mst_route_m ro join  (select r.gridkey from MST_TERMINALINFO_M_ZSCART t " +
                     "  left join mst_route_m r on r.routekey = t.routekey " +
                     "  where t.terminalkey= ?) a on a.gridkey=ro.gridkey  " +
                     "  where ro.routestatus=0 order by ro.routename asc";

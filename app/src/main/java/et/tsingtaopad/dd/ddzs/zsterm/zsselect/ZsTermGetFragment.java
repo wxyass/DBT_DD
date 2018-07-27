@@ -285,7 +285,7 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
         // 筛选按钮
         termcheck_lou = (RelativeLayout) view.findViewById(R.id.xtbf_termcheck_lou);
         // 搜索 放大镜按钮
-         searchEt = (EditText) view.findViewById(R.id.xtbf_termcheck_et_search);
+        searchEt = (EditText) view.findViewById(R.id.xtbf_termcheck_et_search);
         searchBtn = (Button) view.findViewById(R.id.xtbf_termcheck_bt_search);
         // 全部添加
         addAllTermBtn = (Button) view.findViewById(R.id.xtbf_termcheck_bt_add);
@@ -689,12 +689,31 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
                 ImageView imageView = (ImageView) v;
                 XtTermSelectMStc item = termList.get(position);
                 //MstTerminalinfoM term = xtSelectService.findTermByTerminalkey(item.getTerminalkey());
-                if (selectedList.contains(item)) {
+                /*if (selectedList.contains(item)) {
                     selectedList.remove(item);
                     item.setIsSelectToCart("0");
                     imageView.setImageResource(R.drawable.icon_visit_add);
                     confirmTv.setText("确定" + "(" + selectedList.size() + ")");
                 } else {
+                    selectedList.add(item);
+                    item.setIsSelectToCart("1");
+                    imageView.setImageResource(R.drawable.icon_select_minus);
+                    confirmTv.setText("确定" + "(" + selectedList.size() + ")");
+                }*/
+
+                boolean isselect = false;
+                for (XtTermSelectMStc xtTermSelectMStc : selectedList) {// 遍历终端文件夹 是否有这个终端
+                    if (xtTermSelectMStc.getTerminalkey().equals(item.getTerminalkey())) {
+                        isselect = true;
+                        selectedList.remove(xtTermSelectMStc);
+                        item.setIsSelectToCart("0");
+                        imageView.setImageResource(R.drawable.icon_visit_add);
+                        confirmTv.setText("确定" + "(" + selectedList.size() + ")");
+                        break;
+                    }
+                }
+
+                if (!isselect) {
                     selectedList.add(item);
                     item.setIsSelectToCart("1");
                     imageView.setImageResource(R.drawable.icon_select_minus);
@@ -810,12 +829,12 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
                     rl_proselect.setVisibility(View.VISIBLE);// 选择产品
 
                     puhuoLv.add("301");
-                }else{
+                } else {
                     // puhuoLv.remove("301");
                     Iterator<String> it = puhuoLv.iterator();
-                    while(it.hasNext()){
+                    while (it.hasNext()) {
                         String x = it.next();
-                        if(x.equals("301")){
+                        if (x.equals("301")) {
                             it.remove();
                         }
                     }
@@ -828,12 +847,12 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
                     rl_proselect.setVisibility(View.VISIBLE);// 选择产品
 
                     puhuoLv.add("302");
-                }else{
+                } else {
                     // puhuoLv.remove("302");
                     Iterator<String> it = puhuoLv.iterator();
-                    while(it.hasNext()){
+                    while (it.hasNext()) {
                         String x = it.next();
-                        if(x.equals("302")){
+                        if (x.equals("302")) {
                             it.remove();
                         }
                     }
@@ -846,12 +865,12 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
                     rl_proselect.setVisibility(View.VISIBLE);// 选择产品
 
                     puhuoLv.add("303");
-                }else{
+                } else {
                     // puhuoLv.remove("303");
                     Iterator<String> it = puhuoLv.iterator();
-                    while(it.hasNext()){
+                    while (it.hasNext()) {
                         String x = it.next();
-                        if(x.equals("303")){
+                        if (x.equals("303")) {
                             it.remove();
                         }
                     }
@@ -864,12 +883,12 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
                     rl_proselect.setVisibility(View.VISIBLE);// 选择产品
 
                     puhuoLv.add("304");
-                }else{
+                } else {
                     // puhuoLv.remove("304");
                     Iterator<String> it = puhuoLv.iterator();
-                    while(it.hasNext()){
+                    while (it.hasNext()) {
                         String x = it.next();
-                        if(x.equals("304")){
+                        if (x.equals("304")) {
                             it.remove();
                         }
                     }
@@ -878,11 +897,11 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
             case R.id.zdzs_termcheck_termone:// 一级终端//
                 if (isChecked) {
                     termlv.add("81B1A7272795498FBBE8EBDFB065F9FE");
-                }else{
+                } else {
                     Iterator<String> it = termlv.iterator();
-                    while(it.hasNext()){
+                    while (it.hasNext()) {
                         String x = it.next();
-                        if(x.equals("81B1A7272795498FBBE8EBDFB065F9FE")){
+                        if (x.equals("81B1A7272795498FBBE8EBDFB065F9FE")) {
                             it.remove();
                         }
                     }
@@ -891,11 +910,11 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
             case R.id.zdzs_termcheck_termtwo:// 二级终端//
                 if (isChecked) {
                     termlv.add("20E51C0398E34AC8A09375470B5D9DFE");
-                }else{
+                } else {
                     Iterator<String> it = termlv.iterator();
-                    while(it.hasNext()){
+                    while (it.hasNext()) {
                         String x = it.next();
-                        if(x.equals("20E51C0398E34AC8A09375470B5D9DFE")){
+                        if (x.equals("20E51C0398E34AC8A09375470B5D9DFE")) {
                             it.remove();
                         }
                     }
@@ -904,11 +923,11 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
             case R.id.zdzs_termcheck_termthree:// 三级终端//
                 if (isChecked) {
                     termlv.add("3B86CC33732C454291509E1745FF315E");
-                }else{
+                } else {
                     Iterator<String> it = termlv.iterator();
-                    while(it.hasNext()){
+                    while (it.hasNext()) {
                         String x = it.next();
-                        if(x.equals("3B86CC33732C454291509E1745FF315E")){
+                        if (x.equals("3B86CC33732C454291509E1745FF315E")) {
                             it.remove();
                         }
                     }
@@ -917,12 +936,12 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
             case R.id.zdzs_termcheck_termfour:// 四级终端//
                 if (isChecked) {
                     termlv.add("4D49F29894CA4C71B4DA56629CEED17F");
-                }else{
+                } else {
                     //termlv.remove("4");
                     Iterator<String> it = termlv.iterator();
-                    while(it.hasNext()){
+                    while (it.hasNext()) {
                         String x = it.next();
-                        if(x.equals("4D49F29894CA4C71B4DA56629CEED17F")){
+                        if (x.equals("4D49F29894CA4C71B4DA56629CEED17F")) {
                             it.remove();
                         }
                     }
@@ -931,12 +950,12 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
             case R.id.zdzs_termcheck_termcq:// 城区//
                 if (isChecked) {
                     areaLv.add("85C3678B44FA42B794F8BABD2846E6D1");
-                }else{
+                } else {
                     //areaLv.remove("85C3678B44FA42B794F8BABD2846E6D1");
                     Iterator<String> it = areaLv.iterator();
-                    while(it.hasNext()){
+                    while (it.hasNext()) {
                         String x = it.next();
-                        if(x.equals("85C3678B44FA42B794F8BABD2846E6D1")){
+                        if (x.equals("85C3678B44FA42B794F8BABD2846E6D1")) {
                             it.remove();
                         }
                     }
@@ -945,12 +964,12 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
             case R.id.zdzs_termcheck_termxz:// 乡镇//
                 if (isChecked) {
                     areaLv.add("4C37979BC4424890BEA016EE7DED02CE");
-                }else{
+                } else {
                     // areaLv.remove("4C37979BC4424890BEA016EE7DED02CE");
                     Iterator<String> it = areaLv.iterator();
-                    while(it.hasNext()){
+                    while (it.hasNext()) {
                         String x = it.next();
-                        if(x.equals("4C37979BC4424890BEA016EE7DED02CE")){
+                        if (x.equals("4C37979BC4424890BEA016EE7DED02CE")) {
                             it.remove();
                         }
                     }
@@ -959,12 +978,12 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
             case R.id.zdzs_termcheck_termcj:// 村级//
                 if (isChecked) {
                     areaLv.add("5FA07909011F447AB3C142C52CD54DD4");
-                }else{
+                } else {
                     // areaLv.remove("5FA07909011F447AB3C142C52CD54DD4");
                     Iterator<String> it = areaLv.iterator();
-                    while(it.hasNext()){
+                    while (it.hasNext()) {
                         String x = it.next();
-                        if(x.equals("5FA07909011F447AB3C142C52CD54DD4")){
+                        if (x.equals("5FA07909011F447AB3C142C52CD54DD4")) {
                             it.remove();
                         }
                     }
@@ -973,12 +992,12 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
             case R.id.zdzs_termcheck_termddb:// 大店部//
                 if (isChecked) {
                     areaLv.add("29BC5F0C31A4D59DE050A8C0D6006510");
-                }else{
+                } else {
                     // areaLv.remove("29BC5F0C31A4D59DE050A8C0D6006510");
                     Iterator<String> it = areaLv.iterator();
-                    while(it.hasNext()){
+                    while (it.hasNext()) {
                         String x = it.next();
-                        if(x.equals("29BC5F0C31A4D59DE050A8C0D6006510")){
+                        if (x.equals("29BC5F0C31A4D59DE050A8C0D6006510")) {
                             it.remove();
                         }
                     }
@@ -989,7 +1008,7 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
                 if (isChecked) {
                     rb_mineshop.setChecked(true);
                     rb_notmineshop.setChecked(false);
-                }else{
+                } else {
                     rb_mineshop.setChecked(false);
 
                 }
@@ -998,7 +1017,7 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
                 if (isChecked) {
                     rb_notmineshop.setChecked(true);
                     rb_mineshop.setChecked(false);
-                }else{
+                } else {
                     rb_notmineshop.setChecked(false);
                 }
                 break;
@@ -1006,7 +1025,7 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
                 if (isChecked) {
                     rb_checkzh.setChecked(true);
                     rb_notcheckzh.setChecked(false);
-                }else{
+                } else {
                     rb_checkzh.setChecked(false);
 
                 }
@@ -1015,7 +1034,7 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
                 if (isChecked) {
                     rb_notcheckzh.setChecked(true);
                     rb_checkzh.setChecked(false);
-                }else{
+                } else {
                     rb_notcheckzh.setChecked(false);
                 }
                 break;
@@ -1023,7 +1042,7 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
                 if (isChecked) {
                     rb_checkhz.setChecked(true);
                     rb_notcheckhz.setChecked(false);
-                }else{
+                } else {
                     rb_checkhz.setChecked(false);
                 }
                 break;
@@ -1031,7 +1050,7 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
                 if (isChecked) {
                     rb_notcheckhz.setChecked(true);
                     rb_checkhz.setChecked(false);
-                }else{
+                } else {
                     rb_notcheckhz.setChecked(false);
                 }
                 break;
@@ -1039,7 +1058,7 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
                 if (isChecked) {
                     rb_checkgao.setChecked(true);
                     rb_notcheckgao.setChecked(false);
-                }else{
+                } else {
                     rb_checkgao.setChecked(false);
                 }
                 break;
@@ -1047,11 +1066,10 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
                 if (isChecked) {
                     rb_notcheckgao.setChecked(true);
                     rb_checkgao.setChecked(false);
-                }else{
+                } else {
                     rb_notcheckgao.setChecked(false);
                 }
                 break;
-
 
 
             case R.id.rb_check:// 铺货状态
@@ -1119,9 +1137,9 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
                                     }
                                 }*/
                                 Iterator<ProSellStc> it = checkSelectLst.iterator();
-                                while(it.hasNext()){
+                                while (it.hasNext()) {
                                     ProSellStc x = it.next();
-                                    if(itemTv.getHint().equals(x.getKey())){
+                                    if (itemTv.getHint().equals(x.getKey())) {
                                         it.remove();
                                     }
                                 }
@@ -1200,7 +1218,7 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
             case R.id.top_navigation_rl_back:
                 supportFragmentManager.popBackStack();
                 break;
-            case R.id.xtbf_termcheck_bt_search:// 放大镜搜索
+            case R.id.xtbf_termcheck_bt_search:// 放大镜搜索  终端名称 模糊搜多终端
                 searchTerm();
                 break;
             case R.id.zdzs_termcheck_rl_reset:// 筛选重置按钮
@@ -1220,7 +1238,7 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
                 mDrawerLayout.closeDrawer(Gravity.RIGHT);
                 break;
             case R.id.top_navigation_tv_check:// 配置模板
-                changeHomeFragment(new ZsTemplateFragment(), "xttermcartfragment");
+                changeHomeFragment(new ZsTemplateFragment(), "zstemplatefragment");
                 break;
             case R.id.xtbf_termcheck_lou:// 筛选终端
                 // Toast.makeText(getActivity(), "请筛选终端", Toast.LENGTH_SHORT).show();
@@ -1276,14 +1294,27 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
                     PrefUtils.putString(getActivity(), GlobalValues.DDXTZS, "2");
                 } else {
                     Toast.makeText(getActivity(), "请先配置督导模板", Toast.LENGTH_SHORT).show();
+                    changeHomeFragment(new ZsTemplateFragment(), "zstemplatefragment");
                 }
 
                 break;
             case R.id.xtbf_termcheck_bt_add:// 全部添加
                 for (XtTermSelectMStc selectMStc : termList) {
                     //MstTerminalinfoM term = xtSelectService.findTermByTerminalkey(selectMStc.getTerminalkey());
-                    if (selectedList.contains(selectMStc)) {
+                    /*if (selectedList.contains(selectMStc)) {
                         selectedList.remove(selectMStc);
+                    }*/
+                    /*for (XtTermSelectMStc xtTermSelectMStc : selectedList) {// 先把已存在的删除
+                        if (xtTermSelectMStc.getTerminalkey().equals(selectMStc.getTerminalkey())) {
+                            selectedList.remove(xtTermSelectMStc);
+                        }
+                    }*/
+                    Iterator<XtTermSelectMStc> it = selectedList.iterator();
+                    while(it.hasNext()){
+                        XtTermSelectMStc x = it.next();
+                        if(x.getTerminalkey().equals(selectMStc.getTerminalkey())){
+                            it.remove();
+                        }
                     }
                     selectMStc.setIsSelectToCart("1");
                 }
@@ -1307,24 +1338,24 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
         }
     }
 
-    // 模糊搜多终端
+    // 终端名称 模糊搜多终端
     private void searchTerm() {
 
-        String termname =searchEt.getText().toString();
-        if("".equals(termname)||TextUtils.isEmpty(termname)){
-            Toast.makeText(getActivity(),"请输入终端名称",Toast.LENGTH_SHORT).show();
-        }else{
+        String termname = searchEt.getText().toString();
+        if ("".equals(termname) || TextUtils.isEmpty(termname)) {
+            Toast.makeText(getActivity(), "请输入终端名称", Toast.LENGTH_SHORT).show();
+        } else {
             String json = "{bigid:'" + PrefUtils.getString(getActivity(), "departmentid", "") + "', " +
                     "secid:'" + areaKey + "'," +
                     "gridid:'" + gridKey + "'," +
                     "routeid:'" + routeKey + "'," +
                     "terminalname:'" + termname + "'}";
-            getTermDataByTermName("opt_terminalbyterminalname_3","MST_TERMINALINFO_M",json);
+            getTermDataByTermName("opt_terminalbyterminalname_3", "MST_TERMINALINFO_M", json);
         }
     }
 
     /**
-     * 根据终端名称 条件请求终端
+     *  终端名称 模糊搜多终端   根据终端名称 条件请求终端
      *
      * @param optcode
      * @param tableName
@@ -1467,22 +1498,22 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
             }
             if (mZdzs_termcheck_minearea.isChecked()) {// 我品销售范围
                 checkStc.setMinearea("1");
-            }else{
+            } else {
                 checkStc.setMinearea("");
             }
             if (mZdzs_termcheck_cmparea.isChecked()) {// 竞品销售范围
                 checkStc.setCmparea("1");
-            }else{
+            } else {
                 checkStc.setCmparea("");
             }
             if (mZdzs_termcheck_minetreaty.isChecked()) {// 我品合作
                 checkStc.setMinetreaty("1");
-            }else{
+            } else {
                 checkStc.setMinetreaty("");
             }
             if (mZdzs_termcheck_cmptreaty.isChecked()) {// 竞品合作
                 checkStc.setCmptreaty("1");
-            }else{
+            } else {
                 checkStc.setCmptreaty("");
             }
             /*if (mZdzs_termcheck_termone.isChecked()) {// 1级
@@ -1627,7 +1658,6 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
 
             String json = JsonUtil.toJson(checkStc);
             getTermDataByUrl("opt_query_terminal", "MST_TERMINALINFO_M", json);
-            String sd = "";
 
         }
 
@@ -1732,6 +1762,7 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
             }
         } else {
             Toast.makeText(getActivity(), "请先配置督导模板", Toast.LENGTH_SHORT).show();
+            changeHomeFragment(new ZsTemplateFragment(), "zstemplatefragment");
         }
     }
 
@@ -1787,10 +1818,11 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
 
     // 查找终端,并复制到终端购物车
     public void copyMstTerminalinfoMZsCart(XtTermSelectMStc termSelectMStc) {
-        MstTerminalinfoM term = xtSelectService.findTermByTerminalkey(termSelectMStc.getTerminalkey());
+        /*MstTerminalinfoM term = xtSelectService.findTermByTerminalkey(termSelectMStc.getTerminalkey());
         if (term != null) {
             xtSelectService.toCopyMstTerminalinfoMZsCartData(term, "2");
-        }
+        }*/
+        xtSelectService.toMstTerminalinfoMZsCartData(termSelectMStc, "2");
     }
 
 
@@ -1933,6 +1965,8 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
 
                         } else {
                             Toast.makeText(getActivity(), resObj.getResHead().getContent(), Toast.LENGTH_SHORT).show();
+                            termList.clear();
+                            selectAdapter.notifyDataSetChanged();// 清空当前终端列表
                         }
                     }
                 })
@@ -1940,12 +1974,16 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
                     @Override
                     public void onError(int code, String msg) {
                         Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+                        termList.clear();
+                        selectAdapter.notifyDataSetChanged();// 清空当前终端列表
                     }
                 })
                 .failure(new IFailure() {
                     @Override
                     public void onFailure() {
                         Toast.makeText(getContext(), "请求失败", Toast.LENGTH_SHORT).show();
+                        termList.clear();
+                        selectAdapter.notifyDataSetChanged();// 清空当前终端列表
                     }
                 })
                 .builde()
@@ -1964,17 +2002,25 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
         setSelectTerm();// 设置已添加购物车的符号
         setItemAdapterListener();
     }
-    // 解析终端名称模糊搜索下的终端
+
+    // 终端名称 模糊搜多终端  解析终端名称模糊搜索下的终端
     private void parseSearchTermListJson(String json) {
         // 解析区域定格路线信息
         AreaGridRoute emp = JsonUtil.parseJson(json, AreaGridRoute.class);
         String MST_TERMINALINFO_M = emp.getMST_TERMINALINFO_M();
 
-        MainService service = new MainService(getActivity(), null);
-        service.createOrUpdateTable(MST_TERMINALINFO_M, "MST_TERMINALINFO_M", MstTerminalinfoM.class,1);
-        initTermListData(routeKey);
-        setSelectTerm();// 设置已添加购物车的符号
-        setItemAdapterListener();
+        if ("[]".equals(MST_TERMINALINFO_M) || TextUtils.isEmpty(MST_TERMINALINFO_M)) {// 返回数据为空
+            Toast.makeText(getActivity(), "未搜索到任何终端", Toast.LENGTH_SHORT).show();
+            termList.clear();
+            selectAdapter.notifyDataSetChanged();// 清空当前终端列表
+        } else {
+            MainService service = new MainService(getActivity(), null);
+            service.createOrUpdateTable(MST_TERMINALINFO_M, "MST_TERMINALINFO_M", MstTerminalinfoM.class, 1);
+            initTermListData(routeKey);
+            setSelectTerm();// 设置已添加购物车的符号
+            setItemAdapterListener();
+        }
+
     }
 
     // 解析路线key下的终端 what 是否需要清除该表,再插入  0:不需要  1需要删除

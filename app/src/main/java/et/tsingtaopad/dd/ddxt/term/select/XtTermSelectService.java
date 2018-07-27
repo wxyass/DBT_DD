@@ -352,6 +352,83 @@ public class XtTermSelectService extends XtTermService{
             }
         }
     }
+    /**
+     * 复制终端表 到协同终端购物车
+     *
+     * @param xtTermSelectMStc
+     * @param ddType           督导业务类型 1:协同  2:追溯
+     */
+    public void toMstTerminalinfoMCartData(XtTermSelectMStc xtTermSelectMStc, String ddType) {
+
+        // 事务控制
+        AndroidDatabaseConnection connection = null;
+        // 开始复制
+        try {
+            DatabaseHelper helper = DatabaseHelper.getHelper(context);
+            Dao<MstTerminalinfoMCart, String> terminalinfoMCartDao = helper.getMstTerminalinfoMCartDao();
+
+            connection = new AndroidDatabaseConnection(helper.getWritableDatabase(), true);
+            connection.setAutoCommit(false);
+
+            // 复制终端临时表
+            MstTerminalinfoM term = xtTermSelectMStc;
+            MstTerminalinfoMCart terminalinfoMCart = null;
+            if (term != null) {
+                terminalinfoMCart = new MstTerminalinfoMCart();
+                terminalinfoMCart.setTerminalkey(term.getTerminalkey());
+                terminalinfoMCart.setRoutekey(term.getRoutekey());
+                terminalinfoMCart.setTerminalcode(term.getTerminalcode());
+                terminalinfoMCart.setTerminalname(term.getTerminalname());
+                terminalinfoMCart.setProvince(term.getProvince());
+                terminalinfoMCart.setDdtype(ddType);// 督导业务类型 1:协同  2:追溯
+                terminalinfoMCart.setCity(term.getCity());
+                terminalinfoMCart.setCounty(term.getCounty());
+                terminalinfoMCart.setAddress(term.getAddress());
+                terminalinfoMCart.setContact(term.getContact());
+                terminalinfoMCart.setMobile(term.getMobile());
+                terminalinfoMCart.setTlevel(term.getTlevel());
+                terminalinfoMCart.setSequence(term.getSequence());
+                terminalinfoMCart.setCycle(term.getCycle());
+                terminalinfoMCart.setHvolume(term.getHvolume());
+                terminalinfoMCart.setMvolume(term.getMvolume());
+                terminalinfoMCart.setPvolume(term.getPvolume());
+                terminalinfoMCart.setLvolume(term.getLvolume());
+                terminalinfoMCart.setStatus(term.getStatus());
+                terminalinfoMCart.setSellchannel(term.getSellchannel());
+                terminalinfoMCart.setMainchannel(term.getMainchannel());
+                terminalinfoMCart.setMinorchannel(term.getMinorchannel());
+                terminalinfoMCart.setAreatype(term.getAreatype());
+                //terminalinfoMCart.setSisconsistent(term.getSisconsistent());
+                //terminalinfoMCart.setScondate(term.getScondate());
+                terminalinfoMCart.setPadisconsistent("1");
+                // terminalinfoMCart.setPadcondate(term.getPadcondate());
+                terminalinfoMCart.setComid(term.getComid());
+                terminalinfoMCart.setRemarks(term.getRemarks());
+                terminalinfoMCart.setOrderbyno(term.getOrderbyno());
+                //terminalinfoMCart.setVersion(term.getVersion());
+                //terminalinfoMCart.setCredate(term.getCredate());
+                terminalinfoMCart.setCreuser(term.getCreuser());
+                terminalinfoMCart.setSelftreaty(term.getSelftreaty());
+                terminalinfoMCart.setCmpselftreaty(term.getCmpselftreaty());
+                //terminalinfoMCart.setUpdatetime(term.getUpdatetime());
+                terminalinfoMCart.setUpdateuser(term.getUpdateuser());
+                terminalinfoMCart.setDeleteflag(term.getDeleteflag());
+                terminalinfoMCart.setIfminedate(term.getIfminedate());
+                terminalinfoMCart.setIfmine(term.getIfmine());
+                terminalinfoMCartDao.createOrUpdate(terminalinfoMCart);
+
+            }
+            connection.commit(null);
+        } catch (Exception e) {
+            Log.e(TAG, "复制数据出错", e);
+            try {
+                connection.rollback(null);
+                //ViewUtil.sendMsg(context, R.string.agencyvisit_msg_failsave);
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
 
     /**
      * 复制终端表 到追溯终端购物车
@@ -399,19 +476,97 @@ public class XtTermSelectService extends XtTermService{
                 info.setMainchannel(term.getMainchannel());
                 info.setMinorchannel(term.getMinorchannel());
                 info.setAreatype(term.getAreatype());
-                info.setSisconsistent(term.getSisconsistent());
-                info.setScondate(term.getScondate());
-                info.setPadisconsistent(term.getPadisconsistent());
-                info.setPadcondate(term.getPadcondate());
+                // info.setSisconsistent(term.getSisconsistent());
+                // info.setScondate(term.getScondate());
+                info.setPadisconsistent("1");
+                //info.setPadcondate(term.getPadcondate());
                 info.setComid(term.getComid());
                 info.setRemarks(term.getRemarks());
                 info.setOrderbyno(term.getOrderbyno());
-                info.setVersion(term.getVersion());
-                info.setCredate(term.getCredate());
+                //info.setVersion(term.getVersion());
+                //info.setCredate(term.getCredate());
                 info.setCreuser(term.getCreuser());
                 info.setSelftreaty(term.getSelftreaty());
                 info.setCmpselftreaty(term.getCmpselftreaty());
-                info.setUpdatetime(term.getUpdatetime());
+                //info.setUpdatetime(term.getUpdatetime());
+                info.setUpdateuser(term.getUpdateuser());
+                info.setDeleteflag(term.getDeleteflag());
+                info.setIfminedate(term.getIfminedate());
+                info.setIfmine(term.getIfmine());
+                terminalinfoMZsCartDao.createOrUpdate(info);
+
+            }
+            connection.commit(null);
+        } catch (Exception e) {
+            Log.e(TAG, "复制数据出错", e);
+            try {
+                connection.rollback(null);
+                //ViewUtil.sendMsg(context, R.string.agencyvisit_msg_failsave);
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
+    /**
+     * 从已选好的终端集合中
+     * 复制到终端表 到追溯终端购物车
+     *
+     * @param xtTermSelectMStc
+     * @param ddType           督导业务类型 1:协同  2:追溯
+     */
+    public void toMstTerminalinfoMZsCartData(XtTermSelectMStc xtTermSelectMStc, String ddType) {
+
+        // 事务控制
+        AndroidDatabaseConnection connection = null;
+        // 开始复制
+        try {
+            DatabaseHelper helper = DatabaseHelper.getHelper(context);
+            Dao<MstTerminalinfoMZsCart, String> terminalinfoMZsCartDao = helper.getMstTerminalinfoMZsCartDao();
+
+            connection = new AndroidDatabaseConnection(helper.getWritableDatabase(), true);
+            connection.setAutoCommit(false);
+
+            // 复制终端临时表
+            MstTerminalinfoM term = xtTermSelectMStc;
+            MstTerminalinfoMZsCart info = null;
+            if (term != null) {
+                info = new MstTerminalinfoMZsCart();
+                info.setTerminalkey(term.getTerminalkey());
+                info.setRoutekey(term.getRoutekey());
+                info.setTerminalcode(term.getTerminalcode());
+                info.setTerminalname(term.getTerminalname());
+                info.setProvince(term.getProvince());
+                info.setDdtype(ddType);// 督导业务类型 1:协同  2:追溯
+                info.setCity(term.getCity());
+                info.setCounty(term.getCounty());
+                info.setAddress(term.getAddress());
+                info.setContact(term.getContact());
+                info.setMobile(term.getMobile());
+                info.setTlevel(term.getTlevel());
+                info.setSequence(term.getSequence());
+                info.setCycle(term.getCycle());
+                info.setHvolume(term.getHvolume());
+                info.setMvolume(term.getMvolume());
+                info.setPvolume(term.getPvolume());
+                info.setLvolume(term.getLvolume());
+                info.setStatus(term.getStatus());
+                info.setSellchannel(term.getSellchannel());
+                info.setMainchannel(term.getMainchannel());
+                info.setMinorchannel(term.getMinorchannel());
+                info.setAreatype(term.getAreatype());
+                // info.setSisconsistent(term.getSisconsistent());
+                // info.setScondate(term.getScondate());
+                info.setPadisconsistent("1");
+                //info.setPadcondate(term.getPadcondate());
+                info.setComid(term.getComid());
+                info.setRemarks(term.getRemarks());
+                info.setOrderbyno(term.getOrderbyno());
+                //info.setVersion(term.getVersion());
+                //info.setCredate(term.getCredate());
+                info.setCreuser(term.getCreuser());
+                info.setSelftreaty(term.getSelftreaty());
+                info.setCmpselftreaty(term.getCmpselftreaty());
+                //info.setUpdatetime(term.getUpdatetime());
                 info.setUpdateuser(term.getUpdateuser());
                 info.setDeleteflag(term.getDeleteflag());
                 info.setIfminedate(term.getIfminedate());
@@ -625,12 +780,52 @@ public class XtTermSelectService extends XtTermService{
 
         List<XtTermSelectMStc> selectedList = new ArrayList<XtTermSelectMStc>();
         if (valueLst.size() > 0) {
-            for (MstTerminalinfoMCart terminalinfoMCart : valueLst){
-                XtTermSelectMStc xtTermSelectMStc = new XtTermSelectMStc();
-                xtTermSelectMStc.setRoutekey(terminalinfoMCart.getRoutekey());// 路线key
-                xtTermSelectMStc.setTerminalkey(terminalinfoMCart.getTerminalkey());// 终端key
-                xtTermSelectMStc.setTerminalname(terminalinfoMCart.getTerminalname());// 终端name
-                selectedList.add(xtTermSelectMStc);
+            for (MstTerminalinfoMCart term : valueLst){
+                XtTermSelectMStc info = new XtTermSelectMStc();
+                info.setRoutekey(term.getRoutekey());// 路线key
+                info.setTerminalkey(term.getTerminalkey());// 终端key
+                info.setTerminalname(term.getTerminalname());// 终端name
+
+                info.setTerminalcode(term.getTerminalcode());
+                info.setProvince(term.getProvince());
+                // info.setDdtype(2);// 督导业务类型 1:协同  2:追溯
+                info.setCity(term.getCity());
+                info.setCounty(term.getCounty());
+                info.setAddress(term.getAddress());
+                info.setContact(term.getContact());
+                info.setMobile(term.getMobile());
+                info.setTlevel(term.getTlevel());
+                info.setSequence(term.getSequence());
+                info.setCycle(term.getCycle());
+                info.setHvolume(term.getHvolume());
+                info.setMvolume(term.getMvolume());
+                info.setPvolume(term.getPvolume());
+                info.setLvolume(term.getLvolume());
+                info.setStatus(term.getStatus());
+                info.setSellchannel(term.getSellchannel());
+                info.setMainchannel(term.getMainchannel());
+                info.setMinorchannel(term.getMinorchannel());
+                info.setAreatype(term.getAreatype());
+                // info.setSisconsistent(term.getSisconsistent());
+                // info.setScondate(term.getScondate());
+                info.setPadisconsistent("1");
+                //info.setPadcondate(term.getPadcondate());
+                info.setComid(term.getComid());
+                info.setRemarks(term.getRemarks());
+                info.setOrderbyno(term.getOrderbyno());
+                //info.setVersion(term.getVersion());
+                //info.setCredate(term.getCredate());
+                info.setCreuser(term.getCreuser());
+                info.setSelftreaty(term.getSelftreaty());
+                info.setCmpselftreaty(term.getCmpselftreaty());
+                //info.setUpdatetime(term.getUpdatetime());
+                info.setUpdateuser(term.getUpdateuser());
+                info.setDeleteflag(term.getDeleteflag());
+                info.setIfminedate(term.getIfminedate());
+                info.setIfmine(term.getIfmine());
+
+
+                selectedList.add(info);
             }
         }
         return selectedList;
@@ -668,12 +863,52 @@ public class XtTermSelectService extends XtTermService{
 
         List<XtTermSelectMStc> selectedList = new ArrayList<XtTermSelectMStc>();
         if (valueLst.size() > 0) {
-            for (MstTerminalinfoMZsCart terminalinfoMCart : valueLst){
-                XtTermSelectMStc xtTermSelectMStc = new XtTermSelectMStc();
-                xtTermSelectMStc.setRoutekey(terminalinfoMCart.getRoutekey());// 路线key
-                xtTermSelectMStc.setTerminalkey(terminalinfoMCart.getTerminalkey());// 终端key
-                xtTermSelectMStc.setTerminalname(terminalinfoMCart.getTerminalname());// 终端name
-                selectedList.add(xtTermSelectMStc);
+            for (MstTerminalinfoMZsCart term : valueLst){
+                XtTermSelectMStc info = new XtTermSelectMStc();
+                info.setRoutekey(term.getRoutekey());// 路线key
+                info.setTerminalkey(term.getTerminalkey());// 终端key
+                info.setTerminalname(term.getTerminalname());// 终端name
+
+                info.setTerminalcode(term.getTerminalcode());
+                info.setProvince(term.getProvince());
+                // info.setDdtype(2);// 督导业务类型 1:协同  2:追溯
+                info.setCity(term.getCity());
+                info.setCounty(term.getCounty());
+                info.setAddress(term.getAddress());
+                info.setContact(term.getContact());
+                info.setMobile(term.getMobile());
+                info.setTlevel(term.getTlevel());
+                info.setSequence(term.getSequence());
+                info.setCycle(term.getCycle());
+                info.setHvolume(term.getHvolume());
+                info.setMvolume(term.getMvolume());
+                info.setPvolume(term.getPvolume());
+                info.setLvolume(term.getLvolume());
+                info.setStatus(term.getStatus());
+                info.setSellchannel(term.getSellchannel());
+                info.setMainchannel(term.getMainchannel());
+                info.setMinorchannel(term.getMinorchannel());
+                info.setAreatype(term.getAreatype());
+                // info.setSisconsistent(term.getSisconsistent());
+                // info.setScondate(term.getScondate());
+                info.setPadisconsistent("1");
+                //info.setPadcondate(term.getPadcondate());
+                info.setComid(term.getComid());
+                info.setRemarks(term.getRemarks());
+                info.setOrderbyno(term.getOrderbyno());
+                //info.setVersion(term.getVersion());
+                //info.setCredate(term.getCredate());
+                info.setCreuser(term.getCreuser());
+                info.setSelftreaty(term.getSelftreaty());
+                info.setCmpselftreaty(term.getCmpselftreaty());
+                //info.setUpdatetime(term.getUpdatetime());
+                info.setUpdateuser(term.getUpdateuser());
+                info.setDeleteflag(term.getDeleteflag());
+                info.setIfminedate(term.getIfminedate());
+                info.setIfmine(term.getIfmine());
+
+
+                selectedList.add(info);
             }
         }
         return selectedList;

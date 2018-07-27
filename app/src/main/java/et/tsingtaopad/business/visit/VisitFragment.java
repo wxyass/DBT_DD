@@ -19,6 +19,8 @@ import java.util.List;
 import et.tsingtaopad.R;
 import et.tsingtaopad.base.BaseFragmentSupport;
 import et.tsingtaopad.business.visit.bean.VisitContentStc;
+import et.tsingtaopad.core.util.dbtutil.DateUtil;
+import et.tsingtaopad.core.util.dbtutil.PrefUtils;
 import et.tsingtaopad.core.view.alertview.AlertView;
 import et.tsingtaopad.core.view.alertview.OnItemClickListener;
 import et.tsingtaopad.db.table.MstTerminalinfoMCart;
@@ -33,6 +35,7 @@ import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTermGetFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTermSelectFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTermSpecialFragment;
 import et.tsingtaopad.home.app.MainService;
+import et.tsingtaopad.home.initadapter.GlobalValues;
 
 /**
  * Created by yangwenmin on 2018/3/12.
@@ -165,6 +168,14 @@ public class VisitFragment extends BaseFragmentSupport implements View.OnClickLi
                 break;
             case R.id.dd_btn_xt_term:// 协同终端夹
                 if (getCmmAreaMCount() > 0) {
+
+                    // 终端夹隔天清零
+                    String addTime = PrefUtils.getString(getActivity(), GlobalValues.XT_CART_TIME, DateUtil.getDateTimeStr(7));
+                    if(!DateUtil.getDateTimeStr(7).equals(addTime)){
+                        // 隔天清空购物车表数据
+                        service.deleteCart("MST_TERMINALINFO_M_CART","1");
+                    }
+
                     toXtTermCartFragment();
                 } else {
                     Toast.makeText(getActivity(), R.string.sync_data, Toast.LENGTH_SHORT).show();
@@ -187,6 +198,15 @@ public class VisitFragment extends BaseFragmentSupport implements View.OnClickLi
 
             case R.id.dd_btn_zs_term:// 追溯文件夹
                 if (getCmmAreaMCount() > 0) {
+
+                    // 终端夹隔天清零
+                    String addTime = PrefUtils.getString(getActivity(), GlobalValues.ZS_CART_TIME, DateUtil.getDateTimeStr(7));
+                    if (!DateUtil.getDateTimeStr(7).equals(addTime)) {
+                        // 终端夹隔天清零
+                        service.deleteCart("MST_TERMINALINFO_M_ZSCART", "2");
+                    }
+
+
                     toZsTermCartFragment();
                 } else {
                     Toast.makeText(getActivity(), R.string.sync_data, Toast.LENGTH_SHORT).show();

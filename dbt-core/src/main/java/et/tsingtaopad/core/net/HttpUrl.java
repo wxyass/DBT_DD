@@ -15,8 +15,8 @@ public class HttpUrl {
     //public static final String BASE_URL = "http://172.16.11.121:8080/mainintf";
     //public static final String BASE_URL = "http://172.16.11.94:8080/mainintf";
     // public static final String BASE_URL = "http://172.21.25.103:8080/mainintf";
-    //public static final String BASE_URL = "http://192.168.1.191:8080/mainintf";
-    // public static final String BASE_URL = "http://192.168.137.121:8080/mainintf";
+    // public static final String BASE_URL = "http://192.168.49.52:8080/mainintf";
+    // public static final String BASE_URL = "http://192.168.1.191:8080/mainintf";
      // public static final String BASE_URL = "http://172.16.2.131:8080/mainintf/";
 
     // 正式环境

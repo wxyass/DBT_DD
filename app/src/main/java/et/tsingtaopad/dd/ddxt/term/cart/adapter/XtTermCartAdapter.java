@@ -97,7 +97,7 @@ public class XtTermCartAdapter extends BaseAdapter implements OnClickListener,Vi
             convertView = LayoutInflater.from(context).inflate(R.layout.item_termcart, null);
             holder.terminalSequenceEt = (EditText) convertView.findViewById(R.id.item_termcart_et_sequence);
             holder.terminalNameTv = (TextView) convertView.findViewById(R.id.item_termcart_tv_name);
-            holder.visitDateTv = (TextView) convertView.findViewById(R.id.item_termcart_tv_visitdate);// 拜访时间汇总
+            // holder.visitDateTv = (TextView) convertView.findViewById(R.id.item_termcart_tv_visitdate);// 拜访时间汇总
             holder.terminalRb = (RadioButton) convertView.findViewById(R.id.item_termcart_rb);// 条目选中标记
             holder.terminalTypeTv = (TextView) convertView.findViewById(R.id.item_termcart_tv_type);// 渠道类型
 
@@ -159,12 +159,12 @@ public class XtTermCartAdapter extends BaseAdapter implements OnClickListener,Vi
         holder.terminalSequenceEt.setText(item.getSequence());
         holder.terminalNameTv.setText(item.getTerminalname());
         holder.terminalTypeTv.setText(item.getTerminalType());
-        if (!CheckUtil.isBlankOrNull(item.getVisitTime())) {
+        /*if (!CheckUtil.isBlankOrNull(item.getVisitTime())) {
             holder.visitDateTv.setVisibility(View.VISIBLE);
             holder.visitDateTv.setText(item.getVisitTime());
         } else {
             holder.visitDateTv.setVisibility(View.GONE);
-        }
+        }*/
 
         // 上传标记
         /*if (ConstValues.FLAG_1.equals(item.getSyncFlag())) {
@@ -235,10 +235,10 @@ public class XtTermCartAdapter extends BaseAdapter implements OnClickListener,Vi
             holder.terminalRb.setChecked(true);
             holder.terminalNameTv.setTextColor(context.getResources().getColor(R.color.font_color_green));
             holder.terminalTypeTv.setTextColor(context.getResources().getColor(R.color.font_color_green));
-            holder.visitDateTv.setTextColor(context.getResources().getColor(R.color.font_color_green));
+            //holder.visitDateTv.setTextColor(context.getResources().getColor(R.color.font_color_green));
             // 选中的条目,根据是否今日拜访过,显示拜访时间
             if (!CheckUtil.isBlankOrNull(item.getVisitTime())) {
-                holder.visitDateTv.setVisibility(View.VISIBLE);
+                //holder.visitDateTv.setVisibility(View.VISIBLE);
             }
         } else {
             // 未选中的条目,变成白色
@@ -248,21 +248,21 @@ public class XtTermCartAdapter extends BaseAdapter implements OnClickListener,Vi
                 // 已提交过的
                 holder.terminalNameTv.setTextColor(context.getResources().getColor(R.color.termlst_sync_font_color));
                 holder.terminalTypeTv.setTextColor(context.getResources().getColor(R.color.termlst_sync_font_color));
-                holder.visitDateTv.setTextColor(context.getResources().getColor(R.color.termlst_sync_font_color));
+                //holder.visitDateTv.setTextColor(context.getResources().getColor(R.color.termlst_sync_font_color));
             } else if (ConstValues.FLAG_0.equals(item.getUploadFlag())) {
                 // 已拜访过未上传的
                 holder.terminalNameTv.setTextColor(context.getResources().getColor(R.color.termlst_insync_font_color));
                 holder.terminalTypeTv.setTextColor(context.getResources().getColor(R.color.termlst_insync_font_color));
-                holder.visitDateTv.setTextColor(context.getResources().getColor(R.color.termlst_insync_font_color));
+                //holder.visitDateTv.setTextColor(context.getResources().getColor(R.color.termlst_insync_font_color));
             } else {
                 // 未拜访过的
                 holder.terminalNameTv.setTextColor(Color.BLACK);
                 holder.terminalNameTv.setTextColor(context.getResources().getColor(R.color.listview_item_font_color));
                 holder.terminalTypeTv.setTextColor(context.getResources().getColor(R.color.listview_item_font_color));
-                holder.visitDateTv.setTextColor(context.getResources().getColor(R.color.listview_item_font_color));
+                //holder.visitDateTv.setTextColor(context.getResources().getColor(R.color.listview_item_font_color));
             }
             // 未选中的条目,将拜访时间隐藏
-            holder.visitDateTv.setVisibility(View.GONE);
+            //holder.visitDateTv.setVisibility(View.GONE);
         }
 
         return convertView;
@@ -274,7 +274,7 @@ public class XtTermCartAdapter extends BaseAdapter implements OnClickListener,Vi
         private EditText terminalSequenceEt;
         private RadioButton terminalRb;
         private TextView terminalNameTv;
-        private TextView visitDateTv;
+        // private TextView visitDateTv;
         private TextView terminalTypeTv;
         private ImageView updateIv;
         private ImageView updateFailIv;
