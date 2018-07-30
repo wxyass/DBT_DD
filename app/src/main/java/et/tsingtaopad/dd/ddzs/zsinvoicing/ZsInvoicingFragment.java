@@ -279,6 +279,15 @@ public class ZsInvoicingFragment extends XtBaseVisitFragment implements View.OnC
                 valsupplyMTemp.setValterid(mitValterMTempKey);// 终端追溯主表ID
                 valsupplyMTemp.setValaddagencysupply("Y");// 是否新增供货关系
                 valsupplyMTemp.setValagencysupplyflag("Y");// 供货关系正确与否
+
+                valsupplyMTemp.setValproerror("Y");// 品项有误
+                valsupplyMTemp.setValagencyerror("Y");// 经销商有误
+                valsupplyMTemp.setValdataerror("Y");// 数据有误
+                valsupplyMTemp.setValiffleeing("Y");// 是否窜货
+
+                valsupplyMTemp.setValagencyqdflag("Y");// 供货关系正确渠道价状态
+                valsupplyMTemp.setValagencylsflag("Y");// 供货关系正确零售价状态
+
                 valsupplyMTemp.setValagency(agency.getKey());// 经销商;
                 valsupplyMTemp.setValagencyname(agency.getValue());// 经销商名称
                 valsupplyMTemp.setValpro(product.getKey());// 产品
@@ -481,13 +490,35 @@ public class ZsInvoicingFragment extends XtBaseVisitFragment implements View.OnC
                         valsupplyMTemp.setValagencysupplyflag("N");// 供货关系正确与否
                         valsupplyMTemp.setValproerror("Y");// 品项有误
                         valsupplyMTemp.setValagencyerror("N");// 经销商有误
-                        valsupplyMTemp.setValdataerror("N");// 数据有误
-                        valsupplyMTemp.setValiffleeing("N");// 窜货
+                        valsupplyMTemp.setValdataerror("Y");// 数据有误
+                        valsupplyMTemp.setValiffleeing("Y");// 窜货
+                        valsupplyMTemp.setValagencyqdflag("N");// 供货关系正确渠道价状态
+                        valsupplyMTemp.setValagencylsflag("N");// 供货关系正确零售价状态
                         dialog.dismiss();
                         handler.sendEmptyMessage(ZsInvoicingFragment.INIT_AMEND);
                     } else {
                         valsupplyMTemp.setValagencysupplyflag("N");// 供货关系正确与否
                         valsupplyMTemp.setValproerror("N");// 品项有误
+
+                        if(cb2.isChecked()){// 经销商有误
+                            valsupplyMTemp.setValagencyerror("Y");// 经销商有误
+                        }else{
+                            valsupplyMTemp.setValagencyerror("N");// 经销商有误
+                        }
+                        if(cb3.isChecked()){// 数据有误
+                            valsupplyMTemp.setValdataerror("Y");// 数据有误
+                        }else{
+                            valsupplyMTemp.setValdataerror("N");// 数据有误
+                        }
+                        if(cb4.isChecked()){// 窜货
+                            valsupplyMTemp.setValiffleeing("Y");// 窜货
+                        }else{
+                            valsupplyMTemp.setValiffleeing("N");// 窜货
+                        }
+
+
+
+
 
                         Bundle bundle = new Bundle();
                         bundle.putInt("position", position);//

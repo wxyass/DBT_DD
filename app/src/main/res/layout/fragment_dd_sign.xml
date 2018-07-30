@@ -104,16 +104,129 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
-
-            android:orientation="horizontal">
+            android:background="@color/bg_app"
+            android:orientation="vertical">
 
             <et.tsingtaopad.view.NoScrollListView
                 android:id="@+id/first_lv_sign"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:divider="@color/bg_page_color"
+                android:visibility="gone"
                 android:dividerHeight="0dp"/>
+
+            <LinearLayout
+                android:id="@+id/item_sign_ll_all"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="30dp"
+                android:background="@color/bg_app"
+                android:orientation="vertical">
+
+                <!-- 时间： -->
+                <RelativeLayout
+                    android:id="@+id/item_sign_rl_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_app"
+                    android:gravity="center_vertical"
+                    >
+
+                    <TextView
+                        android:id="@+id/tv01"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_centerVertical="true"
+                        android:textColor="#333333"
+                        android:background="@drawable/icon_work_shijian"
+                        android:textSize="@dimen/font_size3"/>
+
+                    <!--列表下班打卡-->
+                    <TextView
+                        android:id="@+id/item_sign_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@id/tv01"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/gray_color_333333"
+                        android:gravity="center_vertical|left"
+                        android:text="下班打卡"
+                        android:textSize="@dimen/font_size3"
+                        />
+
+                    <TextView
+                        android:id="@+id/item_sign_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@id/item_sign_type"
+                        android:gravity="center_vertical|left"
+                        android:text=""
+                        android:textColor="@color/tab_select"
+                        android:textSize="@dimen/font_size5"
+                        />
+
+
+                </RelativeLayout>
+
+                <!-- 地点： -->
+                <RelativeLayout
+                    android:id="@+id/item_sign_rl_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/bg_app"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tv02"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/icon_work_locat"
+                        android:textColor="#333333"
+                        android:textSize="@dimen/font_size3"/>
+
+                    <TextView
+                        android:id="@+id/item_sign_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@id/tv02"
+                        android:gravity="center_vertical|left"
+                        android:text=""
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/font_size5"
+                        />
+
+                </RelativeLayout>
+
+                <!-- 图片： -->
+                <RelativeLayout
+                    android:id="@+id/item_sign_rl_pic"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@color/bg_app"
+                    android:gravity="center_vertical"
+                    >
+
+                    <ImageView
+                        android:id="@+id/tv03_pic"
+                        android:layout_width="60dp"
+                        android:layout_height="100dp"
+                        android:layout_centerVertical="true"
+                        android:textColor="#333333"
+                        android:textSize="@dimen/font_size3"/>
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

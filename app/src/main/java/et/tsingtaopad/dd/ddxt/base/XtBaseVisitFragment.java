@@ -63,11 +63,7 @@ public class XtBaseVisitFragment extends BaseFragmentSupport {
         seeFlag = bundle.getString("seeFlag");
     }
 
-    /**
-     * 通过uri获取图片并进行压缩
-     *
-     * @param uri
-     */
+    /*// 通过uri获取图片并进行压缩
     public static Bitmap getBitmapFormUri(Context ac, Uri uri) throws FileNotFoundException, IOException {
         InputStream input = ac.getContentResolver().openInputStream(uri);
         BitmapFactory.Options onlyBoundsOptions = new BitmapFactory.Options();
@@ -104,12 +100,7 @@ public class XtBaseVisitFragment extends BaseFragmentSupport {
         return compressImage(bitmap);//再进行质量压缩
     }
 
-    /**
-     * 质量压缩方法
-     *
-     * @param image
-     * @return
-     */
+    // 质量压缩方法
     public static Bitmap compressImage(Bitmap image) {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -124,5 +115,5 @@ public class XtBaseVisitFragment extends BaseFragmentSupport {
         ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());//把压缩后的数据baos存放到ByteArrayInputStream中
         Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);//把ByteArrayInputStream数据生成图片
         return bitmap;
-    }
+    }*/
 }

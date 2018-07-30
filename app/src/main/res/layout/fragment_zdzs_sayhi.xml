@@ -148,7 +148,7 @@
                 <!--标题-->
                 <TextView
                     style="@style/zdzs_sayhi_title"
-                    android:text="是否我品销售范围"/>
+                    android:text="我品销售范围"/>
 
                 <!--内容1-->
                 <TextView
@@ -180,7 +180,7 @@
                 <!--标题-->
                 <TextView
                     style="@style/zdzs_sayhi_title"
-                    android:text="是否竞品销售范围"/>
+                    android:text="竞品销售范围"/>
 
                 <!--内容1-->
                 <TextView

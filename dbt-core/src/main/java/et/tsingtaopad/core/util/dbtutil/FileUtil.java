@@ -572,6 +572,23 @@ public class FileUtil {
 		}
 		return zipPATH;
 	}
+	/**
+	 * 获取签到文件夹路径(以/结尾)
+	 * @return 返回: /storage/emulated/0/dbt/et.tsingtaopad/photo/
+	 */
+	public static String getSignPath(){
+		// /storage/emulated/0/Android/data/包名/files/zip/
+		//String path = Latte.getApplicationContext().getExternalFilesDir("zip").getPath()+ File.separator ;
+		String sdcardPath = getSDPath() + "";
+		String DbtPATH = sdcardPath + "/dbt/et.tsingtaopad";
+		String zipPATH = DbtPATH + "/sign/";
+
+		File dir = new File(zipPATH);
+		if (!dir.exists()) {
+			dir.mkdirs();
+		}
+		return zipPATH;
+	}
 
 	//-----------------------------------------------------------------------------------------------
 	/**
@@ -628,6 +645,23 @@ public class FileUtil {
 		return photoPATH;
 	}
 
+	/**
+	 * 获取压缩文件夹路径(不以/结尾)
+	 * @return 返回: /storage/emulated/0/dbt/et.tsingtaopad/zip
+	 */
+	public static String getSignPathNoX(){
+		// /storage/emulated/0/Android/data/包名/files/zip/
+		//String path = Latte.getApplicationContext().getExternalFilesDir("zip").getPath()+ File.separator ;
+		String sdcardPath = getSDPath() + "";
+		String DbtPATH = sdcardPath + "/dbt/et.tsingtaopad";
+		String zipPATH = DbtPATH + "/sign";
+
+		File dir = new File(zipPATH);
+		if (!dir.exists()) {
+			dir.mkdirs();
+		}
+		return zipPATH;
+	}
 	/**
 	 * 获取压缩文件夹路径(不以/结尾)
 	 * @return 返回: /storage/emulated/0/dbt/et.tsingtaopad/zip

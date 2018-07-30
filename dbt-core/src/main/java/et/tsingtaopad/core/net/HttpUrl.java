@@ -20,7 +20,7 @@ public class HttpUrl {
      // public static final String BASE_URL = "http://172.16.2.131:8080/mainintf/";
 
     // 正式环境
-      public static final String BASE_URL = "http://172.16.1.95:8001/mainintf";
+    public static final String BASE_URL = "http://172.16.1.95:8001/mainintf";
 
     public static final String API_HOST = BASE_URL+"/DdController/";
 

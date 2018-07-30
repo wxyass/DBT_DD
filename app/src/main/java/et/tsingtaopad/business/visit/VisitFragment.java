@@ -31,6 +31,7 @@ import et.tsingtaopad.dd.ddagencyres.DdAgencySelectFragment;
 import et.tsingtaopad.dd.ddxt.term.cart.XtTermCartFragment;
 import et.tsingtaopad.dd.ddxt.term.select.XtTermSelectFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zscart.ZsTermCartFragment;
+import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTemplateFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTermGetFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTermSelectFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTermSpecialFragment;
@@ -56,6 +57,7 @@ public class VisitFragment extends BaseFragmentSupport implements View.OnClickLi
     RelativeLayout agencyresBtn;
     RelativeLayout agencycheckBtn;
     RelativeLayout addtermBtn;
+    RelativeLayout ddmodulBtn;
     //RelativeLayout startSync;
 
     private TextView visit_xt_termname;
@@ -110,6 +112,7 @@ public class VisitFragment extends BaseFragmentSupport implements View.OnClickLi
         agencyresBtn = (RelativeLayout) view.findViewById(R.id.dd_btn_zs_agencyres);
         agencycheckBtn = (RelativeLayout) view.findViewById(R.id.dd_btn_zs_agencycheck);
         addtermBtn = (RelativeLayout) view.findViewById(R.id.dd_btn_zs_addterm);
+        ddmodulBtn = (RelativeLayout) view.findViewById(R.id.dd_btn_zs_ddmodul);
 
 
         visit_xt_termname = (TextView)view. findViewById(R.id.visit_xt_termname);
@@ -135,6 +138,7 @@ public class VisitFragment extends BaseFragmentSupport implements View.OnClickLi
         agencyresBtn.setOnClickListener(this);
         agencycheckBtn.setOnClickListener(this);
         addtermBtn.setOnClickListener(this);
+        ddmodulBtn.setOnClickListener(this);
 
     }
 
@@ -236,6 +240,15 @@ public class VisitFragment extends BaseFragmentSupport implements View.OnClickLi
             case R.id.dd_btn_zs_addterm:// 漏店补录
                 if (getCmmAreaMCount() > 0) {
                     changeHomeFragment(new DdAddTermFragment(), "ddaddtermfragment");
+                } else {
+                    Toast.makeText(getActivity(), R.string.sync_data, Toast.LENGTH_SHORT).show();
+                    changeHomeFragment(new SyncBasicFragment(), "syncbasicfragment");
+                }
+
+                break;
+            case R.id.dd_btn_zs_ddmodul:// 督导模板
+                if (getCmmAreaMCount() > 0) {
+                    changeHomeFragment(new ZsTemplateFragment(), "zstemplatefragment");
                 } else {
                     Toast.makeText(getActivity(), R.string.sync_data, Toast.LENGTH_SHORT).show();
                     changeHomeFragment(new SyncBasicFragment(), "syncbasicfragment");

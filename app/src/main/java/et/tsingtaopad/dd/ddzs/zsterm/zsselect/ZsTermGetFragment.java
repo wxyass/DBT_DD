@@ -1326,8 +1326,10 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
                 for (XtTermSelectMStc selectMStc : termList) {
                     selectMStc.setIsSelectToCart("0");
                 }
+
                 selectedList.clear();
                 selectAdapter.notifyDataSetChanged();
+                xtSelectService.deleteData("MST_TERMINALINFO_M_ZSCART");// 清空购物车
                 confirmTv.setText("确定" + "(" + selectedList.size() + ")");
                 break;
             /*case R.id.xtbf_termselect_bt_search:// 查询

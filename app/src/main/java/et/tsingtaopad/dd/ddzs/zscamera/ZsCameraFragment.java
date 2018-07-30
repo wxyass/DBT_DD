@@ -254,7 +254,8 @@ public class ZsCameraFragment extends XtBaseVisitFragment implements View.OnClic
                                 String imagefileString = "";
                                 try {
                                     // 裁剪 压缩
-                                    Bitmap bitmap = getBitmapFormUri(getContext(), uri);
+                                    // Bitmap bitmap = getBitmapFormUri(getContext(), uri);
+                                    Bitmap bitmap = FunUtil.getBitmapFormUri(getContext(), uri);
                                     // 添加水印
                                     //bitmap = cameraService.addWaterBitmap(bitmap, DateUtil.getDateTimeStr(3),"username",termname,cameraDataStc.getPictypename());
                                     // 删除原图
