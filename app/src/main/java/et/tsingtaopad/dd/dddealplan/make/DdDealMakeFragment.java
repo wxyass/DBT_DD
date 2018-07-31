@@ -310,9 +310,14 @@ public class DdDealMakeFragment extends BaseFragmentSupport implements View.OnCl
             // 校验复查时间不能小于当前时间
             ishaveName = false;
             Toast.makeText(getActivity(),"复查时间不能小于当前时间",Toast.LENGTH_SHORT).show();
-        } else if("".equals(routename.getText().toString())||TextUtils.isEmpty(routename.getText().toString())){
+        }
+        /*else if("".equals(routename.getText().toString())||TextUtils.isEmpty(routename.getText().toString())){
             ishaveName = false;
             Toast.makeText(getActivity(),"请至少选择一条路线",Toast.LENGTH_SHORT).show();
+        }*/
+        else if("".equals(grid.getText().toString())||TextUtils.isEmpty(grid.getText().toString())){
+            ishaveName = false;
+            Toast.makeText(getActivity(),"请至少选择个定格",Toast.LENGTH_SHORT).show();
         }
         else if("".equals(question.getText().toString())||TextUtils.isEmpty(question.getText().toString())){
             ishaveName = false;
@@ -425,17 +430,15 @@ public class DdDealMakeFragment extends BaseFragmentSupport implements View.OnCl
         if (!list.isEmpty()) {
             /* 输出list值 */
             for (int i = 0; i < list.size(); i++) {
-                if(!listToString.contains(list.get(i).getRoutename())){
+                if(!listToString.contains(FunUtil.isBlankOrNullTo(list.get(i).getRoutename(),""))){
                     listToString += list.get(i).getRoutename();
                     listToString += ",";
                 }
             }
         }
-
         if (listToString.endsWith(",")) {
             listToString = listToString.substring(0,listToString.length() - 1);
         }
-
         return listToString;
     }
 }

@@ -14,6 +14,8 @@ public class SignStc {
     private String address;// 地址
     private String remark;// 原因
     private String systime;// 系统时间
+    private String imagefileString;//
+    private String picname;// 图片名称 IMG_20180731_132657.jpg
 
     public SignStc() {
     }
@@ -98,6 +100,22 @@ public class SignStc {
 
     public void setSystime(String systime) {
         this.systime = systime;
+    }
+
+    public String getImagefileString() {
+        return imagefileString;
+    }
+
+    public void setImagefileString(String imagefileString) {
+        this.imagefileString = imagefileString;
+    }
+
+    public String getPicname() {
+        return picname;
+    }
+
+    public void setPicname(String picname) {
+        this.picname = picname;
     }
 }
 

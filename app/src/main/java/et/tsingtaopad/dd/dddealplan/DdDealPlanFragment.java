@@ -122,8 +122,9 @@ public class DdDealPlanFragment extends BaseFragmentSupport implements View.OnCl
         dealPlanAdapter = new DdDealPlanAdapter(getActivity(), dataLst, new IClick() {
             @Override
             public void listViewItemClick(int position, View v) {
-                DealStc stc = dataLst.get(position);
 
+                // 设置 条目是否展开
+                DealStc stc = dataLst.get(position);
                 int id = v.getId();
                 switch (id) {
                     case R.id.item_dealplan_rl_termname:// 终端名称
@@ -152,16 +153,11 @@ public class DdDealPlanFragment extends BaseFragmentSupport implements View.OnCl
                             alertShow6(position);// 弹窗: 未通过,已通过
                         }
                         break;
-
                 }
-
-
-
             }
         });
         monthplan_lv.setAdapter(dealPlanAdapter);
         ViewUtil.setListViewHeight(monthplan_lv);
-
     }
 
     private void initUrlData() {

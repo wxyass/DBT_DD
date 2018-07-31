@@ -32,6 +32,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blankj.utilcode.util.FileUtils;
+import com.bumptech.glide.Glide;
 
 import java.io.File;
 import java.lang.ref.SoftReference;
@@ -65,9 +66,11 @@ import et.tsingtaopad.core.util.dbtutil.ViewUtil;
 import et.tsingtaopad.core.util.file.FileTool;
 import et.tsingtaopad.db.table.MitValpicMTemp;
 import et.tsingtaopad.dd.ddxt.camera.XtCameraHandler;
+import et.tsingtaopad.dd.ddxt.invoicing.XtInvoicingFragment;
 import et.tsingtaopad.dd.ddzs.zscamera.ZsCameraFragment;
 import et.tsingtaopad.home.initadapter.GlobalValues;
 import et.tsingtaopad.http.HttpParseJson;
+import et.tsingtaopad.initconstvalues.domain.KvStc;
 import et.tsingtaopad.sign.bean.SignStc;
 import et.tsingtaopad.util.requestHeadUtil;
 
@@ -90,14 +93,15 @@ public class DdSignActivity extends BaseActivity implements View.OnClickListener
     public static final int DD_AGENCY_CHECKSELECT_FAIL = 1102;//
     public static final int SHOW_PROGRESS = 1103;
     public static final int CLOSE_PROGRESS = 1104;
+    public static final int SUC_CAMERA_CLOSE_PROGRESS = 1105;
 
     private ImageView first_img_on_sign;
     private ImageView first_img_down_sign;
     private LinearLayout first_img_click_sign;
     private TextView tv_type;
     private TextView tv_time;
-    private TextView sign_time;
-    private ImageView tv03_pic;
+    /*private TextView sign_time;
+    private ImageView tv03_pic;*/
     private et.tsingtaopad.view.NoScrollListView first_lv_sign;
 
     MyHandler handler;
@@ -154,8 +158,8 @@ public class DdSignActivity extends BaseActivity implements View.OnClickListener
         first_img_click_sign = (LinearLayout) findViewById(R.id.first_img_click_sign);
         tv_type = (TextView) findViewById(R.id.first_tv_type);
         tv_time = (TextView) findViewById(R.id.first_tv_time);
-        sign_time = (TextView) findViewById(R.id.item_sign_time);
-        tv03_pic = (ImageView) findViewById(R.id.tv03_pic);
+        /*sign_time = (TextView) findViewById(R.id.item_sign_time);
+        tv03_pic = (ImageView) findViewById(R.id.tv03_pic);*/
         first_lv_sign = (et.tsingtaopad.view.NoScrollListView) findViewById(R.id.first_lv_sign);
         first_img_click_sign.setOnClickListener(this);
 
@@ -198,6 +202,20 @@ public class DdSignActivity extends BaseActivity implements View.OnClickListener
         ViewUtil.setListViewHeight(first_lv_sign);
 
 
+
+
+
+
+
+        /*final File tempFile = new File(FileUtil.getSignPath(), "IMG_20180731_132657.jpg");
+        //final File tempFile = new File(FileUtil.getPhotoPath()+camerainfostc.getLocalpath());
+        Uri fileUri = null;
+
+
+        fileUri = Uri.fromFile(tempFile);// 将File转为Uri
+        Glide.with(DdSignActivity.this)
+                .load(fileUri)
+                .into(tv03_pic);*/
     }
 
 
@@ -261,7 +279,7 @@ public class DdSignActivity extends BaseActivity implements View.OnClickListener
                                 // 保存到表
                                 // MitValpicMTemp valpicMTemp = valueLst.get(position);
                                 CameraImageBean cameraImageBean = CameraImageBean.getInstance();
-                                String picname = cameraImageBean.getPicname();
+                                String picname = cameraImageBean.getPicname();// IMG_20180731_132657.jpg
                                 Uri uri = cameraImageBean.getmPath();
                                 // 将图片转成字符串
                                 String imagefileString = "";
@@ -282,17 +300,30 @@ public class DdSignActivity extends BaseActivity implements View.OnClickListener
                                     // 将图片记录保存到数据库
                                     // String id = xtCameraService.saveZsPicData(valpicMTemp, picname,imagefileString, termId,termCart, mitValterMTempKey, mstTerminalInfoMStc);
 
+
+
+
                                     // 更新UI界面 刷新适配器
-                                    Message message1 = new Message();
+                                    /*Message message1 = new Message();
                                     message1.what = CLOSE_PROGRESS;
-                                    handler.sendMessage(message1);// 刷新UI
+                                    handler.sendMessage(message1);// 刷新UI*/
+
+                                    Message message=new Message();
+                                    Bundle bundle=new Bundle();
+                                    bundle.putSerializable("imagefileString", imagefileString);
+                                    bundle.putSerializable("picname", picname);
+                                    message.setData(bundle);
+                                    message.what= SUC_CAMERA_CLOSE_PROGRESS;//拍照成功, 去上传
+                                    handler.sendMessage(message);//发送message信息
 
 
-                                    tv03_pic.setImageBitmap(bitmap);
-                                    sign_time.setText(DateUtil.getDateTimeStr(8));
+                                    /*tv03_pic.setImageBitmap(bitmap);
+                                    sign_time.setText(DateUtil.getDateTimeStr(8));*/
 
                                     /*valpicMTemp.setId(id);
                                     valpicMTemp.setPicname(picname);*/
+
+
 
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -338,6 +369,7 @@ public class DdSignActivity extends BaseActivity implements View.OnClickListener
         final String currentPhotoName = FileTool.getFileNameByTime("IMG", "jpg"); // IMG_20180109_125134.jpg
         //final String currentPhotoName = DateUtil.formatDate(new Date(), null) + ".jpg"; // 20180109125134.jpg
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.putExtra("android.intent.extras.CAMERA_FACING", 1);// 调用前置摄像头
         // final File tempFile = new File(FileTool.CAMERA_PHOTO_DIR, currentPhotoName);
         final File tempFile = new File(FileUtil.getSignPath(), currentPhotoName);
         //final File tempFile = new File(FileUtil.getPhotoPath()+currentPhotoName);
@@ -435,7 +467,7 @@ public class DdSignActivity extends BaseActivity implements View.OnClickListener
     }
 
     // 发送打卡信息
-    private void saveSignData() {
+    private void saveSignData(String imagefileString,String picname) {
 
         String content = "{" +
                 "areaid:'" + PrefUtils.getString(this, "departmentid", "") + "'," +
@@ -443,6 +475,8 @@ public class DdSignActivity extends BaseActivity implements View.OnClickListener
                 "sourcelat:'" + latitude + "'," +  // "24.050067309999999300"   latitude
                 "attencetype:'" + attencetype + "'," +
                 "attencetime:'" + DateUtil.getDateTimeStr(8) + "'," +
+                "imagefileString:'" + imagefileString + "'," +
+                "picname:'" + picname + "'," +
                 "creuser:'" + PrefUtils.getString(this, "userid", "") + "'" +
                 "}";
         ceshiHttp("opt_save_sign_data", content);
@@ -602,8 +636,23 @@ public class DdSignActivity extends BaseActivity implements View.OnClickListener
                 case CLOSE_PROGRESS:
                     fragment.closeDialogSuc();
                     break;
+                case SUC_CAMERA_CLOSE_PROGRESS:
+                    Bundle bundle = msg.getData();
+                    fragment.closeDialogSucCamera(bundle);
+                    break;
             }
         }
+    }
+
+    // 关闭滚动条  上传打卡记录
+    private void closeDialogSucCamera(Bundle bundle) {
+        if (dialog != null) {
+            dialog.dismiss();
+        }
+
+        String imagefileString = (String) bundle.getSerializable("imagefileString");
+        String picname = (String) bundle.getSerializable("picname");
+        saveSignData(imagefileString,picname);
     }
 
     private AlertDialog dialog;

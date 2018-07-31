@@ -43,6 +43,7 @@ public class DdDealPlanService {
             connection.setAutoCommit(false);
             valueLst = valueDao.queryDealPan(helper);//
 
+            // 将搜索出来的条目 设置不展开  并根据整改计划主表主键 查出所有终端,所有路线
             for (DealStc dealStc : valueLst){
                 termNameLst = valueDao.queryDealPlanTermName(helper,dealStc.getRepairid());//
                 dealStc.setTerminalname(listToString(termNameLst));
@@ -94,7 +95,7 @@ public class DdDealPlanService {
         if (!list.isEmpty()) {
             /* 输出list值 */
             for (int i = 0; i < list.size(); i++) {
-                if(!listToString.contains(list.get(i).getRoutename())){
+                if(!listToString.contains(FunUtil.isBlankOrNullTo(list.get(i).getRoutename(),""))){
                     listToString += list.get(i).getRoutename();
                     listToString += ",";
                 }

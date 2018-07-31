@@ -272,6 +272,7 @@ public class DdDealSelectFragment extends BaseFragmentSupport implements View.On
 
                     if(!gridkeyselect.equals(gridkey)){// 当选中的定格key与原先的定格key不相等时
                         selectedList.clear();
+                        routeKey="";
                         confirmTv.setText("确定");
                         // 终端列表显示,之后放到下拉选择后显示
                         select_ll_lv.setVisibility(View.INVISIBLE);
@@ -446,10 +447,15 @@ public class DdDealSelectFragment extends BaseFragmentSupport implements View.On
 
     // 保存终端数据
     private void saveValue() {
-        if("".equals(routeKey)|| TextUtils.isEmpty(routeKey)){//
+        /*if("".equals(routeKey)|| TextUtils.isEmpty(routeKey)){//
             Toast.makeText(getActivity(),"至少选择一条路线",Toast.LENGTH_SHORT).show();
-        }else{
-            // 保存到数据库中
+        }*/
+
+        if("".equals(gridkey)|| TextUtils.isEmpty(gridkey)){//
+            Toast.makeText(getActivity(),"至少选择一个定格",Toast.LENGTH_SHORT).show();
+        }
+        else{
+            // 保存终端数据到数据库中
             xtSelectService.saveMitRepairterM(repairM,gridkey,selectedList,routeKey);
             handler.sendEmptyMessage(DdDealMakeFragment.MAKEPLAN_UP_SUC);
             supportFragmentManager.popBackStack();

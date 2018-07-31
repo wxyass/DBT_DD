@@ -564,8 +564,8 @@ public class XtTermSelectService extends XtTermService{
                 //info.setVersion(term.getVersion());
                 //info.setCredate(term.getCredate());
                 info.setCreuser(term.getCreuser());
-                info.setSelftreaty(term.getSelftreaty());
-                info.setCmpselftreaty(term.getCmpselftreaty());
+                info.setSelftreaty(term.getSelftreaty());// 我品终端合作状态
+                info.setCmpselftreaty(term.getCmpselftreaty());// 竞品终端合作状态
                 //info.setUpdatetime(term.getUpdatetime());
                 info.setUpdateuser(term.getUpdateuser());
                 info.setDeleteflag(term.getDeleteflag());

@@ -607,6 +607,7 @@ public class MstTerminalinfoMDaoImpl extends BaseDaoImpl<MstTerminalinfoM, Strin
             item.setDeleteflag(cursor.getString(cursor.getColumnIndex("deleteflag")));
             item.setIfminedate(cursor.getString(cursor.getColumnIndex("ifminedate")));
             item.setIfmine(cursor.getString(cursor.getColumnIndex("ifmine")));
+            item.setSelftreaty(cursor.getString(cursor.getColumnIndex("selftreaty")));
 
             String status = item.getStatus();
             if (!"2".equals(status)) {//有效终端

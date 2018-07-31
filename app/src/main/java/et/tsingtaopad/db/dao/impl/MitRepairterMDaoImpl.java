@@ -32,7 +32,7 @@ public class MitRepairterMDaoImpl extends BaseDaoImpl<MitRepairterM, String> imp
     public List<DealPlanMakeStc> querySelectTerminal(DatabaseHelper helper, String repairid) {
         List<DealPlanMakeStc> detailStcs = new ArrayList<>();
         StringBuffer buffer = new StringBuffer();
-        buffer.append("select g.terminalkey, g.terminalname,h.gridkey,h.gridname,r.routename,r.routekey,h.username,h.userid from MIT_REPAIRTER_M mv  ");
+        buffer.append("select mv.terminalkey, mv.terminalname,h.gridkey,h.gridname,r.routename,r.routekey,h.username,h.userid from MIT_REPAIRTER_M mv  ");
         buffer.append("    left join MST_TERMINALINFO_M g on g.terminalkey = mv.terminalkey   ");
         buffer.append("    left join MST_GRID_M h on h.gridkey = mv.gridkey   ");
         buffer.append("    left join MST_ROUTE_M r on r.routekey = mv.routekey   ");
