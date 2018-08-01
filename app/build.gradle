@@ -8,8 +8,8 @@ android {
         applicationId "et.tsingtaopad"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
-        versionCode 72
-        versionName "2.4.4.8"
+        versionCode 74
+        versionName "2.4.5"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 

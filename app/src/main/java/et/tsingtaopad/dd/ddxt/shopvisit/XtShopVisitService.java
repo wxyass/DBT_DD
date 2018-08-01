@@ -2382,6 +2382,7 @@ public class XtShopVisitService {
 
         return termInfo;
     }
+
     /**
      * 获取终端主表数据 记录信息
      *
@@ -2462,6 +2463,7 @@ public class XtShopVisitService {
         }
 
         return termInfo;
+
     }
 
     /**

@@ -33,6 +33,7 @@ import et.tsingtaopad.core.view.alertview.OnDismissListener;
 import et.tsingtaopad.core.view.alertview.OnItemClickListener;
 import et.tsingtaopad.db.table.MitValgroupproMTemp;
 import et.tsingtaopad.db.table.MstTerminalinfoMTemp;
+import et.tsingtaopad.db.table.MstTerminalinfoMZsCart;
 import et.tsingtaopad.dd.ddxt.base.XtBaseVisitFragment;
 import et.tsingtaopad.dd.ddxt.checking.XtCheckIndexService;
 import et.tsingtaopad.dd.ddxt.checking.domain.XtCheckIndexCalculateStc;
@@ -65,6 +66,7 @@ public class ZsCheckIndexFragment extends XtBaseVisitFragment implements View.On
 
     private List<CheckIndexPromotionStc> promotionLst;
     private MstTerminalinfoMTemp term;
+    // private MstTerminalinfoMZsCart term;
 
     public static final int INPUT_SUC = 3;
     public static final int INIT_AMEND = 33;// 促销活动修改完成
@@ -114,7 +116,6 @@ public class ZsCheckIndexFragment extends XtBaseVisitFragment implements View.On
          promotionLl = (LinearLayout) view.findViewById(R.id.zdzs_checkindex_ll_promotion_title);
         promotionLv = (ListView) view.findViewById(R.id.zdzs_checkindex_lv_promotion);
 
-
         zdzs_sayhi_rl_prostatus = (RelativeLayout) view.findViewById(R.id.zdzs_sayhi_rl_prostatus);
         zdzs_sayhi_tv_prostatus_con1 = (TextView) view.findViewById(R.id.zdzs_sayhi_tv_prostatus_con1);
         zdzs_sayhi_tv_prostatus_statue = (TextView) view.findViewById(R.id.zdzs_sayhi_tv_prostatus_statue);
@@ -157,6 +158,7 @@ public class ZsCheckIndexFragment extends XtBaseVisitFragment implements View.On
         handler = new MyHandler(this);
         // 查询最新终端临时表数据
         term = service.findTermTempById(termId);
+        // term = service.findZsTermById(termId);
         // 获取最新的终端数据
         channelId = term.getMinorchannel();// 次渠道
 
@@ -266,8 +268,6 @@ public class ZsCheckIndexFragment extends XtBaseVisitFragment implements View.On
             zdzs_sayhi_tv_prostatus_con1.setText("无数据");
         }
         setGroupproStatue();
-
-
     }
 
 

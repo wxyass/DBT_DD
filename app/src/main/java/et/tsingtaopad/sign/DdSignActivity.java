@@ -136,8 +136,21 @@ public class DdSignActivity extends BaseActivity implements View.OnClickListener
         }
 
         initData();
+
+        // 删除文件夹中的所有照片
+        deleteCamera();
+
         // 刚进入 获取打卡信息
         getSignData();
+    }
+
+    // 打卡图片隔天清零  删除文件夹中的所有照片
+    private void deleteCamera() {
+         String attencecameratime = PrefUtils.getString(DdSignActivity.this,"attencecameratime","");
+         if(!DateUtil.getDateTimeStr(7).equals(attencecameratime)){
+             FileUtil.deleteFile(new File(FileUtil.getSignPath()));
+         }
+
     }
 
     // 初始化控件
@@ -216,6 +229,8 @@ public class DdSignActivity extends BaseActivity implements View.OnClickListener
         Glide.with(DdSignActivity.this)
                 .load(fileUri)
                 .into(tv03_pic);*/
+
+        // 删除
     }
 
 
@@ -454,7 +469,6 @@ public class DdSignActivity extends BaseActivity implements View.OnClickListener
         return intent;
     }
 
-
     // 刚进入 获取打卡信息
     private void getSignData() {
 
@@ -475,11 +489,14 @@ public class DdSignActivity extends BaseActivity implements View.OnClickListener
                 "sourcelat:'" + latitude + "'," +  // "24.050067309999999300"   latitude
                 "attencetype:'" + attencetype + "'," +
                 "attencetime:'" + DateUtil.getDateTimeStr(8) + "'," +
-                "imagefileString:'" + imagefileString + "'," +
+                "imagefilestring:'" + imagefileString + "'," +
                 "picname:'" + picname + "'," +
                 "creuser:'" + PrefUtils.getString(this, "userid", "") + "'" +
                 "}";
         ceshiHttp("opt_save_sign_data", content);
+
+        // 记录打卡时间
+        PrefUtils.putString(DdSignActivity.this,"attencecameratime",DateUtil.getDateTimeStr(7));
     }
 
     /**

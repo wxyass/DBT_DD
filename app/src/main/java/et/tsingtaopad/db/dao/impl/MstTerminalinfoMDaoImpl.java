@@ -625,6 +625,12 @@ public class MstTerminalinfoMDaoImpl extends BaseDaoImpl<MstTerminalinfoM, Strin
         List<XtTermSelectMStc> lst = new ArrayList<XtTermSelectMStc>();
         StringBuffer buffer = new StringBuffer();
         buffer.append("select m.terminalkey, m.terminalcode, m.routekey, m.terminalname,m.status,m.sequence, ");
+
+        buffer.append("m.city,m.province, m.county,m.address,m.contact,m.mobile,m.tlevel, ");
+        buffer.append("m.cycle, m.hvolume,m.mvolume,m.pvolume,m.lvolume,m.sellchannel, ");
+        buffer.append("m.mainchannel, m.areatype,m.sisconsistent,m.comid,m.remarks,m.orderbyno,m.creuser, ");
+        buffer.append("m.cmpselftreaty, m.updateuser,m.deleteflag,m.ifminedate,m.ifmine,  ");
+
         //buffer.append("vm.isself, vm.iscmp, vm.selftreaty, vm.cmptreaty, ");
         buffer.append("vmn.isself, vmn.iscmp, m.selftreaty, vmn.cmptreaty,vm.iserror, ");// 我品 竞品 我品协议店,竞品协议店
         buffer.append("vm.padisconsistent,  m.minorchannel, ");// 销售渠道编码
@@ -675,6 +681,35 @@ public class MstTerminalinfoMDaoImpl extends BaseDaoImpl<MstTerminalinfoM, Strin
             }
             item.setMinorchannel(FunUtil.isNullSetSpace(cursor.getString(cursor.getColumnIndex("minorchannel"))));
             item.setTerminalType(cursor.getString(cursor.getColumnIndex("terminalType")));
+
+            item.setProvince(cursor.getString(cursor.getColumnIndex("province")));
+            item.setCity(cursor.getString(cursor.getColumnIndex("city")));
+            item.setCounty(cursor.getString(cursor.getColumnIndex("county")));
+            item.setAddress(cursor.getString(cursor.getColumnIndex("address")));
+            item.setContact(cursor.getString(cursor.getColumnIndex("contact")));
+            item.setMobile(cursor.getString(cursor.getColumnIndex("mobile")));
+            item.setTlevel(cursor.getString(cursor.getColumnIndex("tlevel")));
+            item.setCycle(cursor.getString(cursor.getColumnIndex("cycle")));
+            item.setHvolume(cursor.getString(cursor.getColumnIndex("hvolume")));
+            item.setMvolume(cursor.getString(cursor.getColumnIndex("mvolume")));
+            item.setPvolume(cursor.getString(cursor.getColumnIndex("pvolume")));
+            item.setLvolume(cursor.getString(cursor.getColumnIndex("lvolume")));
+            item.setSellchannel(cursor.getString(cursor.getColumnIndex("sellchannel")));
+            item.setMainchannel(cursor.getString(cursor.getColumnIndex("mainchannel")));
+            item.setAreatype(cursor.getString(cursor.getColumnIndex("areatype")));
+            item.setSisconsistent(cursor.getString(cursor.getColumnIndex("sisconsistent")));
+            item.setComid(cursor.getString(cursor.getColumnIndex("comid")));
+            item.setRemarks(cursor.getString(cursor.getColumnIndex("remarks")));
+            item.setOrderbyno(cursor.getString(cursor.getColumnIndex("orderbyno")));
+            item.setCreuser(cursor.getString(cursor.getColumnIndex("creuser")));
+            item.setCmpselftreaty(cursor.getString(cursor.getColumnIndex("cmpselftreaty")));
+            item.setUpdateuser(cursor.getString(cursor.getColumnIndex("updateuser")));
+            item.setDeleteflag(cursor.getString(cursor.getColumnIndex("deleteflag")));
+            item.setIfminedate(cursor.getString(cursor.getColumnIndex("ifminedate")));
+            item.setIfmine(cursor.getString(cursor.getColumnIndex("ifmine")));
+            item.setSelftreaty(cursor.getString(cursor.getColumnIndex("selftreaty")));
+
+
             String status = item.getStatus();
             if (!"2".equals(status)) {//有效终端
                 lst.add(item);

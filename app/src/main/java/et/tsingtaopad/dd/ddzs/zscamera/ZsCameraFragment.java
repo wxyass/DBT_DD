@@ -78,6 +78,7 @@ public class ZsCameraFragment extends XtBaseVisitFragment implements View.OnClic
 
     // 最新终端信息
     private MstTerminalinfoMTemp termTemp;
+    // private MstTerminalinfoMZsCart termTemp;
     private MstTerminalinfoMZsCart termCart;
 
     // 读取数据库图片表已拍照记录

@@ -7,7 +7,7 @@ package et.tsingtaopad.core.net;
 public class HttpUrl {
 
     // 测试环境
-     public static final String BASE_URL = "http://192.168.0.111:80/mainintf";
+     //public static final String BASE_URL = "http://192.168.0.111:80/mainintf";
     //public static final String BASE_URL = "http://192.168.1.215:8080/mainintf";
 
     //public static final String BASE_URL = "http://192.168.0.120:8080/mainintf";
@@ -16,11 +16,10 @@ public class HttpUrl {
     //public static final String BASE_URL = "http://172.16.11.94:8080/mainintf";
     // public static final String BASE_URL = "http://172.21.25.103:8080/mainintf";
     // public static final String BASE_URL = "http://192.168.49.52:8080/mainintf";
-    // public static final String BASE_URL = "http://192.168.1.191:8080/mainintf";
-     // public static final String BASE_URL = "http://172.16.2.131:8080/mainintf/";
+     public static final String BASE_URL = "http://192.168.1.208:8080/mainintf";
 
     // 正式环境
-    //public static final String BASE_URL = "http://172.16.1.95:8001/mainintf";
+    // public static final String BASE_URL = "http://172.16.1.95:8001/mainintf";
 
     public static final String API_HOST = BASE_URL+"/DdController/";
 

@@ -304,7 +304,7 @@ public class ZsChatvieFragment extends XtBaseVisitFragment implements View.OnCli
                 valsupplyMTemp.setId(FunUtil.getUUID());
                 valsupplyMTemp.setValterid(mitValterMTempKey);// 终端追溯主表ID
                 valsupplyMTemp.setValaddagencysupply("Y");// 是否新增供货关系
-                valsupplyMTemp.setValagencysupplyflag("Y");// 供货关系正确与否
+                valsupplyMTemp.setValagencysupplyflag("N");// 供货关系正确与否
 
                 valsupplyMTemp.setValproerror("Y");// 品项有误
                 valsupplyMTemp.setValagencyerror("Y");// 经销商有误
