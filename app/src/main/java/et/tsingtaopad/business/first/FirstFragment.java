@@ -47,8 +47,8 @@ import et.tsingtaopad.dd.ddweekplan.DdWeekPlanFragment;
 import et.tsingtaopad.dd.ddxt.term.cart.XtTermCartFragment;
 import et.tsingtaopad.dd.ddxt.term.select.XtTermSelectFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zscart.ZsTermCartFragment;
+import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTemplateFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTermGetFragment;
-import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTermSelectFragment;
 import et.tsingtaopad.home.app.MainService;
 import et.tsingtaopad.home.initadapter.GlobalValues;
 import et.tsingtaopad.http.HttpParseJson;
@@ -413,7 +413,8 @@ public class FirstFragment extends BaseFragmentSupport implements View.OnClickLi
                             }else if(1 == position){// 确定
                                 // changeHomeFragment(new ZsTermSelectFragment(), "zstermselectfragment");
                                 // changeHomeFragment(new ZsTermCheckFragment(), "zstermselectfragment");
-                                changeHomeFragment(new ZsTermGetFragment(), "zstermgetfragment");
+                                // changeHomeFragment(new ZsTermGetFragment(), "zstermgetfragment"); 专项追溯
+                                changeHomeFragment(new ZsTemplateFragment(), "zstemplatefragment");// 督导模板
                             }
                         }
                     })

@@ -18,9 +18,21 @@ import java.util.List;
 
 import et.tsingtaopad.R;
 import et.tsingtaopad.base.BaseFragmentSupport;
+import et.tsingtaopad.business.operation.bean.OperationDealplanStc;
 import et.tsingtaopad.business.visit.bean.VisitContentStc;
+import et.tsingtaopad.core.net.HttpUrl;
+import et.tsingtaopad.core.net.RestClient;
+import et.tsingtaopad.core.net.callback.IError;
+import et.tsingtaopad.core.net.callback.IFailure;
+import et.tsingtaopad.core.net.callback.ISuccess;
+import et.tsingtaopad.core.net.domain.RequestHeadStc;
+import et.tsingtaopad.core.net.domain.RequestStructBean;
+import et.tsingtaopad.core.net.domain.ResponseStructBean;
+import et.tsingtaopad.core.util.dbtutil.ConstValues;
 import et.tsingtaopad.core.util.dbtutil.DateUtil;
+import et.tsingtaopad.core.util.dbtutil.JsonUtil;
 import et.tsingtaopad.core.util.dbtutil.PrefUtils;
+import et.tsingtaopad.core.util.dbtutil.PropertiesUtil;
 import et.tsingtaopad.core.view.alertview.AlertView;
 import et.tsingtaopad.core.view.alertview.OnItemClickListener;
 import et.tsingtaopad.db.table.MstTerminalinfoMCart;
@@ -28,15 +40,19 @@ import et.tsingtaopad.db.table.MstTerminalinfoMZsCart;
 import et.tsingtaopad.dd.ddaddterm.DdAddTermFragment;
 import et.tsingtaopad.dd.ddagencycheck.DdAgencyCheckSelectFragment;
 import et.tsingtaopad.dd.ddagencyres.DdAgencySelectFragment;
+import et.tsingtaopad.dd.dddaysummary.DdDaySummaryFragment;
+import et.tsingtaopad.dd.dddealplan.DdDealPlanFragment;
+import et.tsingtaopad.dd.ddmeeting.MeetingFragment;
 import et.tsingtaopad.dd.ddxt.term.cart.XtTermCartFragment;
+import et.tsingtaopad.dd.ddxt.term.select.XtTermListFragment;
 import et.tsingtaopad.dd.ddxt.term.select.XtTermSelectFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zscart.ZsTermCartFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTemplateFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTermGetFragment;
-import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTermSelectFragment;
-import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTermSpecialFragment;
 import et.tsingtaopad.home.app.MainService;
 import et.tsingtaopad.home.initadapter.GlobalValues;
+import et.tsingtaopad.http.HttpParseJson;
+import et.tsingtaopad.util.requestHeadUtil;
 
 /**
  * Created by yangwenmin on 2018/3/12.
@@ -56,8 +72,6 @@ public class VisitFragment extends BaseFragmentSupport implements View.OnClickLi
     RelativeLayout zsTermBtn;
     RelativeLayout agencyresBtn;
     RelativeLayout agencycheckBtn;
-    RelativeLayout addtermBtn;
-    RelativeLayout ddmodulBtn;
     //RelativeLayout startSync;
 
     private TextView visit_xt_termname;
@@ -71,6 +85,13 @@ public class VisitFragment extends BaseFragmentSupport implements View.OnClickLi
     private TextView visit_zs_ydname;
     private TextView visit_zs_upload;
     private TextView visit_zs_address;
+
+    RelativeLayout summaryBtn;//
+    RelativeLayout meetingBtn;//
+    LinearLayout dealBtn;
+    private TextView username;
+    private TextView num;
+    private TextView time;
 
     private int count;
     private List<String> tablenames;
@@ -111,8 +132,6 @@ public class VisitFragment extends BaseFragmentSupport implements View.OnClickLi
 
         agencyresBtn = (RelativeLayout) view.findViewById(R.id.dd_btn_zs_agencyres);
         agencycheckBtn = (RelativeLayout) view.findViewById(R.id.dd_btn_zs_agencycheck);
-        addtermBtn = (RelativeLayout) view.findViewById(R.id.dd_btn_zs_addterm);
-        ddmodulBtn = (RelativeLayout) view.findViewById(R.id.dd_btn_zs_ddmodul);
 
 
         visit_xt_termname = (TextView)view. findViewById(R.id.visit_xt_termname);
@@ -137,8 +156,19 @@ public class VisitFragment extends BaseFragmentSupport implements View.OnClickLi
 
         agencyresBtn.setOnClickListener(this);
         agencycheckBtn.setOnClickListener(this);
-        addtermBtn.setOnClickListener(this);
-        ddmodulBtn.setOnClickListener(this);
+
+
+
+        summaryBtn = (RelativeLayout)view.findViewById(R.id.dd_operation_btn_summer);
+        meetingBtn = (RelativeLayout)view.findViewById(R.id.dd_operation_btn_meeting);
+        dealBtn = (LinearLayout)view.findViewById(R.id.dd_operation_btn_zhenggai);
+        username = (TextView)view.findViewById(R.id.dd_operation_btn_zhenggai_username);
+        num = (TextView)view.findViewById(R.id.dd_operation_btn_zhenggai_num);
+        time = (TextView)view.findViewById(R.id.dd_operation_btn_zhenggai_time);
+
+        summaryBtn.setOnClickListener(this);
+        dealBtn.setOnClickListener(this);
+        meetingBtn.setOnClickListener(this);
 
     }
 
@@ -161,7 +191,8 @@ public class VisitFragment extends BaseFragmentSupport implements View.OnClickLi
         switch (v.getId()) {
             case R.id.dd_btn_xtbf:// 协同拜访
                 if (getCmmAreaMCount() > 0) {
-                    changeHomeFragment(new XtTermSelectFragment(), "xttermlistfragment");
+                    //changeHomeFragment(new XtTermSelectFragment(), "xttermlistfragment");
+                    changeHomeFragment(new XtTermListFragment(), "xttermlistfragment");
                 } else {
                     Toast.makeText(getActivity(), R.string.sync_data, Toast.LENGTH_SHORT).show();
                     changeHomeFragment(new SyncBasicFragment(), "syncbasicfragment");
@@ -192,7 +223,8 @@ public class VisitFragment extends BaseFragmentSupport implements View.OnClickLi
                     // changeHomeFragment(new ZsTermSelectFragment(), "zstermselectfragment");// 常规追溯
                     // changeHomeFragment(new ZsTermSpecialFragment(), "zstermselectfragment");// 专项追溯
                     // changeHomeFragment(new ZsTermCheckFragment(), "zstermcheckfragment");// 专项追溯
-                    changeHomeFragment(new ZsTermGetFragment(), "zstermcheckfragment");// 专项追溯
+                    // changeHomeFragment(new ZsTermGetFragment(), "zstermcheckfragment");// 专项追溯
+                    changeHomeFragment(new ZsTemplateFragment(), "zstemplatefragment");// 督导模板
                 } else {
                     Toast.makeText(getActivity(), R.string.sync_data, Toast.LENGTH_SHORT).show();
                     changeHomeFragment(new SyncBasicFragment(), "syncbasicfragment");
@@ -237,24 +269,27 @@ public class VisitFragment extends BaseFragmentSupport implements View.OnClickLi
                 }
 
                 break;
-            case R.id.dd_btn_zs_addterm:// 漏店补录
+
+
+            case R.id.dd_operation_btn_summer:// 日工作记录及总结
                 if (getCmmAreaMCount() > 0) {
-                    changeHomeFragment(new DdAddTermFragment(), "ddaddtermfragment");
+                    changeHomeFragment(new DdDaySummaryFragment(), "dddaysummaryfragment");
                 } else {
                     Toast.makeText(getActivity(), R.string.sync_data, Toast.LENGTH_SHORT).show();
                     changeHomeFragment(new SyncBasicFragment(), "syncbasicfragment");
                 }
 
                 break;
-            case R.id.dd_btn_zs_ddmodul:// 督导模板
+            case R.id.dd_operation_btn_meeting:// 晨会录入
+                changeHomeFragment(new MeetingFragment(), "dddaysummaryfragment");
+                break;
+            case R.id.dd_operation_btn_zhenggai:// 整改计划
                 if (getCmmAreaMCount() > 0) {
-                    changeHomeFragment(new ZsTemplateFragment(), "zstemplatefragment");
+                    changeHomeFragment(new DdDealPlanFragment(), "dddealplanfragment");
                 } else {
                     Toast.makeText(getActivity(), R.string.sync_data, Toast.LENGTH_SHORT).show();
                     changeHomeFragment(new SyncBasicFragment(), "syncbasicfragment");
                 }
-
-                break;
         }
     }
 
@@ -280,7 +315,8 @@ public class VisitFragment extends BaseFragmentSupport implements View.OnClickLi
                             }else if(1 == position){// 确定
                                 // changeHomeFragment(new ZsTermSelectFragment(), "zstermselectfragment");
                                 // changeHomeFragment(new ZsTermCheckFragment(), "zstermselectfragment");
-                                changeHomeFragment(new ZsTermGetFragment(), "zstermgetfragment");
+                                // changeHomeFragment(new ZsTermGetFragment(), "zstermgetfragment"); 专项追溯
+                                changeHomeFragment(new ZsTemplateFragment(), "zstemplatefragment");// 督导模板
                             }
                         }
                     })
@@ -345,6 +381,75 @@ public class VisitFragment extends BaseFragmentSupport implements View.OnClickLi
         }
     }
 
+    // 获取整改计划数据
+    private void getUrlData() {
+        String content = "{" +
+                "areaid:'" + PrefUtils.getString(getActivity(), "departmentid", "") + "'," +
+                "time:'" + DateUtil.getDateTimeStr(8) + "'," +
+                "creuser:'" + PrefUtils.getString(getActivity(), "userid", "") + "'" +
+                "}";
+
+        String optcode = "opt_get_operation_data";
+
+        // 组建请求Json
+        RequestHeadStc requestHeadStc = requestHeadUtil.parseRequestHead(getActivity());
+        requestHeadStc.setOptcode(PropertiesUtil.getProperties(optcode));
+        RequestStructBean reqObj = HttpParseJson.parseRequestStructBean(requestHeadStc, content);
+        // 压缩请求数据
+        String jsonZip = HttpParseJson.parseRequestJson(reqObj);
+
+        RestClient.builder()
+                .url(HttpUrl.IP_END)
+                .params("data", jsonZip)
+                // .loader(getContext())// 滚动条
+                .success(new ISuccess() {
+                    @Override
+                    public void onSuccess(String response) {
+                        String json = HttpParseJson.parseJsonResToString(response);
+
+                        if ("".equals(json) || json == null) {
+                            Toast.makeText(getActivity(), "后台成功接收,但返回的数据为null", Toast.LENGTH_SHORT).show();
+                        } else {
+                            ResponseStructBean resObj = new ResponseStructBean();
+                            resObj = JsonUtil.parseJson(json, ResponseStructBean.class);
+                            // 处理信息
+                            if (ConstValues.SUCCESS.equals(resObj.getResHead().getStatus())) {
+                                // 处理信息
+                                String formjson = resObj.getResBody().getContent();
+                                parseFirstJson(formjson);
+
+                            } else {
+                                Toast.makeText(getActivity(), resObj.getResHead().getContent(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+
+                    }
+                })
+                .error(new IError() {
+                    @Override
+                    public void onError(int code, String msg) {
+                        Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .failure(new IFailure() {
+                    @Override
+                    public void onFailure() {
+                        // Toast.makeText(getActivity(), "首页数据请求失败", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .builde()
+                .post();
+    }
+
+    // 解析返回的数据
+    private void parseFirstJson(String formjson) {
+        OperationDealplanStc emp = JsonUtil.parseJson(formjson, OperationDealplanStc.class);
+        username.setText(emp.getUsername());
+        num.setText(emp.getTotalnum());
+        time.setText(emp.getCredate());
+    }
+
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
@@ -403,6 +508,10 @@ public class VisitFragment extends BaseFragmentSupport implements View.OnClickLi
             }else{
                 visit_zs_nexttermname.setText("--");
                 visit_zs_address.setText("--");
+            }
+
+            if (isVisibleToUser) {
+                getUrlData(); // 在此请求数据
             }
         }
     }

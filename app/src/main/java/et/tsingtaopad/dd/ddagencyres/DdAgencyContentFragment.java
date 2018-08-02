@@ -45,21 +45,21 @@ public class DdAgencyContentFragment extends BaseFragmentSupport implements View
     public static final int DD_AGENCY_CONTENT_SUC = 2311;// 修改成功
     public static final int DD_AGENCY_CONTENT_FAIL = 2312;//
 
-    public static final String AGENCYNAME ="agencyname";
-    public static final String CONTACT ="contact";
-    public static final String MOBILE ="mobile";
-    public static final String ADDRESS ="address";
-    public static final String AREA ="area";
-    public static final String MONEY ="money";
-    public static final String PERSION ="persion";
-    public static final String CARNUM ="carnum";
-    public static final String ISONE ="isone";
-    public static final String KFDATA ="kfdata";
-    public static final String PASSDATA ="passdata";
-    public static final String PRODUCTNAME ="productname";
-    public static final String BUSINESS ="business";
-    public static final String COVERTERMS ="coverterms";
-    public static final String SUPPLYTERMS ="supplyterms";
+    public static final String AGENCYNAME = "agencyname";
+    public static final String CONTACT = "contact";
+    public static final String MOBILE = "mobile";
+    public static final String ADDRESS = "address";
+    public static final String AREA = "area";
+    public static final String MONEY = "money";
+    public static final String PERSION = "persion";
+    public static final String CARNUM = "carnum";
+    public static final String ISONE = "isone";
+    public static final String KFDATA = "kfdata";
+    public static final String PASSDATA = "passdata";
+    public static final String PRODUCTNAME = "productname";
+    public static final String BUSINESS = "business";
+    public static final String COVERTERMS = "coverterms";
+    public static final String SUPPLYTERMS = "supplyterms";
 
     public static final String ERROR = "N";// 业代错误
     public static final String RIGHT = "Y";// 业代错误
@@ -233,7 +233,7 @@ public class DdAgencyContentFragment extends BaseFragmentSupport implements View
 
         confirmTv.setText("更正");
 
-         service = new DdAgencySelectService(getActivity());
+        service = new DdAgencySelectService(getActivity());
 
         Bundle bundle = getArguments();
         // 获取传递过来的 经销商主键,名称,地址,联系电话
@@ -257,15 +257,15 @@ public class DdAgencyContentFragment extends BaseFragmentSupport implements View
         coverterms_con1.setText(mstAgencyKFM.getCoverterms());
         supplyterms_con1.setText(mstAgencyKFM.getSupplyterms());
 
-        if(valagencykfM == null){
+        if (valagencykfM == null) {
             valagencykfM = new MitValagencykfM();
         }
 
-         // 设置稽查状态和颜色
+        // 设置稽查状态和颜色
         setCheckColor();
     }
 
-    private void setCheckColor(){
+    private void setCheckColor() {
         agencyname_statue.setText(getYdKfInfo(valagencykfM.getAgencynameflag()));
         agencyname_statue.setTextColor(getYdKfInfoColor(valagencykfM.getAgencynameflag()));
 
@@ -314,24 +314,24 @@ public class DdAgencyContentFragment extends BaseFragmentSupport implements View
     }
 
     // 判定是否数一数二经销商
-    private String parseIsone(int type){
-        String isone ="";
-        if(0 == type){
+    private String parseIsone(int type) {
+        String isone = "";
+        if (0 == type) {
             isone = "否";
-        }else{
+        } else {
             isone = "是";
         }
         return isone;
     }
 
     // 判定业代录入的状态
-    private String getYdKfInfo(String flag){
-        String con ="";
-        if("N".equals(flag)){
+    private String getYdKfInfo(String flag) {
+        String con = "";
+        if ("N".equals(flag)) {
             con = "错误";
-        }else if("Y".equals(flag)){
+        } else if ("Y".equals(flag)) {
             con = "正确";
-        }else{
+        } else {
             con = "未稽查";
         }
         return con;
@@ -339,11 +339,11 @@ public class DdAgencyContentFragment extends BaseFragmentSupport implements View
 
     private int getYdKfInfoColor(String flag) {
         int color;
-        if("N".equals(flag)){
+        if ("N".equals(flag)) {
             color = getResources().getColor(R.color.zdzs_dd_error);
-        }else if("Y".equals(flag)){
+        } else if ("Y".equals(flag)) {
             color = getResources().getColor(R.color.zdzs_dd_yes);
-        }else{
+        } else {
             color = getResources().getColor(R.color.gray_color_666666);
         }
         return color;
@@ -421,7 +421,7 @@ public class DdAgencyContentFragment extends BaseFragmentSupport implements View
         // 被追
         String des = agencyReport.getText().toString();
         // 保存数据
-        MitValagencykfM valagencykf = service.saveMitValagencykfM(des,mstAgencyKFM,valagencykfM);
+        MitValagencykfM valagencykf = service.saveMitValagencykfM(des, mstAgencyKFM, valagencykfM);
         // 上传数据
         XtUploadService xtUploadService = new XtUploadService(getActivity(), null);
         xtUploadService.uploadMitValagencykfM(false, valagencykf, 1);
@@ -478,6 +478,7 @@ public class DdAgencyContentFragment extends BaseFragmentSupport implements View
             valagencykfM.setSupplytermsflag(RIGHT);
         }
     }
+
     // 设置未稽查
     public void setMstAgencyKFMFlagNull(MitValagencykfM valagencykfM, String type) {
         if (DdAgencyContentFragment.AGENCYNAME.equals(type)) {// 经销商名称
@@ -572,6 +573,7 @@ public class DdAgencyContentFragment extends BaseFragmentSupport implements View
      * 参数8: 条目点击监听  √
      */
     private AlertView mAlertViewExt;//窗口拓展例子
+
     public void alertShow3(final String type) {
         new AlertView("请选择核查结果", null, "未稽查", null,
                 new String[]{"正确", "错误"},
@@ -581,7 +583,7 @@ public class DdAgencyContentFragment extends BaseFragmentSupport implements View
                     public void onItemClick(Object o, int position) {
                         // Toast.makeText(getActivity(), "点击了第" + position + "个", Toast.LENGTH_SHORT).show();
                         if (0 == position) {// 正确
-                            setMstAgencyKFMFlag(valagencykfM,type);
+                            setMstAgencyKFMFlag(valagencykfM, type);
                             handler.sendEmptyMessage(DdAgencyContentFragment.DD_AGENCY_CONTENT_SUC);
                         } else if (1 == position) {// 跳转数据录入
                             Bundle bundle = new Bundle();
@@ -592,9 +594,8 @@ public class DdAgencyContentFragment extends BaseFragmentSupport implements View
                             agencyAmendFragment.setArguments(bundle);
                             // 跳转 经销商库存盘点 填充数据
                             changeHomeFragment(agencyAmendFragment, "DdAgencyAmendFragment");
-                        }
-                        else if (-1 == position) {// 跳转数据录入
-                            setMstAgencyKFMFlagNull(valagencykfM,type);
+                        } else if (-1 == position) {// 跳转数据录入
+                            setMstAgencyKFMFlagNull(valagencykfM, type);
                             handler.sendEmptyMessage(DdAgencyContentFragment.DD_AGENCY_CONTENT_SUC);
                         }
 

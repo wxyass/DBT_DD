@@ -26,6 +26,7 @@ import et.tsingtaopad.core.util.dbtutil.FunUtil;
 import et.tsingtaopad.core.util.dbtutil.PrefUtils;
 import et.tsingtaopad.db.table.MitValcheckterM;
 import et.tsingtaopad.dd.ddxt.term.select.XtTermSelectService;
+import et.tsingtaopad.dd.ddzs.zsterm.filtrate.ZsFiltrateTermFragment;
 
 /**
  * 督导模板
@@ -705,12 +706,13 @@ public class ZsTemplateFragment extends BaseFragmentSupport implements View.OnCl
         mitValcheckterM.setIfcmp(common_multiple_cb_ifcmp.isChecked() ? ConstValues.Y : ConstValues.N);
         mitValcheckterM.setVisinote(common_multiple_cb_visinote.isChecked() ? ConstValues.Y : ConstValues.N);
 
-
         xtSelectService.saveZsTemplate(mitValcheckterM);
 
-
         Toast.makeText(getActivity(),"模板配置成功",Toast.LENGTH_SHORT).show();
+
         supportFragmentManager.popBackStack();
+
+        changeHomeFragment(new ZsFiltrateTermFragment(), "zstermcheckfragment");// 专项追溯
     }
 
 }

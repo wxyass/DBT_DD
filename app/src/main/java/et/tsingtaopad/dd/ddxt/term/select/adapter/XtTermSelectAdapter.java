@@ -158,9 +158,11 @@ public class XtTermSelectAdapter extends BaseAdapter implements OnClickListener 
             holder.addTerm.setTag(position);
             holder.addTerm.setOnClickListener(mListener);
             if("1".equals(item.getIsSelectToCart())){
-                holder.addTerm.setImageResource(R.drawable.icon_select_minus);
+                // holder.addTerm.setImageResource(R.drawable.icon_select_minus);
+                holder.addTerm.setImageResource(R.drawable.icon_visit_pitchon);
             }else{
-                holder.addTerm.setImageResource(R.drawable.icon_visit_add);
+                // holder.addTerm.setImageResource(R.drawable.icon_visit_add);
+                holder.addTerm.setImageDrawable(null);
             }
 
             //

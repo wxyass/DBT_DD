@@ -6,9 +6,9 @@ import java.util.ArrayList;
 /**
  * 筛选终端结构体
  */
-public class TermCheckStc {
+public class TermCheckStc implements java.io.Serializable{
 
-    private static final long serialVersionUID = -7593093452791252366L;
+    private static final long serialVersionUID = -7593193452791252366L;
 
     private String bigid;// 大区id
     private String secid;// 二级区域id

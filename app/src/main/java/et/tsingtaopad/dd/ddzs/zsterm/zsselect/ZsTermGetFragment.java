@@ -99,7 +99,7 @@ import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnClickListener, AdapterView.OnItemClickListener
         , CompoundButton.OnCheckedChangeListener {
 
-    private final String TAG = "ZsTermSelectFragment";
+    private final String TAG = "ZsTermGetFragment";
 
     private RelativeLayout backBtn;
     private RelativeLayout confirmBtn;
@@ -471,7 +471,6 @@ public class ZsTermGetFragment extends BaseFragmentSupport implements View.OnCli
         ConstValues.handler = handler;
 
         xtSelectService = new XtTermSelectService(getActivity());
-
         addInvocingService = new XtAddInvocingService(getActivity(), null);
         xtAddChatVieService = new XtAddChatVieService(getActivity(), null);
 

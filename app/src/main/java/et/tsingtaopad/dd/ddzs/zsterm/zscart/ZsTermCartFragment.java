@@ -24,6 +24,7 @@ import java.util.Map;
 
 import et.tsingtaopad.R;
 import et.tsingtaopad.base.BaseFragmentSupport;
+import et.tsingtaopad.business.visit.SyncBasicFragment;
 import et.tsingtaopad.core.net.HttpUrl;
 import et.tsingtaopad.core.net.RestClient;
 import et.tsingtaopad.core.net.callback.IError;
@@ -48,6 +49,7 @@ import et.tsingtaopad.core.view.alertview.OnItemClickListener;
 import et.tsingtaopad.db.table.MitValcheckterM;
 import et.tsingtaopad.db.table.MitValterM;
 import et.tsingtaopad.db.table.MstVisitM;
+import et.tsingtaopad.dd.ddaddterm.DdAddTermFragment;
 import et.tsingtaopad.dd.ddxt.term.cart.XtTermCartService;
 import et.tsingtaopad.dd.ddxt.term.cart.adapter.XtTermCartAdapter;
 import et.tsingtaopad.dd.ddxt.term.select.domain.XtTermSelectMStc;
@@ -208,8 +210,8 @@ public class ZsTermCartFragment extends BaseFragmentSupport implements View.OnCl
             case R.id.xtbf_termcart_bt_search:
                 searchTerm();
                 break;
-            case R.id.xtbf_termcart_bt_update:
-                termCartAdapter.setUpdate(true);
+            case R.id.xtbf_termcart_bt_update:// 漏店补录
+                /*termCartAdapter.setUpdate(true);
                 String s = updateBtn.getText().toString();
                 if ("排序".equals(s)) {
                     updateBtn.setText("保存");
@@ -221,6 +223,13 @@ public class ZsTermCartFragment extends BaseFragmentSupport implements View.OnCl
                     termCartAdapter.setUpdate(false);
                     searchTerm();
                     Toast.makeText(getActivity(), "排序保存成功", Toast.LENGTH_SHORT).show();
+                }*/
+
+                if (getCmmAreaMCount() > 0) {
+                    changeHomeFragment(new DdAddTermFragment(), "ddaddtermfragment");
+                } else {
+                    Toast.makeText(getActivity(), R.string.sync_data, Toast.LENGTH_SHORT).show();
+                    changeHomeFragment(new SyncBasicFragment(), "syncbasicfragment");
                 }
                 break;
             case R.id.xtbf_termcart_bt_add:// 更新数据

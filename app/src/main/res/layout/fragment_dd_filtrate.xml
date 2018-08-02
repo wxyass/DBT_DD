@@ -1,0 +1,915 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/bg_app"
+              android:orientation="vertical">
+
+    <include layout="@layout/top_navigation"/>
+
+    <ScrollView
+        android:id="@+id/right"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <!--产品信息-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/zdzs_invoicing_point5"
+                        style="@style/point"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ico_point"/>
+
+                    <TextView
+                        android:id="@+id/zdzs_filtrate_textview05"
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/zdzs_invoicing_point5"
+                        android:text="产品信息"/>
+
+                </RelativeLayout>
+
+                <!-- 选择 铺货状态 价格体系 竞品信息 -->
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rb_filtrate_check"
+                        style="@style/checkterm_cb_style"
+                        android:checked="false"
+                        android:text="铺货状态"/>
+
+                    <RadioButton
+                        android:id="@+id/rb_filtrate_price"
+                        style="@style/checkterm_cb_style"
+                        android:layout_marginLeft="20dp"
+                        android:checked="false"
+                        android:text="价格体系"/>
+
+                    <RadioButton
+                        android:id="@+id/rb_filtrate_cmppro"
+                        style="@style/checkterm_cb_style"
+                        android:layout_marginLeft="20dp"
+                        android:checked="false"
+                        android:text="竞品信息"/>
+                </RadioGroup>
+
+
+                <!--铺货状态-->
+                <LinearLayout
+                    android:id="@+id/zdzs_filtrate_ll_procheck"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <!--铺货状态 选择产品-->
+                    <RelativeLayout
+                        android:id="@+id/zdzs_filtrate_rl_proselect"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="#f0f0f0"
+                        android:visibility="gone"
+                        >
+
+                        <TextView
+                            android:id="@+id/zdzs_filtrate_textview06"
+                            style="@style/page_label_big"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="4dp"
+                            android:text="选择产品"/>
+
+                        <TextView
+                            android:id="@+id/zdzs_filtrate_proname"
+                            style="@style/page_label_big"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_toLeftOf="@id/zdzs_filtrate_get06"
+                            android:layout_toRightOf="@id/zdzs_filtrate_textview06"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            />
+
+                        <TextView
+                            android:id="@+id/zdzs_filtrate_get06"
+                            style="@style/page_label_big"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:text="收起"/>
+
+                    </RelativeLayout>
+
+                    <!--铺货状态 产品列表 Lv-->
+                    <LinearLayout
+                        android:id="@+id/zdzs_filtrate_ll_prolv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <!--空白,铺货,有效铺货,有效销售-->
+                        <LinearLayout
+                            android:id="@+id/zdzs_filtrate_checkid"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@color/bg_lv_item"
+                            android:orientation="horizontal"
+                            android:visibility="visible">
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:layout_marginLeft="10dp"
+                                >
+
+                                <CheckBox
+                                    android:id="@+id/zdzs_filtrate_black"
+                                    style="@style/checkterm_cb_style"
+                                    android:layout_centerVertical="true"
+                                    android:text="空白"/>
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:layout_marginLeft="10dp">
+
+                                <CheckBox
+                                    android:id="@+id/zdzs_filtrate_puhuo"
+                                    style="@style/checkterm_cb_style"
+                                    android:layout_centerVertical="true"
+                                    android:text="铺货"/>
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:layout_marginLeft="10dp">
+
+                                <CheckBox
+                                    android:id="@+id/zdzs_filtrate_youxiao"
+                                    style="@style/checkterm_cb_style"
+                                    android:layout_centerVertical="true"
+                                    android:text="有效铺货"/>
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:layout_marginLeft="10dp">
+
+                                <CheckBox
+                                    android:id="@+id/zdzs_filtrate_xiaoshou"
+                                    style="@style/checkterm_cb_style"
+                                    android:layout_centerVertical="true"
+                                    android:text="有效销售"/>
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                        <ListView
+                            android:id="@+id/zdzs_filtrate_pro"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:divider="@color/bg_app"
+                            android:dividerHeight="1dp">
+                        </ListView>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!--价格体系-->
+                <LinearLayout
+                    android:id="@+id/zdzs_filtrate_ll_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <!--选择产品-->
+                    <RelativeLayout
+                        android:id="@+id/zdzs_filtrate_rl_proprice"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="#f0f0f0"
+                        android:visibility="gone"
+                        >
+
+                        <TextView
+                            android:id="@+id/zdzs_filtrate_proprice"
+                            style="@style/page_label_big"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="4dp"
+                            android:text="选择产品"/>
+
+                        <TextView
+                            android:id="@+id/zdzs_filtrate_pronameprice"
+                            style="@style/page_label_big"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_toLeftOf="@id/zdzs_filtrate_proprice"
+                            android:layout_toRightOf="@id/zdzs_filtrate_priceget"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            />
+
+                        <TextView
+                            android:id="@+id/zdzs_filtrate_priceget"
+                            style="@style/page_label_big"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:text="收起"/>
+
+                    </RelativeLayout>
+
+                    <!--产品列表 Lv-->
+                    <LinearLayout
+                        android:id="@+id/zdzs_filtrate_ll_proprice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <ListView
+                            android:id="@+id/zdzs_filtrate_lv_proprice"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:divider="@color/white"
+                            android:dividerHeight="1dp">
+
+                        </ListView>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!--竞品信息-->
+                <LinearLayout
+                    android:id="@+id/zdzs_filtrate_ll_top_cmppro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <!--选择产品-->
+                    <RelativeLayout
+                        android:id="@+id/zdzs_filtrate_rl_cmppro"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="#f0f0f0"
+                        android:visibility="gone"
+                        >
+
+                        <TextView
+                            android:id="@+id/zdzs_filtrate_cmppro06"
+                            style="@style/page_label_big"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="4dp"
+                            android:text="选择产品"/>
+
+                        <TextView
+                            android:id="@+id/zdzs_filtrate_tv_cmppro"
+                            style="@style/page_label_big"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_toLeftOf="@id/zdzs_filtrate_cmppro06"
+                            android:layout_toRightOf="@id/zdzs_filtrate_cmpproget06"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            />
+
+                        <TextView
+                            android:id="@+id/zdzs_filtrate_cmpproget06"
+                            style="@style/page_label_big"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:text="收起"/>
+
+                    </RelativeLayout>
+
+                    <!--产品列表 Lv-->
+                    <LinearLayout
+                        android:id="@+id/zdzs_filtrate_ll_cmppro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <ListView
+                            android:id="@+id/zdzs_filtrate_lv_cmppro"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:divider="@color/bg_app"
+                            android:dividerHeight="1dp">
+
+                        </ListView>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <!--基础信息-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="10dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/zdzs_invoicing_point1"
+                        style="@style/point"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ico_point"/>
+
+                    <TextView
+                        android:id="@+id/zdzs_filtrate_textview01"
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/zdzs_invoicing_point1"
+                        android:text="基础信息"/>
+
+                </RelativeLayout>
+
+                <!--我品店招-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        >
+
+                        <CheckBox
+                            android:id="@+id/zdzs_filtrate_rb_mineshop"
+                            style="@style/checkterm_cb_style"
+                            android:layout_centerVertical="true"
+                            android:text="我品店招"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        >
+
+                        <CheckBox
+                            android:id="@+id/zdzs_filtrate_rb_notmineshop"
+                            style="@style/checkterm_cb_style"
+                            android:layout_centerVertical="true"
+                            android:text="非我品店招"/>
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <!--销售范围-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/zdzs_filtrate_minearea"
+                        style="@style/checkterm_cb_style"
+                        android:text="销售我品"/>
+
+                    <CheckBox
+                        android:id="@+id/zdzs_filtrate_cmparea"
+                        style="@style/checkterm_cb_style"
+                        android:layout_marginLeft="10dp"
+                        android:text="销售竞品"/>
+                </LinearLayout>
+
+                <!--合作-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/zdzs_filtrate_minetreaty"
+                        style="@style/checkterm_cb_style"
+                        android:text="我品合作"/>
+
+                    <CheckBox
+                        android:id="@+id/zdzs_filtrate_cmptreaty"
+                        style="@style/checkterm_cb_style"
+                        android:layout_marginLeft="10dp"
+                        android:text="竞品合作"/>
+                </LinearLayout>
+
+                <!--终端等级-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1">
+
+                        <CheckBox
+                            android:id="@+id/zdzs_filtrate_termone"
+                            style="@style/checkterm_cb_style"
+                            android:text="1级终端"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1">
+
+                        <CheckBox
+                            android:id="@+id/zdzs_filtrate_termtwo"
+                            style="@style/checkterm_cb_style"
+                            android:text="2级终端"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1">
+
+                        <CheckBox
+                            android:id="@+id/zdzs_filtrate_termthree"
+                            style="@style/checkterm_cb_style"
+                            android:text="3级终端"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1">
+
+                        <CheckBox
+                            android:id="@+id/zdzs_filtrate_termfour"
+                            style="@style/checkterm_cb_style"
+                            android:text="4级终端"/>
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+                <!--区域类型-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1">
+
+                        <CheckBox
+                            android:id="@+id/zdzs_filtrate_termcq"
+                            style="@style/checkterm_cb_style"
+                            android:text="城区"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1">
+
+                        <CheckBox
+                            android:id="@+id/zdzs_filtrate_termxz"
+                            style="@style/checkterm_cb_style"
+                            android:text="乡镇"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1">
+
+                        <CheckBox
+                            android:id="@+id/zdzs_filtrate_termcj"
+                            style="@style/checkterm_cb_style"
+                            android:text="村级"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1">
+
+                        <CheckBox
+                            android:id="@+id/zdzs_filtrate_termddb"
+                            style="@style/checkterm_cb_style"
+                            android:text="大店部"/>
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <!--终端地址-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <EditText
+
+                        android:layout_width="match_parent"
+                        android:layout_height="34dp"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/shap_selector_gray"
+                        android:enabled="false"
+                        android:gravity="right"
+                        />
+
+                    <EditText
+                        android:id="@+id/zdzs_filtrate_termaddress"
+                        style="@style/formLabel_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:background="@android:color/transparent"
+                        android:hint="请输入终端地址"
+                        android:paddingLeft="18dp"
+                        android:paddingRight="18dp"
+                        android:singleLine="true"/>
+                </RelativeLayout>
+
+                <!--拜访周期-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="34dp"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/shap_selector_gray"
+                        android:enabled="false"
+                        android:gravity="right|center_vertical"
+                        android:hint="@string/termadd_unit_cycle"
+                        android:paddingLeft="18dp"
+                        android:paddingRight="18dp"/>
+
+                    <EditText
+                        android:id="@+id/zdzs_filtrate_termcycle"
+                        style="@style/formLabel_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:background="@android:color/transparent"
+                        android:hint="请输入拜访周期"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:paddingLeft="18dp"
+                        android:paddingRight="18dp"
+                        android:singleLine="true"/>
+                </RelativeLayout>
+
+                <!--销售渠道-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/zdzs_invoicing_point3"
+                        style="@style/point"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ico_point"/>
+
+                    <TextView
+                        android:id="@+id/zdzs_filtrate_textview03"
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/zdzs_invoicing_point3"
+                        android:text="销售渠道"/>
+                </RelativeLayout>
+
+                <!--所有主渠道-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <et.tsingtaopad.view.flower.FlowLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+
+                        <CheckBox
+                            android:id="@+id/zdzs_filtrate_cb_ka1"
+                            style="@style/checkterm_cb_style"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:text="KA-现代零售渠道"/>
+
+                        <CheckBox
+                            android:id="@+id/zdzs_filtrate_cb_s1"
+                            style="@style/checkterm_cb_style"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:text="S-传统零售渠道"/>
+
+                        <CheckBox
+                            android:id="@+id/zdzs_filtrate_cb_nl1"
+                            style="@style/checkterm_cb_style"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:text="NL-夜场渠道"/>
+
+                        <CheckBox
+                            android:id="@+id/zdzs_filtrate_cb_op1"
+                            style="@style/checkterm_cb_style"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:text="OP-餐饮渠道"/>
+
+                        <CheckBox
+                            android:id="@+id/zdzs_filtrate_cb_sc1"
+                            style="@style/checkterm_cb_style"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:text="SC-特殊渠道"/>
+                    </et.tsingtaopad.view.flower.FlowLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"/>
+
+                <!--所有次渠道  FlowLayout控件-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.nex3z.flowlayout.FlowLayout
+                        android:id="@+id/flower_tags1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:flChildSpacing="auto"
+                        app:flChildSpacingForLastRow="align"
+                        app:flRowSpacing="8dp">
+
+                    </com.nex3z.flowlayout.FlowLayout>
+                </LinearLayout>
+
+                <!--标题: 指标信息-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/zdzs_invoicing_point4"
+                        style="@style/point"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ico_point"/>
+
+                    <TextView
+                        android:id="@+id/zdzs_filtrate_textview04"
+                        style="@style/page_label_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/zdzs_invoicing_point4"
+                        android:text="指标信息"/>
+
+                </RelativeLayout>
+
+                <!--产品组合达标-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        >
+
+                        <CheckBox
+                            android:id="@+id/zdzs_filtrate_rb_checkzh"
+                            style="@style/checkterm_cb_style"
+                            android:layout_centerVertical="true"
+                            android:text="产品组合达标"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        >
+
+                        <CheckBox
+                            android:id="@+id/zdzs_filtrate_rb_notcheckzh"
+                            style="@style/checkterm_cb_style"
+                            android:layout_centerVertical="true"
+                            android:text="产品组合未达标"/>
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <!--合作执行到位-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        >
+
+                        <CheckBox
+                            android:id="@+id/zdzs_filtrate_rb_checkhz"
+                            style="@style/checkterm_cb_style"
+                            android:layout_centerVertical="true"
+                            android:text="合作执行到位"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        >
+
+                        <CheckBox
+                            android:id="@+id/zdzs_filtrate_rb_notcheckhz"
+                            style="@style/checkterm_cb_style"
+                            android:layout_centerVertical="true"
+                            android:text="合作执行未到位"/>
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <!--高质量配送-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        >
+
+                        <CheckBox
+                            android:id="@+id/zdzs_filtrate_rb_checkgao"
+                            style="@style/checkterm_cb_style"
+                            android:layout_centerVertical="true"
+                            android:text="高质量配送"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        >
+
+                        <CheckBox
+                            android:id="@+id/zdzs_filtrate_rb_notcheckgao"
+                            style="@style/checkterm_cb_style"
+                            android:layout_centerVertical="true"
+                            android:text="非高质量配送"/>
+                    </RelativeLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:visibility="gone"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/zdzs_filtrate_rl_reset"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:text="重置"/>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="40dp"
+                    android:background="@color/gray"/>
+
+                <RelativeLayout
+                    android:id="@+id/zdzs_filtrate_rl_sure"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_checkterm_btn">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:text="确定"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="80dp"/>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,6 +1,7 @@
 package et.tsingtaopad.business.first;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -56,6 +57,17 @@ public class FirstGvTopAdapter extends BaseAdapter {
 		tv_ydname.setText(camerainfostc.getUsername());
 		tv_num.setText(camerainfostc.getTermcount());
 		tv_topname.setText(camerainfostc.getRankname());
+
+		Drawable drawableLeft = null;
+		if("走访冠军".equals(camerainfostc.getRankname())){
+			 drawableLeft = context.getResources().getDrawable(R.drawable.icon_home_zou);
+		}else if("库存盘点冠军".equals(camerainfostc.getRankname())){
+			drawableLeft = context.getResources().getDrawable(R.drawable.icon_home_pan);
+		}else if("稽查冠军".equals(camerainfostc.getRankname())){
+			drawableLeft = context.getResources().getDrawable(R.drawable.icon_home_cha);
+		}
+		tv_ydname.setCompoundDrawablesWithIntrinsicBounds(drawableLeft,null, null, null);
+		tv_ydname.setCompoundDrawablePadding(4);
 
 		return view;
 	}

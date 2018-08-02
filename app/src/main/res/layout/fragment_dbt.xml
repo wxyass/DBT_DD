@@ -25,6 +25,7 @@
         <RadioButton
             android:id="@+id/rb_discovery"
             style="@style/style_main_RadioButton"
+            android:visibility="gone"
             android:drawableBottom="@drawable/bt_platform_operation"/>
 
         <RadioButton

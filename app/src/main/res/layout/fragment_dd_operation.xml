@@ -248,8 +248,6 @@
                         android:text="@string/operation_meeting"
                         />
                 </RelativeLayout>
-
-
             </LinearLayout>
 
             <LinearLayout

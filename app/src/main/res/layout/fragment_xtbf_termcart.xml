@@ -145,7 +145,7 @@
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/bg_select_green"
                     android:textSize="@dimen/font_size4"
-                    android:text="排序"
+                    android:text="漏店补录"
                     />
             </RelativeLayout>
 

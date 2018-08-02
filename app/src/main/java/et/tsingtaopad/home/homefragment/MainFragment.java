@@ -32,7 +32,10 @@ public class MainFragment extends BaseFragmentSupport {
 
     private ViewPager viewPager;
     private RadioGroup radioGroup;
-    private RadioButton homeRb, visitRb, operationRb, systemRb;
+    private RadioButton homeRb;//
+    private RadioButton visitRb;//
+    // private RadioButton operationRb;//
+    private RadioButton systemRb;//
 
     public static MainFragment newInstance() {
 
@@ -59,7 +62,7 @@ public class MainFragment extends BaseFragmentSupport {
         radioGroup = (RadioGroup) view.findViewById(R.id.radioGroup);
         homeRb = (RadioButton) view.findViewById(R.id.rb_chat);
         visitRb = (RadioButton) view.findViewById(R.id.rb_contacts);
-        operationRb = (RadioButton) view.findViewById(R.id.rb_discovery);
+        // operationRb = (RadioButton) view.findViewById(R.id.rb_discovery);
         systemRb = (RadioButton) view.findViewById(R.id.rb_me);
         //RadioGroup选中状态改变监听
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -70,10 +73,12 @@ public class MainFragment extends BaseFragmentSupport {
                     viewPager.setCurrentItem(0, false);
                 } else if (checkedId == R.id.rb_contacts) {
                     viewPager.setCurrentItem(1, false);
-                } else if (checkedId == R.id.rb_discovery) {
+                }
+                /*else if (checkedId == R.id.rb_discovery) {
                     viewPager.setCurrentItem(2, false);
-                } else if (checkedId == R.id.rb_me) {
-                    viewPager.setCurrentItem(3, false);
+                } */
+                else if (checkedId == R.id.rb_me) {
+                    viewPager.setCurrentItem(2, false);
                 }
             }
         });
@@ -84,12 +89,12 @@ public class MainFragment extends BaseFragmentSupport {
         viewPager = (ViewPager) view.findViewById(R.id.viewPager);
         FirstFragment homeFragment = new FirstFragment();
         VisitFragment visitFragment = new VisitFragment();
-        OperationFragment operationFragment = new OperationFragment();
+        // OperationFragment operationFragment = new OperationFragment();
         SystemFragment systemFragment = new SystemFragment();
         List<Fragment> alFragment = new ArrayList<Fragment>();
         alFragment.add(homeFragment);
         alFragment.add(visitFragment);
-        alFragment.add(operationFragment);
+        // alFragment.add(operationFragment);
         alFragment.add(systemFragment);
 
         //ViewPager设置适配器
@@ -113,11 +118,11 @@ public class MainFragment extends BaseFragmentSupport {
                         radioGroup.check(R.id.rb_contacts);
                         break;
                     case 2:
-                        radioGroup.check(R.id.rb_discovery);
-                        break;
-                    case 3:
                         radioGroup.check(R.id.rb_me);
                         break;
+                    /*case 3:
+                        radioGroup.check(R.id.rb_me); // rb_discovery
+                        break;*/
                 }
             }
 

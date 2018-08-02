@@ -632,7 +632,7 @@ public class MstTerminalinfoMDaoImpl extends BaseDaoImpl<MstTerminalinfoM, Strin
         buffer.append("m.cmpselftreaty, m.updateuser,m.deleteflag,m.ifminedate,m.ifmine,  ");
 
         //buffer.append("vm.isself, vm.iscmp, vm.selftreaty, vm.cmptreaty, ");
-        buffer.append("vmn.isself, vmn.iscmp, m.selftreaty, vmn.cmptreaty,vm.iserror, ");// 我品 竞品 我品协议店,竞品协议店
+        buffer.append("vmn.isself, vmn.iscmp, m.selftreaty, vmn.cmptreaty,max(qwe.status) iserror, ");// 我品 竞品 我品协议店,竞品协议店
         buffer.append("vm.padisconsistent,  m.minorchannel, ");// 销售渠道编码
         buffer.append("dm.dicname terminalType, vm.visitdate,vm.videnddate ");// 终端渠道类型 拜访时间
         buffer.append("from mst_terminalinfo_m_down m ");
@@ -640,6 +640,11 @@ public class MstTerminalinfoMDaoImpl extends BaseDaoImpl<MstTerminalinfoM, Strin
         buffer.append("     and coalesce(dm.deleteflag,'0') != '1' ");
         buffer.append("left join v_mit_valter_m_newest vm on m.terminalkey = vm.terminalkey ");
         buffer.append("left join v_visit_m_newest vmn on m.terminalkey = vmn.terminalkey ");
+
+        buffer.append("left join MIT_REPAIRTER_M abc on m.terminalkey = abc.terminalkey   ");
+        buffer.append("left join MIT_REPAIR_M qwe on qwe.id = abc.repairid  and qwe.status in ('0','1') ");
+
+
         buffer.append("where coalesce(m.status,'0') != '2'  ");
         buffer.append(" and coalesce(m.deleteflag,'0') != '1' ");
         /*if (isSequence) {
@@ -647,6 +652,8 @@ public class MstTerminalinfoMDaoImpl extends BaseDaoImpl<MstTerminalinfoM, Strin
         } else {
             buffer.append(" and (m.sequence='' or m.sequence is null) ");// 终端排序为空的
         }*/
+
+        buffer.append("group by m.terminalkey, m.terminalcode, m.routekey, m.terminalname, m.status, m.sequence, m.city, m.province, m.county, m.address, m.contact, m.mobile, m.tlevel, m.cycle, m.hvolume, m.mvolume, m.pvolume, m.lvolume, m.sellchannel, m.mainchannel, m.areatype, m.sisconsistent, m.comid, m.remarks, m.orderbyno, m.creuser, m.cmpselftreaty, m.updateuser, m.deleteflag, m.ifminedate, m.ifmine, vmn.isself, vmn.iscmp, m.selftreaty, vmn.cmptreaty, vm.iserror, vm.padisconsistent, m.minorchannel, dm.dicname, vm.visitdate, vm.videnddate ");
         // buffer.append("order by m.sequence+0 asc, m.orderbyno, m.terminalname ");
         buffer.append("order by m.sequence asc, m.orderbyno, m.terminalname ");
 

@@ -1,0 +1,231 @@
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/zdzs_term_drawerlayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app">
+
+
+    <!--中间布局-->
+
+    <LinearLayout
+        android:id="@+id/fragment_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_app"
+        android:orientation="vertical">
+
+        <include layout="@layout/top_navigation"/>
+        <!-- 3个下拉菜单 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical">
+
+            <et.tsingtaopad.core.view.dropdownmenu.DropdownButton
+                android:id="@+id/zdzs_term_area"
+                android:layout_width="0px"
+                android:layout_height="45dp"
+                android:layout_weight="3"
+                android:textSize="@dimen/font_size2"/>
+
+            <View
+                android:layout_width="2px"
+                android:layout_height="30dp"
+                android:background="#dfdfdf"/>
+
+            <et.tsingtaopad.core.view.dropdownmenu.DropdownButton
+                android:id="@+id/zdzs_term_grid"
+                android:layout_width="0px"
+                android:layout_height="45dp"
+                android:layout_weight="3"
+                android:textSize="@dimen/font_size2"/>
+
+            <View
+                android:layout_width="2px"
+                android:layout_height="30dp"
+                android:background="#dfdfdf"/>
+
+            <et.tsingtaopad.core.view.dropdownmenu.DropdownButton
+                android:id="@+id/zdzs_term_route"
+                android:layout_width="0px"
+                android:layout_height="45dp"
+                android:layout_weight="3"
+                android:textSize="@dimen/font_size2"/>
+
+            <View
+                android:layout_width="2px"
+                android:layout_height="30dp"
+                android:background="#dfdfdf"/>
+
+            <RelativeLayout
+                android:id="@+id/zdzs_term_lou"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_weight="4">
+
+                <Button
+                    android:id="@+id/zdzs_term_bt_louterm"
+                    style="@style/xtbf_btn_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/width_height_size08"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/bg_select_green"
+                    android:text="搜索终端"
+                    android:textSize="@dimen/font_size4"
+                    />
+
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="#dfdfdf"/>
+
+        <!--搜索一行-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/width_height_size08"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/width_height_size08"
+                android:layout_weight="7"
+                >
+
+                <!-- 搜索终端 -->
+                <EditText
+                    android:id="@+id/zdzs_term_et_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/width_height_size08"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_visit_record"
+                    android:ems="14"
+                    android:hint="@string/termlist_search_hit"
+                    android:paddingLeft="5dp"
+                    android:singleLine="true"
+                    android:textColor="@color/gray_color_666666"
+                    android:textColorHint="@color/gray_color_cccccc"
+                    android:textSize="@dimen/font_size3">
+
+                    <requestFocus/>
+                </EditText>
+
+                <!-- 搜索按钮 -->
+                <RelativeLayout
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/bg_select_green"
+                    >
+
+                    <Button
+                        android:id="@+id/zdzs_term_bt_search"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/img_selecttermina_search"/>
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+
+            <!-- 排序按钮 -->
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:visibility="gone">
+
+                <Button
+                    android:id="@+id/zdzs_term_bt_update"
+                    style="@style/xtbf_btn_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/width_height_size08"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/bg_select_green"
+                    android:text="排序"
+                    android:textSize="@dimen/font_size4"
+                    />
+            </RelativeLayout>
+
+            <!-- 全部添加 -->
+            <RelativeLayout
+                android:id="@+id/zdzs_term_Rl_add"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3">
+
+                <Button
+                    android:id="@+id/zdzs_term_bt_add"
+                    style="@style/xtbf_btn_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/width_height_size08"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/bg_select_green"
+                    android:text="全部添加"
+                    android:textSize="@dimen/font_size4"
+                    />
+            </RelativeLayout>
+            <!-- 全部删除 -->
+            <RelativeLayout
+                android:id="@+id/zdzs_term_Rl_remove"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3">
+
+                <Button
+                    android:id="@+id/zdzs_term_bt_remove"
+                    style="@style/xtbf_btn_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/width_height_size08"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/bg_select_green"
+                    android:text="全部删除"
+                    android:textSize="@dimen/font_size4"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <!--终端列表-->
+        <LinearLayout
+            android:id="@+id/zdzs_term_ll_lv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/listview_line"
+            android:orientation="vertical"
+            android:padding="1dp"
+            android:visibility="invisible">
+
+            <in.srain.cube.views.ptr.PtrClassicFrameLayout
+                android:id="@+id/zdzs_term_ptr"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <et.tsingtaopad.core.view.refresh.UltraRefreshListView
+                    android:id="@+id/zdzs_term_lv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cacheColorHint="@color/bg_lv_item"
+                    android:divider="@color/gray_color_cccccc"
+                    android:dividerHeight="1dp">
+                </et.tsingtaopad.core.view.refresh.UltraRefreshListView>
+            </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v4.widget.DrawerLayout>
