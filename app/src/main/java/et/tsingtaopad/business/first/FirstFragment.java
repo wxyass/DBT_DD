@@ -45,6 +45,7 @@ import et.tsingtaopad.dd.dddealplan.DdDealPlanFragment;
 import et.tsingtaopad.dd.ddmeeting.MeetingFragment;
 import et.tsingtaopad.dd.ddweekplan.DdWeekPlanFragment;
 import et.tsingtaopad.dd.ddxt.term.cart.XtTermCartFragment;
+import et.tsingtaopad.dd.ddxt.term.select.XtTermListFragment;
 import et.tsingtaopad.dd.ddxt.term.select.XtTermSelectFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zscart.ZsTermCartFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTemplateFragment;
@@ -274,15 +275,16 @@ public class FirstFragment extends BaseFragmentSupport implements View.OnClickLi
                 break;
 
             case R.id.first_rl_xtbf:// 协同拜访
-                /*if (getCmmAreaMCount() > 0) {
-                    changeHomeFragment(new XtTermSelectFragment(), "xttermlistfragment");
+                if (getCmmAreaMCount() > 0) {
+                    // changeHomeFragment(new XtTermSelectFragment(), "xttermlistfragment");
+                    changeHomeFragment(new XtTermListFragment(), "xttermlistfragment");
                 } else {
 
                     Toast.makeText(getActivity(), R.string.sync_data, Toast.LENGTH_SHORT).show();
                     changeHomeFragment(new SyncBasicFragment(), "syncbasicfragment");
-                }*/
+                }
 
-                if (getCmmAreaMCount() > 0) {
+                /*if (getCmmAreaMCount() > 0) {
                     // 终端夹隔天清零
                     String addTime = PrefUtils.getString(getActivity(), GlobalValues.XT_CART_TIME, DateUtil.getDateTimeStr(7));
                     if(!DateUtil.getDateTimeStr(7).equals(addTime)){
@@ -294,7 +296,7 @@ public class FirstFragment extends BaseFragmentSupport implements View.OnClickLi
                 } else {
                     Toast.makeText(getActivity(), R.string.sync_data, Toast.LENGTH_SHORT).show();
                     changeHomeFragment(new SyncBasicFragment(), "syncbasicfragment");
-                }
+                }*/
 
                 break;
             case R.id.first_rl_zdzs:// 终端追溯

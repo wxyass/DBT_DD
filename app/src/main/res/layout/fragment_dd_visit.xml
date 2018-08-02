@@ -241,7 +241,6 @@
                     >
 
                     <ImageView
-                        android:id="@+id/dd_visit_img01"
                         style="@style/app_icon_style"
                         android:background="@drawable/icon_visit_synergeticvisit"/>
 
@@ -349,6 +348,7 @@
                         android:paddingBottom="15dp"
                         android:paddingLeft="0dp"
                         android:paddingRight="0dp"
+                        android:visibility="invisible"
                         android:paddingTop="15dp">
 
                         <ImageView
@@ -451,7 +451,6 @@
                     >
 
                     <ImageView
-                        android:id="@+id/dd_visit_img03"
                         style="@style/app_icon_style"
                         android:background="@drawable/icon_visit_dealerdatabase"/>
 
@@ -710,6 +709,57 @@
                     <TextView
                         style="@style/app_text_style"
                         android:text="@string/operation_meeting"
+                        />
+                </RelativeLayout>
+            </LinearLayout>
+
+
+            <!--周计划-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <!--周工作计划-->
+                <RelativeLayout
+                    android:id="@+id/dd_operation_btn_plan"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="2"
+                    android:visibility="invisible"
+                    android:background="@drawable/bg_select_white_gray"
+                    >
+
+                    <ImageView
+                        style="@style/app_icon_style"
+                        android:background="@drawable/icon_operation_plan"/>
+
+                    <TextView
+                        style="@style/app_text_style"
+                        android:text="@string/operation_weekjihua"
+                        />
+                </RelativeLayout>
+
+                <!--周工作计划-->
+                <RelativeLayout
+                    android:id="@+id/dd_operation_btn_other"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="2"
+                    android:visibility="invisible"
+                    android:background="@drawable/bg_select_white_gray"
+                    >
+
+                    <ImageView
+                        style="@style/app_icon_style"
+                        android:background="@drawable/icon_operation_plan"/>
+
+                    <TextView
+                        style="@style/app_text_style"
+                        android:text="@string/operation_weekjihua"
                         />
                 </RelativeLayout>
             </LinearLayout>

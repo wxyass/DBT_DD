@@ -84,6 +84,7 @@ public class ZsTermCartFragment extends BaseFragmentSupport implements View.OnCl
     private EditText searchEt;
     private Button searchBtn;
     private Button updateBtn;
+    private Button addtermBtn;
     private Button addBtn;
     private ListView termCartLv;
 
@@ -125,11 +126,13 @@ public class ZsTermCartFragment extends BaseFragmentSupport implements View.OnCl
         searchEt = (EditText) view.findViewById(R.id.xtbf_termcart_et_search);
         searchBtn = (Button) view.findViewById(R.id.xtbf_termcart_bt_search);
         updateBtn = (Button) view.findViewById(R.id.xtbf_termcart_bt_update);
+        addtermBtn = (Button) view.findViewById(R.id.xtbf_termcart_bt_addterm);
         addBtn = (Button) view.findViewById(R.id.xtbf_termcart_bt_add);
         termCartLv = (ListView) view.findViewById(R.id.xtbf_termcart_lv);
 
         searchBtn.setOnClickListener(this);
         updateBtn.setOnClickListener(this);
+        addtermBtn.setOnClickListener(this);
         addBtn.setOnClickListener(this);
 
     }
@@ -210,8 +213,8 @@ public class ZsTermCartFragment extends BaseFragmentSupport implements View.OnCl
             case R.id.xtbf_termcart_bt_search:
                 searchTerm();
                 break;
-            case R.id.xtbf_termcart_bt_update:// 漏店补录
-                /*termCartAdapter.setUpdate(true);
+            case R.id.xtbf_termcart_bt_update:// 排序
+                termCartAdapter.setUpdate(true);
                 String s = updateBtn.getText().toString();
                 if ("排序".equals(s)) {
                     updateBtn.setText("保存");
@@ -223,8 +226,11 @@ public class ZsTermCartFragment extends BaseFragmentSupport implements View.OnCl
                     termCartAdapter.setUpdate(false);
                     searchTerm();
                     Toast.makeText(getActivity(), "排序保存成功", Toast.LENGTH_SHORT).show();
-                }*/
+                }
 
+
+                break;
+            case R.id.xtbf_termcart_bt_addterm:// 漏店补录
                 if (getCmmAreaMCount() > 0) {
                     changeHomeFragment(new DdAddTermFragment(), "ddaddtermfragment");
                 } else {

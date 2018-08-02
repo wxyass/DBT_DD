@@ -156,7 +156,7 @@
 
                         <TextView
                             style="@style/first_statue"
-                            android:text="协同终端夹"
+                            android:text="协同拜访"
                             />
 
                         <ImageView

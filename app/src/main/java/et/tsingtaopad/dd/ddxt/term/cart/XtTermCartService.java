@@ -198,7 +198,7 @@ public class XtTermCartService extends XtTermService{
             connection.setAutoCommit(false);
             MstTerminalinfoMDao dao = helper.getDao(MstTerminalinfoM.class);
             //dao.updateTermSequence(helper, list);
-            dao.updateXtTempSequence(helper, list);
+            dao.updateZsTempSequence(helper, list);
             connection.commit(null);
             //sendTermSequenceRequest(list);
         } catch (SQLException e) {

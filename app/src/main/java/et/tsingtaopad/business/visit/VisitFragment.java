@@ -43,6 +43,7 @@ import et.tsingtaopad.dd.ddagencyres.DdAgencySelectFragment;
 import et.tsingtaopad.dd.dddaysummary.DdDaySummaryFragment;
 import et.tsingtaopad.dd.dddealplan.DdDealPlanFragment;
 import et.tsingtaopad.dd.ddmeeting.MeetingFragment;
+import et.tsingtaopad.dd.ddweekplan.DdWeekPlanFragment;
 import et.tsingtaopad.dd.ddxt.term.cart.XtTermCartFragment;
 import et.tsingtaopad.dd.ddxt.term.select.XtTermListFragment;
 import et.tsingtaopad.dd.ddxt.term.select.XtTermSelectFragment;
@@ -86,6 +87,7 @@ public class VisitFragment extends BaseFragmentSupport implements View.OnClickLi
     private TextView visit_zs_upload;
     private TextView visit_zs_address;
 
+    RelativeLayout weekPlan;
     RelativeLayout summaryBtn;//
     RelativeLayout meetingBtn;//
     LinearLayout dealBtn;
@@ -159,6 +161,7 @@ public class VisitFragment extends BaseFragmentSupport implements View.OnClickLi
 
 
 
+        weekPlan = (RelativeLayout)view.findViewById(R.id.dd_operation_btn_plan);
         summaryBtn = (RelativeLayout)view.findViewById(R.id.dd_operation_btn_summer);
         meetingBtn = (RelativeLayout)view.findViewById(R.id.dd_operation_btn_meeting);
         dealBtn = (LinearLayout)view.findViewById(R.id.dd_operation_btn_zhenggai);
@@ -166,6 +169,7 @@ public class VisitFragment extends BaseFragmentSupport implements View.OnClickLi
         num = (TextView)view.findViewById(R.id.dd_operation_btn_zhenggai_num);
         time = (TextView)view.findViewById(R.id.dd_operation_btn_zhenggai_time);
 
+        weekPlan.setOnClickListener(this);
         summaryBtn.setOnClickListener(this);
         dealBtn.setOnClickListener(this);
         meetingBtn.setOnClickListener(this);
@@ -290,6 +294,16 @@ public class VisitFragment extends BaseFragmentSupport implements View.OnClickLi
                     Toast.makeText(getActivity(), R.string.sync_data, Toast.LENGTH_SHORT).show();
                     changeHomeFragment(new SyncBasicFragment(), "syncbasicfragment");
                 }
+                break;
+            case R.id.dd_operation_btn_plan:// 周计划
+                if (getCmmAreaMCount() > 0) {
+                    changeHomeFragment(new DdWeekPlanFragment(), "ddweekplanfragment");
+                } else {
+                    Toast.makeText(getActivity(), R.string.sync_data, Toast.LENGTH_SHORT).show();
+                    changeHomeFragment(new SyncBasicFragment(), "syncbasicfragment");
+                }
+
+                break;
         }
     }
 

@@ -17,7 +17,6 @@ import java.util.List;
 import et.tsingtaopad.R;
 import et.tsingtaopad.base.BaseFragmentSupport;
 import et.tsingtaopad.business.first.FirstFragment;
-import et.tsingtaopad.business.operation.OperationFragment;
 import et.tsingtaopad.business.system.SystemFragment;
 import et.tsingtaopad.business.visit.VisitFragment;
 import et.tsingtaopad.core.util.dbtutil.logutil.DbtLog;
