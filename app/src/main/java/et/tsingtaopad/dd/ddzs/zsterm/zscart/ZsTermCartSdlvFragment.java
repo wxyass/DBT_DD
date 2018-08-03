@@ -1,6 +1,8 @@
 package et.tsingtaopad.dd.ddzs.zsterm.zscart;
 
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -9,12 +11,18 @@ import android.support.v7.widget.AppCompatTextView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.blankj.utilcode.util.Utils;
+import com.yydcdut.sdlv.Menu;
+import com.yydcdut.sdlv.MenuItem;
+import com.yydcdut.sdlv.SlideAndDragListView;
 
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
@@ -35,6 +43,7 @@ import et.tsingtaopad.core.net.domain.ResponseStructBean;
 import et.tsingtaopad.core.ui.loader.LatteLoader;
 import et.tsingtaopad.core.util.dbtutil.CheckUtil;
 import et.tsingtaopad.core.util.dbtutil.ConstValues;
+import et.tsingtaopad.core.util.dbtutil.FunUtil;
 import et.tsingtaopad.core.util.dbtutil.JsonUtil;
 import et.tsingtaopad.core.util.dbtutil.NetStatusUtil;
 import et.tsingtaopad.core.util.dbtutil.PrefUtils;
@@ -64,9 +73,14 @@ import et.tsingtaopad.util.requestHeadUtil;
  * Created by yangwenmin on 2018/3/12.
  */
 
-public class ZsTermCartSdlvFragment extends BaseFragmentSupport implements View.OnClickListener {
+public class ZsTermCartSdlvFragment extends BaseFragmentSupport implements View.OnClickListener ,
+        AdapterView.OnItemLongClickListener,
+        AdapterView.OnItemClickListener,
+        SlideAndDragListView.OnDragDropListener,
+        SlideAndDragListView.OnSlideListener,
+        SlideAndDragListView.OnMenuItemClickListener{
 
-    private final String TAG = "ZsTermCartFragment";
+    private final String TAG = "ZsTermCartSdlvFragment";
 
     private RelativeLayout backBtn;
     private RelativeLayout confirmBtn;
@@ -79,12 +93,12 @@ public class ZsTermCartSdlvFragment extends BaseFragmentSupport implements View.
     private Button updateBtn;
     private Button addtermBtn;
     private Button addBtn;
-    private ListView termCartLv;
+    private SlideAndDragListView termCartLv;
 
     private XtTermCartService cartService;
     private List<XtTermSelectMStc> termList = new ArrayList<XtTermSelectMStc>();
     private List<XtTermSelectMStc> termAllList = new ArrayList<XtTermSelectMStc>();
-    private DdTermCartAdapter termCartAdapter;
+    private DdTermCartSdlvAdapter termCartAdapter;
     private List<XtTermSelectMStc> seqTermList;
 
     private XtTermSelectMStc termStc;
@@ -109,16 +123,15 @@ public class ZsTermCartSdlvFragment extends BaseFragmentSupport implements View.
         confirmTv = (AppCompatTextView) view.findViewById(R.id.top_navigation_bt_confirm);
         backTv = (AppCompatTextView) view.findViewById(R.id.top_navigation_bt_back);
         titleTv = (AppCompatTextView) view.findViewById(R.id.top_navigation_tv_title);
-        // confirmBtn.setVisibility(View.VISIBLE);
         confirmBtn.setOnClickListener(this);
         backBtn.setOnClickListener(this);
 
-        searchEt = (EditText) view.findViewById(R.id.xtbf_termcart_et_search);
-        searchBtn = (Button) view.findViewById(R.id.xtbf_termcart_bt_search);
-        updateBtn = (Button) view.findViewById(R.id.xtbf_termcart_bt_update);
-        addtermBtn = (Button) view.findViewById(R.id.xtbf_termcart_bt_addterm);
-        addBtn = (Button) view.findViewById(R.id.xtbf_termcart_bt_add);
-        termCartLv = (ListView) view.findViewById(R.id.xtbf_termcart_lv);
+        searchEt = (EditText) view.findViewById(R.id.sdlv_termcart_et_search);
+        searchBtn = (Button) view.findViewById(R.id.sdlv_termcart_bt_search);
+        updateBtn = (Button) view.findViewById(R.id.sdlv_termcart_bt_update);
+        addtermBtn = (Button) view.findViewById(R.id.sdlv_termcart_bt_addterm);
+        addBtn = (Button) view.findViewById(R.id.sdlv_termcart_bt_add);
+        termCartLv = (SlideAndDragListView) view.findViewById(R.id.sdlv_termcart_lv);
 
         searchBtn.setOnClickListener(this);
         updateBtn.setOnClickListener(this);
@@ -138,28 +151,15 @@ public class ZsTermCartSdlvFragment extends BaseFragmentSupport implements View.
         confirmTv.setText("追溯");
         cartService = new XtTermCartService(getActivity());
 
-        // 获取从上个界面传递过来的数据
-        /*Bundle bundle = getArguments();
-        String fromFragment = (String) bundle.getString("fromFragment");
-        if("ZsTermSelectFragment".equals(fromFragment)){// 如果从选择终端过来,设置需要同步
-            // 购物车是否已经同步数据  false:没有  true:已同步
-            PrefUtils.putBoolean(getActivity(),GlobalValues.ZS_CART_SYNC,false);
-        }*/
-        //mitValcheckterM = (MitValcheckterM) bundle.getSerializable("mitValcheckterM");
-
+        initMenu();
         // 初始化页面数据
         initData();
 
-        //seqTermList = getNewMstTermListMStc();
     }
 
     // 初始化页面数据
     private void initData() {
 
-        // 设置终端数据 // 判断购物车是协同,还是追溯  1协同  2追溯
-        /*if("2".equals(PrefUtils.getString(getActivity(), GlobalValues.DDXTZS,""))){
-            termList = cartService.queryZsCartTermList();
-        }*/
         termList = cartService.queryZsCartTermList();// termList:只是追溯用到的终端
         termAllList = cartService.queryAllCartTermList();// termAllList:协同+追溯所有终端
 
@@ -181,7 +181,6 @@ public class ZsTermCartSdlvFragment extends BaseFragmentSupport implements View.
         // // 获取追溯模板 大区id
         String areapid = PrefUtils.getString(getActivity(), "departmentid", "");
         mitValcheckterMs = cartService.getValCheckterMList(areapid);
-        // mitValcheckterM = mitValcheckterMs.get(0);
 
     }
 
@@ -192,18 +191,11 @@ public class ZsTermCartSdlvFragment extends BaseFragmentSupport implements View.
                 supportFragmentManager.popBackStack();
                 break;
             case R.id.top_navigation_rl_confirm:
-                /*if (hasPermission(GlobalValues.LOCAL_PERMISSION)) {
-                    // 拥有了此权限,那么直接执行业务逻辑
-                    confirmVisit();// 去拜访
-                } else {
-                    // 还没有对一个权限(请求码,权限数组)这两个参数都事先定义好
-                    requestPermission(GlobalValues.LOCAL_CODE, GlobalValues.LOCAL_PERMISSION);
-                }*/
                 break;
             case R.id.xtbf_termcart_bt_search:
                 searchTerm();
                 break;
-            case R.id.xtbf_termcart_bt_update:// 排序
+            /*case R.id.xtbf_termcart_bt_update:// 排序
                 termCartAdapter.setUpdate(true);
                 String s = updateBtn.getText().toString();
                 if ("排序".equals(s)) {
@@ -219,7 +211,7 @@ public class ZsTermCartSdlvFragment extends BaseFragmentSupport implements View.
                 }
 
 
-                break;
+                break;*/
             case R.id.xtbf_termcart_bt_addterm:// 漏店补录
                 if (getCmmAreaMCount() > 0) {
                     changeHomeFragment(new DdAddTermFragment(), "ddaddtermfragment");
@@ -229,7 +221,6 @@ public class ZsTermCartSdlvFragment extends BaseFragmentSupport implements View.
                 }
                 break;
             case R.id.xtbf_termcart_bt_add:// 更新数据
-                // 更新前不可点击,更新后可以点击
                 // 组建json  请求终端上次拜访详情
                 buildJson();
 
@@ -335,12 +326,6 @@ public class ZsTermCartSdlvFragment extends BaseFragmentSupport implements View.
             termId = "";
         } else {
             termId = termStc.getTerminalkey();
-            /*if (confirmBtn.getTag() != null) {
-                XtTermSelectMStc termStc2 = (XtTermSelectMStc) confirmBtn.getTag();
-                if (termStc2.getTerminalkey().equals(termStc.getTerminalkey())) {
-                    confirmBtn.setTag(termStc);
-                }
-            }*/
         }
 
         // 根据搜索,查找终端列表
@@ -352,35 +337,35 @@ public class ZsTermCartSdlvFragment extends BaseFragmentSupport implements View.
 
         // 设置适配器
         // termCartAdapter = new ZsTermCartAdapter(getActivity(), seqTermList, tempLst, confirmBtn, termId,"2");// 1协同  2追溯
-        termCartAdapter = new DdTermCartAdapter(getActivity(), seqTermList, tempLst, confirmBtn, termId, "2", new IClick() {
+        //termCartAdapter = new DdTermCartAdapter(getActivity(), seqTermList, tempLst, confirmBtn, termId, "2", new IClick() {
+        termCartAdapter = new DdTermCartSdlvAdapter(getActivity(), seqTermList, tempLst, confirmBtn, termId, "2", new IClick() {
             @Override
             public void listViewItemClick(int position, View v) {
 
-                /*if (ViewUtil.isDoubleClick(v.getId(),position, 1000)){
-
-                    if (hasPermission(GlobalValues.LOCAL_PERMISSION)) {
-                        // 拥有了此权限,那么直接执行业务逻辑
-                        termStc = termList.get(position);
-                        confirmVisit();// 去拜访
-                    } else {
-                        // 还没有对一个权限(请求码,权限数组)这两个参数都事先定义好
-                        requestPermission(GlobalValues.LOCAL_CODE, GlobalValues.LOCAL_PERMISSION);
-                    }
-                }*/
-                // Toast.makeText(getActivity(),"点击了"+position,Toast.LENGTH_SHORT).show();
                 confirmXtUplad(position, v);
             }
         });// 1协同  2追溯
+        termCartLv.setMenu(mMenu);
         termCartLv.setAdapter(termCartAdapter);
 
-        // 若巡店拜访页面销毁了,根据下面判断 拜访按钮是否出现
-        /*List<String> termIdLst = FunUtil.getPropertyByName(tempLst, "terminalkey", String.class);
-        if (termStc != null && termIdLst.contains(termId)) {
-            confirmBtn.setVisibility(View.VISIBLE);
-            confirmBtn.setTag(termStc);
-        } else {
-            confirmBtn.setVisibility(View.INVISIBLE);
-        }*/
+        termCartLv.setOnDragDropListener(this);// 拖动
+        termCartLv.setOnItemClickListener(this);// 单击监听
+        termCartLv.setOnSlideListener(this); // Item 滑动监听器   左右滑动
+        termCartLv.setOnMenuItemClickListener(this);// 实现 menu item 的单击事件
+        // termCartLv.setOnItemLongClickListener(this); // 长按监听
+    }
+
+    private Menu mMenu;
+    public void initMenu() {
+        // 第一个参数表示条目滑动时,是否能滑的过头   true表示过头    false 表示不过头
+        mMenu = new Menu(true);
+        mMenu.addItem(new MenuItem.Builder().setWidth((int) getResources().getDimension(R.dimen.slv_item_bg_btn_width_img) + 30)
+                .setBackground(FunUtil.getDrawable(getActivity(), R.drawable.btn_left0))
+                .setText("删除")
+                .setDirection(MenuItem.DIRECTION_RIGHT) // 右滑出现
+                .setTextColor(Color.BLACK)
+                .setTextSize(14)
+                .build());
     }
 
 
@@ -587,4 +572,81 @@ public class ZsTermCartSdlvFragment extends BaseFragmentSupport implements View.
         }
         initData();
     }
+
+
+    XtTermSelectMStc mDraggedEntity;
+    // 拖动监听
+    @Override
+    public void onDragViewStart(int beginPosition) {// 参数 position 表示的是刚开始拖动的时候取的 item 在 ListView 中的位置
+        mDraggedEntity = tempLst.get(beginPosition);
+        toast("开始拖动时的位置 ---> " + beginPosition);
+    }
+
+    // 拖动监听
+    @Override
+    public void onDragDropViewMoved(int fromPosition, int toPosition) {// 参数 fromPosition 和 toPosition 表示从哪个位置拖动到哪个位置
+        XtTermSelectMStc applicationInfo = tempLst.remove(fromPosition);
+        tempLst.add(toPosition, applicationInfo);
+        toast("从位置 ---> " + fromPosition + "  拖到位置 --> " + toPosition);
+    }
+
+    // 拖动监听
+    @Override
+    public void onDragViewDown(int finalPosition) {  // 参数 position 表示的是拖动的 item 最放到了 ListView 的哪个位置
+        tempLst.set(finalPosition, mDraggedEntity);
+        toast("最放到了的哪个位置 ---> " + finalPosition);
+    }
+
+    // Item 滑动监听器
+    @Override
+    public void onSlideOpen(View view, View parentView, int position, int direction) {
+        toast("onSlideOpen   position--->" + position + "  direction--->" + direction);
+    }
+
+    // Item 滑动监听器
+    @Override
+    public void onSlideClose(View view, View parentView, int position, int direction) {
+        toast("onSlideClose   position--->" + position + "  direction--->" + direction);
+    }
+
+    // 实现 menu item 的单击事件
+    @Override
+    public int onMenuItemClick(View v, int itemPosition, int buttonPosition, int direction) {
+        toast("onMenuItemClick   itemPosition--->" + itemPosition + "  buttonPosition-->" + buttonPosition + "  direction-->" + direction);
+        switch (direction) {
+            case MenuItem.DIRECTION_LEFT:
+                switch (buttonPosition) {
+                    case 0:
+                        return Menu.ITEM_NOTHING;  // 点击无反应
+                    case 1:
+                        return Menu.ITEM_SCROLL_BACK; // 收回
+                }
+                break;
+            case MenuItem.DIRECTION_RIGHT:
+                switch (buttonPosition) {
+                    case 0:
+                        return Menu.ITEM_SCROLL_BACK; // 收回
+                    case 1:
+                        return Menu.ITEM_DELETE_FROM_BOTTOM_TO_TOP; // 置顶
+                }
+        }
+        return Menu.ITEM_NOTHING;
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        toast("长按监听 position--->" + position);
+        return true;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        toast("单击监听 position--->" + position);
+    }
+
+    private void toast(String toast) {
+        Toast.makeText(getActivity(),toast,Toast.LENGTH_SHORT).show();
+    }
+
+
 }

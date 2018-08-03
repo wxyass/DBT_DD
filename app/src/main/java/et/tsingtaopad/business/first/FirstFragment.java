@@ -48,6 +48,7 @@ import et.tsingtaopad.dd.ddxt.term.cart.XtTermCartFragment;
 import et.tsingtaopad.dd.ddxt.term.select.XtTermListFragment;
 import et.tsingtaopad.dd.ddxt.term.select.XtTermSelectFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zscart.ZsTermCartFragment;
+import et.tsingtaopad.dd.ddzs.zsterm.zscart.ZsTermCartSdlvFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTemplateFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTermGetFragment;
 import et.tsingtaopad.home.app.MainService;
@@ -399,7 +400,8 @@ public class FirstFragment extends BaseFragmentSupport implements View.OnClickLi
         if(valueLst.size()>0){
             Bundle zsBundle = new Bundle();
             zsBundle.putSerializable("fromFragment", "VisitFragment");
-            ZsTermCartFragment zsTermCartFragment = new ZsTermCartFragment();
+            // ZsTermCartFragment zsTermCartFragment = new ZsTermCartFragment();
+            ZsTermCartSdlvFragment zsTermCartFragment = new ZsTermCartSdlvFragment();
             zsTermCartFragment.setArguments(zsBundle);
             changeHomeFragment(zsTermCartFragment, "zstermcartfragment");
         }else{

@@ -19,7 +19,7 @@ import com.blankj.utilcode.util.FileUtils;
 
 import java.io.File;
 
-import et.tsingtaopad.core.R;
+import et.tsingtaopad.R;
 import et.tsingtaopad.core.ui.camera.CameraImageBean;
 import et.tsingtaopad.core.ui.camera.RequestCodes;
 import et.tsingtaopad.core.util.file.FileTool;

@@ -3,6 +3,7 @@ package et.tsingtaopad.home.app;
 import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.support.multidex.MultiDex;
 
 import com.blankj.utilcode.util.Utils;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
@@ -28,6 +29,11 @@ public class MyApplication extends Application {
 
     public static final String TAG = "MyApplication";
     private static Context context;
+
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
 
     @Override
     public void onCreate() {
