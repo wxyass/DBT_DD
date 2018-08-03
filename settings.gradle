@@ -1,1 +1,1 @@
-include ':app', ':dbt-core'
+include ':app'
