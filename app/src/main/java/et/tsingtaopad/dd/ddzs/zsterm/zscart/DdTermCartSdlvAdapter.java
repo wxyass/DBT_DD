@@ -7,6 +7,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
@@ -48,32 +49,20 @@ public class DdTermCartSdlvAdapter extends BaseAdapter {
 
     private Activity context;
     private List<XtTermSelectMStc> dataLst;
-    private List<XtTermSelectMStc> seqTermList;
-    private RelativeLayout confirmBt;
     private String termId;
-    private String type;// 1协同  2追溯
     private int selectItem = -1;
-    private boolean isUpdate;//是否处于修改状态
-    private IClick listener;
 
-    public DdTermCartSdlvAdapter(Activity context, List<XtTermSelectMStc> seqTermList,
+    public DdTermCartSdlvAdapter(Activity context,
                                  List<XtTermSelectMStc> termialLst,
-                                 RelativeLayout confirmBt,
-                                 String termId,
-                                 String type,
-                                 IClick listener) {
+                                 String termId
+    ) {
         this.context = context;
-        this.seqTermList = seqTermList;
         this.dataLst = termialLst;
-        this.confirmBt = confirmBt;
         this.termId = termId;
-        this.type = type;
-        this.listener = listener;
     }
 
     @Override
     public int getCount() {
-
         if (CheckUtil.IsEmpty(this.dataLst)) {
             return 0;
         } else {
@@ -83,10 +72,8 @@ public class DdTermCartSdlvAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int arg0) {
-
         if (CheckUtil.IsEmpty(this.dataLst)) {
             return null;
-
         } else {
             return this.dataLst.get(arg0);
         }
@@ -103,22 +90,20 @@ public class DdTermCartSdlvAdapter extends BaseAdapter {
         if (convertView == null) {
             holder = new ViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.item_termcart_sdlv, null);
-            holder.terminalSequenceEt = (EditText) convertView.findViewById(R.id.item_termcart_et_sequence);
-            holder.terminalNameTv = (TextView) convertView.findViewById(R.id.item_termcart_tv_name);
-            holder.visitTimeTv = (TextView) convertView.findViewById(R.id.item_termcart_tv_visittime);
-            holder.terminalTypeTv = (TextView) convertView.findViewById(R.id.item_termcart_tv_type);// 渠道类型
+            holder.termcart_ll = (LinearLayout) convertView.findViewById(R.id.item_sdlv_termcart_ll);
+            holder.terminalSequenceEt = (TextView) convertView.findViewById(R.id.item_sdlv_termcart_et_sequence);
+            holder.terminalNameTv = (TextView) convertView.findViewById(R.id.item_sdlv_termcart_tv_name);
+            holder.visitTimeTv = (TextView) convertView.findViewById(R.id.item_sdlv_termcart_tv_visittime);
+            holder.terminalTypeTv = (TextView) convertView.findViewById(R.id.item_sdlv_termcart_tv_type);// 渠道类型
 
-            holder.updateIv = (ImageView) convertView.findViewById(R.id.item_termcart_iv_update);// 上传成功标识
-            holder.updateFailIv = (ImageView) convertView.findViewById(R.id.item_termcart_iv_update_fail);// 上传失败标识
-            holder.iserrorIv = (ImageView) convertView.findViewById(R.id.item_termcart_iv_iserror);// 错误
+            holder.updateIv = (ImageView) convertView.findViewById(R.id.item_sdlv_termcart_iv_update);// 上传成功标识
+            holder.updateFailIv = (ImageView) convertView.findViewById(R.id.item_sdlv_termcart_iv_update_fail);// 上传失败标识
+            holder.iserrorIv = (ImageView) convertView.findViewById(R.id.item_sdlv_termcart_iv_iserror);// 错误
 
-            holder.mineIv = (ImageView) convertView.findViewById(R.id.item_termcart_iv_mime);
-            holder.mineProtocolIv = (ImageView) convertView.findViewById(R.id.item_termcart_iv_mineprotocol);
-            holder.vieIv = (ImageView) convertView.findViewById(R.id.item_termcart_iv_vie);
-            holder.vieProtocolIv = (ImageView) convertView.findViewById(R.id.item_termcart_iv_vieprotocol);
-
-            holder.itermLayout = (LinearLayout) convertView.findViewById(R.id.item_termcart_ll);// 整体条目
-            holder.itemCoverV = convertView.findViewById(R.id.item_termcart_v_cover);// 失效终端底色
+            holder.mineIv = (ImageView) convertView.findViewById(R.id.item_sdlv_termcart_iv_mime);
+            holder.mineProtocolIv = (ImageView) convertView.findViewById(R.id.item_sdlv_termcart_iv_mineprotocol);
+            holder.vieIv = (ImageView) convertView.findViewById(R.id.item_sdlv_termcart_iv_vie);
+            holder.vieProtocolIv = (ImageView) convertView.findViewById(R.id.item_sdlv_termcart_iv_vieprotocol);
 
             convertView.setTag(holder);
         } else {
@@ -128,38 +113,38 @@ public class DdTermCartSdlvAdapter extends BaseAdapter {
         XtTermSelectMStc item = dataLst.get(position);
 
         // 排序
-        holder.terminalSequenceEt.setBackgroundColor(context.getResources().getColor(R.color.bg_app));
-        holder.terminalSequenceEt.setText(item.getSequence());
+        // holder.terminalSequenceEt.setBackgroundColor(context.getResources().getColor(R.color.bg_app));
+        // holder.terminalSequenceEt.setText(item.getSequence());
+        holder.terminalSequenceEt.setText((position + 1) + "");
         // holder.terminalSequenceEt.setTag(position);
 
         // 终端名称
         holder.terminalNameTv.setText(item.getTerminalname());
         holder.terminalNameTv.setHint(item.getTerminalkey());
-
         // holder.itermLayout.setTag(position);
 
         // 渠道类型
         holder.terminalTypeTv.setText(item.getTerminalType());
 
         // 修改成 现在的整改图章(从整改计划终端表 关联整改计划主表 获取status)
-        if ("1".equals(item.getIserror())||"0".equals(item.getIserror())) {
+        if ("1".equals(item.getIserror()) || "0".equals(item.getIserror())) {
             holder.iserrorIv.setVisibility(View.VISIBLE);
         } else {
             holder.iserrorIv.setVisibility(View.GONE);
         }
 
         // 上传标记  SyncFlag对应拜访表Padisconsistent
-        if(ConstValues.FLAG_1.equals(item.getUploadFlag())&&ConstValues.FLAG_1.equals(item.getSyncFlag())){
+        if (ConstValues.FLAG_1.equals(item.getUploadFlag()) && ConstValues.FLAG_1.equals(item.getSyncFlag())) {
             // 结束上传  上传成功
             holder.terminalNameTv.setTextColor(Color.RED);
             holder.updateIv.setVisibility(View.VISIBLE);
             holder.updateFailIv.setVisibility(View.GONE);
-        }else if(ConstValues.FLAG_1.equals(item.getUploadFlag())&&ConstValues.FLAG_0.equals(item.getSyncFlag())){
+        } else if (ConstValues.FLAG_1.equals(item.getUploadFlag()) && ConstValues.FLAG_0.equals(item.getSyncFlag())) {
             // 结束上传  上传失败
             holder.terminalNameTv.setTextColor(Color.YELLOW);
             holder.updateIv.setVisibility(View.GONE);// 后面修改
             holder.updateFailIv.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             holder.terminalNameTv.setTextColor(Color.BLACK);
             holder.updateIv.setVisibility(View.GONE);
             holder.updateFailIv.setVisibility(View.GONE);
@@ -168,7 +153,7 @@ public class DdTermCartSdlvAdapter extends BaseAdapter {
         // 拜访时长
         if (!CheckUtil.isBlankOrNull(item.getVisitTime())) {
             holder.visitTimeTv.setVisibility(View.VISIBLE);
-            holder.visitTimeTv.setText(DateUtil.dividetime(item.getVisitTime())+"-"+DateUtil.dividetime(item.getEndDate()));
+            holder.visitTimeTv.setText(DateUtil.dividetime(item.getVisitTime()) + "-" + DateUtil.dividetime(item.getEndDate()));
         } else {
             holder.visitTimeTv.setVisibility(View.VISIBLE);
             holder.visitTimeTv.setText("今日未拜访");
@@ -210,7 +195,6 @@ public class DdTermCartSdlvAdapter extends BaseAdapter {
         // 整体的字变色
         if (position == selectItem) {
             // 将选中的条目,变成灰色
-            holder.itermLayout.setBackgroundColor(Color.WHITE);
             holder.terminalNameTv.setTextColor(context.getResources().getColor(R.color.font_color_green));
             holder.terminalTypeTv.setTextColor(context.getResources().getColor(R.color.font_color_green));
             holder.visitTimeTv.setTextColor(context.getResources().getColor(R.color.font_color_green));
@@ -220,7 +204,6 @@ public class DdTermCartSdlvAdapter extends BaseAdapter {
             }
         } else {
             // 未选中的条目,变成白色
-            holder.itermLayout.setBackgroundColor(Color.WHITE);
             if (ConstValues.FLAG_1.equals(item.getUploadFlag())) {
                 // 已提交过的
                 holder.terminalNameTv.setTextColor(context.getResources().getColor(R.color.termlst_sync_font_color));
@@ -238,11 +221,17 @@ public class DdTermCartSdlvAdapter extends BaseAdapter {
                 holder.visitTimeTv.setTextColor(context.getResources().getColor(R.color.gray_color_cccccc));
             }
         }
+
+        /*AlphaAnimation alphaAnimation = new AlphaAnimation(0, 1);
+        alphaAnimation.setDuration(300);
+        convertView.startAnimation(alphaAnimation);*/
+
         return convertView;
     }
 
     private class ViewHolder {
-        private EditText terminalSequenceEt;
+        private LinearLayout termcart_ll;
+        private TextView terminalSequenceEt;
         private TextView terminalNameTv;
         private TextView visitTimeTv;
         private TextView terminalTypeTv;
@@ -253,7 +242,5 @@ public class DdTermCartSdlvAdapter extends BaseAdapter {
         private ImageView mineProtocolIv;
         private ImageView vieIv;
         private ImageView vieProtocolIv;
-        private LinearLayout itermLayout;
-        private View itemCoverV;
     }
 }

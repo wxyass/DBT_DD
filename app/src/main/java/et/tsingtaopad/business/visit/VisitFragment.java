@@ -46,10 +46,9 @@ import et.tsingtaopad.dd.ddmeeting.MeetingFragment;
 import et.tsingtaopad.dd.ddweekplan.DdWeekPlanFragment;
 import et.tsingtaopad.dd.ddxt.term.cart.XtTermCartFragment;
 import et.tsingtaopad.dd.ddxt.term.select.XtTermListFragment;
-import et.tsingtaopad.dd.ddxt.term.select.XtTermSelectFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zscart.ZsTermCartFragment;
+import et.tsingtaopad.dd.ddzs.zsterm.zscart.ZsTermCartSdlvFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTemplateFragment;
-import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTermGetFragment;
 import et.tsingtaopad.home.app.MainService;
 import et.tsingtaopad.home.initadapter.GlobalValues;
 import et.tsingtaopad.http.HttpParseJson;
@@ -67,7 +66,7 @@ public class VisitFragment extends BaseFragmentSupport implements View.OnClickLi
     private AppCompatTextView backTv;
     private AppCompatTextView titleTv;
 
-    LinearLayout button;
+    RelativeLayout button;
     RelativeLayout xtTermBtn;
     LinearLayout zdzsBtn;
     RelativeLayout zsTermBtn;
@@ -127,26 +126,32 @@ public class VisitFragment extends BaseFragmentSupport implements View.OnClickLi
         confirmBtn.setOnClickListener(this);
         backBtn.setOnClickListener(this);
 
-        button = (LinearLayout) view.findViewById(R.id.dd_btn_xtbf);
-        xtTermBtn = (RelativeLayout) view.findViewById(R.id.dd_btn_xt_term);
-        zdzsBtn = (LinearLayout) view.findViewById(R.id.dd_btn_zdzs);
-        zsTermBtn = (RelativeLayout) view.findViewById(R.id.dd_btn_zs_term);
 
+
+
+        // 经销商资料库
         agencyresBtn = (RelativeLayout) view.findViewById(R.id.dd_btn_zs_agencyres);
+        // 经销商库存盘点
         agencycheckBtn = (RelativeLayout) view.findViewById(R.id.dd_btn_zs_agencycheck);
 
-
-        visit_xt_termname = (TextView)view. findViewById(R.id.visit_xt_termname);
-        visit_xt_nexttermname = (TextView) view.findViewById(R.id.visit_xt_nexttermname);
-        visit_xt_ydname = (TextView) view.findViewById(R.id.visit_xt_ydname);
-        visit_xt_upload = (TextView) view.findViewById(R.id.visit_xt_upload);
-        visit_xt_address = (TextView) view.findViewById(R.id.visit_xt_address);
-
+        // 追溯
+        zdzsBtn = (LinearLayout) view.findViewById(R.id.dd_btn_zdzs);
+        zsTermBtn = (RelativeLayout) view.findViewById(R.id.dd_btn_zs_term);
         visit_zs_termname = (TextView) view.findViewById(R.id.visit_zs_termname);
         visit_zs_nexttermname = (TextView) view.findViewById(R.id.visit_zs_nexttermname);
         visit_zs_ydname = (TextView) view.findViewById(R.id.visit_zs_ydname);
         visit_zs_upload = (TextView) view.findViewById(R.id.visit_zs_upload);
         visit_zs_address = (TextView) view.findViewById(R.id.visit_zs_address);
+
+
+        // 协同
+        button = (RelativeLayout) view.findViewById(R.id.dd_btn_xtbf);
+        xtTermBtn = (RelativeLayout) view.findViewById(R.id.dd_btn_xt_term);
+        visit_xt_termname = (TextView)view. findViewById(R.id.visit_xt_termname);
+        visit_xt_nexttermname = (TextView) view.findViewById(R.id.visit_xt_nexttermname);
+        visit_xt_ydname = (TextView) view.findViewById(R.id.visit_xt_ydname);
+        visit_xt_upload = (TextView) view.findViewById(R.id.visit_xt_upload);
+        visit_xt_address = (TextView) view.findViewById(R.id.visit_xt_address);
 
         /*startSync = (RelativeLayout)view.findViewById(R.id.dd_btn_visit_sync_start);
         startSync.setOnClickListener(this);*/
@@ -313,7 +318,8 @@ public class VisitFragment extends BaseFragmentSupport implements View.OnClickLi
         if(valueLst.size()>0){
             Bundle zsBundle = new Bundle();
             zsBundle.putSerializable("fromFragment", "VisitFragment");
-            ZsTermCartFragment zsTermCartFragment = new ZsTermCartFragment();
+            // ZsTermCartFragment zsTermCartFragment = new ZsTermCartFragment();
+            ZsTermCartSdlvFragment zsTermCartFragment = new ZsTermCartSdlvFragment();
             zsTermCartFragment.setArguments(zsBundle);
             changeHomeFragment(zsTermCartFragment, "zstermcartfragment");
         }else{
@@ -359,7 +365,7 @@ public class VisitFragment extends BaseFragmentSupport implements View.OnClickLi
                             if (0 == position) {// 取消
 
                             }else if(1 == position){// 确定
-                                changeHomeFragment(new XtTermSelectFragment(), "xttermlistfragment");
+                                // changeHomeFragment(new XtTermSelectFragment(), "xttermlistfragment");
                             }
                         }
                     })

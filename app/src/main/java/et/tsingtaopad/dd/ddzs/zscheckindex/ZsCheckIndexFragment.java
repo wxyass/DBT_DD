@@ -640,7 +640,7 @@ public class ZsCheckIndexFragment extends XtBaseVisitFragment implements View.On
      * 参数8: 条目点击监听  √
      */
     public void alertShow13(final XtCheckIndexCalculateStc checkIndexCalculateStc) {
-        new AlertView("请选择复查结果", null, "取消", null,
+        new AlertView("请选择复查结果", null, "未稽查", null,
                 new String[]{"正确", "错误"},
                 getActivity(), AlertView.Style.ActionSheet,
                 new OnItemClickListener() {
@@ -693,7 +693,7 @@ public class ZsCheckIndexFragment extends XtBaseVisitFragment implements View.On
      * 参数8: 条目点击监听  √
      */
     public void alertShow6(final int posi) {
-        new AlertView("请选择复查结果", null, "取消", null,
+        new AlertView("请选择复查结果", null, "未稽查", null,
                 new String[]{"正确", "错误"},
                 getActivity(), AlertView.Style.ActionSheet,
                 new OnItemClickListener() {
@@ -724,7 +724,7 @@ public class ZsCheckIndexFragment extends XtBaseVisitFragment implements View.On
                             ZsVisitShopActivity zsVisitShopActivity = (ZsVisitShopActivity) getActivity();
                             zsVisitShopActivity.changeXtvisitFragment(zsInvocingAddDataFragment, "zscheckpromoamendfragment");
                         }
-                        else if (-1 == position) {// 跳转数据录入
+                        else if (-1 == position) {//
                             CheckIndexPromotionStc promotionStc = promotionLst.get(posi);
                             promotionStc.setValistruenumflag(""); // 达成组数正确与否
                             handler.sendEmptyMessage(ZsCheckIndexFragment.INIT_AMEND);
@@ -747,7 +747,7 @@ public class ZsCheckIndexFragment extends XtBaseVisitFragment implements View.On
      * 参数8: 条目点击监听  √
      */
     public void alertShow5(final MitValgroupproMTemp mitValgroupproMTemp) {
-        new AlertView("请选择复查结果", null, "取消", null,
+        new AlertView("请选择复查结果", null, "未稽查", null,
                 new String[]{"正确", "错误"},
                 getActivity(), AlertView.Style.ActionSheet,
                 new OnItemClickListener() {

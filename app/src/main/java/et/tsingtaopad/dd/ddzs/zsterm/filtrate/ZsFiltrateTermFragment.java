@@ -48,7 +48,6 @@ import et.tsingtaopad.dd.ddxt.invoicing.addinvoicing.XtAddInvocingService;
 import et.tsingtaopad.dd.ddxt.term.select.XtTermSelectService;
 import et.tsingtaopad.dd.ddxt.term.select.domain.XtTermSelectMStc;
 import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTermFragment;
-import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTermGetFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zsselect.adapter.AgencyCmpLvAdapter;
 import et.tsingtaopad.dd.ddzs.zsterm.zsselect.adapter.ProCheckLvAdapter;
 import et.tsingtaopad.dd.ddzs.zsterm.zsselect.domain.ProSellStc;

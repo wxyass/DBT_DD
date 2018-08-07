@@ -8,8 +8,8 @@ android {
         applicationId "et.tsingtaopad"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
-        versionCode 75
-        versionName "2.4.5.1"
+        versionCode 76
+        versionName "2.4.5.2"
 
         // Enabling multidex support.
         multiDexEnabled true

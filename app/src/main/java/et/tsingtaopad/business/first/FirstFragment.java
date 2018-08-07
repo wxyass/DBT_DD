@@ -1,5 +1,7 @@
 package et.tsingtaopad.business.first;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -33,6 +35,7 @@ import et.tsingtaopad.core.net.domain.ResponseStructBean;
 import et.tsingtaopad.core.util.dbtutil.ConstValues;
 import et.tsingtaopad.core.util.dbtutil.DateUtil;
 import et.tsingtaopad.core.util.dbtutil.JsonUtil;
+import et.tsingtaopad.core.util.dbtutil.NetStatusUtil;
 import et.tsingtaopad.core.util.dbtutil.PrefUtils;
 import et.tsingtaopad.core.util.dbtutil.PropertiesUtil;
 import et.tsingtaopad.core.view.alertview.AlertView;
@@ -43,14 +46,10 @@ import et.tsingtaopad.dd.ddagencycheck.DdAgencyCheckSelectFragment;
 import et.tsingtaopad.dd.dddaysummary.DdDaySummaryFragment;
 import et.tsingtaopad.dd.dddealplan.DdDealPlanFragment;
 import et.tsingtaopad.dd.ddmeeting.MeetingFragment;
-import et.tsingtaopad.dd.ddweekplan.DdWeekPlanFragment;
 import et.tsingtaopad.dd.ddxt.term.cart.XtTermCartFragment;
 import et.tsingtaopad.dd.ddxt.term.select.XtTermListFragment;
-import et.tsingtaopad.dd.ddxt.term.select.XtTermSelectFragment;
-import et.tsingtaopad.dd.ddzs.zsterm.zscart.ZsTermCartFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zscart.ZsTermCartSdlvFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTemplateFragment;
-import et.tsingtaopad.dd.ddzs.zsterm.zsselect.ZsTermGetFragment;
 import et.tsingtaopad.home.app.MainService;
 import et.tsingtaopad.home.initadapter.GlobalValues;
 import et.tsingtaopad.http.HttpParseJson;
@@ -384,7 +383,7 @@ public class FirstFragment extends BaseFragmentSupport implements View.OnClickLi
                             if (0 == position) {// 取消
 
                             }else if(1 == position){// 确定
-                                changeHomeFragment(new XtTermSelectFragment(), "xttermlistfragment");
+                                // changeHomeFragment(new XtTermSelectFragment(), "xttermlistfragment");
                             }
                         }
                     })
@@ -435,8 +434,25 @@ public class FirstFragment extends BaseFragmentSupport implements View.OnClickLi
 
     // // 签到
     private void startDdSignActivity() {
-        Intent intent = new Intent(getActivity(), DdSignActivity.class);
-        startActivity(intent);
+
+        // 检查网络
+        if (NetStatusUtil.isNetValid(getContext())) {
+            Intent intent = new Intent(getActivity(), DdSignActivity.class);
+            startActivity(intent);
+        } else {
+            // 提示修改网络
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setTitle("网络错误");
+            builder.setMessage("请连接好网络,在进行打卡");
+            builder.setNegativeButton("确定", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    getContext().startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
+                }
+            }).create().show();
+        }
+
     }
 
     @Override

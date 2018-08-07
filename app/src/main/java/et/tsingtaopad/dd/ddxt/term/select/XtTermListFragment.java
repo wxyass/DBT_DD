@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -21,7 +20,6 @@ import android.widget.Toast;
 
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import et.tsingtaopad.R;
@@ -53,8 +51,8 @@ import et.tsingtaopad.db.table.MstMarketareaM;
 import et.tsingtaopad.db.table.MstRouteM;
 import et.tsingtaopad.db.table.MstTerminalinfoM;
 import et.tsingtaopad.dd.ddxt.shopvisit.XtVisitShopActivity;
-import et.tsingtaopad.dd.ddxt.term.cart.XtTermCartFragment;
-import et.tsingtaopad.dd.ddxt.term.select.adapter.XtTermSelectAdapter;
+import et.tsingtaopad.dd.ddxt.term.select.adapter.XtSelectAdapter;
+import et.tsingtaopad.dd.ddzs.zsterm.zsselect.adapter.XtTermSelectAdapter;
 import et.tsingtaopad.dd.ddxt.term.select.domain.XtTermSelectMStc;
 import et.tsingtaopad.dd.ddxt.updata.XtUploadService;
 import et.tsingtaopad.home.app.MainService;
@@ -68,7 +66,7 @@ import et.tsingtaopad.util.requestHeadUtil;
 
 public class XtTermListFragment extends BaseFragmentSupport implements View.OnClickListener, AdapterView.OnItemClickListener {
 
-    private final String TAG = "XtTermSelectFragment";
+    private final String TAG = "XtTermListFragment";
 
     private RelativeLayout backBtn;
     private RelativeLayout confirmBtn;
@@ -261,14 +259,17 @@ public class XtTermListFragment extends BaseFragmentSupport implements View.OnCl
         termList = xtSelectService.queryXtTestTerminal(routes);// 参数没用
     }
 
-    XtTermSelectAdapter selectAdapter;
+    // XtTermSelectAdapter selectAdapter;
+    XtSelectAdapter selectAdapter;
 
     //  设置终端条目适配器,及条目点击事件
     private void setItemAdapterListener() {
         // 设置适配器 加号按钮点击事件
-        selectAdapter = new XtTermSelectAdapter(getActivity(), termList, termList, confirmTv, null, new IXtTermSelectClick() {
+        /*selectAdapter = new XtTermSelectAdapter(getActivity(), termList, termList, confirmTv, null, new IXtTermSelectClick() {
             @Override
             public void imageViewClick(int position, View v) {
+
+                DbtLog.logUtils(TAG, "imageViewClick");
 
                 // 点击之前的加号按钮 也是拜访终端  (点击每个条目 也是拜访终端)
 
@@ -290,7 +291,9 @@ public class XtTermListFragment extends BaseFragmentSupport implements View.OnCl
 
                 }
             }
-        });
+        });*/
+
+        selectAdapter = new XtSelectAdapter(getActivity(), termList,null);
         // 设置适配器
         termRouteLv.setAdapter(selectAdapter);
         // 条目点击事件
@@ -408,24 +411,31 @@ public class XtTermListFragment extends BaseFragmentSupport implements View.OnCl
     // listview的条目点击事件  单独拜访
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        DbtLog.logUtils(TAG, "onItemClick");
+
+
         // 点击每个条目 也是拜访终端  (点击之前的加号按钮 也是拜访终端)
 
         xtTermSelectMStc = termList.get(position);
+        //失效终端且未审核通过的变灰,不可编辑顺序，不可选中
+        if("3".equals(xtTermSelectMStc.getStatus())){
 
-        // 检测条数是否已上传  // 该终端协同数据是否全部上传
-        List<MitVisitM> terminalList = xtSelectService.getXtMitValterM(xtTermSelectMStc.getTerminalkey());
-        if (terminalList.size() > 0) {// 未上传,弹窗上传
-            deleteOrXtUplad(terminalList.get(0));
-        } else {// 已上传 去拜访
-            // 弹出提示 是否拜访这家终端
-            if (hasPermission(GlobalValues.LOCAL_PERMISSION)) {
-                // 拥有了此权限,那么直接执行业务逻辑
-                confirmXtUplad(xtTermSelectMStc);// 拜访
-            } else {
-                // 还没有对一个权限(请求码,权限数组)这两个参数都事先定义好
-                requestPermission(GlobalValues.LOCAL_CODE, GlobalValues.LOCAL_PERMISSION);
+        }else{
+            // 检测条数是否已上传  // 该终端协同数据是否全部上传
+            List<MitVisitM> terminalList = xtSelectService.getXtMitValterM(xtTermSelectMStc.getTerminalkey());
+            if (terminalList.size() > 0) {// 未上传,弹窗上传
+                deleteOrXtUplad(terminalList.get(0));
+            } else {// 已上传 去拜访
+                // 弹出提示 是否拜访这家终端
+                if (hasPermission(GlobalValues.LOCAL_PERMISSION)) {
+                    // 拥有了此权限,那么直接执行业务逻辑
+                    confirmXtUplad(xtTermSelectMStc);// 拜访
+                } else {
+                    // 还没有对一个权限(请求码,权限数组)这两个参数都事先定义好
+                    requestPermission(GlobalValues.LOCAL_CODE, GlobalValues.LOCAL_PERMISSION);
+                }
             }
-
         }
     }
 
@@ -436,12 +446,16 @@ public class XtTermListFragment extends BaseFragmentSupport implements View.OnCl
 
     // 条目点击 是否删除/上传这家记录
     private void deleteOrXtUplad(final MitVisitM mitVisitM) {
+        DbtLog.logUtils(TAG, "deleteOrXtUplad");
         final XtUploadService xtUploadService = new XtUploadService(getActivity(), null);
         // 普通窗口
         mAlertViewExt = new AlertView("检测到这家终端上次数据未上传", null, null, new String[]{"删除", "上传"}, null, getActivity(), AlertView.Style.Alert,
                 new OnItemClickListener() {
                     @Override
                     public void onItemClick(Object o, int position) {
+
+                        DbtLog.logUtils(TAG, "数据未上传onItemClick");
+
                         //Toast.makeText(getApplicationContext(), "点击了第" + position + "个", Toast.LENGTH_SHORT).show();
                         if (0 == position) {// 确定按钮:0   取消按钮:-1
                             //if (ViewUtil.isDoubleClick(v.getId(), 2500)) return;
@@ -473,6 +487,8 @@ public class XtTermListFragment extends BaseFragmentSupport implements View.OnCl
 
     // 条目点击 确定拜访一家终端
     private void confirmXtUplad(final XtTermSelectMStc termSelectMStc) {
+        DbtLog.logUtils(TAG, "confirmXtUplad");
+
         String termName = termSelectMStc.getTerminalname();
 
         // 普通窗口
@@ -514,6 +530,7 @@ public class XtTermListFragment extends BaseFragmentSupport implements View.OnCl
 
     // 查找终端,并复制到终端购物车
     public void copyMstTerminalinfoMCart(XtTermSelectMStc termSelectMStc) {
+        DbtLog.logUtils(TAG, "copyMstTerminalinfoMCart");
         xtSelectService.toMstTerminalinfoMCartData(termSelectMStc, "1");
     }
 

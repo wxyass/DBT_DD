@@ -280,7 +280,7 @@ public class ZsAgreeFragment extends XtBaseVisitFragment implements View.OnClick
 
     // 核查协议基本信息
     public void alertShow5(final int type) {
-        new AlertView("请选择核查结果", null, "取消", null,
+        new AlertView("请选择核查结果", null, "未稽查", null,
                 new String[]{"正确", "错误"},
                 getActivity(), AlertView.Style.ActionSheet,
                 new OnItemClickListener() {
@@ -317,7 +317,7 @@ public class ZsAgreeFragment extends XtBaseVisitFragment implements View.OnClick
                             ZsVisitShopActivity xtVisitShopActivity = (ZsVisitShopActivity) getActivity();
                             xtVisitShopActivity.changeXtvisitFragment(xtaddinvoicingfragment, "zsagreeamendfragment");
                         }
-                        else if (-1 == position) {// 跳转数据录入
+                        else if (-1 == position) {// 未稽查
                             if (type == AGREE_STARTDATE) {// 开始时间
                                 mitValagreeMTemp.setStartdateflag("");
                             } else if (type == AGREE_ENDDATE) {//结束时间

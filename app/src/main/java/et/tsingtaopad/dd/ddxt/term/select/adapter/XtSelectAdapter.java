@@ -21,6 +21,7 @@ import et.tsingtaopad.R;
 import et.tsingtaopad.core.util.dbtutil.CheckUtil;
 import et.tsingtaopad.core.util.dbtutil.ConstValues;
 import et.tsingtaopad.core.util.dbtutil.DateUtil;
+import et.tsingtaopad.core.util.dbtutil.logutil.DbtLog;
 import et.tsingtaopad.dd.ddxt.term.select.IXtTermSelectClick;
 import et.tsingtaopad.dd.ddxt.term.select.domain.XtTermSelectMStc;
 
@@ -34,26 +35,22 @@ import et.tsingtaopad.dd.ddxt.term.select.domain.XtTermSelectMStc;
  * 修改履历</br>
  * 日期      原因  BUG号    修改人 修改版本</br>
  */
-public class XtTermSelectAdapter extends BaseAdapter implements OnClickListener {
+public class XtSelectAdapter extends BaseAdapter {
+
+    private final String TAG = "XtTermSelectAdapter";
 
     private Activity context;
     private List<XtTermSelectMStc> dataLst;
-    private List<XtTermSelectMStc> seqTermList;
-    private TextView confirmBt;
     private String termId;
-    private IXtTermSelectClick mListener;
     private int selectItem = -1;
     private boolean isUpdate;//是否处于修改状态
 
 
-    public XtTermSelectAdapter(Activity context, List<XtTermSelectMStc> seqTermList, List<XtTermSelectMStc> termialLst,
-                               TextView confirmBt, String termId, IXtTermSelectClick mListener) {
+    public XtSelectAdapter(Activity context,  List<XtTermSelectMStc> termialLst,
+                            String termId) {
         this.context = context;
-        this.seqTermList = seqTermList;
         this.dataLst = termialLst;
-        this.confirmBt = confirmBt;
         this.termId = termId;
-        this.mListener = mListener;
     }
 
     @Override
@@ -85,14 +82,13 @@ public class XtTermSelectAdapter extends BaseAdapter implements OnClickListener 
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        XtTermSelectAdapter.ViewHolder holder = null;
+        XtSelectAdapter.ViewHolder holder = null;
         if (convertView == null) {
-            holder = new XtTermSelectAdapter.ViewHolder();
+            holder = new XtSelectAdapter.ViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.item_termselect, null);
             holder.terminalSequenceEt = (EditText) convertView.findViewById(R.id.item_termselect_et_sequence);
             holder.terminalNameTv = (TextView) convertView.findViewById(R.id.item_termselect_tv_name);
             holder.visitDateTv = (TextView) convertView.findViewById(R.id.item_termselect_tv_visitdate);// 拜访时间汇总
-            holder.terminalRb = (RadioButton) convertView.findViewById(R.id.item_termselect_rb);// 条目选中标记
             holder.terminalTypeTv = (TextView) convertView.findViewById(R.id.item_termselect_tv_type);// 渠道类型
 
             holder.updateIv = (ImageView) convertView.findViewById(R.id.item_termselect_iv_update);// 上传成功标识
@@ -106,19 +102,11 @@ public class XtTermSelectAdapter extends BaseAdapter implements OnClickListener 
 
             holder.addTerm = (ImageView) convertView.findViewById(R.id.item_termselect_iv_addterm);
 
-            holder.itermLayout = (LinearLayout) convertView.findViewById(R.id.item_termselect_ll);// 整体条目
             holder.itemCoverV = convertView.findViewById(R.id.item_termselect_v_cover);// 失效终端底色
 
-            holder.terminalSequenceEt.addTextChangedListener(new XtTermSelectAdapter.MyTextWatcher(holder) {
-                @Override
-                public void afterTextChanged(Editable s, XtTermSelectAdapter.ViewHolder holder) {
-                    int position = (Integer) holder.terminalSequenceEt.getTag();
-                    saveEditValue(s.toString(), position);
-                }
-            });
             convertView.setTag(holder);
         } else {
-            holder = (XtTermSelectAdapter.ViewHolder) convertView.getTag();
+            holder = (XtSelectAdapter.ViewHolder) convertView.getTag();
         }
         holder.terminalSequenceEt.setTag(position);
 
@@ -126,37 +114,20 @@ public class XtTermSelectAdapter extends BaseAdapter implements OnClickListener 
 
             XtTermSelectMStc item = dataLst.get(position);
             holder.terminalNameTv.setHint(item.getTerminalkey());
-            //是否允许修改排序
-            if (isUpdate) {
-                holder.terminalSequenceEt.setEnabled(true);
-                holder.terminalSequenceEt.setBackgroundColor(Color.LTGRAY);
-            } else {
-                holder.terminalSequenceEt.setEnabled(false);
-            }
+
             //失效终端且未审核通过的变灰,不可编辑顺序，不可选中
             if ("3".equals(item.getStatus())) {
                 holder.terminalSequenceEt.setEnabled(false);
                 holder.terminalSequenceEt.setBackgroundColor(Color.WHITE);
                 holder.itemCoverV.setVisibility(View.VISIBLE);
                 holder.itemCoverV.getBackground().setAlpha(50);
-                holder.terminalRb.setEnabled(false);
-                holder.terminalRb.setOnClickListener(null);
-                holder.terminalRb.setTag(position);
-                holder.itermLayout.setOnClickListener(null);
-                holder.itermLayout.setTag(position);
                 holder.addTerm.setVisibility(View.GONE);
             } else {
                 holder.itemCoverV.setVisibility(View.GONE);
-                holder.terminalRb.setOnClickListener(this);
-                holder.terminalRb.setTag(position);
                 //holder.itermLayout.setOnClickListener(this);
-                holder.itermLayout.setTag(position);
                 holder.addTerm.setVisibility(View.VISIBLE);
             }
 
-            // 添加终端
-            holder.addTerm.setTag(position);
-            holder.addTerm.setOnClickListener(mListener);
             if("1".equals(item.getIsSelectToCart())){
                 // holder.addTerm.setImageResource(R.drawable.icon_select_minus);
                 holder.addTerm.setImageResource(R.drawable.icon_visit_pitchon);
@@ -258,7 +229,6 @@ public class XtTermSelectAdapter extends BaseAdapter implements OnClickListener 
             if (position == selectItem) {
                 // 选中的条目
                 //holder.itermLayout.setBackgroundColor(context.getResources().getColor(R.color.bg_content_color_gray));
-                holder.terminalRb.setChecked(true);
                 holder.terminalNameTv.setTextColor(context.getResources().getColor(R.color.font_color_green));
                 holder.terminalTypeTv.setTextColor(context.getResources().getColor(R.color.font_color_green));
                 holder.visitDateTv.setTextColor(context.getResources().getColor(R.color.font_color_green));
@@ -269,7 +239,6 @@ public class XtTermSelectAdapter extends BaseAdapter implements OnClickListener 
             } else {
                 // 未选中的条目
                 //holder.itermLayout.setBackgroundColor(Color.WHITE);
-                holder.terminalRb.setChecked(false);
                 if (ConstValues.FLAG_1.equals(item.getUploadFlag())) {
                     // 已提交过的
                     holder.terminalNameTv.setTextColor(context.getResources().getColor(R.color.termlst_sync_font_color));
@@ -297,7 +266,6 @@ public class XtTermSelectAdapter extends BaseAdapter implements OnClickListener 
 
     private class ViewHolder {
         private EditText terminalSequenceEt;
-        private RadioButton terminalRb;
         private TextView terminalNameTv;
         private TextView visitDateTv;
         private TextView terminalTypeTv;
@@ -308,105 +276,7 @@ public class XtTermSelectAdapter extends BaseAdapter implements OnClickListener 
         private ImageView mineProtocolIv;
         private ImageView vieIv;
         private ImageView vieProtocolIv;
-        private LinearLayout itermLayout;
         private View itemCoverV;
         private ImageView addTerm;
     }
-
-    @Override
-    public void onClick(View v) {
-        /*int position = Integer.parseInt(v.getTag().toString());
-        setSelectItem(position);
-        notifyDataSetChanged();
-        confirmBt.setVisibility(View.VISIBLE);
-        confirmBt.setTag(dataLst.get(position));*/
-    }
-
-    public int getSelectItem() {
-        return selectItem;
-    }
-
-    public void setSelectItem(int selectItem) {
-        this.selectItem = selectItem;
-    }
-
-    /**
-     * @return the isUpdate
-     */
-    public boolean isUpdate() {
-        return isUpdate;
-    }
-
-    /**
-     * @param isUpdate the isUpdate to set
-     */
-    public void setUpdate(boolean isUpdate) {
-        this.isUpdate = isUpdate;
-    }
-
-    private void saveEditValue(String str, int position) {
-        XtTermSelectMStc option = dataLst.get(position);
-        if (isUpdate && !str.equals(option.getSequence())) {
-            resetSeq(option.getTerminalkey(), str);
-        }
-        option.setSequence(str);
-    }
-
-    /***
-     * 重新终端设置顺序
-     * @param termKey
-     * @param newSeq
-     */
-    private void resetSeq(String termKey, String newSeq) {
-        for (int i = 0; i < seqTermList.size(); i++) {
-            XtTermSelectMStc term = seqTermList.get(i);
-            if (termKey.equals(term.getTerminalkey())) {
-                if (CheckUtil.isBlankOrNull(newSeq)) {
-                    seqTermList.remove(term);
-                    term.setSequence(newSeq);
-                    seqTermList.add(term);
-                } else {
-                    int newSeq_i = Integer.parseInt(newSeq);
-                    if (newSeq_i >= seqTermList.size() - 1) {
-                        seqTermList.remove(term);
-                        term.setSequence(newSeq);
-                        seqTermList.add(term);
-                    } else {
-                        seqTermList.remove(term);
-                        term.setSequence(newSeq);
-                        if (newSeq_i == 0) {
-                            seqTermList.add(0, term);
-                        } else {
-                            seqTermList.add(newSeq_i - 1, term);
-                        }
-                    }
-                }
-                break;
-            }
-        }
-    }
-
-    abstract class MyTextWatcher implements TextWatcher {
-        public MyTextWatcher(ViewHolder holder) {
-            mHolder = holder;
-        }
-
-        private ViewHolder mHolder;
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-        }
-
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-            afterTextChanged(s, mHolder);
-        }
-
-        public abstract void afterTextChanged(Editable s, ViewHolder holder);
-    }
-
 }

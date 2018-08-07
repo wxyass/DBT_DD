@@ -235,7 +235,7 @@ public class ZsCaculateAdapter extends BaseAdapter {
         mAlertViewExt.show();*/
 
 
-        new AlertView("请选择核查结果", null, "取消", null,
+        new AlertView("请选择核查结果", null, "未稽查", null,
                 new String[]{"正确", "错误"},
                 context, AlertView.Style.ActionSheet,
                 new OnItemClickListener() {

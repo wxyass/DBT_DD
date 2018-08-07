@@ -73,8 +73,8 @@ import et.tsingtaopad.util.requestHeadUtil;
  * Created by yangwenmin on 2018/3/12.
  */
 
-public class ZsTermCartSdlvFragment extends BaseFragmentSupport implements View.OnClickListener ,
-        AdapterView.OnItemLongClickListener,
+public class ZsTermCartSdlvFragment extends BaseFragmentSupport implements
+        View.OnClickListener ,
         AdapterView.OnItemClickListener,
         SlideAndDragListView.OnDragDropListener,
         SlideAndDragListView.OnSlideListener,
@@ -90,7 +90,6 @@ public class ZsTermCartSdlvFragment extends BaseFragmentSupport implements View.
 
     private EditText searchEt;
     private Button searchBtn;
-    private Button updateBtn;
     private Button addtermBtn;
     private Button addBtn;
     private SlideAndDragListView termCartLv;
@@ -105,8 +104,9 @@ public class ZsTermCartSdlvFragment extends BaseFragmentSupport implements View.
     private String termId;
     private Map<String, String> termPinyinMap;
     private List<XtTermSelectMStc> tempLst;
-    // protected MitValcheckterM mitValcheckterM;// 追溯模板
     private List<MitValcheckterM> mitValcheckterMs;
+
+    private Menu mMenu;
 
     @Nullable
     @Override
@@ -128,13 +128,11 @@ public class ZsTermCartSdlvFragment extends BaseFragmentSupport implements View.
 
         searchEt = (EditText) view.findViewById(R.id.sdlv_termcart_et_search);
         searchBtn = (Button) view.findViewById(R.id.sdlv_termcart_bt_search);
-        updateBtn = (Button) view.findViewById(R.id.sdlv_termcart_bt_update);
         addtermBtn = (Button) view.findViewById(R.id.sdlv_termcart_bt_addterm);
         addBtn = (Button) view.findViewById(R.id.sdlv_termcart_bt_add);
         termCartLv = (SlideAndDragListView) view.findViewById(R.id.sdlv_termcart_lv);
 
         searchBtn.setOnClickListener(this);
-        updateBtn.setOnClickListener(this);
         addtermBtn.setOnClickListener(this);
         addBtn.setOnClickListener(this);
 
@@ -181,7 +179,6 @@ public class ZsTermCartSdlvFragment extends BaseFragmentSupport implements View.
         // // 获取追溯模板 大区id
         String areapid = PrefUtils.getString(getActivity(), "departmentid", "");
         mitValcheckterMs = cartService.getValCheckterMList(areapid);
-
     }
 
     @Override
@@ -192,27 +189,10 @@ public class ZsTermCartSdlvFragment extends BaseFragmentSupport implements View.
                 break;
             case R.id.top_navigation_rl_confirm:
                 break;
-            case R.id.xtbf_termcart_bt_search:
+            case R.id.sdlv_termcart_bt_search:
                 searchTerm();
                 break;
-            /*case R.id.xtbf_termcart_bt_update:// 排序
-                termCartAdapter.setUpdate(true);
-                String s = updateBtn.getText().toString();
-                if ("排序".equals(s)) {
-                    updateBtn.setText("保存");
-                    termCartAdapter.setUpdate(true);
-                    termCartAdapter.notifyDataSetChanged();
-                } else {
-                    updateTermSeq();
-                    updateBtn.setText("排序");
-                    termCartAdapter.setUpdate(false);
-                    searchTerm();
-                    Toast.makeText(getActivity(), "排序保存成功", Toast.LENGTH_SHORT).show();
-                }
-
-
-                break;*/
-            case R.id.xtbf_termcart_bt_addterm:// 漏店补录
+            case R.id.sdlv_termcart_bt_addterm:// 漏店补录
                 if (getCmmAreaMCount() > 0) {
                     changeHomeFragment(new DdAddTermFragment(), "ddaddtermfragment");
                 } else {
@@ -220,11 +200,8 @@ public class ZsTermCartSdlvFragment extends BaseFragmentSupport implements View.
                     changeHomeFragment(new SyncBasicFragment(), "syncbasicfragment");
                 }
                 break;
-            case R.id.xtbf_termcart_bt_add:// 更新数据
-                // 组建json  请求终端上次拜访详情
-                buildJson();
-
-
+            case R.id.sdlv_termcart_bt_add:// 更新数据
+                buildJson();// 组建json  请求终端上次拜访详情
                 break;
             default:
                 break;
@@ -321,7 +298,12 @@ public class ZsTermCartSdlvFragment extends BaseFragmentSupport implements View.
      */
     public void searchTerm() {
 
+        // 更新数据(可能数据删了,可能顺序变了 )
+        termList = cartService.queryZsCartTermList();// termList:只是追溯用到的终端
+
+        // 更改联动数据
         seqTermList = getNewMstTermListMStc();
+
         if (termStc == null || "3".equals(termStc.getStatus())) {
             termId = "";
         } else {
@@ -330,32 +312,26 @@ public class ZsTermCartSdlvFragment extends BaseFragmentSupport implements View.
 
         // 根据搜索,查找终端列表
         if (!CheckUtil.isBlankOrNull(searchEt.getText().toString())) {
-            tempLst = cartService.searchTermByname(getNewMstTermListMStc(), searchEt.getText().toString().replace(" ", ""), termPinyinMap);
+            tempLst = cartService.searchTermByname(seqTermList, searchEt.getText().toString().replace(" ", ""), termPinyinMap);
         } else {// 没有搜索
-            tempLst = getNewMstTermListMStc();
+            tempLst = seqTermList;
         }
 
         // 设置适配器
         // termCartAdapter = new ZsTermCartAdapter(getActivity(), seqTermList, tempLst, confirmBtn, termId,"2");// 1协同  2追溯
         //termCartAdapter = new DdTermCartAdapter(getActivity(), seqTermList, tempLst, confirmBtn, termId, "2", new IClick() {
-        termCartAdapter = new DdTermCartSdlvAdapter(getActivity(), seqTermList, tempLst, confirmBtn, termId, "2", new IClick() {
-            @Override
-            public void listViewItemClick(int position, View v) {
-
-                confirmXtUplad(position, v);
-            }
-        });// 1协同  2追溯
+        termCartAdapter = new DdTermCartSdlvAdapter(getActivity(), tempLst, termId);
         termCartLv.setMenu(mMenu);
         termCartLv.setAdapter(termCartAdapter);
 
-        termCartLv.setOnDragDropListener(this);// 拖动
+        // 拖动
+        termCartLv.setOnDragDropListener(this);
         termCartLv.setOnItemClickListener(this);// 单击监听
         termCartLv.setOnSlideListener(this); // Item 滑动监听器   左右滑动
         termCartLv.setOnMenuItemClickListener(this);// 实现 menu item 的单击事件
-        // termCartLv.setOnItemLongClickListener(this); // 长按监听
     }
 
-    private Menu mMenu;
+
     public void initMenu() {
         // 第一个参数表示条目滑动时,是否能滑的过头   true表示过头    false 表示不过头
         mMenu = new Menu(true);
@@ -400,59 +376,6 @@ public class ZsTermCartSdlvFragment extends BaseFragmentSupport implements View.
         mAlertViewExt.show();
     }
 
-
-    /***
-     * 终端集合封装一个新的终端集合（防御联动修改）
-     * @return
-     */
-    private List<XtTermSelectMStc> getNewMstTermListMStc() {
-        List<XtTermSelectMStc> termList_new = new ArrayList<XtTermSelectMStc>();
-        if (termList != null) {
-            for (XtTermSelectMStc item : termList) {
-                XtTermSelectMStc item_new = new XtTermSelectMStc();
-                item_new.setRoutekey(item.getRoutekey());
-                item_new.setTerminalkey(item.getTerminalkey());
-                item_new.setTerminalcode(item.getTerminalcode());
-                item_new.setTerminalname(item.getTerminalname());
-                item_new.setIserror(item.getIserror());
-                item_new.setStatus(item.getStatus());
-                item_new.setSequence(item.getSequence());
-                item_new.setMineFlag(item.getMineFlag());
-                item_new.setVieFlag(item.getVieFlag());
-                item_new.setMineProtocolFlag(item.getMineProtocolFlag());
-                item_new.setVieProtocolFlag(item.getVieProtocolFlag());
-                item_new.setSyncFlag(item.getSyncFlag());
-                item_new.setUploadFlag(item.getUploadFlag());
-                item_new.setMinorchannel(item.getMinorchannel());
-                item_new.setTerminalType(item.getTerminalType());
-                item_new.setVisitTime(item.getVisitTime());
-                item_new.setEndDate(item.getEndDate());
-                termList_new.add(item_new);
-            }
-        }
-        return termList_new;
-    }
-
-    /***
-     * 修改终端顺序
-     */
-    private void updateTermSeq() {
-        termList = seqTermList;// seqTermList:修改后的
-        List<TermSequence> termSequenceList = new ArrayList<TermSequence>();
-        for (int i = 0; i < termList.size(); i++) {
-            XtTermSelectMStc term = termList.get(i);
-            if (!((i + 1) + "").equals(term.getSequence())) {
-                // 根据终端在集合中的顺序,重新排序(从1开始)
-                term.setSequence((i + 1) + "");
-            }
-            TermSequence termSequence = new TermSequence();
-            termSequence.setSequence(term.getSequence());
-            termSequence.setTerminalkey(term.getTerminalkey());
-            termSequenceList.add(termSequence);
-        }
-        // 保存到数据库
-        cartService.updateZsTermSequence(termSequenceList);
-    }
 
     // 组建json  请求终端上次拜访详情
     private void buildJson() {
@@ -528,7 +451,6 @@ public class ZsTermCartSdlvFragment extends BaseFragmentSupport implements View.
 
     MyHandler handler;
 
-
     /**
      * 接收子线程消息的 Handler
      */
@@ -574,45 +496,43 @@ public class ZsTermCartSdlvFragment extends BaseFragmentSupport implements View.
     }
 
 
+    // ↓ ----左右滑动监听,上下拖动监听,点击监听,左滑小按钮监听---------------------------------------------------------------
     XtTermSelectMStc mDraggedEntity;
-    // 拖动监听
+
+    // 拖动监听 // toast("开始拖动时的位置 ---> " + beginPosition);
     @Override
     public void onDragViewStart(int beginPosition) {// 参数 position 表示的是刚开始拖动的时候取的 item 在 ListView 中的位置
         mDraggedEntity = tempLst.get(beginPosition);
-        toast("开始拖动时的位置 ---> " + beginPosition);
     }
 
-    // 拖动监听
+    // 拖动监听  // toast("从位置 ---> " + fromPosition + "  拖到位置 --> " + toPosition);
     @Override
     public void onDragDropViewMoved(int fromPosition, int toPosition) {// 参数 fromPosition 和 toPosition 表示从哪个位置拖动到哪个位置
         XtTermSelectMStc applicationInfo = tempLst.remove(fromPosition);
         tempLst.add(toPosition, applicationInfo);
-        toast("从位置 ---> " + fromPosition + "  拖到位置 --> " + toPosition);
     }
 
-    // 拖动监听
+    // 拖动监听   toast("最放到了的哪个位置 ---> " + finalPosition);
     @Override
     public void onDragViewDown(int finalPosition) {  // 参数 position 表示的是拖动的 item 最放到了 ListView 的哪个位置
         tempLst.set(finalPosition, mDraggedEntity);
-        toast("最放到了的哪个位置 ---> " + finalPosition);
+        scrollTermSeq(tempLst);
     }
 
-    // Item 滑动监听器
+    // Item 滑动监听器   "开启左右滑动 " + position + "---> " + direction
     @Override
     public void onSlideOpen(View view, View parentView, int position, int direction) {
-        toast("onSlideOpen   position--->" + position + "  direction--->" + direction);
     }
 
-    // Item 滑动监听器
+    // Item 滑动监听器   "关闭左右滑动 " + position + "---> " + direction
     @Override
     public void onSlideClose(View view, View parentView, int position, int direction) {
-        toast("onSlideClose   position--->" + position + "  direction--->" + direction);
     }
 
     // 实现 menu item 的单击事件
     @Override
     public int onMenuItemClick(View v, int itemPosition, int buttonPosition, int direction) {
-        toast("onMenuItemClick   itemPosition--->" + itemPosition + "  buttonPosition-->" + buttonPosition + "  direction-->" + direction);
+        // Toast.makeText(getActivity(),"onMenuItemClick   itemPosition--->" + itemPosition + "  buttonPosition-->" + buttonPosition + "  direction-->" + direction,Toast.LENGTH_SHORT).show();
         switch (direction) {
             case MenuItem.DIRECTION_LEFT:
                 switch (buttonPosition) {
@@ -624,7 +544,9 @@ public class ZsTermCartSdlvFragment extends BaseFragmentSupport implements View.
                 break;
             case MenuItem.DIRECTION_RIGHT:
                 switch (buttonPosition) {
-                    case 0:
+                    case 0:// 删除终端
+                        // 删除终端
+                        deleteTerm(itemPosition);//
                         return Menu.ITEM_SCROLL_BACK; // 收回
                     case 1:
                         return Menu.ITEM_DELETE_FROM_BOTTOM_TO_TOP; // 置顶
@@ -633,20 +555,100 @@ public class ZsTermCartSdlvFragment extends BaseFragmentSupport implements View.
         return Menu.ITEM_NOTHING;
     }
 
-    @Override
-    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-        toast("长按监听 position--->" + position);
-        return true;
-    }
-
+    // 条目点击 拜访终端
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        toast("单击监听 position--->" + position);
+        confirmXtUplad(position, view);
     }
 
-    private void toast(String toast) {
-        Toast.makeText(getActivity(),toast,Toast.LENGTH_SHORT).show();
+    // ↑ ----左右滑动监听,上下拖动监听,点击监听,左滑小按钮监听---------------------------------------------------------------
+
+    // 左滑删除终端
+    private void deleteTerm(final int posi) {
+        final XtTermSelectMStc termSelectMStc = tempLst.get(posi);
+        // 普通窗口
+        mAlertViewExt = new AlertView("删除终端: "+termSelectMStc.getTerminalname(), null,"取消",
+                new String[]{"确定"}, null, getActivity(), AlertView.Style.Alert,
+                new OnItemClickListener() {
+                    @Override
+                    public void onItemClick(Object o, int position) {
+                        if (0 == position) {// 确定按钮:0   取消按钮:-1
+                            //if (ViewUtil.isDoubleClick(v.getId(), 2500)) return;
+                            DbtLog.logUtils(TAG, "删除终端：是");
+                            // 删除对应的数据
+                            if (!CheckUtil.isBlankOrNull(termSelectMStc.getTerminalkey())) {
+                                DbtLog.logUtils(TAG,"删除终端");
+                                XtTermCartService service = new XtTermCartService(getActivity());
+                                boolean isFlag = service.deleteXtTermCart(termSelectMStc.getTerminalkey(),"2");// 1协同  ,2追溯
+                                if(isFlag){
+                                    // 删除界面listView相应行
+                                    tempLst.remove(posi);
+                                    termCartAdapter.notifyDataSetChanged();
+                                    // ViewUtil.setListViewHeight(checkGoodsLv);
+                                }else{
+                                    Toast.makeText(getActivity(), "删除终端失败!", Toast.LENGTH_SHORT).show();
+                                }
+                            }else{
+                            }
+                        }
+                    }
+                })
+                .setCancelable(true)
+                .setOnDismissListener(new OnDismissListener() {
+                    @Override
+                    public void onDismiss(Object o) {
+                        DbtLog.logUtils(TAG, "删除供货关系：否");
+                    }
+                });
+        mAlertViewExt.show();
     }
 
+    /***
+     * 拖动 修改终端顺序
+     */
+    private void scrollTermSeq(List<XtTermSelectMStc> termList) {
+        List<TermSequence> termSequenceList = new ArrayList<TermSequence>();
+        for (int i = 0; i < termList.size(); i++) {
+            XtTermSelectMStc term = termList.get(i);
+            TermSequence termSequence = new TermSequence();
+            // 根据顺序重新赋值
+            termSequence.setSequence((i+1)+"");
+            termSequence.setTerminalkey(term.getTerminalkey());
+            termSequenceList.add(termSequence);
+        }
+        // 保存到数据库
+        cartService.updateZsTermSequence(termSequenceList);
+    }
 
+    /***
+     * 终端集合封装一个新的终端集合（防御联动修改）
+     * @return
+     */
+    private List<XtTermSelectMStc> getNewMstTermListMStc() {
+        List<XtTermSelectMStc> termList_new = new ArrayList<XtTermSelectMStc>();
+        if (termList != null) {
+            for (XtTermSelectMStc item : termList) {
+                XtTermSelectMStc item_new = new XtTermSelectMStc();
+                item_new.setRoutekey(item.getRoutekey());
+                item_new.setTerminalkey(item.getTerminalkey());
+                item_new.setTerminalcode(item.getTerminalcode());
+                item_new.setTerminalname(item.getTerminalname());
+                item_new.setIserror(item.getIserror());
+                item_new.setStatus(item.getStatus());
+                item_new.setSequence(item.getSequence());
+                item_new.setMineFlag(item.getMineFlag());
+                item_new.setVieFlag(item.getVieFlag());
+                item_new.setMineProtocolFlag(item.getMineProtocolFlag());
+                item_new.setVieProtocolFlag(item.getVieProtocolFlag());
+                item_new.setSyncFlag(item.getSyncFlag());
+                item_new.setUploadFlag(item.getUploadFlag());
+                item_new.setMinorchannel(item.getMinorchannel());
+                item_new.setTerminalType(item.getTerminalType());
+                item_new.setVisitTime(item.getVisitTime());
+                item_new.setEndDate(item.getEndDate());
+                termList_new.add(item_new);
+            }
+        }
+        return termList_new;
+    }
 }

@@ -1,7 +1,6 @@
 package et.tsingtaopad.dd.ddzs.zsterm.zsselect;
 
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -9,31 +8,24 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
 import et.tsingtaopad.R;
-import et.tsingtaopad.adapter.DayDetailSelectKeyValueAdapter;
 import et.tsingtaopad.base.BaseFragmentSupport;
 import et.tsingtaopad.business.visit.bean.AreaGridRoute;
 import et.tsingtaopad.core.net.HttpUrl;
@@ -46,12 +38,10 @@ import et.tsingtaopad.core.net.domain.RequestStructBean;
 import et.tsingtaopad.core.net.domain.ResponseStructBean;
 import et.tsingtaopad.core.util.dbtutil.ConstValues;
 import et.tsingtaopad.core.util.dbtutil.DateUtil;
-import et.tsingtaopad.core.util.dbtutil.FunUtil;
 import et.tsingtaopad.core.util.dbtutil.JsonUtil;
 import et.tsingtaopad.core.util.dbtutil.NetStatusUtil;
 import et.tsingtaopad.core.util.dbtutil.PrefUtils;
 import et.tsingtaopad.core.util.dbtutil.PropertiesUtil;
-import et.tsingtaopad.core.util.dbtutil.ViewUtil;
 import et.tsingtaopad.core.util.dbtutil.logutil.DbtLog;
 import et.tsingtaopad.core.view.alertview.AlertView;
 import et.tsingtaopad.core.view.alertview.OnDismissListener;
@@ -68,24 +58,18 @@ import et.tsingtaopad.db.table.MstRouteM;
 import et.tsingtaopad.db.table.MstTerminalinfoM;
 import et.tsingtaopad.db.table.MstTerminalinfoMDown;
 import et.tsingtaopad.db.table.MstVisitM;
-import et.tsingtaopad.dd.ddxt.chatvie.addchatvie.XtAddChatVieService;
-import et.tsingtaopad.dd.ddxt.invoicing.addinvoicing.XtAddInvocingService;
 import et.tsingtaopad.dd.ddxt.term.select.IXtTermSelectClick;
 import et.tsingtaopad.dd.ddxt.term.select.XtTermSelectService;
-import et.tsingtaopad.dd.ddxt.term.select.adapter.XtTermSelectAdapter;
+import et.tsingtaopad.dd.ddzs.zsterm.zsselect.adapter.XtTermSelectAdapter;
 import et.tsingtaopad.dd.ddxt.term.select.domain.XtTermSelectMStc;
 import et.tsingtaopad.dd.ddxt.updata.XtUploadService;
 import et.tsingtaopad.dd.ddzs.zsshopvisit.ZsVisitShopActivity;
-import et.tsingtaopad.dd.ddzs.zsterm.zscart.ZsTermCartFragment;
-import et.tsingtaopad.dd.ddzs.zsterm.zsselect.adapter.AgencyCmpLvAdapter;
-import et.tsingtaopad.dd.ddzs.zsterm.zsselect.adapter.ProCheckLvAdapter;
-import et.tsingtaopad.dd.ddzs.zsterm.zsselect.domain.ProSellStc;
+import et.tsingtaopad.dd.ddzs.zsterm.zscart.ZsTermCartSdlvFragment;
 import et.tsingtaopad.dd.ddzs.zsterm.zsselect.domain.TermCheckStc;
 import et.tsingtaopad.home.app.MainService;
 import et.tsingtaopad.home.app.MyApplication;
 import et.tsingtaopad.home.initadapter.GlobalValues;
 import et.tsingtaopad.http.HttpParseJson;
-import et.tsingtaopad.initconstvalues.domain.KvStc;
 import et.tsingtaopad.util.requestHeadUtil;
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 
@@ -383,6 +367,12 @@ public class ZsTermFragment extends BaseFragmentSupport implements View.OnClickL
                 /*String content = "{routekey:'" + routeKey + "'," + "tablename:'MST_TERMINALINFO_M'" + "}";
                 getDataByHttp("opt_get_dates2", "MST_TERMINALINFO_M", content);
                 PrefUtils.putString(getActivity(), GlobalValues.ROUNTE_TIME, DateUtil.getDateTimeStr(7));*/
+
+                xtSelectService.deleteMst_terminal_m();
+                termList.clear();// 将展示在页面上的集合 数据删除
+                startrow = 0;// 开始行
+                endrow = pagercount;// 结束行
+                getTermList();
             }
         });
     }
@@ -459,7 +449,7 @@ public class ZsTermFragment extends BaseFragmentSupport implements View.OnClickL
                 }
                 break;
 
-            case R.id.xtbf_termcheck_bt_search:// 放大镜搜索  终端名称 模糊搜多终端
+            case R.id.zdzs_term_bt_search:// 放大镜搜索  终端名称 模糊搜多终端
                 searchTerm();
                 break;
 
@@ -742,7 +732,8 @@ public class ZsTermFragment extends BaseFragmentSupport implements View.OnClickL
 
                 // 跳转终端购物车
                 changeHomeFragment(zsTermCartFragment, "xttermcartfragment");*/
-                changeHomeFragment(new ZsTermCartFragment(), "zstermcartfragment");
+                // changeHomeFragment(new ZsTermCartFragment(), "zstermcartfragment");
+                changeHomeFragment(new ZsTermCartSdlvFragment(), "zstermcartsdlvfragment");
                 PrefUtils.putBoolean(getActivity(), GlobalValues.ZS_CART_SYNC, false);// false 追溯购物车 需要同步
                 PrefUtils.putString(getActivity(), GlobalValues.ZS_CART_TIME, DateUtil.getDateTimeStr(7));// 添加追溯文件夹时间
 

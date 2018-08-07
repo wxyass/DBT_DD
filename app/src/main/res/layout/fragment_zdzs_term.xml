@@ -78,8 +78,6 @@
                     android:text="搜索终端"
                     android:textSize="@dimen/font_size4"
                     />
-
-
             </RelativeLayout>
         </LinearLayout>
 

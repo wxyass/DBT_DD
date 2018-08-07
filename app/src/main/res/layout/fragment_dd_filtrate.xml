@@ -719,7 +719,6 @@
                         app:flChildSpacing="auto"
                         app:flChildSpacingForLastRow="align"
                         app:flRowSpacing="8dp">
-
                     </com.nex3z.flowlayout.FlowLayout>
                 </LinearLayout>
 

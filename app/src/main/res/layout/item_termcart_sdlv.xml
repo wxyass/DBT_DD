@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/item_termcart_rl"
                 style="@style/listview_bg_item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
     <LinearLayout
-        android:id="@+id/item_termcart_ll"
+        android:id="@+id/item_sdlv_termcart_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <LinearLayout
@@ -18,41 +18,25 @@
             android:orientation="horizontal">
 
             <!-- 排序序号 -->
-
-            <EditText
-                android:id="@+id/item_termcart_et_sequence"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@null"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:inputType="number"
-                android:gravity="center_horizontal|center_vertical"
-                android:maxLength="3"
-                android:singleLine="true"
-                android:textColor="@color/gray"
-                android:textSize="@dimen/font_size4"/>
-
-            <!-- 选中标识 -->
-
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:layout_weight="1"
-                android:visibility="gone">
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_weight="1">
 
-                <RadioButton
-                    android:id="@+id/item_termcart_rb"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_centerHorizontal="true"
+                <TextView
+                    android:id="@+id/item_sdlv_termcart_et_sequence"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/bg_visit_select"
-                    android:button="@null"
-                    android:focusable="false"/>
+                    android:layout_centerHorizontal="true"
+                    android:maxLength="3"
+                    android:singleLine="true"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/font_size4"/>
             </RelativeLayout>
-            <!-- 终端名称 -->
+
+
             <!--终端名称 拜访时间汇总 5份-->
             <RelativeLayout
                 android:layout_width="0dp"
@@ -60,9 +44,8 @@
                 android:layout_weight="6"
                 >
                 <!-- 终端名称 -->
-
                 <TextView
-                    android:id="@+id/item_termcart_tv_name"
+                    android:id="@+id/item_sdlv_termcart_tv_name"
                     style="@style/listview_tv_item_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -77,7 +60,7 @@
                 <!-- 拜访时间汇总 -->
 
                 <TextView
-                    android:id="@+id/item_termcart_tv_visittime"
+                    android:id="@+id/item_sdlv_termcart_tv_visittime"
                     style="@style/listview_tv_item_text_xiao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -100,7 +83,7 @@
                 android:layout_weight="2">
 
                 <ImageView
-                    android:id="@+id/item_termcart_iv_iserror"
+                    android:id="@+id/item_sdlv_termcart_iv_iserror"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
                     android:layout_centerVertical="true"
@@ -117,7 +100,7 @@
                 android:layout_weight="1">
 
                 <ImageView
-                    android:id="@+id/item_termcart_iv_update"
+                    android:id="@+id/item_sdlv_termcart_iv_update"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -125,7 +108,7 @@
                     android:visibility="gone"/>
 
                 <ImageView
-                    android:id="@+id/item_termcart_iv_update_fail"
+                    android:id="@+id/item_sdlv_termcart_iv_update_fail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -133,10 +116,9 @@
                     android:visibility="gone"/>
             </RelativeLayout>
 
-            <!-- 渠道 -->
-
+            <!-- 渠道类型  -->
             <TextView
-                android:id="@+id/item_termcart_tv_type"
+                android:id="@+id/item_sdlv_termcart_tv_type"
                 style="@style/listview_tv_item_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -144,13 +126,14 @@
                 android:textColor="@color/gray"
                 android:textSize="@dimen/font_size6"/>
 
+            <!--我品,竞品-->
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="2">
                 <!-- 我品 -->
                 <ImageView
-                    android:id="@+id/item_termcart_iv_mime"
+                    android:id="@+id/item_sdlv_termcart_iv_mime"
                     android:layout_width="@dimen/width_height_size06"
                     android:layout_height="@dimen/width_height_size06"
                     android:layout_centerVertical="true"
@@ -160,7 +143,7 @@
                 <!-- 绿色小书 -->
 
                 <ImageView
-                    android:id="@+id/item_termcart_iv_mineprotocol"
+                    android:id="@+id/item_sdlv_termcart_iv_mineprotocol"
                     android:layout_width="@dimen/width_height_size06"
                     android:layout_height="@dimen/width_height_size06"
                     android:layout_centerVertical="true"
@@ -169,7 +152,7 @@
                 <!-- 竞品 -->
 
                 <ImageView
-                    android:id="@+id/item_termcart_iv_vie"
+                    android:id="@+id/item_sdlv_termcart_iv_vie"
                     android:layout_width="@dimen/width_height_size06"
                     android:layout_height="@dimen/width_height_size06"
                     android:layout_centerVertical="true"
@@ -179,7 +162,7 @@
                 <!-- 黄色小书 -->
 
                 <ImageView
-                    android:id="@+id/item_termcart_iv_vieprotocol"
+                    android:id="@+id/item_sdlv_termcart_iv_vieprotocol"
                     android:layout_width="@dimen/width_height_size06"
                     android:layout_height="@dimen/width_height_size06"
                     android:layout_centerVertical="true"
@@ -187,21 +170,10 @@
                     android:src="@drawable/ico_terminal_vieprotocol"
                     android:visibility="invisible"/>
             </RelativeLayout>
+
         </LinearLayout>
 
 
     </LinearLayout>
-
-    <!-- 失效终端底色 -->
-
-    <View
-        android:id="@+id/item_termcart_v_cover"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignBottom="@+id/item_termcart_ll"
-        android:layout_alignTop="@+id/item_termcart_ll"
-        android:visibility="gone"
-        android:layout_centerInParent="true"
-        android:background="#c0c0c0"/>
 
 </RelativeLayout>

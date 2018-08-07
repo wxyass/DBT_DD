@@ -7,7 +7,7 @@ package et.tsingtaopad.core.net;
 public class HttpUrl {
 
     // 测试环境
-     //public static final String BASE_URL = "http://192.168.0.111:80/mainintf";
+    //public static final String BASE_URL = "http://192.168.0.111:80/mainintf";
     //public static final String BASE_URL = "http://192.168.1.215:8080/mainintf";
 
     //public static final String BASE_URL = "http://192.168.0.120:8080/mainintf";

@@ -109,6 +109,8 @@ public class XtTermCartService extends XtTermService{
     /**
      * 按条件查询终端列表
      *
+     * 追溯购物车  模糊搜索终端(2018年8月6日11:41:36)
+     *
      * @param termLst       线路下所有终端
      * @param searchStr     查询条件
      * @param termPinyinMap 各终端名称的拼音

@@ -191,7 +191,7 @@ public class SystemFragment extends BaseFragmentSupport implements View.OnClickL
             case R.id.dd_system_rl_about:// 关于系统
                 changeHomeFragment(new DdAboutFragment(), "dddealplanfragment");
                 break;
-            case R.id.dd_system_rl_exit:// 关于系统
+            case R.id.dd_system_rl_exit:// 退出系统
                 exitSystem();
                 break;
         }
